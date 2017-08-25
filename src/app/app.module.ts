@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { MdToolbarModule } from '@angular/material';
 import 'hammerjs';
@@ -17,6 +18,7 @@ import { AppRouteModule } from './router/app-route.module';
     BrowserModule,
     AppRouteModule,
     MdToolbarModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
