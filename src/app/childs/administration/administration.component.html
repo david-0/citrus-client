@@ -1,0 +1,40 @@
+<md-sidenav-container class="example-container">
+  <md-sidenav mode="side" opened class="example-sidenav">
+    <nav class="noPadding">
+      <h3>Lieferungen</h3>
+      <ul>
+        <li>
+          <a routerLinkActive="example-sidenav-item-selected"
+             routerLink='transportation-overview'>
+            <md-icon>local_shipping</md-icon>
+            <span>Transporte</span>
+          </a>
+        </li>
+        <li>
+          <a routerLinkActive="example-sidenav-item-selected" routerLink="storage-overview" class="">
+            <md-icon>grid_on</md-icon>
+            <span>Lager</span>
+          </a>
+        </li>
+      </ul>
+      <h3>Stammdaten</h3>
+      <ul>
+        <li>
+          <a routerLinkActive="example-sidenav-item-selected" routerLink="fruits-overview" class="">
+            <md-icon>list</md-icon>
+            <span>Fruchtliste</span>
+          </a>
+        </li>
+        <li>
+          <a routerLinkActive="example-sidenav-item-selected" routerLink="users-overview" class="">
+            <md-icon>people</md-icon>
+            <span>Benuterverwaltung</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </md-sidenav>
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</md-sidenav-container>
