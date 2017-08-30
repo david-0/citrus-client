@@ -2,9 +2,19 @@
 //@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "./theme.scss";
 
-.example-fill-remaining-space {
+.fill-remaining-space {
   flex: 1 1 auto;
 }
+
 .noMargin {
   margin: 0px;
+}
+
+.noPadding {
+  padding: 0px;
+}
+
+
+body {
+  font-family: Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
 }
