@@ -18,7 +18,12 @@ const routes: Routes = [
   {path: 'create-transport', component: CreateTransportComponent},
   {
     path: 'administration', component: AdministrationComponent, children: [
-    {path: 'transportation-overview', component: TransportationOverviewComponent},
+    {
+      path: 'transportation-overview', component: TransportationOverviewComponent, children: [
+      {path: 'create-transport', component: CreateTransportComponent},
+    ]
+    },
+    {path: 'create-transport', component: CreateTransportComponent},
     {path: 'storage-overview', component: StorageOverviewComponent},
     {path: 'users-overview', component: UsersOverviewComponent},
     {path: 'fruits-overview', component: FruitsOverviewComponent},
