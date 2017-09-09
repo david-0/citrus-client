@@ -61,7 +61,7 @@
 }
 
 .example-sidenav-item-selected {
-  background-color: orange; //mat-color($accent);
+  // color from administration.component.scss-theme.scss mixin in the theme.scss
   pointer-events: none;
   cursor: default;
 }

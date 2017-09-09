@@ -15,7 +15,16 @@ $my-theme: mat-light-theme(
     $my-theme-warn
 );
 
+@import "./app/list-support/list-header/list-header.component.scss-theme";
+@import "./app/childs/administration/administration.component.scss-theme";
+
+@mixin my-component-theme($theme) {
+  @include app-list-header-theme($theme);
+  @include app-administration-theme($theme);
+}
 @include angular-material-theme($my-theme);
+@include my-component-theme($my-theme);
+
 
 //   Themes: Einstieg mit Blog, details in youtube
 //  https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1
