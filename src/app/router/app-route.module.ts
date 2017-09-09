@@ -9,24 +9,22 @@ import {CreateTransportComponent} from '../childs/transport/transport-create/cre
 import {StorageOverviewComponent} from '../childs/storage/storage-overview/storage-overview.component';
 import {UsersOverviewComponent} from '../childs/user/user-overview/users-overview.component';
 import {FruitsOverviewComponent} from '../childs/fruit/fruit-overview/fruits-overview.component';
+import {FruitCreateComponent} from "../childs/fruit/fruit-create/fruit-create.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'transportation-overview', component: TransportationOverviewComponent},
+  {path: 'transport', component: TransportationOverviewComponent},
   {path: 'storage-overview', component: StorageOverviewComponent},
   {path: 'create-transport', component: CreateTransportComponent},
   {
     path: 'administration', component: AdministrationComponent, children: [
-    {
-      path: 'transportation-overview', component: TransportationOverviewComponent, children: [
-      {path: 'create-transport', component: CreateTransportComponent},
-    ]
-    },
-    {path: 'create-transport', component: CreateTransportComponent},
+    {path: 'transport', component: TransportationOverviewComponent},
+    {path: 'transport/create', component: CreateTransportComponent},
     {path: 'storage-overview', component: StorageOverviewComponent},
     {path: 'users-overview', component: UsersOverviewComponent},
-    {path: 'fruits-overview', component: FruitsOverviewComponent},
+    {path: 'fruit', component: FruitsOverviewComponent},
+    {path: 'fruit/create', component: FruitCreateComponent},
     {path: '', redirectTo: 'transportation-overview', pathMatch: 'full'},
   ]
   },
