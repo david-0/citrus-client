@@ -12,4 +12,11 @@
     <md-icon>add</md-icon>
     <span class="size-xl">erstellen</span>
   </button>
+  <button md-button type="button" class="size-xs button--responsive" (click)="back()" *ngIf="showCancelAndSave">
+    <md-icon>cancel</md-icon>
+  </button>
+  <button md-button type="submit" class="size-xs button--responsive" *ngIf="showCancelAndSave">
+    <md-icon>save</md-icon>
+    <!-- [disabled]="!f.valid" -->
+  </button>
 </div>
