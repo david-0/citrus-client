@@ -27,6 +27,8 @@ import {TransportationOverviewComponent} from './childs/transport/transport-over
 import {StorageOverviewComponent} from './childs/storage/storage-overview/storage-overview.component';
 import {FruitsOverviewComponent} from './childs/fruit/fruit-overview/fruits-overview.component';
 import {UsersOverviewComponent} from './childs/user/user-overview/users-overview.component';
+import {FruitCreateComponent} from './childs/fruit/fruit-create/fruit-create.component';
+import {ListSupportModule} from './list-support/list-support.module';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import {UsersOverviewComponent} from './childs/user/user-overview/users-overview
     StorageOverviewComponent,
     FruitsOverviewComponent,
     UsersOverviewComponent,
+    FruitCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import {UsersOverviewComponent} from './childs/user/user-overview/users-overview
     MdNativeDateModule,
     MdInputModule,
     MdFormFieldModule,
+    ListSupportModule,
   ],
   providers: [MdIconRegistry],
   bootstrap: [AppComponent]
