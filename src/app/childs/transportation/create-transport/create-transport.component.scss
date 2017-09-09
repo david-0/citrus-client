@@ -1,0 +1,66 @@
+.example-full-width {
+  width: 100%;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.noMargin {
+  margin: 0;
+}
+
+.toolbar-content a {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 47px;
+  text-decoration: none;
+  transition: all .3s;
+  padding: 0 16px;
+  position: relative;
+}
+
+.row-container {
+  display: flex;
+  align-items: baseline;
+  span {
+    padding-right: 10px;
+    width: 30%;
+  }
+  md-form-field {
+    width: 70%;
+  }
+}
+
+.card-title {
+  border: none;
+  font-size: 24px;
+  letter-spacing: 2px;
+  line-height: 48px;
+//  text-transform: uppercase;
+  font-weight: 800;
+  margin: 0;
+  padding: 0 16px;
+}
+
+.no-bullets
+{
+  list-style-type: none;
+}
+
+.md-card-padding {
+  padding: 16px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+:host(app-create-transport) {
+  width: 100%
+}

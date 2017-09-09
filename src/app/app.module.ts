@@ -8,6 +8,10 @@ import {MdSelectModule} from '@angular/material';
 import {MdSidenavModule} from '@angular/material';
 import {MdButtonToggleModule} from '@angular/material';
 import {MdIconModule} from '@angular/material';
+import {MdDatepickerModule} from '@angular/material';
+import {MdNativeDateModule} from '@angular/material';
+import {MdInputModule} from '@angular/material';
+import {MdFormFieldModule} from '@angular/material';
 import 'hammerjs';
 
 import {AppComponent} from './app.component';
@@ -50,6 +54,10 @@ import {UsersOverviewComponent} from './childs/users/users-overview/users-overvi
     MdSidenavModule,
     MdButtonToggleModule,
     MdIconModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
+    MdInputModule,
+    MdFormFieldModule,
   ],
   providers: [MdIconRegistry],
   bootstrap: [AppComponent]
