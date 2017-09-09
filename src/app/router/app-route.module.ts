@@ -5,7 +5,7 @@ import {TransportationOverviewComponent} from '../childs/transport/transport-ove
 import {AdministrationComponent} from '../childs/administration/administration.component';
 import {BuyComponent} from '../childs/buy/buy.component';
 import {FetchComponent} from '../childs/fetch/fetch.component';
-import {CreateTransportComponent} from '../childs/transport/create-transport/create-transport.component';
+import {CreateTransportComponent} from '../childs/transport/transport-create/create-transport.component';
 import {StorageOverviewComponent} from '../childs/storage/storage-overview/storage-overview.component';
 import {UsersOverviewComponent} from '../childs/user/user-overview/users-overview.component';
 import {FruitsOverviewComponent} from '../childs/fruit/fruit-overview/fruits-overview.component';
