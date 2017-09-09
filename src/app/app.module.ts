@@ -26,7 +26,7 @@ import {DeleteTransportComponent} from './childs/transport/delete-transport/dele
 import {TransportationOverviewComponent} from './childs/transport/transport-overview/transportation-overview.component';
 import {StorageOverviewComponent} from './childs/storage/storage-overview/storage-overview.component';
 import {FruitsOverviewComponent} from './childs/fruit/fruit-overview/fruits-overview.component';
-import {UsersOverviewComponent} from './childs/users/users-overview/users-overview.component';
+import {UsersOverviewComponent} from './childs/user/user-overview/users-overview.component';
 
 @NgModule({
   declarations: [
