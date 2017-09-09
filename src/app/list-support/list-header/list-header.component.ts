@@ -8,11 +8,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ListHeaderComponent implements OnInit {
   @Input() title: string;
-  @Input() backlink: string;
+  @Input() backLink: string;
   @Input() showBack: boolean;
   @Input() showCreate: boolean;
   @Input() disableCreate: boolean;
   @Input() showShowAll: boolean;
+  @Input() showCancelAndSave: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute) {
   }
@@ -21,7 +22,7 @@ export class ListHeaderComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate([this.backlink ? this.backlink : '..'], {relativeTo: this.route});
+    this.router.navigate([this.backLink ? this.backLink : '..'], {relativeTo: this.route});
   }
 
   create() {
