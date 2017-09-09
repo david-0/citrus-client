@@ -25,7 +25,7 @@ import {ChangeTransportComponent} from './childs/transport/change-transport/chan
 import {DeleteTransportComponent} from './childs/transport/delete-transport/delete-transport.component';
 import {TransportationOverviewComponent} from './childs/transport/transport-overview/transportation-overview.component';
 import {StorageOverviewComponent} from './childs/storage/storage-overview/storage-overview.component';
-import {FruitsOverviewComponent} from './childs/fruits/fruits-overview/fruits-overview.component';
+import {FruitsOverviewComponent} from './childs/fruit/fruit-overview/fruits-overview.component';
 import {UsersOverviewComponent} from './childs/users/users-overview/users-overview.component';
 
 @NgModule({

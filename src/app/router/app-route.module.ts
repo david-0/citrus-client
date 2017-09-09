@@ -8,7 +8,7 @@ import {FetchComponent} from '../childs/fetch/fetch.component';
 import {CreateTransportComponent} from '../childs/transport/create-transport/create-transport.component';
 import {StorageOverviewComponent} from '../childs/storage/storage-overview/storage-overview.component';
 import {UsersOverviewComponent} from '../childs/users/users-overview/users-overview.component';
-import {FruitsOverviewComponent} from '../childs/fruits/fruits-overview/fruits-overview.component';
+import {FruitsOverviewComponent} from '../childs/fruit/fruit-overview/fruits-overview.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
