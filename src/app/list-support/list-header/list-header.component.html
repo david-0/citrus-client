@@ -2,7 +2,7 @@
   <button md-button type="button" class="size-xs button--responsive" (click)="back()" *ngIf="showBack">
     <md-icon>arrow_back</md-icon>
   </button>
-  <h3 class="h3--no-margins h3--padding">{{title}}</h3>
+  <h3 class="h3--no-margins h3--padding toolbar--title">{{titleText}}</h3>
   <span class="fill-remaining-space"></span>
   <button md-button class="button--responsive" (click)="showAll()" *ngIf="showShowAll">
     <md-icon>content_copy</md-icon>
@@ -14,9 +14,11 @@
   </button>
   <button md-button type="button" class="size-xs button--responsive" (click)="back()" *ngIf="showCancelAndSave">
     <md-icon>cancel</md-icon>
+    <span class="size-xl">abbrechen</span>
   </button>
   <button md-button type="submit" class="size-xs button--responsive" *ngIf="showCancelAndSave">
     <md-icon>save</md-icon>
+    <span class="size-xl">speichern</span>
     <!-- [disabled]="!f.valid" -->
   </button>
 </div>

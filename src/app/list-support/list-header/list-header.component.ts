@@ -7,7 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./list-header.component.scss']
 })
 export class ListHeaderComponent implements OnInit {
-  @Input() title: string;
+  @Input() titleText: string;
   @Input() backLink: string;
   @Input() showBack: boolean;
   @Input() showCreate: boolean;

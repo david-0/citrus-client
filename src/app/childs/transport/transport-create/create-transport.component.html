@@ -1,38 +1,36 @@
-<app-list-header title="Transport erstellen" showBack="true" showCancelAndSave="true"></app-list-header>
+<app-list-header titleText="Transport erstellen" showBack="true" showCancelAndSave="true"></app-list-header>
 <div class="main-container">
-  <div>
-    <md-card class="md-card-padding">
-      <md-form-field>
-        <input mdInput [mdDatepicker]="departureDatePicker" placeholder="Abfahrtstag">
-        <md-datepicker-toggle mdSuffix [for]="departureDatePicker"></md-datepicker-toggle>
-        <md-datepicker #departureDatePicker></md-datepicker>
-      </md-form-field>
-      <p class="weight-title noMargin">Gewicht der Früchte in kg</p>
-      <ul class="no-bullets noMargin">
-        <li>
-          <md-form-field class="example-full-width">
-            <input mdInput placeholder="Orangen">
-          </md-form-field>
-        </li>
-        <li>
-          <md-form-field class="example-full-width">
-            <input mdInput placeholder="Grapefruit rot">
-          </md-form-field>
-        </li>
-        <li>
-          <md-form-field class="example-full-width">
-            <input mdInput placeholder="Grapefruit gelb">
-          </md-form-field>
-        </li>
-        <li>
-          <md-form-field class="example-full-width">
-            <input mdInput placeholder="Zitronen">
-          </md-form-field>
-        </li>
-      </ul>
-      <md-form-field class="example-full-width">
-        <textarea mdInput placeholder="Kommentar"></textarea>
-      </md-form-field>
-    </md-card>
-  </div>
+  <md-card class="md-card-padding">
+    <md-form-field>
+      <input mdInput [mdDatepicker]="departureDatePicker" placeholder="Abfahrtstag">
+      <md-datepicker-toggle mdSuffix [for]="departureDatePicker"></md-datepicker-toggle>
+      <md-datepicker #departureDatePicker></md-datepicker>
+    </md-form-field>
+    <p class="weight-title noMargin">Gewicht der Früchte in kg</p>
+    <ul class="no-bullets noMargin">
+      <li>
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Orangen">
+        </md-form-field>
+      </li>
+      <li>
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Grapefruit rot">
+        </md-form-field>
+      </li>
+      <li>
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Grapefruit gelb">
+        </md-form-field>
+      </li>
+      <li>
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Zitronen">
+        </md-form-field>
+      </li>
+    </ul>
+    <md-form-field class="example-full-width">
+      <textarea mdInput placeholder="Kommentar"></textarea>
+    </md-form-field>
+  </md-card>
 </div>
