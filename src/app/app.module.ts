@@ -12,6 +12,7 @@ import {MdDatepickerModule} from '@angular/material';
 import {MdNativeDateModule} from '@angular/material';
 import {MdInputModule} from '@angular/material';
 import {MdFormFieldModule} from '@angular/material';
+import {MdTooltipModule} from '@angular/material';
 import 'hammerjs';
 
 import {AppComponent} from './app.component';
@@ -62,6 +63,7 @@ import {ListSupportModule} from './list-support/list-support.module';
     MdInputModule,
     MdFormFieldModule,
     ListSupportModule,
+    MdTooltipModule,
   ],
   providers: [MdIconRegistry],
   bootstrap: [AppComponent]
