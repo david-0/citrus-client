@@ -1,18 +1,23 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
-import {MdIconRegistry, MdToolbarModule} from '@angular/material';
-import {MdCardModule} from '@angular/material';
-import {MdButtonModule} from '@angular/material';
-import {MdSelectModule} from '@angular/material';
-import {MdSidenavModule} from '@angular/material';
-import {MdButtonToggleModule} from '@angular/material';
-import {MdIconModule} from '@angular/material';
-import {MdDatepickerModule} from '@angular/material';
-import {MdNativeDateModule} from '@angular/material';
-import {MdInputModule} from '@angular/material';
-import {MdFormFieldModule} from '@angular/material';
-import {MdTooltipModule} from '@angular/material';
+import {
+  MdButtonModule,
+  MdButtonToggleModule,
+  MdCardModule,
+  MdDatepickerModule,
+  MdFormFieldModule,
+  MdIconModule,
+  MdIconRegistry,
+  MdInputModule,
+  MdNativeDateModule,
+  MdSelectModule,
+  MdSidenavModule,
+  MdToolbarModule,
+  MdTooltipModule,
+  MdPaginatorModule,
+  MdTableModule,
+} from '@angular/material';
 import 'hammerjs';
 
 import {AppComponent} from './app.component';
@@ -64,6 +69,8 @@ import {ListSupportModule} from './list-support/list-support.module';
     MdFormFieldModule,
     ListSupportModule,
     MdTooltipModule,
+    MdPaginatorModule,
+    MdTableModule,
   ],
   providers: [MdIconRegistry],
   bootstrap: [AppComponent]
