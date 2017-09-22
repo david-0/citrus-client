@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 export class GenericDatabase<T> {
 
   public dataChange = new BehaviorSubject<T[]>([]);
+  private dataLengthChange = new BehaviorSubject(0);
 
   private static noCompare<T>(a: T, b: T, order: [{ column: string, direction: string }]): number {
     return 0;
@@ -28,6 +29,10 @@ export class GenericDatabase<T> {
     this.dataChange.next(items);
   }
 
+  public get length(): number {
+    return this.dataLengthChange.value;
+  }
+
   private filterItems(items: T[], filter: string): T[] {
     return items.filter(item => this.filterCallback(item, filter));
   }
@@ -43,6 +48,7 @@ export class GenericDatabase<T> {
     const itemsCopy = this.data.slice();
     const filteredItems = this.filterItems(itemsCopy, filter);
     const orderedItems = this.orderItems(filteredItems, order);
+    this.dataLengthChange.next(orderedItems.length);
     return orderedItems.splice(start, length);
   }
 
