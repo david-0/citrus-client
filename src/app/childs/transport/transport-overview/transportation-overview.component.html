@@ -25,7 +25,6 @@
     <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table>
   <md-paginator #paginator
-                [length]="database.length"
                 [pageIndex]="0"
                 [pageSize]="5"
                 [pageSizeOptions]="[5, 10, 25, 100]">

@@ -39,6 +39,7 @@ export class GenericPagedDataSource<T> extends DataSource<T> {
         order = [{column: this.sort.active, direction: this.sort.direction}];
       }
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+      this.paginator.length = this.database.numberOfItems(this.filterChange.value);
       return this.database.select(startIndex, this.paginator.pageSize, this.filterChange.value, order);
     });
   }
