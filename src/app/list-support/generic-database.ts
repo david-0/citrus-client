@@ -4,44 +4,46 @@ import {Observable} from 'rxjs/Observable';
 export class GenericDatabase<T> {
 
   public dataChange = new BehaviorSubject<T[]>([]);
-  private inputDataChange = new BehaviorSubject<T[]>([]);
-  private filterChange = new BehaviorSubject('');
+
+  private static noCompare<T>(a: T, b: T, order: [{ column: string, direction: string }]): number {
+    return 0;
+  }
+
+  private static noFilter<T>(t: T, filterValue: string): boolean {
+    return true;
+  }
 
   public constructor(private prefetched: boolean,
-                     private filterCallback: (item: T, filterValue: string) => boolean) {
+                     private filterCallback: (item: T, filterValue: string) => boolean
+                       = GenericDatabase.noFilter,
+                     private compareCallback: (a: T, b: T, order: { column: string, direction: string }[]) => number
+                       = GenericDatabase.noCompare) {
   }
 
   public get data(): T[] {
     return this.dataChange.value;
   }
 
-  public get inputData(): T[] {
-    return this.inputDataChange.value;
+  public set data(items: T[]) {
+    this.dataChange.next(items);
   }
 
-  public set inputData(items: T[]) {
-    this.inputDataChange.next(items);
-    this.dataChange.next(this.filterItems(items));
+  private filterItems(items: T[], filter: string): T[] {
+    return items.filter(item => this.filterCallback(item, filter));
   }
 
-  private filterItems(items: T[]): T[] {
-    return items.filter(item => this.filterCallback(item, this.filterChange.value));
-  }
-
-  public get filter(): string {
-    return this.filterChange.value;
-  }
-
-  public set filter(filter: string) {
-    this.filterChange.next(filter);
-    this.dataChange.next(this.filterItems(this.inputDataChange.value));
+  private orderItems(items: T[], order: { column: string, direction: string }[]): T[] {
+    return items.sort((a: T, b: T) => this.compareCallback(a, b, order));
   }
 
   public select(start: number,
                 length: number,
-                compare: (a: T, b: T) => number = this.noCompare): T[] {
-    this.data.sort(compare);
-    return this.data.slice().splice(start, length);
+                filter: string = '',
+                order: { column: string, direction: string }[] = []): T[] {
+    const itemsCopy = this.data.slice();
+    const filteredItems = this.filterItems(itemsCopy, filter);
+    const orderedItems = this.orderItems(filteredItems, order);
+    return orderedItems.splice(start, length);
   }
 
   public get(id: number): Observable<T> {
@@ -58,13 +60,5 @@ export class GenericDatabase<T> {
 
   public update(t: T): Observable<boolean> {
     return null;
-  }
-
-  public noCompare(a: T, b: T): number {
-    return 0;
-  }
-
-  private noFilter(t: T, filterValue: string): boolean {
-    return true;
   }
 }

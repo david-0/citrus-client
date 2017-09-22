@@ -7,8 +7,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {GenericPagedDataSource} from '../../../list-support/generic-paged-data-source';
-import {MdPaginator} from '@angular/material';
+import {MdPaginator, MdSort} from '@angular/material';
 import {TransportTO} from '../../../TransferObjects/TransportTO';
+import {IFruitVolume} from '../../../entities/IFruitVolume';
 
 @Component({
   selector: 'app-transportation-overview',
@@ -18,16 +19,17 @@ import {TransportTO} from '../../../TransferObjects/TransportTO';
 export class TransportationOverviewComponent implements OnInit {
   public displayedColumns = ['id', 'departureDate', 'comment'];
 
-  database = new GenericDatabase<ITransport>(false, this.filterCallback);
+  database = new GenericDatabase<ITransport>(false, this.filterCallback, this.transportCompare);
   public dataSource: GenericPagedDataSource<ITransport> | null;
 
   constructor() { }
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MdPaginator) paginator: MdPaginator;
+  @ViewChild(MdSort) sort: MdSort;
 
   ngOnInit() {
-    this.dataSource = new GenericPagedDataSource(this.database, this.paginator);
+    this.dataSource = new GenericPagedDataSource(this.database, this.paginator, this.sort);
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
       .debounceTime(150)
       .distinctUntilChanged()
@@ -35,11 +37,32 @@ export class TransportationOverviewComponent implements OnInit {
         if (!this.dataSource) { return; }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
-    this.database.inputData = this.getTransports();
+    this.database.data = this.getTransports();
   }
 
   public filterCallback(item: ITransport, filterValue: string): boolean {
     return item.comment.toUpperCase().indexOf(filterValue.toUpperCase()) > -1;
+  }
+
+  private transportCompare(a: ITransport, b: ITransport, order: [{ column: string, direction: string }]): number {
+    if (order.length === 0) {
+      return 0;
+    }
+
+    let propertyA: number|string|Date|IFruitVolume[] = '';
+    let propertyB: number|string|Date|IFruitVolume[] = '';
+
+    switch (order[0].column) {
+      case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
+      case 'departureDate': [propertyA, propertyB] = [a.departureDate, b.departureDate]; break;
+      case 'fruitVolumes': [propertyA, propertyB] = [a.fruitVolumes, b.fruitVolumes]; break;
+      case 'comment': [propertyA, propertyB] = [a.comment, b.comment]; break;
+    }
+
+    const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+    const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+    return (valueA < valueB ? -1 : 1) * (order[0].direction === 'asc' ? 1 : -1);
   }
 
   public getTransports(): ITransport[] {
