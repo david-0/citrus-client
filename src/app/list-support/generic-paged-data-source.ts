@@ -15,6 +15,7 @@ export class GenericPagedDataSource<T> extends DataSource<T> {
   }
 
   public set filter(filter: string) {
+    this.paginator.pageIndex = 0;
     this.filterChange.next(filter);
   }
 
