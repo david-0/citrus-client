@@ -5,19 +5,19 @@
       <input mdInput #filter placeholder="Filter Transporte">
     </md-form-field>
   </div>
-  <md-table #table [dataSource]="dataSource">
+  <md-table #table [dataSource]="dataSource" mdSort>
     <ng-container mdColumnDef="id">
-      <md-header-cell *mdHeaderCellDef>ID</md-header-cell>
+      <md-header-cell *mdHeaderCellDef md-sort-header>ID</md-header-cell>
       <md-cell *mdCellDef="let row"> {{row.id}}</md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="departureDate">
-      <md-header-cell *mdHeaderCellDef>Abfahrtsdatum</md-header-cell>
+      <md-header-cell *mdHeaderCellDef md-sort-header>Abfahrtsdatum</md-header-cell>
       <md-cell *mdCellDef="let row"> {{row.departureDate.toLocaleDateString()}}</md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="comment">
-      <md-header-cell *mdHeaderCellDef>Kommentar</md-header-cell>
+      <md-header-cell *mdHeaderCellDef md-sort-header>Kommentar</md-header-cell>
       <md-cell *mdCellDef="let row"> {{row.comment}}</md-cell>
     </ng-container>
 

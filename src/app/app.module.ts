@@ -11,12 +11,13 @@ import {
   MdIconRegistry,
   MdInputModule,
   MdNativeDateModule,
+  MdPaginatorModule,
   MdSelectModule,
   MdSidenavModule,
+  MdSortModule,
+  MdTableModule,
   MdToolbarModule,
   MdTooltipModule,
-  MdPaginatorModule,
-  MdTableModule,
 } from '@angular/material';
 import 'hammerjs';
 
@@ -71,6 +72,7 @@ import {ListSupportModule} from './list-support/list-support.module';
     MdTooltipModule,
     MdPaginatorModule,
     MdTableModule,
+    MdSortModule,
   ],
   providers: [MdIconRegistry],
   bootstrap: [AppComponent]
