@@ -36,6 +36,7 @@ import {FruitsOverviewComponent} from './childs/fruit/fruit-overview/fruits-over
 import {UsersOverviewComponent} from './childs/user/user-overview/users-overview.component';
 import {FruitCreateComponent} from './childs/fruit/fruit-create/fruit-create.component';
 import {ListSupportModule} from './list-support/list-support.module';
+import { TransportDetailsComponent } from './childs/transport/transport-details/transport-details.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {ListSupportModule} from './list-support/list-support.module';
     FruitsOverviewComponent,
     UsersOverviewComponent,
     FruitCreateComponent,
+    TransportDetailsComponent,
   ],
   imports: [
     BrowserModule,
