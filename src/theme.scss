@@ -17,10 +17,12 @@ $my-theme: mat-light-theme(
 
 @import "./app/list-support/list-header/list-header.component.scss-theme";
 @import "./app/childs/administration/administration.component.scss-theme";
+@import "./app/childs/transport/transport-overview/transportation-overview.component.scss-theme.scss";
 
 @mixin my-component-theme($theme) {
   @include app-list-header-theme($theme);
   @include app-administration-theme($theme);
+  @include app-transportation-overview-theme($theme);
 }
 @include angular-material-theme($my-theme);
 @include my-component-theme($my-theme);
