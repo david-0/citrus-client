@@ -22,7 +22,7 @@
     </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row class="table-row--highligthed" routerLink="details" *mdRowDef="let row; columns: displayedColumns;"></md-row>
+    <md-row class="table-row--highligthed" routerLink={{row.id}} *mdRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table>
   <md-paginator #paginator
                 [pageIndex]="0"

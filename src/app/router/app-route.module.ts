@@ -22,7 +22,7 @@ const routes: Routes = [
     path: 'administration', component: AdministrationComponent, children: [
     {path: 'transport', component: TransportOverviewComponent},
     {path: 'transport/create', component: TransportCreateComponent},
-    {path: 'transport/details', component: TransportDetailsComponent},
+    {path: 'transport/:id', component: TransportDetailsComponent},
     {path: 'storage-overview', component: StorageOverviewComponent},
     {path: 'users-overview', component: UsersOverviewComponent},
     {path: 'fruit', component: FruitsOverviewComponent},
