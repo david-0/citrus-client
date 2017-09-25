@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteTransportComponent } from './delete-transport.component';
+import { TransportDeleteComponent } from './transport-delete.component';
 
-describe('DeleteTransportComponent', () => {
-  let component: DeleteTransportComponent;
-  let fixture: ComponentFixture<DeleteTransportComponent>;
+describe('TransportDeleteComponent', () => {
+  let component: TransportDeleteComponent;
+  let fixture: ComponentFixture<TransportDeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteTransportComponent ]
+      declarations: [ TransportDeleteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteTransportComponent);
+    fixture = TestBed.createComponent(TransportDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
