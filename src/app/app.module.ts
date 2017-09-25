@@ -28,7 +28,7 @@ import {AdministrationComponent} from './childs/administration/administration.co
 import {BuyComponent} from './childs/buy/buy.component';
 import {FetchComponent} from './childs/fetch/fetch.component';
 import {CreateTransportComponent} from './childs/transport/transport-create/create-transport.component';
-import {ChangeTransportComponent} from './childs/transport/transport-change/change-transport.component';
+import {TransportChangeComponent} from './childs/transport/transport-change/transport-change.component';
 import {DeleteTransportComponent} from './childs/transport/transport-delete/delete-transport.component';
 import {TransportationOverviewComponent} from './childs/transport/transport-overview/transportation-overview.component';
 import {StorageOverviewComponent} from './childs/storage/storage-overview/storage-overview.component';
@@ -47,7 +47,7 @@ import { TransportDetailsComponent } from './childs/transport/transport-details/
     BuyComponent,
     TransportationOverviewComponent,
     CreateTransportComponent,
-    ChangeTransportComponent,
+    TransportChangeComponent,
     DeleteTransportComponent,
     StorageOverviewComponent,
     FruitsOverviewComponent,
