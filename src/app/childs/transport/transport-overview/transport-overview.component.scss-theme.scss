@@ -5,7 +5,7 @@
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
 
-  app-transportation-overview {
+  app-overview-transport {
     .table-row--highligthed:hover {
       background-color: mat-color($primary);
     }

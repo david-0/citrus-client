@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-change-transport',
+  selector: 'app-transport-change',
   templateUrl: './transport-change.component.html',
   styleUrls: ['./transport-change.component.scss']
 })

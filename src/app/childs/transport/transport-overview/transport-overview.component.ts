@@ -12,7 +12,7 @@ import {TransportTO} from '../../../TransferObjects/TransportTO';
 import {IFruitVolume} from '../../../entities/IFruitVolume';
 
 @Component({
-  selector: 'app-transportation-overview',
+  selector: 'app-overview-transport',
   templateUrl: './transport-overview.component.html',
   styleUrls: ['./transport-overview.component.scss']
 })
