@@ -13,10 +13,10 @@ import {IFruitVolume} from '../../../entities/IFruitVolume';
 
 @Component({
   selector: 'app-transportation-overview',
-  templateUrl: './transportation-overview.component.html',
-  styleUrls: ['./transportation-overview.component.scss']
+  templateUrl: './transport-overview.component.html',
+  styleUrls: ['./transport-overview.component.scss']
 })
-export class TransportationOverviewComponent implements OnInit {
+export class TransportOverviewComponent implements OnInit {
   public displayedColumns = ['id', 'departureDate', 'comment'];
 
   database = new GenericDatabase<ITransport>(false, this.filterCallback, this.transportCompare);

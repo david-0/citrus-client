@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from '../dashboard/dashboard.component';
-import {TransportationOverviewComponent} from '../childs/transport/transport-overview/transportation-overview.component';
+import {TransportOverviewComponent} from '../childs/transport/transport-overview/transport-overview.component';
 import {AdministrationComponent} from '../childs/administration/administration.component';
 import {BuyComponent} from '../childs/buy/buy.component';
 import {FetchComponent} from '../childs/fetch/fetch.component';
@@ -15,12 +15,12 @@ import {FruitCreateComponent} from '../childs/fruit/fruit-create/fruit-create.co
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'transport', component: TransportationOverviewComponent},
+  {path: 'transport', component: TransportOverviewComponent},
   {path: 'storage-overview', component: StorageOverviewComponent},
   {path: 'create-transport', component: CreateTransportComponent},
   {
     path: 'administration', component: AdministrationComponent, children: [
-    {path: 'transport', component: TransportationOverviewComponent},
+    {path: 'transport', component: TransportOverviewComponent},
     {path: 'transport/create', component: CreateTransportComponent},
     {path: 'transport/details', component: TransportDetailsComponent},
     {path: 'storage-overview', component: StorageOverviewComponent},

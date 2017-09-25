@@ -17,7 +17,7 @@ $my-theme: mat-light-theme(
 
 @import "./app/list-support/list-header/list-header.component.scss-theme";
 @import "./app/childs/administration/administration.component.scss-theme";
-@import "./app/childs/transport/transport-overview/transportation-overview.component.scss-theme.scss";
+@import "app/childs/transport/transport-overview/transport-overview.component.scss-theme";
 
 @mixin my-component-theme($theme) {
   @include app-list-header-theme($theme);
