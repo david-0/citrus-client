@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-transport-delete',
-  templateUrl: './transport-delete.component.html',
-  styleUrls: ['./transport-delete.component.scss']
+  selector: 'app-transport-edit',
+  templateUrl: './transport-edit.component.html',
+  styleUrls: ['./transport-edit.component.scss']
 })
-export class TransportDeleteComponent implements OnInit {
+export class TransportEditComponent implements OnInit {
 
   public id: string;
 

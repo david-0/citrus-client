@@ -7,13 +7,9 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./transport-details.component.scss']
 })
 export class TransportDetailsComponent implements OnInit {
-  private id: string;
+  public id: string;
 
   constructor(private route: ActivatedRoute) {
-  }
-
-  public get title() {
-    return this.id;
   }
 
   ngOnInit() {
@@ -25,5 +21,4 @@ export class TransportDetailsComponent implements OnInit {
       }
     });
   }
-
 }

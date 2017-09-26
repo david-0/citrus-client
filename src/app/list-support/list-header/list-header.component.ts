@@ -12,7 +12,7 @@ export class ListHeaderComponent implements OnInit {
   @Input() showBack: boolean;
   @Input() showCreate: boolean;
   @Input() showEdit: boolean;
-  @Input() showRemove: boolean;
+  @Input() showDelete: boolean;
   @Input() showCancelAndSave: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute) {
@@ -27,5 +27,13 @@ export class ListHeaderComponent implements OnInit {
 
   create() {
     this.router.navigate(['create'], {relativeTo: this.route});
+  }
+
+  edit() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
+  }
+
+  delete() {
+    this.router.navigate(['delete'], {relativeTo: this.route});
   }
 }

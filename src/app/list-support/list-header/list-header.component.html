@@ -8,11 +8,11 @@
     <md-icon>add</md-icon>
     <span class="size-xl">erstellen</span>
   </button>
-  <button md-button class="button--responsive" routerLink="edit" *ngIf="showEdit">
+  <button md-button class="button--responsive" (click)="edit()" *ngIf="showEdit">
     <md-icon>mode_edit</md-icon>
     <span class="size-xl">bearbeiten</span>
   </button>
-  <button md-button class="button--responsive" routerLink="remove" *ngIf="showRemove">
+  <button md-button class="button--responsive" (click)="delete()" *ngIf="showDelete">
     <md-icon>delete</md-icon>
     <span class="size-xl">löschen</span>
   </button>
