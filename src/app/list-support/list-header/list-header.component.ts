@@ -11,8 +11,8 @@ export class ListHeaderComponent implements OnInit {
   @Input() backLink: string;
   @Input() showBack: boolean;
   @Input() showCreate: boolean;
-  @Input() disableCreate: boolean;
-  @Input() showShowAll: boolean;
+  @Input() showEdit: boolean;
+  @Input() showRemove: boolean;
   @Input() showCancelAndSave: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute) {
@@ -27,9 +27,5 @@ export class ListHeaderComponent implements OnInit {
 
   create() {
     this.router.navigate(['create'], {relativeTo: this.route});
-  }
-
-  showAll() {
-    this.router.navigate(['showall'], {relativeTo: this.route});
   }
 }
