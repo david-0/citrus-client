@@ -17,7 +17,7 @@ export class TransportDetailsComponent implements OnInit {
       if (params['id']) {
         this.id = params['id'];
       } else {
-        this.id = 'keine ID angegeben'; // TODO: remove and log error
+        console.error('keine ID angegeben');
       }
     });
   }

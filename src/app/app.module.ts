@@ -29,7 +29,7 @@ import {BuyComponent} from './childs/buy/buy.component';
 import {FetchComponent} from './childs/fetch/fetch.component';
 import {TransportCreateComponent} from './childs/transport/transport-create/transport-create.component';
 import {TransportChangeComponent} from './childs/transport/transport-change/transport-change.component';
-import {TransportDeletedComponent} from './childs/transport/transport-deleted/transport-deleted.component';
+import {TransportDeleteComponent} from './childs/transport/transport-delete/transport-delete.component';
 import {TransportOverviewComponent} from './childs/transport/transport-overview/transport-overview.component';
 import {StorageOverviewComponent} from './childs/storage/storage-overview/storage-overview.component';
 import {FruitsOverviewComponent} from './childs/fruit/fruit-overview/fruits-overview.component';
@@ -49,7 +49,7 @@ import {TransportEditComponent} from './childs/transport/transport-edit/transpor
     TransportOverviewComponent,
     TransportCreateComponent,
     TransportChangeComponent,
-    TransportDeletedComponent,
+    TransportDeleteComponent,
     StorageOverviewComponent,
     FruitsOverviewComponent,
     UsersOverviewComponent,

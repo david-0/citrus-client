@@ -42,7 +42,6 @@ export class ListHeaderComponent implements OnInit {
       data: {id: this.id, label: this.label}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       if (result) {
         this.router.navigate(['deleted'], {relativeTo: this.route});
       }

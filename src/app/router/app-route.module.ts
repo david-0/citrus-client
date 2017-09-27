@@ -12,7 +12,7 @@ import {UsersOverviewComponent} from '../childs/user/user-overview/users-overvie
 import {FruitsOverviewComponent} from '../childs/fruit/fruit-overview/fruits-overview.component';
 import {FruitCreateComponent} from '../childs/fruit/fruit-create/fruit-create.component';
 import {TransportEditComponent} from '../childs/transport/transport-edit/transport-edit.component';
-import {TransportDeletedComponent} from '../childs/transport/transport-deleted/transport-deleted.component';
+import {TransportDeleteComponent} from '../childs/transport/transport-delete/transport-delete.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -26,7 +26,7 @@ const routes: Routes = [
     {path: 'transport/create', component: TransportCreateComponent},
     {path: 'transport/:id', component: TransportDetailsComponent},
     {path: 'transport/:id/edit', component: TransportEditComponent},
-    {path: 'transport/:id/deleted', component: TransportDeletedComponent},
+    {path: 'transport/:id/deleted', component: TransportDeleteComponent},
     {path: 'storage-overview', component: StorageOverviewComponent},
     {path: 'users-overview', component: UsersOverviewComponent},
     {path: 'fruit', component: FruitsOverviewComponent},

@@ -3,10 +3,10 @@ import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-transport-delete',
-  templateUrl: './transport-deleted.component.html',
-  styleUrls: ['./transport-deleted.component.scss']
+  templateUrl: './transport-delete.component.html',
+  styleUrls: ['./transport-delete.component.scss']
 })
-export class TransportDeletedComponent implements OnInit {
+export class TransportDeleteComponent implements OnInit {
 
   public id: string;
 
