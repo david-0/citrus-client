@@ -3,10 +3,10 @@ import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-transport-delete',
-  templateUrl: './transport-delete.component.html',
-  styleUrls: ['./transport-delete.component.scss']
+  templateUrl: './transport-deleted.component.html',
+  styleUrls: ['./transport-deleted.component.scss']
 })
-export class TransportDeleteComponent implements OnInit {
+export class TransportDeletedComponent implements OnInit {
 
   public id: string;
 
@@ -18,7 +18,7 @@ export class TransportDeleteComponent implements OnInit {
       if (params['id']) {
         this.id = params['id'];
       } else {
-        this.id = 'keine ID angegeben'; // TODO: remove and log error
+        console.error('keine ID angegeben');
       }
     });
   }
