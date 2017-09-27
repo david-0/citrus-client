@@ -1,0 +1,8 @@
+<h1 md-dialog-title>Löschen Bestätigen</h1>
+<div md-dialog-content>
+  <p>Soll {{data.label}}({{data.id}}) gelöscht werden?</p>
+</div>
+<div md-dialog-actions class="button--center">
+  <button md-raised-button [md-dialog-close]="false" color="primary" tabindex="-1">Nein</button>
+  <button md-raised-button [md-dialog-close]="true" color="primary" tabindex="2">Ja</button>
+</div>

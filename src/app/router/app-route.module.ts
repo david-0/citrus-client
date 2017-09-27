@@ -26,7 +26,7 @@ const routes: Routes = [
     {path: 'transport/create', component: TransportCreateComponent},
     {path: 'transport/:id', component: TransportDetailsComponent},
     {path: 'transport/:id/edit', component: TransportEditComponent},
-    {path: 'transport/:id/delete', component: TransportDeleteComponent},
+    {path: 'transport/:id/deleted', component: TransportDeleteComponent},
     {path: 'storage-overview', component: StorageOverviewComponent},
     {path: 'users-overview', component: UsersOverviewComponent},
     {path: 'fruit', component: FruitsOverviewComponent},

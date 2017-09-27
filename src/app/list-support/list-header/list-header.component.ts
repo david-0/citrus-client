@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {MdDialog} from '@angular/material';
+import {OkCancelDialogComponent} from '../ok-cancel-dialog/ok-cancel-dialog.component';
 
 @Component({
   selector: 'app-list-header',
@@ -14,8 +16,10 @@ export class ListHeaderComponent implements OnInit {
   @Input() showEdit: boolean;
   @Input() showDelete: boolean;
   @Input() showCancelAndSave: boolean;
+  @Input() id: number;
+  @Input() label: string;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, public dialog: MdDialog) {
   }
 
   ngOnInit() {
@@ -34,6 +38,14 @@ export class ListHeaderComponent implements OnInit {
   }
 
   delete() {
-    this.router.navigate(['delete'], {relativeTo: this.route});
+    const dialogRef = this.dialog.open(OkCancelDialogComponent, {
+      data: {id: this.id, label: this.label}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (result) {
+        this.router.navigate(['deleted'], {relativeTo: this.route});
+      }
+    });
   }
 }
