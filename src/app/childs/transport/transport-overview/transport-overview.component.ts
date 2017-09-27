@@ -9,7 +9,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import {GenericPagedDataSource} from '../../../list-support/generic-paged-data-source';
 import {MdPaginator, MdSort} from '@angular/material';
 import {TransportTO} from '../../../TransferObjects/TransportTO';
-import {IFruitVolume} from '../../../entities/IFruitVolume';
+import {TransportDatabaseService} from '../transport-database.service';
 
 @Component({
   selector: 'app-overview-transport',
@@ -19,10 +19,9 @@ import {IFruitVolume} from '../../../entities/IFruitVolume';
 export class TransportOverviewComponent implements OnInit {
   public displayedColumns = ['id', 'departureDate', 'comment'];
 
-  database = new GenericDatabase<ITransport>(false, this.filterCallback, this.transportCompare);
   public dataSource: GenericPagedDataSource<ITransport> | null;
 
-  constructor() { }
+  constructor(private database: TransportDatabaseService) { }
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MdPaginator) paginator: MdPaginator;
@@ -38,31 +37,6 @@ export class TransportOverviewComponent implements OnInit {
         this.dataSource.filter = this.filter.nativeElement.value;
       });
     this.database.data = this.getTransports();
-  }
-
-  public filterCallback(item: ITransport, filterValue: string): boolean {
-    return item.comment.toUpperCase().indexOf(filterValue.toUpperCase()) > -1;
-  }
-
-  private transportCompare(a: ITransport, b: ITransport, order: [{ column: string, direction: string }]): number {
-    if (order.length === 0) {
-      return 0;
-    }
-
-    let propertyA: number|string|Date|IFruitVolume[] = '';
-    let propertyB: number|string|Date|IFruitVolume[] = '';
-
-    switch (order[0].column) {
-      case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
-      case 'departureDate': [propertyA, propertyB] = [a.departureDate, b.departureDate]; break;
-      case 'fruitVolumes': [propertyA, propertyB] = [a.fruitVolumes, b.fruitVolumes]; break;
-      case 'comment': [propertyA, propertyB] = [a.comment, b.comment]; break;
-    }
-
-    const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
-    const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
-
-    return (valueA < valueB ? -1 : 1) * (order[0].direction === 'asc' ? 1 : -1);
   }
 
   public getTransports(): ITransport[] {

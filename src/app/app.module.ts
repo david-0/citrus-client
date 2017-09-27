@@ -38,6 +38,7 @@ import {FruitCreateComponent} from './childs/fruit/fruit-create/fruit-create.com
 import {ListSupportModule} from './list-support/list-support.module';
 import {TransportDetailsComponent} from './childs/transport/transport-details/transport-details.component';
 import {TransportEditComponent} from './childs/transport/transport-edit/transport-edit.component';
+import {TransportDatabaseService} from './childs/transport/transport-database.service';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,10 @@ import {TransportEditComponent} from './childs/transport/transport-edit/transpor
     MdTableModule,
     MdSortModule,
   ],
-  providers: [MdIconRegistry],
+  providers: [
+    MdIconRegistry,
+    TransportDatabaseService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
