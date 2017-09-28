@@ -7,25 +7,10 @@
       <md-datepicker #departureDatePicker></md-datepicker>
     </md-form-field>
     <p class="weight-title noMargin">Gewicht der Früchte in kg</p>
-    <ul class="no-bullets noMargin">
-      <li>
+    <ul class="no-bullets noMargin" >
+      <li *ngFor="let fruit of database.data">
         <md-form-field class="example-full-width">
-          <input mdInput placeholder="Orangen">
-        </md-form-field>
-      </li>
-      <li>
-        <md-form-field class="example-full-width">
-          <input mdInput placeholder="Grapefruit rot">
-        </md-form-field>
-      </li>
-      <li>
-        <md-form-field class="example-full-width">
-          <input mdInput placeholder="Grapefruit gelb">
-        </md-form-field>
-      </li>
-      <li>
-        <md-form-field class="example-full-width">
-          <input mdInput placeholder="Zitronen">
+          <input mdInput placeholder="{{fruit.name}}">
         </md-form-field>
       </li>
     </ul>

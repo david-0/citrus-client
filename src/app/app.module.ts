@@ -39,6 +39,7 @@ import {ListSupportModule} from './list-support/list-support.module';
 import {TransportDetailsComponent} from './childs/transport/transport-details/transport-details.component';
 import {TransportEditComponent} from './childs/transport/transport-edit/transport-edit.component';
 import {TransportDatabaseService} from './childs/transport/transport-database.service';
+import {FruitDatabaseService} from './childs/transport/fruit-database.service';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import {TransportDatabaseService} from './childs/transport/transport-database.se
   providers: [
     MdIconRegistry,
     TransportDatabaseService,
+    FruitDatabaseService,
   ],
   bootstrap: [AppComponent]
 })

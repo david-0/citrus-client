@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FruitDatabaseService} from '../fruit-database.service';
 
 @Component({
   selector: 'app-transport-create',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransportCreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(public database: FruitDatabaseService) { }
 
   ngOnInit() {
   }

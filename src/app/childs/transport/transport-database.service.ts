@@ -5,6 +5,7 @@ import {IFruitVolume} from '../../entities/IFruitVolume';
 import {TransportTO} from '../../TransferObjects/TransportTO';
 import {FruitVolumeTO} from '../../TransferObjects/FruitVolumeTO';
 import {FruitTO} from '../../TransferObjects/FruitTO';
+import {FruitDatabaseService} from './fruit-database.service';
 
 @Injectable()
 export class TransportDatabaseService extends GenericDatabase<ITransport> {
@@ -50,12 +51,7 @@ export class TransportDatabaseService extends GenericDatabase<ITransport> {
   }
 
   private getTransports(): ITransport[] {
-    const f1 = new FruitTO(1, 'Orangen');
-    const f2 = new FruitTO(2, 'Grapefruit rot');
-    const f3 = new FruitTO(3, 'Grapefruit gelb');
-    const f4 = new FruitTO(4, 'Zitrone');
-    const f5 = new FruitTO(5, 'Mandarinen');
-    const f6 = new FruitTO(6, 'Advokado');
+    const f = new FruitDatabaseService().data;
 
     const t1 = new TransportTO(1, new Date('05/01/2000'), 'a x 14');
     const t2 = new TransportTO(2, new Date('05/02/2017'), 'a x 24');
@@ -67,14 +63,14 @@ export class TransportDatabaseService extends GenericDatabase<ITransport> {
     const t8 = new TransportTO(8, new Date('05/08/2017'), 'd x 24');
     const t9 = new TransportTO(9, new Date('05/09/2017'), 'd x 34');
 
-    const fruitVolume1 = [new FruitVolumeTO(1, f1, t1, 300),
-      new FruitVolumeTO(2, f2, t1, 600),
-      new FruitVolumeTO(3, f3, t1, 900),
-      new FruitVolumeTO(4, f4, t1, 1200),
-      new FruitVolumeTO(5, f5, t1, 1500),
-      new FruitVolumeTO(6, f6, t1, 1800)];
-
-    t1.fruitVolumes = fruitVolume1;
+    t1.fruitVolumes = [
+      new FruitVolumeTO(1, f[0], t1, 300),
+      new FruitVolumeTO(2, f[1], t1, 600),
+      new FruitVolumeTO(3, f[2], t1, 900),
+      new FruitVolumeTO(4, f[3], t1, 1200),
+      new FruitVolumeTO(5, f[4], t1, 1500),
+      new FruitVolumeTO(6, f[5], t1, 1800)
+    ];
 
     return [t1, t2, t3, t4, t5, t6, t7, t8, t9];
   }
