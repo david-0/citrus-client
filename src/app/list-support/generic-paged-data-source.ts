@@ -5,8 +5,9 @@ import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 import {MdPaginator, MdSort} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {IId} from '../entities/IId';
 
-export class GenericPagedDataSource<T> extends DataSource<T> {
+export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
 
   private filterChange = new BehaviorSubject('');
 

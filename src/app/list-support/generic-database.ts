@@ -1,7 +1,10 @@
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
+import {IId} from '../entities/IId';
+import {forEach} from '@angular/router/src/utils/collection';
 
-export class GenericDatabase<T> {
+export class GenericDatabase<T extends IId> {
 
   public dataChange = new BehaviorSubject<T[]>([]);
 
@@ -52,7 +55,14 @@ export class GenericDatabase<T> {
   }
 
   public get(id: number): Observable<T> {
-    return null;
+    const replaySubject = new ReplaySubject<T>(1);
+    const t: T[] = this.data.filter(obj => obj.id === id);
+    if (t.length < 1) {
+      console.error('no object with id {{id}}');
+    } else {
+      replaySubject.next(t[0]);
+    }
+    return replaySubject;
   }
 
   public add(t: T): Observable<boolean> {
