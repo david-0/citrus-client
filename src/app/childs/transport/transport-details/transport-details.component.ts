@@ -1,5 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {TransportDatabaseService} from '../transport-database.service';
+import {ITransport} from '../../../entities/ITransport';
+import {Observable} from 'rxjs/Observable';
+import {TransportTO} from '../../../TransferObjects/TransportTO';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-transport-details',
@@ -7,15 +12,19 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./transport-details.component.scss']
 })
 export class TransportDetailsComponent implements OnInit {
-  public id: string;
+  private _transport: Observable<ITransport> = new BehaviorSubject<ITransport>(new TransportTO(111, new Date(), 'comment'));
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private database: TransportDatabaseService) {
+  }
+
+  public get transport() {
+    return this._transport;
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id']) {
-        this.id = params['id'];
+        this._transport = this.database.get(+params['id']);
       } else {
         console.error('keine ID angegeben');
       }
