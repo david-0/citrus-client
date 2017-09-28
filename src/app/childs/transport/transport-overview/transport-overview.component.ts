@@ -36,20 +36,6 @@ export class TransportOverviewComponent implements OnInit {
         if (!this.dataSource) { return; }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
-    this.database.data = this.getTransports();
   }
 
-  public getTransports(): ITransport[] {
-    return [
-      new TransportTO(1, new Date('05/01/2000'), 'a x 14'),
-      new TransportTO(2, new Date('05/02/2017'), 'a x 24'),
-      new TransportTO(3, new Date('05/03/2017'), 'b x 14'),
-      new TransportTO(4, new Date('05/04/2017'), 'b x 24'),
-      new TransportTO(5, new Date('05/05/2017'), 'c y 15'),
-      new TransportTO(6, new Date('05/06/2017'), 'c y 24'),
-      new TransportTO(7, new Date('05/07/2017'), 'c y 34'),
-      new TransportTO(8, new Date('05/08/2017'), 'd x 24'),
-      new TransportTO(9, new Date('05/09/2017'), 'd x 34'),
-    ];
-  }
 }
