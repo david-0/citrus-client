@@ -41,6 +41,7 @@ import {TransportEditComponent} from './childs/transport/transport-edit/transpor
 import {TransportDatabaseService} from './childs/transport/transport-database.service';
 import {FruitDatabaseService} from './childs/transport/fruit-database.service';
 import {ConvertToFruitVolumePipe} from './childs/transport/transport-edit/convert-to-fruit-volume.pipe';
+import {SortByFruitNamePipe} from './childs/transport/pipes/sort-by-fruit-name.pipe';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import {ConvertToFruitVolumePipe} from './childs/transport/transport-edit/conver
     TransportDetailsComponent,
     TransportEditComponent,
     ConvertToFruitVolumePipe,
+    SortByFruitNamePipe,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +89,7 @@ import {ConvertToFruitVolumePipe} from './childs/transport/transport-edit/conver
     TransportDatabaseService,
     FruitDatabaseService,
     ConvertToFruitVolumePipe,
+    SortByFruitNamePipe,
   ],
   bootstrap: [AppComponent]
 })

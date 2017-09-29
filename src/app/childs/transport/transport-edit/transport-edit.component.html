@@ -8,7 +8,7 @@
     </md-form-field>
     <p class="weight-title noMargin">Gewicht der Früchte in kg</p>
     <ul class="no-bullets noMargin">
-      <li *ngFor="let fruit of fruitDatabase.data">
+      <li *ngFor="let fruit of fruitDatabase.data | sortByFruitName">
         <md-form-field class="example-full-width">
           <input mdInput placeholder="{{fruit.name}}"
                  value="{{(fruit | convertToFruitVolume:((transport | async).fruitVolumes))?.weightInKg}}">
