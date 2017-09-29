@@ -40,7 +40,7 @@ import {TransportDetailsComponent} from './childs/transport/transport-details/tr
 import {TransportEditComponent} from './childs/transport/transport-edit/transport-edit.component';
 import {TransportDatabaseService} from './childs/transport/transport-database.service';
 import {FruitDatabaseService} from './childs/transport/fruit-database.service';
-import {ConvertToFruitVolumePipe} from './childs/transport/transport-edit/convert-to-fruit-volume.pipe';
+import {ConvertToFruitVolumePipe} from './childs/transport/pipes/convert-to-fruit-volume.pipe';
 import {SortByFruitNamePipe} from './childs/transport/pipes/sort-by-fruit-name.pipe';
 
 @NgModule({
