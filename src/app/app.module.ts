@@ -40,6 +40,7 @@ import {TransportDetailsComponent} from './childs/transport/transport-details/tr
 import {TransportEditComponent} from './childs/transport/transport-edit/transport-edit.component';
 import {TransportDatabaseService} from './childs/transport/transport-database.service';
 import {FruitDatabaseService} from './childs/transport/fruit-database.service';
+import {ConvertToFruitVolumePipe} from './childs/transport/transport-edit/convert-to-fruit-volume.pipe';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {FruitDatabaseService} from './childs/transport/fruit-database.service';
     FruitCreateComponent,
     TransportDetailsComponent,
     TransportEditComponent,
+    ConvertToFruitVolumePipe,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +86,7 @@ import {FruitDatabaseService} from './childs/transport/fruit-database.service';
     MdIconRegistry,
     TransportDatabaseService,
     FruitDatabaseService,
+    ConvertToFruitVolumePipe,
   ],
   bootstrap: [AppComponent]
 })

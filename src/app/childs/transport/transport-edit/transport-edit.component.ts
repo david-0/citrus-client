@@ -1,5 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {FruitDatabaseService} from '../fruit-database.service';
+import {TransportDatabaseService} from '../transport-database.service';
+import {Observable} from 'rxjs/Observable';
+import {ITransport} from '../../../entities/ITransport';
+import {IFruitVolume} from '../../../entities/IFruitVolume';
 
 @Component({
   selector: 'app-transport-edit',
@@ -8,17 +13,20 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class TransportEditComponent implements OnInit {
 
-  public id: string;
+  public transport: Observable<ITransport>;
+  public fruitVolumes: IFruitVolume[];
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+              public fruitDatabase: FruitDatabaseService,
+              public transportDatabase: TransportDatabaseService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id']) {
-        this.id = params['id'];
+        this.transport = this.transportDatabase.get(+params['id']);
       } else {
-        this.id = 'keine ID angegeben'; // TODO: remove and log error
+        console.error('keine ID angegeben');
       }
     });
   }
