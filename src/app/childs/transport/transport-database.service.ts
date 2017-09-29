@@ -71,6 +71,11 @@ export class TransportDatabaseService extends GenericDatabase<ITransport> {
       new FruitVolumeTO(5, f[4], t1, 1500),
       new FruitVolumeTO(6, f[5], t1, 1800)
     ];
+    t2.fruitVolumes = [
+      new FruitVolumeTO(1, f[0], t1, 300),
+      new FruitVolumeTO(2, f[1], t1, 600),
+      new FruitVolumeTO(3, f[2], t1, 900),
+    ];
 
     return [t1, t2, t3, t4, t5, t6, t7, t8, t9];
   }
