@@ -4,7 +4,6 @@ import {ITransport} from '../../entities/ITransport';
 import {IFruitVolume} from '../../entities/IFruitVolume';
 import {TransportTO} from '../../TransferObjects/TransportTO';
 import {FruitVolumeTO} from '../../TransferObjects/FruitVolumeTO';
-import {FruitTO} from '../../TransferObjects/FruitTO';
 import {FruitDatabaseService} from './fruit-database.service';
 
 @Injectable()
