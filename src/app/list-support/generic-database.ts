@@ -2,7 +2,6 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {IId} from '../entities/IId';
-import {forEach} from '@angular/router/src/utils/collection';
 
 export class GenericDatabase<T extends IId> {
 
@@ -74,6 +73,13 @@ export class GenericDatabase<T extends IId> {
   }
 
   public update(t: T): Observable<boolean> {
-    return null;
+    const newData: T[] = [];
+    let updated = false;
+    this.data.forEach(item => {
+      newData.push((item.id === t.id) ? t : item);
+      updated = updated || (item.id === t.id) ? true : false;
+    });
+    this.data = newData;
+    return Observable.create(() => true);
   }
 }
