@@ -18,6 +18,9 @@ export class TransportDatabaseService extends GenericDatabase<ITransport> {
   }
 
   private static filterCallback(item: ITransport, filterValue: string): boolean {
+    if (item.comment == null) {
+      return filterValue === '';
+    }
     return item.comment.toUpperCase().indexOf(filterValue.toUpperCase()) > -1;
   }
 

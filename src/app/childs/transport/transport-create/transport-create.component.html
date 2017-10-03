@@ -1,21 +1,26 @@
-<app-list-header titleText="Transport erstellen" showBack="true" showCancelAndSave="true"></app-list-header>
-<div class="main-container">
-  <md-card class="md-card-padding">
-    <md-form-field>
-      <input mdInput [mdDatepicker]="departureDatePicker" placeholder="Abfahrtstag">
-      <md-datepicker-toggle mdSuffix [for]="departureDatePicker"></md-datepicker-toggle>
-      <md-datepicker #departureDatePicker></md-datepicker>
-    </md-form-field>
-    <p class="weight-title noMargin">Gewicht der Früchte in kg</p>
-    <ul class="no-bullets noMargin" >
-      <li *ngFor="let fruit of database.data">
-        <md-form-field class="example-full-width">
-          <input mdInput placeholder="{{fruit.name}}">
-        </md-form-field>
-      </li>
-    </ul>
-    <md-form-field class="example-full-width">
-      <textarea mdInput placeholder="Kommentar"></textarea>
-    </md-form-field>
-  </md-card>
-</div>
+<form #f="ngForm" (ngSubmit)="submit()">
+  <app-list-header titleText="Transport erstellen" showBack="true" showCancelAndSave="true"></app-list-header>
+  <div class="main-container">
+    <md-card class="md-card-padding">
+      <md-form-field>
+        <input mdInput [mdDatepicker]="departureDatePicker" placeholder="Abfahrtstag"
+               [(ngModel)]="transport.departureDate" [ngModelOptions]="{standalone: true}">
+        <md-datepicker-toggle mdSuffix [for]="departureDatePicker"></md-datepicker-toggle>
+        <md-datepicker #departureDatePicker></md-datepicker>
+      </md-form-field>
+      <p class="weight-title noMargin">Gewicht der Früchte in kg</p>
+      <ul class="no-bullets noMargin">
+        <li *ngFor="let fruitVolume of transport.fruitVolumes | sortByFruitName">
+          <md-form-field class="example-full-width">
+            <input mdInput placeholder="{{fruitVolume.fruit.name}}" [(ngModel)]="fruitVolume.weightInKg"
+                   [ngModelOptions]="{standalone: true}">
+          </md-form-field>
+        </li>
+      </ul>
+      <md-form-field class="example-full-width">
+        <textarea mdInput placeholder="Kommentar" [(ngModel)]="transport.comment"
+                  [ngModelOptions]="{standalone: true}"></textarea>
+      </md-form-field>
+    </md-card>
+  </div>
+</form>

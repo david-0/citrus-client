@@ -65,7 +65,11 @@ export class GenericDatabase<T extends IId> {
   }
 
   public add(t: T): Observable<boolean> {
-    return null;
+    const dataCopy = this.data.slice().sort((a, b) => (a.id === b.id) ? 0 : (a.id > b.id) ? 1 : -1);
+    t.id = dataCopy[dataCopy.length - 1].id + 1;
+    dataCopy.push(t);
+    this.data = dataCopy;
+    return Observable.create(() => true);
   }
 
   public remove(id: number): Observable<boolean> {
