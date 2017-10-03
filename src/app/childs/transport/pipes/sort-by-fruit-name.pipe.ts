@@ -7,8 +7,8 @@ import {IFruit} from '../../../entities/IFruit';
 })
 export class SortByFruitNamePipe implements PipeTransform {
 
-  transform(value: IFruit[]): IFruit[] {
-    return value.sort((a, b) => a.name.localeCompare(b.name));
+  transform(value: IFruitVolume[]): IFruitVolume[] {
+    return value.sort((a, b) => a.fruit.name.localeCompare(b.fruit.name));
   }
 
 }

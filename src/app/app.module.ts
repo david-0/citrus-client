@@ -42,6 +42,7 @@ import {TransportDatabaseService} from './childs/transport/transport-database.se
 import {FruitDatabaseService} from './childs/transport/fruit-database.service';
 import {ConvertToFruitVolumePipe} from './childs/transport/pipes/convert-to-fruit-volume.pipe';
 import {SortByFruitNamePipe} from './childs/transport/pipes/sort-by-fruit-name.pipe';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import {SortByFruitNamePipe} from './childs/transport/pipes/sort-by-fruit-name.p
     MdPaginatorModule,
     MdTableModule,
     MdSortModule,
+    FormsModule,
   ],
   providers: [
     MdIconRegistry,
