@@ -79,7 +79,23 @@ export class GenericDatabase<T extends IId> {
   }
 
   public remove(id: number): Observable<boolean> {
-    return null;
+    return Observable.create(observer => {
+      const newData: T[] = [];
+      let deleted = false;
+      this.data.forEach(item => {
+        if (item.id !== id) {
+          newData.push(item);
+        } else {
+          deleted = true;
+        }
+      });
+      this.data = newData;
+      if (deleted) {
+        observer.next(true);
+      } else {
+        observer.error(`could not delete transport with id ${id}`);
+      }
+    });
   }
 
   public update(t: T): Observable<boolean> {

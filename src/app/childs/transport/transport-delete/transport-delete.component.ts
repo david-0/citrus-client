@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {TransportDatabaseService} from '../transport-database.service';
 
 @Component({
   selector: 'app-transport-delete',
@@ -9,11 +10,25 @@ import {ActivatedRoute} from '@angular/router';
 export class TransportDeleteComponent implements OnInit {
 
   public id: string;
+  public message: string;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+              public transportDatabase: TransportDatabaseService) {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.transportDatabase.remove(+params['id'])
+        .subscribe(
+          t => {
+            this.message = `Der Transport({params['id']}) wurde gelöscht!`;
+          },
+          err => {
+            this.message = `Der Transport({params['id']} konnte nicht gelöscht werden.`;
+          });
+    });
+
+
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.id = params['id'];

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MdDialog} from '@angular/material';
 import {OkCancelDialogComponent} from '../ok-cancel-dialog/ok-cancel-dialog.component';
@@ -43,7 +43,7 @@ export class ListHeaderComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.router.navigate(['deleted'], {relativeTo: this.route});
+        this.router.navigate(['delete'], {relativeTo: this.route});
       }
     });
   }
