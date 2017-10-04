@@ -26,29 +26,15 @@ export class TransportCreateComponent implements OnInit {
     this.transport = new TransportTO(null, new Date(), null, this.createFruitVolumes());
   }
 
-  public submit() {
-    this.transport.fruitVolumes = this.processFruitVolumes(this.transport);
-    this.transportDatabase.add(this.transport);
-    this.router.navigate(['..'], {relativeTo: this.route});
-  }
-
   private createFruitVolumes(): IFruitVolume[] {
     return this.fruitDatabase.data.slice().map(f => new FruitVolumeTO(null, f, null, null));
   }
 
-  private processFruitVolumes(transport: ITransport): IFruitVolume[] {
-    const result: IFruitVolume[] = [];
-    transport.fruitVolumes.forEach(fruitVolume => {
-      if (fruitVolume.weightInKg != null) {
-        fruitVolume.weightInKg = +fruitVolume.weightInKg;
-        if (fruitVolume.weightInKg > 0) {
-          if (fruitVolume.transport) {
-            fruitVolume.transport = transport;
-          }
-          result.push(fruitVolume);
-        }
-      }
-    });
-    return result;
+  public submit() {
+    this.transportDatabase.add(TransportTO.deepcopyTransportForPersistence(this.transport))
+      .subscribe(
+        (result) => this.router.navigate(['..'], {relativeTo: this.route}),
+        (err) => console.error(`could not save transport: ${this.transport.id} with Error: ${err}`)
+      );
   }
 }

@@ -54,22 +54,28 @@ export class GenericDatabase<T extends IId> {
   }
 
   public get(id: number): Observable<T> {
-    const replaySubject = new ReplaySubject<T>(1);
-    const t: T[] = this.data.filter(obj => obj.id === id);
-    if (t.length < 1) {
-      console.error('no object with id {{id}}');
-    } else {
-      replaySubject.next(t[0]);
-    }
-    return replaySubject;
+    return Observable.create(observer => {
+      const t: T[] = this.data.filter(obj => obj.id === id);
+      if (t.length < 1) {
+        observer.error(`no object with id ${id}`);
+      } else {
+        observer.next(t[0]);
+      }
+    });
   }
 
   public add(t: T): Observable<boolean> {
-    const dataCopy = this.data.slice().sort((a, b) => (a.id === b.id) ? 0 : (a.id > b.id) ? 1 : -1);
-    t.id = dataCopy[dataCopy.length - 1].id + 1;
-    dataCopy.push(t);
-    this.data = dataCopy;
-    return Observable.create(() => true);
+    return Observable.create(observer => {
+      const dataCopy = this.data.slice().sort((a, b) => (a.id === b.id) ? 0 : (a.id > b.id) ? 1 : -1);
+      t.id = dataCopy[dataCopy.length - 1].id + 1;
+      dataCopy.push(t);
+      this.data = dataCopy;
+      if (true) {
+        observer.next(true);
+//      } else {
+//        observer.error('could not save');
+      }
+    });
   }
 
   public remove(id: number): Observable<boolean> {
@@ -77,13 +83,23 @@ export class GenericDatabase<T extends IId> {
   }
 
   public update(t: T): Observable<boolean> {
-    const newData: T[] = [];
-    let updated = false;
-    this.data.forEach(item => {
-      newData.push((item.id === t.id) ? t : item);
-      updated = updated || (item.id === t.id) ? true : false;
+    return Observable.create(observer => {
+      const newData: T[] = [];
+      let updated = false;
+      this.data.forEach(item => {
+        if (item.id !== t.id) {
+          newData.push(item);
+        } else {
+          newData.push(t);
+          updated = true;
+        }
+      });
+      this.data = newData;
+      if (updated) {
+        observer.next(true);
+      } else {
+        observer.error(`could not update transport with id ${t.id}`);
+      }
     });
-    this.data = newData;
-    return Observable.create(() => true);
   }
 }

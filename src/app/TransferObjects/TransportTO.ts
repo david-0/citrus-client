@@ -1,8 +1,40 @@
 import {ITransport} from '../entities/ITransport';
 import {IFruitVolume} from '../entities/IFruitVolume';
+import {FruitDatabaseService} from '../childs/transport/fruit-database.service';
+import {IFruit} from '../entities/IFruit';
+import {FruitVolumeTO} from './FruitVolumeTO';
 
 export class TransportTO implements ITransport {
 
   constructor(public id: number, public departureDate: Date, public comment: string, public fruitVolumes: IFruitVolume[] = []) {
+  }
+
+  public static deepcopyTransportForPersistence(transport: ITransport): ITransport {
+    const result: IFruitVolume[] = [];
+    transport.fruitVolumes.forEach(fruitVolume => {
+      if (fruitVolume.weightInKg != null) {
+        fruitVolume.weightInKg = +fruitVolume.weightInKg;
+        if (fruitVolume.weightInKg > 0) {
+          if (fruitVolume.transport) {
+            fruitVolume.transport = transport;
+          }
+          result.push(fruitVolume);
+        }
+      }
+    });
+    return new TransportTO(transport.id, transport.departureDate, transport.comment, result);
+  }
+
+  public static deepcopyTransportForView(t: ITransport, fruits: IFruit[]): ITransport {
+    const extendedFruitVolumes = fruits.slice()
+      .map(fruit => this.createNewFruitVolume(fruit, t.fruitVolumes));
+    return new TransportTO(t.id, t.departureDate, t.comment, extendedFruitVolumes);
+  }
+
+  private static createNewFruitVolume(value: IFruit, fruitVolumes?: IFruitVolume[]): IFruitVolume {
+    const existing = fruitVolumes.filter(fruitVolume => fruitVolume.fruit.id === value.id);
+    return (existing.length === 1)
+      ? new FruitVolumeTO(existing[0].id, existing[0].fruit, existing[0].transport, existing[0].weightInKg)
+      : new FruitVolumeTO(null, value, null, null);
   }
 }
