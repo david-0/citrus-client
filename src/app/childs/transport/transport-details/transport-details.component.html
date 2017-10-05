@@ -9,7 +9,7 @@
     <div>
       <p>Früchte</p>
       <ul>
-        <li *ngFor="let fruitVolume of (transport | async).fruitVolumes">{{fruitVolume.fruit.name}}:
+        <li *ngFor="let fruitVolume of (transport | async).fruitVolumes | sortByFruitName">{{fruitVolume.fruit.name}}:
           {{fruitVolume.weightInKg}} kg
         </li>
       </ul>
