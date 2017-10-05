@@ -1,5 +1,5 @@
 <div class="noPadding content">
-  <app-list-header titleText="Fruchtliste" [showCreate]="true"></app-list-header>
+  <app-list-header titleText="Früchte" [showCreate]="true"></app-list-header>
   <div class="div--margins-05 div--maxwith">
     <app-line class="div--flex" *ngFor="let fruit of this.getFruits()" [id]="fruit.id"
               [desc]="fruit.name"></app-line>

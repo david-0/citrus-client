@@ -48,9 +48,9 @@ export class FruitDatabaseService extends GenericDatabase<IFruit> {
     const f1 = new FruitTO(1, 'Orangen');
     const f2 = new FruitTO(2, 'Grapefruit rot');
     const f3 = new FruitTO(3, 'Grapefruit gelb');
-    const f4 = new FruitTO(4, 'Zitrone');
+    const f4 = new FruitTO(4, 'Zitronen');
     const f5 = new FruitTO(5, 'Mandarinen');
-    const f6 = new FruitTO(6, 'Advokado');
+    const f6 = new FruitTO(6, 'Avokado');
 
     return [f1, f2, f3, f4, f5, f6];
   }
