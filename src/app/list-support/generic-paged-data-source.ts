@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import {MdPaginator, MdSort} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {IId} from '../entities/IId';
+import {SettingsServiceInterface} from './settings-service-interface';
 
 export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
 
@@ -22,7 +23,8 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
 
   constructor(private database: GenericDatabase<T>,
               private paginator: MdPaginator,
-              private sort: MdSort) {
+              private sort: MdSort,
+              private settings: SettingsServiceInterface) {
     super();
   }
 
@@ -41,10 +43,21 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
       }
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       this.paginator.length = this.database.numberOfItems(this.filterChange.value);
+      this.paginator.pageSize = this.settings.pageSize;
+      this.setPageIndex();
       return this.database.select(startIndex, this.paginator.pageSize, this.filterChange.value, order);
     });
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
+  }
+
+  private setPageIndex() {
+    for (let i = 0; i < this.settings.pageIndex; i++) {
+      if (this.paginator.hasNextPage()) {
+        this.paginator.pageIndex = this.settings.pageIndex;
+      }
+    }
+    this.settings.pageIndex = this.paginator.pageIndex;
   }
 }

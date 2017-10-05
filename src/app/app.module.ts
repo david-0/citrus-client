@@ -44,6 +44,7 @@ import {ConvertToFruitVolumePipe} from './childs/transport/pipes/convert-to-frui
 import {SortByFruitNamePipe} from './childs/transport/pipes/sort-by-fruit-name.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ValidatorsModule} from 'ng2-validators';
+import {TransportSettingsService} from './childs/transport/transport-settings.service';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import {ValidatorsModule} from 'ng2-validators';
   providers: [
     MdIconRegistry,
     TransportDatabaseService,
+    TransportSettingsService,
     FruitDatabaseService,
     ConvertToFruitVolumePipe,
     SortByFruitNamePipe,
