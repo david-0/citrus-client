@@ -2,7 +2,7 @@
   <app-list-header titleText="Transport erstellen" showBack="true" showCancelAndSave="true"></app-list-header>
   <div class="main-container">
     <md-card class="md-card-padding">
-      <md-form-field>
+      <md-form-field color="accent">
         <input mdInput [mdDatepicker]="departureDatePicker" placeholder="Abfahrtstag"
                [(ngModel)]="transport.departureDate" [ngModelOptions]="{standalone: true}">
         <md-datepicker-toggle mdSuffix [for]="departureDatePicker"></md-datepicker-toggle>
@@ -11,15 +11,18 @@
       <p class="weight-title noMargin">Gewicht der Früchte in kg</p>
       <ul class="no-bullets noMargin">
         <li *ngFor="let fruitVolume of transport.fruitVolumes | sortByFruitName">
-          <md-form-field class="example-full-width">
+          <md-form-field class="example-full-width gewicht-padding" color="accent">
             <input mdInput placeholder="{{fruitVolume.fruit.name}}" [(ngModel)]="fruitVolume.weightInKg"
-                   [ngModelOptions]="{standalone: true}">
+                   [ngModelOptions]="{standalone: true}" isNumber isInRange [minValue]="0" [maxValue]="99999"
+                   maxlength="5">
+            <md-error align="end">Zahl zwischen 0 und 99999 kg</md-error>
           </md-form-field>
         </li>
       </ul>
-      <md-form-field class="example-full-width">
-        <textarea mdInput placeholder="Kommentar" [(ngModel)]="transport.comment"
-                  [ngModelOptions]="{standalone: true}"></textarea>
+      <md-form-field class="example-full-width" color="accent">
+        <textarea mdInput placeholder="Kommentar" #comment [(ngModel)]="transport.comment"
+                  [ngModelOptions]="{standalone: true}" maxlength="256"></textarea>
+        <md-hint align="end">{{comment.value.length}} / 256</md-hint>
       </md-form-field>
     </md-card>
   </div>
