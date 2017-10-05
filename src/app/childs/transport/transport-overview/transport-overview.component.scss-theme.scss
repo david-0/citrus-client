@@ -8,6 +8,7 @@
   app-overview-transport {
     .table-row--highligthed:hover {
       background-color: mat-color($primary);
+      transition: all 0.3s ease-in
     }
   }
 }
