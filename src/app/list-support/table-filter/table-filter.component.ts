@@ -21,7 +21,6 @@ export class TableFilterComponent implements OnInit {
       .debounceTime(150)
       .distinctUntilChanged()
       .subscribe(() => {
-        console.log(`filter: ${this.filter.nativeElement.value}`);
         this.onChange.emit(this.filter.nativeElement.value);
       });
     const filter = this.settings != null ? this.settings.filterValue : '';
