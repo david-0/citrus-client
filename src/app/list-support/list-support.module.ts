@@ -1,28 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LineComponent} from './line/line.component';
-import {MaterialModule} from '@angular/material';
+import {MdButtonModule, MdButtonToggleModule, MdDialogModule, MdIconModule, MdInputModule} from '@angular/material';
 import {ListHeaderComponent} from './list-header/list-header.component';
 import {OkCancelDialogComponent} from './ok-cancel-dialog/ok-cancel-dialog.component';
-import {
-  MdButtonModule,
-  MdButtonToggleModule,
-  MdCardModule,
-  MdDatepickerModule,
-  MdDialogModule,
-  MdFormFieldModule,
-  MdIconModule,
-  MdIconRegistry,
-  MdInputModule,
-  MdNativeDateModule,
-  MdPaginatorModule,
-  MdSelectModule,
-  MdSidenavModule,
-  MdSortModule,
-  MdTableModule,
-  MdToolbarModule,
-  MdTooltipModule,
-} from '@angular/material';
+import {TableFilterComponent} from './table-filter/table-filter.component';
 
 @NgModule({
   imports: [
@@ -30,16 +12,19 @@ import {
     MdDialogModule,
     MdButtonModule,
     MdButtonToggleModule,
+    MdInputModule,
     MdIconModule,
   ],
   declarations: [
     LineComponent,
     ListHeaderComponent,
     OkCancelDialogComponent,
+    TableFilterComponent,
   ],
   exports: [
     LineComponent,
     ListHeaderComponent,
+    TableFilterComponent,
   ],
   entryComponents: [OkCancelDialogComponent]
 })
