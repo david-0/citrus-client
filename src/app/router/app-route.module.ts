@@ -5,7 +5,6 @@ import {TransportOverviewComponent} from '../childs/transport/transport-overview
 import {AdministrationComponent} from '../childs/administration/administration.component';
 import {BuyComponent} from '../childs/buy/buy.component';
 import {FetchComponent} from '../childs/fetch/fetch.component';
-import {TransportCreateComponent} from '../childs/transport/transport-create/transport-create.component';
 import {TransportDetailsComponent} from '../childs/transport/transport-details/transport-details.component';
 import {StorageOverviewComponent} from '../childs/storage/storage-overview/storage-overview.component';
 import {UsersOverviewComponent} from '../childs/user/user-overview/users-overview.component';
@@ -19,11 +18,11 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'transport', component: TransportOverviewComponent},
   {path: 'storage-overview', component: StorageOverviewComponent},
-  {path: 'create-transport', component: TransportCreateComponent},
+  {path: 'create-transport', component: TransportEditComponent},
   {
     path: 'administration', component: AdministrationComponent, children: [
     {path: 'transport', component: TransportOverviewComponent},
-    {path: 'transport/create', component: TransportCreateComponent},
+    {path: 'transport/create', component: TransportEditComponent},
     {path: 'transport/:id', component: TransportDetailsComponent},
     {path: 'transport/:id/edit', component: TransportEditComponent},
     {path: 'transport/:id/delete', component: TransportDeleteComponent},

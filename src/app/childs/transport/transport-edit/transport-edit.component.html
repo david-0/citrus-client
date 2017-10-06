@@ -2,7 +2,6 @@
   <app-list-header titleText="Transport bearbeiten" showBack="true" showCancelAndSave="true"
                    [form]="f"></app-list-header>
   <div class="main-container">
-    <input type="hidden" [(ngModel)]="transport.id" name="id"/>
     <md-card class="md-card-padding">
       <md-form-field color="accent">
         <input mdInput [mdDatepicker]="departureDatePicker" placeholder="Abfahrtstag"

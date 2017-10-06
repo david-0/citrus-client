@@ -16,6 +16,7 @@ import {TransportTO} from '../../../TransferObjects/TransportTO';
 export class TransportEditComponent implements OnInit {
 
   public transport: ITransport;
+  public transportId: number;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -25,21 +26,39 @@ export class TransportEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.transportDatabase.get(+params['id'])
-        .subscribe(
-          t => {
-            this.transport = TransportTO.deepcopyTransportForView(t, this.fruitDatabase.data);
-          },
-          err => {
-            console.log(`Could not get transport with id ${params['id']} with error: ${err}`);
-          });
+      if (params['id'] == null) {
+        this.transport = new TransportTO(null, new Date(), null, this.createFruitVolumes());
+        this.transportId = this.transport.id;
+      } else {
+        this.transportDatabase.get(+params['id'])
+          .subscribe(
+            t => {
+              this.transport = TransportTO.deepcopyTransportForView(t, this.fruitDatabase.data);
+              this.transportId = this.transport.id;
+            },
+            err => {
+              console.log(`Could not get transport with id ${params['id']} with error: ${err}`);
+            });
+      }
     });
   }
 
   public submit() {
-    this.transportDatabase.update(TransportTO.deepcopyTransportForPersistence(this.transport))
-      .subscribe(
-        (result) => this.router.navigate(['..'], {relativeTo: this.route}),
-        (err) => console.error(`could not update transport: ${this.transport.id} with Error: ${err}`));
+    if (this.transportId == null) {
+      this.transportDatabase.add(TransportTO.deepcopyTransportForPersistence(this.transport))
+        .subscribe(
+          (result) => this.router.navigate(['..'], {relativeTo: this.route}),
+          (err) => console.error(`could not save transport: ${this.transport.id} with Error: ${err}`)
+        );
+    } else {
+      this.transportDatabase.update(TransportTO.deepcopyTransportForPersistence(this.transport))
+        .subscribe(
+          (result) => this.router.navigate(['..'], {relativeTo: this.route}),
+          (err) => console.error(`could not update transport: ${this.transport.id} with Error: ${err}`));
+    }
+  }
+
+  private createFruitVolumes(): IFruitVolume[] {
+    return this.fruitDatabase.data.slice().map(f => new FruitVolumeTO(null, f, null, null));
   }
 }
