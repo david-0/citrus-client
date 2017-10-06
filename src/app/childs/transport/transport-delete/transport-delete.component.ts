@@ -21,20 +21,11 @@ export class TransportDeleteComponent implements OnInit {
       this.transportDatabase.remove(+params['id'])
         .subscribe(
           t => {
-            this.message = `Der Transport({params['id']}) wurde gelöscht!`;
+            this.message = `Der Transport wurde gelöscht!`;
           },
           err => {
-            this.message = `Der Transport({params['id']} konnte nicht gelöscht werden.`;
+            this.message = `Der Transport konnte nicht gelöscht werden (Error: ${err}).`;
           });
-    });
-
-
-    this.route.params.subscribe(params => {
-      if (params['id']) {
-        this.id = params['id'];
-      } else {
-        console.error('keine ID angegeben');
-      }
     });
   }
 }

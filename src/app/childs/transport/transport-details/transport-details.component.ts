@@ -23,11 +23,7 @@ export class TransportDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      if (params['id']) {
-        this._transport = this.database.get(+params['id']);
-      } else {
-        console.error('keine ID angegeben');
-      }
+      this._transport = this.database.get(+params['id']);
     });
   }
 }

@@ -16,7 +16,6 @@ export class ListHeaderComponent implements OnInit {
   @Input() showEdit: boolean;
   @Input() showDelete: boolean;
   @Input() showCancelAndSave: boolean;
-  @Input() id: number;
   @Input() label: string;
 
   constructor(private router: Router, private route: ActivatedRoute, public dialog: MdDialog) {
@@ -39,7 +38,7 @@ export class ListHeaderComponent implements OnInit {
 
   delete() {
     const dialogRef = this.dialog.open(OkCancelDialogComponent, {
-      data: {id: this.id, label: this.label}
+      data: {label: this.label}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
