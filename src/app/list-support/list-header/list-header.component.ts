@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MdDialog} from '@angular/material';
 import {OkCancelDialogComponent} from '../ok-cancel-dialog/ok-cancel-dialog.component';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-list-header',
@@ -17,6 +18,7 @@ export class ListHeaderComponent implements OnInit {
   @Input() showDelete: boolean;
   @Input() showCancelAndSave: boolean;
   @Input() label: string;
+  @Input() form: NgForm;
 
   constructor(private router: Router, private route: ActivatedRoute, public dialog: MdDialog) {
   }

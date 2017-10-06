@@ -20,7 +20,7 @@
     <md-icon>cancel</md-icon>
     <span class="size-xl">abbrechen</span>
   </button>
-  <button md-button type="submit" class="size-xs button--responsive" *ngIf="showCancelAndSave">
+  <button md-button type="submit" class="size-xs button--responsive" *ngIf="showCancelAndSave" [disabled]="!form.valid">
     <md-icon>save</md-icon>
     <span class="size-xl">speichern</span>
     <!-- [disabled]="!f.valid" -->
