@@ -30,7 +30,7 @@ import {FetchComponent} from './childs/fetch/fetch.component';
 import {TransportDeleteComponent} from './childs/transport/transport-delete/transport-delete.component';
 import {TransportOverviewComponent} from './childs/transport/transport-overview/transport-overview.component';
 import {StorageOverviewComponent} from './childs/storage/storage-overview/storage-overview.component';
-import {FruitsOverviewComponent} from './childs/fruit/fruit-overview/fruits-overview.component';
+import {FruitOverviewComponent} from './childs/fruit/fruit-overview/fruit-overview.component';
 import {UsersOverviewComponent} from './childs/user/user-overview/users-overview.component';
 import {FruitCreateComponent} from './childs/fruit/fruit-create/fruit-create.component';
 import {TableSupportModule} from './table-support/table-support.module';
@@ -54,7 +54,7 @@ import {TransportSettingsService} from './childs/transport/transport-settings.se
     TransportOverviewComponent,
     TransportDeleteComponent,
     StorageOverviewComponent,
-    FruitsOverviewComponent,
+    FruitOverviewComponent,
     UsersOverviewComponent,
     FruitCreateComponent,
     TransportDetailsComponent,

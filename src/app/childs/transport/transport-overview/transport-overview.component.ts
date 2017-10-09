@@ -10,7 +10,7 @@ import {TransportDatabaseService} from '../transport-database.service';
 import {TransportSettingsService} from '../transport-settings.service';
 
 @Component({
-  selector: 'app-overview-transport',
+  selector: 'app-transport-overview',
   templateUrl: './transport-overview.component.html',
   styleUrls: ['./transport-overview.component.scss']
 })

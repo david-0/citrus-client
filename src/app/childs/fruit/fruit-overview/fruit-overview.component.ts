@@ -3,11 +3,11 @@ import {IFruit} from '../../../entities/IFruit';
 import {FruitTO} from '../../../TransferObjects/FruitTO';
 
 @Component({
-  selector: 'app-fruits-overview',
-  templateUrl: './fruits-overview.component.html',
-  styleUrls: ['./fruits-overview.component.scss']
+  selector: 'app-fruit-overview',
+  templateUrl: './fruit-overview.component.html',
+  styleUrls: ['./fruit-overview.component.scss']
 })
-export class FruitsOverviewComponent implements OnInit {
+export class FruitOverviewComponent implements OnInit {
 
   constructor() { }
 

@@ -8,7 +8,7 @@ import {FetchComponent} from '../childs/fetch/fetch.component';
 import {TransportDetailsComponent} from '../childs/transport/transport-details/transport-details.component';
 import {StorageOverviewComponent} from '../childs/storage/storage-overview/storage-overview.component';
 import {UsersOverviewComponent} from '../childs/user/user-overview/users-overview.component';
-import {FruitsOverviewComponent} from '../childs/fruit/fruit-overview/fruits-overview.component';
+import {FruitOverviewComponent} from '../childs/fruit/fruit-overview/fruit-overview.component';
 import {FruitCreateComponent} from '../childs/fruit/fruit-create/fruit-create.component';
 import {TransportEditComponent} from '../childs/transport/transport-edit/transport-edit.component';
 import {TransportDeleteComponent} from '../childs/transport/transport-delete/transport-delete.component';
@@ -28,7 +28,7 @@ const routes: Routes = [
     {path: 'transport/:id/delete', component: TransportDeleteComponent},
     {path: 'storage-overview', component: StorageOverviewComponent},
     {path: 'users-overview', component: UsersOverviewComponent},
-    {path: 'fruit', component: FruitsOverviewComponent},
+    {path: 'fruit', component: FruitOverviewComponent},
     {path: 'fruit/create', component: FruitCreateComponent},
     {path: '', redirectTo: 'transportation-overview', pathMatch: 'full'},
   ]

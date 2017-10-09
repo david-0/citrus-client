@@ -1,11 +1,11 @@
-@mixin app-transport-overview-theme($theme) {
+@mixin app-fruit-overview-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
 
-  app-transport-overview {
+  app-fruit-overview {
     .table-row--highligthed:hover {
       background-color: mat-color($primary);
       transition: all 0.3s ease-in
