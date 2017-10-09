@@ -15,7 +15,7 @@ import {TransportSettingsService} from '../transport-settings.service';
   styleUrls: ['./transport-overview.component.scss']
 })
 export class TransportOverviewComponent implements OnInit {
-  public displayedColumns = ['id', 'departureDate', 'comment'];
+  public displayedColumns = ['departureDate', 'comment'];
 
   public dataSource: GenericPagedDataSource<ITransport> | null;
 
