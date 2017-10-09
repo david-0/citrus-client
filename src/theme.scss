@@ -15,7 +15,7 @@ $my-theme: mat-light-theme(
     $my-theme-warn
 );
 
-@import "./app/list-support/list-header/list-header.component.scss-theme";
+@import "app/table-support/table-header/table-header.component.scss-theme";
 @import "./app/childs/administration/administration.component.scss-theme";
 @import "app/childs/transport/transport-overview/transport-overview.component.scss-theme";
 

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {SettingsServiceInterface} from '../../list-support/settings-service-interface';
+import {SettingsServiceInterface} from '../../table-support/settings-service-interface';
 
 @Injectable()
 export class TransportSettingsService implements SettingsServiceInterface {

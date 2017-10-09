@@ -5,11 +5,11 @@ import {OkCancelDialogComponent} from '../ok-cancel-dialog/ok-cancel-dialog.comp
 import {NgForm} from '@angular/forms';
 
 @Component({
-  selector: 'app-list-header',
-  templateUrl: './list-header.component.html',
-  styleUrls: ['./list-header.component.scss']
+  selector: 'app-table-header',
+  templateUrl: './table-header.component.html',
+  styleUrls: ['./table-header.component.scss']
 })
-export class ListHeaderComponent implements OnInit {
+export class TableHeaderComponent implements OnInit {
   @Input() titleText: string;
   @Input() backLink: string;
   @Input() showBack: boolean;

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {GenericDatabase} from '../../list-support/generic-database';
+import {GenericDatabase} from '../../table-support/generic-database';
 import {ITransport} from '../../entities/ITransport';
 import {IFruitVolume} from '../../entities/IFruitVolume';
 import {TransportTO} from '../../TransferObjects/TransportTO';

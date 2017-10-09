@@ -4,7 +4,7 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import {GenericPagedDataSource} from '../../../list-support/generic-paged-data-source';
+import {GenericPagedDataSource} from '../../../table-support/generic-paged-data-source';
 import {MdPaginator, MdSort} from '@angular/material';
 import {TransportDatabaseService} from '../transport-database.service';
 import {TransportSettingsService} from '../transport-settings.service';

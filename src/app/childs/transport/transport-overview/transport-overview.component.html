@@ -1,4 +1,4 @@
-<app-list-header titleText="Transporte" [showCreate]="true"></app-list-header>
+<app-table-header titleText="Transporte" [showCreate]="true"></app-table-header>
 <app-table-filter (onChange)="onFilterChange($event)" [settings]="this.settings"></app-table-filter>
 <md-table #table [dataSource]="dataSource" mdSort>
   <ng-container mdColumnDef="id" hidden>

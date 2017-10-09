@@ -33,7 +33,7 @@ import {StorageOverviewComponent} from './childs/storage/storage-overview/storag
 import {FruitsOverviewComponent} from './childs/fruit/fruit-overview/fruits-overview.component';
 import {UsersOverviewComponent} from './childs/user/user-overview/users-overview.component';
 import {FruitCreateComponent} from './childs/fruit/fruit-create/fruit-create.component';
-import {ListSupportModule} from './list-support/list-support.module';
+import {TableSupportModule} from './table-support/table-support.module';
 import {TransportDetailsComponent} from './childs/transport/transport-details/transport-details.component';
 import {TransportEditComponent} from './childs/transport/transport-edit/transport-edit.component';
 import {TransportDatabaseService} from './childs/transport/transport-database.service';
@@ -77,7 +77,7 @@ import {TransportSettingsService} from './childs/transport/transport-settings.se
     MdNativeDateModule,
     MdInputModule,
     MdFormFieldModule,
-    ListSupportModule,
+    TableSupportModule,
     MdTooltipModule,
     MdPaginatorModule,
     MdTableModule,

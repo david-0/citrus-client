@@ -5,7 +5,7 @@
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
 
-  app-list-header {
+  app-table-header {
     >div {
       background-color: mat-color($accent);
     }
