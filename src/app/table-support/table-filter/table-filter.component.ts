@@ -11,6 +11,7 @@ export class TableFilterComponent implements OnInit {
 
   @ViewChild('filter') filter: ElementRef;
   @Input() settings: SettingsServiceInterface;
+  @Input() placeholder: string;
   @Output() onChange = new EventEmitter<string>();
 
   constructor() {

@@ -1,5 +1,6 @@
 <app-table-header titleText="Früchte" [showCreate]="true"></app-table-header>
-<app-table-filter (onChange)="onFilterChange($event)" [settings]="this.settings"></app-table-filter>
+<app-table-filter (onChange)="onFilterChange($event)" [settings]="this.settings"
+                  placeholder="Filter Früchte"></app-table-filter>
 <md-table #table [dataSource]="dataSource" mdSort>
   <ng-container mdColumnDef="id" hidden>
     <md-header-cell *mdHeaderCellDef md-sort-header>ID</md-header-cell>
