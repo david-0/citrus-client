@@ -9,9 +9,11 @@ import {TransportDetailsComponent} from '../childs/transport/transport-details/t
 import {StorageOverviewComponent} from '../childs/storage/storage-overview/storage-overview.component';
 import {UsersOverviewComponent} from '../childs/user/user-overview/users-overview.component';
 import {FruitOverviewComponent} from '../childs/fruit/fruit-overview/fruit-overview.component';
-import {FruitCreateComponent} from '../childs/fruit/fruit-create/fruit-create.component';
 import {TransportEditComponent} from '../childs/transport/transport-edit/transport-edit.component';
 import {TransportDeleteComponent} from '../childs/transport/transport-delete/transport-delete.component';
+import {FruitDeleteComponent} from '../childs/fruit/fruit-delete/fruit-delete.component';
+import {FruitEditComponent} from '../childs/fruit/fruit-edit/fruit-edit.component';
+import {FruitDetailsComponent} from '../childs/fruit/fruit-details/fruit-details.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -29,7 +31,10 @@ const routes: Routes = [
     {path: 'storage-overview', component: StorageOverviewComponent},
     {path: 'users-overview', component: UsersOverviewComponent},
     {path: 'fruit', component: FruitOverviewComponent},
-    {path: 'fruit/create', component: FruitCreateComponent},
+    {path: 'fruit/create', component: FruitEditComponent},
+    {path: 'fruit/:id', component: FruitDetailsComponent},
+    {path: 'fruit/:id/edit', component: FruitEditComponent},
+    {path: 'fruit/:id/delete', component: FruitDeleteComponent},
     {path: '', redirectTo: 'transportation-overview', pathMatch: 'full'},
   ]
   },

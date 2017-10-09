@@ -32,7 +32,6 @@ import {TransportOverviewComponent} from './childs/transport/transport-overview/
 import {StorageOverviewComponent} from './childs/storage/storage-overview/storage-overview.component';
 import {FruitOverviewComponent} from './childs/fruit/fruit-overview/fruit-overview.component';
 import {UsersOverviewComponent} from './childs/user/user-overview/users-overview.component';
-import {FruitCreateComponent} from './childs/fruit/fruit-create/fruit-create.component';
 import {TableSupportModule} from './table-support/table-support.module';
 import {TransportDetailsComponent} from './childs/transport/transport-details/transport-details.component';
 import {TransportEditComponent} from './childs/transport/transport-edit/transport-edit.component';
@@ -44,6 +43,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ValidatorsModule} from 'ng2-validators';
 import {TransportSettingsService} from './childs/transport/transport-settings.service';
 import {FruitSettingsService} from './childs/fruit/fruit-settings.service';
+import { FruitDetailsComponent } from './childs/fruit/fruit-details/fruit-details.component';
+import { FruitDeleteComponent } from './childs/fruit/fruit-delete/fruit-delete.component';
+import { FruitEditComponent } from './childs/fruit/fruit-edit/fruit-edit.component';
 
 @NgModule({
   declarations: [
@@ -57,11 +59,13 @@ import {FruitSettingsService} from './childs/fruit/fruit-settings.service';
     StorageOverviewComponent,
     FruitOverviewComponent,
     UsersOverviewComponent,
-    FruitCreateComponent,
     TransportDetailsComponent,
     TransportEditComponent,
     ConvertToFruitVolumePipe,
     SortByFruitNamePipe,
+    FruitDetailsComponent,
+    FruitDeleteComponent,
+    FruitEditComponent,
   ],
   imports: [
     BrowserModule,

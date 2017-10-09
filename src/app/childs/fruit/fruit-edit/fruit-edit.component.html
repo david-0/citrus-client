@@ -1,0 +1,13 @@
+<form #f="ngForm" (ngSubmit)="submit()">
+  <app-table-header titleText="Frucht bearbeiten" showBack="true" showCancelAndSave="true"
+                    [form]="f"></app-table-header>
+  <div class="main-container">
+    <md-card class="md-card-padding">
+      <md-form-field class="example-full-width" color="accent">
+        <textarea mdInput placeholder="Name" #name [(ngModel)]="fruit.name"
+                  maxlength="256" name="comment"></textarea>
+        <md-hint align="end">{{name.value.length}} / 256</md-hint>
+      </md-form-field>
+    </md-card>
+  </div>
+</form>
