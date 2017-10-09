@@ -24,7 +24,6 @@ button.button--responsive {
   padding-right: 0.5em;
 }
 
-
 .toolbar--title {
   box-sizing: border-box;
   display: flex;
@@ -34,6 +33,6 @@ button.button--responsive {
   line-height: 47px;
   text-decoration: none;
   transition: all .3s;
-  padding: 0 0px;
+  padding: 0 0 0 0.5em;
   position: relative;
 }
