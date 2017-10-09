@@ -1,6 +1,6 @@
 import {ITransport} from '../entities/ITransport';
 import {IFruitVolume} from '../entities/IFruitVolume';
-import {FruitDatabaseService} from '../childs/transport/fruit-database.service';
+import {FruitDatabaseService} from '../childs/fruit/fruit-database.service';
 import {IFruit} from '../entities/IFruit';
 import {FruitVolumeTO} from './FruitVolumeTO';
 

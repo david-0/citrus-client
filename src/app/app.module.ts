@@ -37,12 +37,13 @@ import {TableSupportModule} from './table-support/table-support.module';
 import {TransportDetailsComponent} from './childs/transport/transport-details/transport-details.component';
 import {TransportEditComponent} from './childs/transport/transport-edit/transport-edit.component';
 import {TransportDatabaseService} from './childs/transport/transport-database.service';
-import {FruitDatabaseService} from './childs/transport/fruit-database.service';
+import {FruitDatabaseService} from './childs/fruit/fruit-database.service';
 import {ConvertToFruitVolumePipe} from './childs/transport/pipes/convert-to-fruit-volume.pipe';
 import {SortByFruitNamePipe} from './childs/transport/pipes/sort-by-fruit-name.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ValidatorsModule} from 'ng2-validators';
 import {TransportSettingsService} from './childs/transport/transport-settings.service';
+import {FruitSettingsService} from './childs/fruit/fruit-settings.service';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import {TransportSettingsService} from './childs/transport/transport-settings.se
     TransportDatabaseService,
     TransportSettingsService,
     FruitDatabaseService,
+    FruitSettingsService,
     ConvertToFruitVolumePipe,
     SortByFruitNamePipe,
   ],

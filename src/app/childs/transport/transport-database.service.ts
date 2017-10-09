@@ -4,7 +4,7 @@ import {ITransport} from '../../entities/ITransport';
 import {IFruitVolume} from '../../entities/IFruitVolume';
 import {TransportTO} from '../../TransferObjects/TransportTO';
 import {FruitVolumeTO} from '../../TransferObjects/FruitVolumeTO';
-import {FruitDatabaseService} from './fruit-database.service';
+import {FruitDatabaseService} from '../fruit/fruit-database.service';
 
 @Injectable()
 export class TransportDatabaseService extends GenericDatabase<ITransport> {

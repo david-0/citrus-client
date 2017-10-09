@@ -1,9 +1,6 @@
 import {Injectable} from '@angular/core';
 import {GenericDatabase} from '../../table-support/generic-database';
-import {ITransport} from '../../entities/ITransport';
 import {IFruitVolume} from '../../entities/IFruitVolume';
-import {TransportTO} from '../../TransferObjects/TransportTO';
-import {FruitVolumeTO} from '../../TransferObjects/FruitVolumeTO';
 import {FruitTO} from '../../TransferObjects/FruitTO';
 import {IFruit} from '../../entities/IFruit';
 

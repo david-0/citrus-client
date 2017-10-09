@@ -1,6 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {IFruit} from '../../../entities/IFruit';
-import {FruitTO} from '../../../TransferObjects/FruitTO';
+import {MdPaginator, MdSort} from '@angular/material';
+import {GenericPagedDataSource} from '../../../table-support/generic-paged-data-source';
+import {FruitDatabaseService} from '../fruit-database.service';
+import {FruitSettingsService} from '../fruit-settings.service';
 
 @Component({
   selector: 'app-fruit-overview',
@@ -8,14 +11,28 @@ import {FruitTO} from '../../../TransferObjects/FruitTO';
   styleUrls: ['./fruit-overview.component.scss']
 })
 export class FruitOverviewComponent implements OnInit {
+  public displayedColumns = ['name'];
 
-  constructor() { }
+  public dataSource: GenericPagedDataSource<IFruit> | null;
+
+  constructor(private database: FruitDatabaseService, public settings: FruitSettingsService) {
+  }
+
+  @ViewChild(MdPaginator) paginator: MdPaginator;
+  @ViewChild(MdSort) sort: MdSort;
 
   ngOnInit() {
+    this.dataSource = new GenericPagedDataSource(this.database, this.paginator, this.sort, this.settings);
+    this.paginator.page.subscribe(event => {
+      this.settings.pageIndex = event.pageIndex;
+      this.settings.pageSize = event.pageSize;
+    });
   }
 
-  public getFruits(): IFruit[] {
-    return [new FruitTO(1, 'Erdbeere'), new FruitTO(2, 'Himbeere')];
+  public onFilterChange(filter: string) {
+    if (!this.dataSource) {
+      return;
+    }
+    this.dataSource.filter = filter;
   }
-
 }

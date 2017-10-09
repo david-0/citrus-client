@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { TransportDatabaseService } from './transport-database.service';
+import { TransportDatabaseService } from '../transport/transport-database.service';
 import {FruitDatabaseService} from './fruit-database.service';
 
 describe('FruitDatabaseService', () => {

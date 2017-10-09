@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FruitDatabaseService} from '../fruit-database.service';
+import {FruitDatabaseService} from '../../fruit/fruit-database.service';
 import {TransportDatabaseService} from '../transport-database.service';
 import {ITransport} from '../../../entities/ITransport';
 import {IFruitVolume} from '../../../entities/IFruitVolume';
