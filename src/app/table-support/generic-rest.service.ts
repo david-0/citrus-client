@@ -40,7 +40,7 @@ export class GenericRestService<T extends IId> {
   }
 
   getRange(offset: number, limit: number, filter: string,
-           order: [{ columnName: string, direction: string }]): Observable<{ count: number, items: T[] }> {
+           order: { columnName: string, direction: string }[]): Observable<{ count: number, items: T[] }> {
     const url = `${this.restUrl}/${offset}/${limit}/${filter}/${order[0].columnName}/${order[0].direction}`;
     return this.http.get(url)
       .map(response =>

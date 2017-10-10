@@ -2,7 +2,7 @@ import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import {GenericDatabase} from './generic-database';
 import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 import {MdPaginator, MdSort} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {IId} from '../entities/IId';
@@ -28,6 +28,11 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
     super();
   }
 
+  public test(t: [number]) {
+    return null;
+  }
+
+
   connect(collectionViewer: CollectionViewer): Observable<T[]> {
     const displayDataChanges = [
       this.database.dataChange,
@@ -36,16 +41,20 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
       this.sort.mdSortChange,
     ];
 
-    return Observable.merge(...displayDataChanges).map(() => {
-      let order: { column: string, direction: string }[] = [];
+    return Observable.merge(...displayDataChanges).mergeMap(() => {
+      const t: { id: number }[] = [];
+
+      let order: { columnName: string, direction: string }[] = [];
       if (this.sort.direction !== '') {
-        order = [{column: this.sort.active, direction: this.sort.direction}];
+        order.push({columnName: this.sort.active, direction: this.sort.direction});
       }
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-      this.paginator.length = this.database.numberOfItems(this.filterChange.value);
-      this.paginator.pageSize = this.settings.pageSize;
-      this.setPageIndex();
-      return this.database.select(startIndex, this.paginator.pageSize, this.filterChange.value, order);
+      return this.database.select(startIndex, this.paginator.pageSize, this.filterChange.value, order).map((result) => {
+        this.paginator.length = result.count;
+        this.paginator.pageSize = this.settings.pageSize;
+        this.setPageIndex();
+        return result.items;
+      });
     });
   }
 

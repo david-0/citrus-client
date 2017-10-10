@@ -10,7 +10,7 @@ export class FruitDatabaseService extends GenericDatabase<IFruit> {
   private database: GenericDatabase<IFruit>;
 
   constructor() {
-    super(false, FruitDatabaseService.filterCallback, FruitDatabaseService.transportCompare);
+    super(FruitDatabaseService.filterCallback, FruitDatabaseService.transportCompare);
     this.data = this.getFruits();
   }
 
@@ -18,7 +18,7 @@ export class FruitDatabaseService extends GenericDatabase<IFruit> {
     return item.name.toUpperCase().indexOf(filterValue.toUpperCase()) > -1;
   }
 
-  private static transportCompare(a: IFruit, b: IFruit, order: [{ column: string, direction: string }]): number {
+  private static transportCompare(a: IFruit, b: IFruit, order: [{ columnName: string, direction: string }]): number {
     if (order.length === 0) {
       return 0;
     }
@@ -26,7 +26,7 @@ export class FruitDatabaseService extends GenericDatabase<IFruit> {
     let propertyA: number | string | Date | IFruitVolume[] = '';
     let propertyB: number | string | Date | IFruitVolume[] = '';
 
-    switch (order[0].column) {
+    switch (order[0].columnName) {
       case 'id':
         [propertyA, propertyB] = [a.id, b.id];
         break;

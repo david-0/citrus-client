@@ -12,7 +12,7 @@ export class TransportDatabaseService extends GenericDatabase<ITransport> {
   private database: GenericDatabase<ITransport>;
 
   constructor() {
-    super(false, TransportDatabaseService.filterCallback, TransportDatabaseService.transportCompare);
+    super(TransportDatabaseService.filterCallback, TransportDatabaseService.transportCompare);
     this.data = this.getTransports();
   }
 
@@ -23,7 +23,7 @@ export class TransportDatabaseService extends GenericDatabase<ITransport> {
     return item.comment.toUpperCase().indexOf(filterValue.toUpperCase()) > -1;
   }
 
-  private static transportCompare(a: ITransport, b: ITransport, order: [{ column: string, direction: string }]): number {
+  private static transportCompare(a: ITransport, b: ITransport, order: [{ columnName: string, direction: string }]): number {
     if (order.length === 0) {
       return 0;
     }
@@ -31,7 +31,7 @@ export class TransportDatabaseService extends GenericDatabase<ITransport> {
     let propertyA: number | string | Date | IFruitVolume[] = '';
     let propertyB: number | string | Date | IFruitVolume[] = '';
 
-    switch (order[0].column) {
+    switch (order[0].columnName) {
       case 'id':
         [propertyA, propertyB] = [a.id, b.id];
         break;
