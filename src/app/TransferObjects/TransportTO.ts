@@ -33,6 +33,13 @@ export class TransportTO implements ITransport {
     });
   }
 
+  public static createNewTransport(fruitsObservable: Observable<IFruit[]>): Observable<ITransport> {
+    return fruitsObservable.map((fruits) => {
+      const newFruitVolumes = fruits.slice().map(fruit => new FruitVolumeTO(null, fruit, null, null));
+      return new TransportTO(null, new Date(), null, newFruitVolumes);
+    });
+  }
+
   private static createNewFruitVolume(value: IFruit, fruitVolumes?: IFruitVolume[]): IFruitVolume {
     const existing = fruitVolumes.filter(fruitVolume => fruitVolume.fruit.id === value.id);
     return (existing.length === 1)

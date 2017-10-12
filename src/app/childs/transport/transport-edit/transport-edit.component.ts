@@ -15,8 +15,8 @@ import {TransportTO} from '../../../TransferObjects/TransportTO';
 })
 export class TransportEditComponent implements OnInit {
 
-  public transport: ITransport;
-  public transportId: number;
+  public transport: ITransport = new TransportTO(1, new Date('05/01/2000'), 'a x 14');
+  public transportId = -1;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -27,8 +27,10 @@ export class TransportEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id'] == null) {
-        this.transport = new TransportTO(null, new Date(), null, this.createFruitVolumes());
-        this.transportId = this.transport.id;
+        TransportTO.createNewTransport(this.fruitDatabase.getAll()).subscribe((transport) => {
+          this.transport = transport;
+          this.transportId = this.transport.id;
+        });
       } else {
         this.transportDatabase.get(+params['id'])
           .subscribe(
@@ -58,9 +60,5 @@ export class TransportEditComponent implements OnInit {
           (result) => this.router.navigate(['..'], {relativeTo: this.route}),
           (err) => console.error(`could not update transport: ${this.transport.id} with Error: ${err}`));
     }
-  }
-
-  private createFruitVolumes(): IFruitVolume[] {
-    return this.fruitDatabase.data.slice().map(f => new FruitVolumeTO(null, f, null, null));
   }
 }
