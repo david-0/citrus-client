@@ -2,6 +2,14 @@ import {IFruit} from '../entities/IFruit';
 
 export class FruitTO implements IFruit {
 
-  constructor(public id: number, public name: string) {
+  public id: number;
+
+  constructor(public name: string) {
+  }
+
+  static createFruitWithId(id: number, name: string): IFruit {
+    const to = new FruitTO(name);
+    to.id = id;
+    return to;
   }
 }
