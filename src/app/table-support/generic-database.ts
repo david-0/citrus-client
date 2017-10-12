@@ -43,9 +43,10 @@ export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<
                 order: { columnName: string; direction: string }[]): Observable<RangeResult<T>> {
     const itemsCopy = this.data.slice();
     const filteredItems = this.filterItems(itemsCopy, filter);
+    const countAll = filteredItems.length;
     const orderedItems = this.orderItems(filteredItems, order);
     return Observable.create(observer => {
-      observer.next(new RangeResult(orderedItems.splice(start, length), filteredItems.length));
+      observer.next(new RangeResult(orderedItems.splice(start, length), countAll));
     });
   }
 
