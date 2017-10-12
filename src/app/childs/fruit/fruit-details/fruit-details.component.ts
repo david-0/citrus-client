@@ -12,7 +12,7 @@ import {FruitDatabaseService} from '../fruit-database.service';
   styleUrls: ['./fruit-details.component.scss']
 })
 export class FruitDetailsComponent implements OnInit {
-  private _fruit: Observable<IFruit> = new BehaviorSubject<IFruit>(new FruitTO(111, 'noName'));
+  private _fruit: Observable<IFruit> = new BehaviorSubject<IFruit>(FruitTO.createFruitWithId(111, 'noName'));
 
   constructor(private route: ActivatedRoute, private database: FruitDatabaseService) {
   }

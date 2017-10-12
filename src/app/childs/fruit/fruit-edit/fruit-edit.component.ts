@@ -12,7 +12,7 @@ import {FruitTO} from '../../../TransferObjects/FruitTO';
 export class FruitEditComponent implements OnInit {
 
 
-  public fruit: IFruit;
+  public fruit: IFruit = new FruitTO('');
   public fruitId: number;
 
   constructor(private route: ActivatedRoute,
@@ -23,13 +23,13 @@ export class FruitEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id'] == null) {
-        this.fruit = new FruitTO(null, '');
+        this.fruit = new FruitTO('');
         this.fruitId = this.fruit.id;
       } else {
         this.fruitDatabase.get(+params['id'])
           .subscribe(
             t => {
-              this.fruit = new FruitTO(t.id, t.name);
+              this.fruit = FruitTO.createFruitWithId(t.id, t.name);
               this.fruitId = this.fruit.id;
             },
             err => {
@@ -41,13 +41,13 @@ export class FruitEditComponent implements OnInit {
 
   public submit() {
     if (this.fruitId == null) {
-      this.fruitDatabase.add(new FruitTO(this.fruitId, this.fruit.name))
+      this.fruitDatabase.add(new FruitTO(this.fruit.name))
         .subscribe(
           (result) => this.router.navigate(['..'], {relativeTo: this.route}),
           (err) => console.error(`could not save fruit: ${this.fruit.id} with Error: ${err}`)
         );
     } else {
-      this.fruitDatabase.update(new FruitTO(this.fruitId, this.fruit.name))
+      this.fruitDatabase.update(FruitTO.createFruitWithId(this.fruitId, this.fruit.name))
         .subscribe(
           (result) => this.router.navigate(['..'], {relativeTo: this.route}),
           (err) => console.error(`could not update fruit: ${this.fruit.id} with Error: ${err}`));
