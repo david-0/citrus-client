@@ -2,6 +2,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import {GenericDatabaseInterface} from './generic-database.interface';
 import {IId} from '../entities/IId';
+import {RangeResult} from './range-result';
 
 export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<T> {
 
@@ -39,12 +40,12 @@ export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<
   public select(start: number,
                 length: number,
                 filter: string,
-                order: { columnName: string; direction: string }[]): Observable<{ count: number; items: T[] }> {
+                order: { columnName: string; direction: string }[]): Observable<RangeResult<T>> {
     const itemsCopy = this.data.slice();
     const filteredItems = this.filterItems(itemsCopy, filter);
     const orderedItems = this.orderItems(filteredItems, order);
     return Observable.create(observer => {
-      observer.next({count: filteredItems.length, items: orderedItems.splice(start, length)});
+      observer.next(new RangeResult(orderedItems.splice(start, length), filteredItems.length));
     });
   }
 
@@ -73,7 +74,7 @@ export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<
     });
   }
 
-  public remove(id: number): Observable<void> {
+  public remove(id: number): Observable<boolean> {
     return Observable.create(observer => {
       const newData: T[] = [];
       let deleted = false;
@@ -86,14 +87,14 @@ export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<
       });
       this.data = newData;
       if (deleted) {
-        observer.next();
+        observer.next(true);
       } else {
         observer.error(`could not delete transport with id ${id}`);
       }
     });
   }
 
-  public update(t: T): Observable<T> {
+  public update(t: T): Observable<boolean> {
     return Observable.create(observer => {
       const newData: T[] = [];
       let updated = false;
@@ -107,7 +108,7 @@ export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<
       });
       this.data = newData;
       if (updated) {
-        observer.next(t);
+        observer.next(true);
       } else {
         observer.error(`could not update transport with id ${t.id}`);
       }

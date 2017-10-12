@@ -3,8 +3,8 @@
 <div class="main-container">
   <md-card class="md-card-padding">
     <div>
-      <p>Id: {{(fruit | async).id}}</p>
-      <p>Abfahrtstag: {{(fruit | async).name}}</p>
+      <p>Id: {{(fruit | async)?.id}}</p>
+      <p>Name: {{(fruit | async)?.name}}</p>
     </div>
   </md-card>
 </div>

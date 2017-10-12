@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {IId} from '../entities/IId';
 import {GenericRestService} from './generic-rest.service';
 import {GenericDatabaseInterface} from './generic-database.interface';
+import {RangeResult} from './range-result';
 
 export class RestBackendDatabase<T extends IId> implements GenericDatabaseInterface<T> {
 
@@ -22,7 +23,7 @@ export class RestBackendDatabase<T extends IId> implements GenericDatabaseInterf
   public select(start: number,
                 length: number,
                 filter: string,
-                order: { columnName: string, direction: string }[]): Observable<{ count: number, items: T[] }> {
+                order: { columnName: string, direction: string }[]): Observable<RangeResult<T>> {
     return this.rest.getRange(start, length, filter, order);
   }
 
@@ -34,11 +35,11 @@ export class RestBackendDatabase<T extends IId> implements GenericDatabaseInterf
     return this.rest.add(t);
   }
 
-  public remove(id: number): Observable<void> {
+  public remove(id: number): Observable<boolean> {
     return this.rest.del(id);
   }
 
-  public update(t: T): Observable<T> {
+  public update(t: T): Observable<boolean> {
     return this.rest.update(t);
   }
 }

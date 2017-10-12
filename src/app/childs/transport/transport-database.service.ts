@@ -9,8 +9,6 @@ import {FruitDatabaseService} from '../fruit/fruit-database.service';
 @Injectable()
 export class TransportDatabaseService extends GenericDatabase<ITransport> {
 
-  private database: GenericDatabase<ITransport>;
-
   constructor() {
     super(TransportDatabaseService.filterCallback, TransportDatabaseService.transportCompare);
     this.data = this.getTransports();
@@ -53,7 +51,7 @@ export class TransportDatabaseService extends GenericDatabase<ITransport> {
   }
 
   private getTransports(): ITransport[] {
-    const f = new FruitDatabaseService().data;
+    const f = FruitDatabaseService.getFruits();
 
     const t1 = new TransportTO(1, new Date('05/01/2000'), 'a x 14');
     const t2 = new TransportTO(2, new Date('05/02/2017'), 'a x 24');

@@ -1,12 +1,12 @@
 import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
-import {GenericDatabase} from './generic-database';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/mergeMap';
 import {MdPaginator, MdSort} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {IId} from '../entities/IId';
 import {SettingsServiceInterface} from './settings-service-interface';
+import {GenericDatabaseInterface} from './generic-database.interface';
 
 export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
 
@@ -21,7 +21,7 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
     this.filterChange.next(filter);
   }
 
-  constructor(private database: GenericDatabase<T>,
+  constructor(private database: GenericDatabaseInterface<T>,
               private paginator: MdPaginator,
               private sort: MdSort,
               private settings: SettingsServiceInterface) {
@@ -44,7 +44,7 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
     return Observable.merge(...displayDataChanges).mergeMap(() => {
       const t: { id: number }[] = [];
 
-      let order: { columnName: string, direction: string }[] = [];
+      const order: { columnName: string, direction: string }[] = [];
       if (this.sort.direction !== '') {
         order.push({columnName: this.sort.active, direction: this.sort.direction});
       }
@@ -53,7 +53,7 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
         this.paginator.length = result.count;
         this.paginator.pageSize = this.settings.pageSize;
         this.setPageIndex();
-        return result.items;
+        return result.rows;
       });
     });
   }

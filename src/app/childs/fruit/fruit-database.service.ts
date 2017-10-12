@@ -1,55 +1,24 @@
 import {Injectable} from '@angular/core';
-import {GenericDatabase} from '../../table-support/generic-database';
-import {IFruitVolume} from '../../entities/IFruitVolume';
 import {FruitTO} from '../../TransferObjects/FruitTO';
 import {IFruit} from '../../entities/IFruit';
+import {RestBackendDatabase} from '../../table-support/rest-backend-database';
+import {GenericRestService} from '../../table-support/generic-rest.service';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
-export class FruitDatabaseService extends GenericDatabase<IFruit> {
+export class FruitDatabaseService extends RestBackendDatabase<IFruit> {
 
-  private database: GenericDatabase<IFruit>;
-
-  constructor() {
-    super(FruitDatabaseService.filterCallback, FruitDatabaseService.transportCompare);
-    this.data = this.getFruits();
+  constructor(http: HttpClient) {
+    super(new GenericRestService(http, 'http://localhost:3001/api/fruit'));
   }
 
-  private static filterCallback(item: IFruit, filterValue: string): boolean {
-    return item.name.toUpperCase().indexOf(filterValue.toUpperCase()) > -1;
-  }
-
-  private static transportCompare(a: IFruit, b: IFruit, order: [{ columnName: string, direction: string }]): number {
-    if (order.length === 0) {
-      return 0;
-    }
-
-    let propertyA: number | string | Date | IFruitVolume[] = '';
-    let propertyB: number | string | Date | IFruitVolume[] = '';
-
-    switch (order[0].columnName) {
-      case 'id':
-        [propertyA, propertyB] = [a.id, b.id];
-        break;
-      case 'name':
-        [propertyA, propertyB] = [a.name, b.name];
-        break;
-    }
-
-    const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
-    const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
-
-    return (valueA < valueB ? -1 : 1) * (order[0].direction === 'asc' ? 1 : -1);
-  }
-
-  private getFruits(): IFruit[] {
-    const f1 = new FruitTO(1, 'Orangen');
-    const f2 = new FruitTO(2, 'Grapefruit rot');
-    const f3 = new FruitTO(3, 'Grapefruit gelb');
-    const f4 = new FruitTO(4, 'Zitronen');
-    const f5 = new FruitTO(5, 'Mandarinen');
-    const f6 = new FruitTO(6, 'Avokado');
-
+  public static getFruits(): IFruit[] {
+    const f1 = FruitTO.createFruitWithId(1, 'Orangen');
+    const f2 = FruitTO.createFruitWithId(2, 'Grapefruit rot');
+    const f3 = FruitTO.createFruitWithId(3, 'Grapefruit gelb');
+    const f4 = FruitTO.createFruitWithId(4, 'Zitronen');
+    const f5 = FruitTO.createFruitWithId(5, 'Mandarinen');
+    const f6 = FruitTO.createFruitWithId(6, 'Avokado');
     return [f1, f2, f3, f4, f5, f6];
   }
-
 }

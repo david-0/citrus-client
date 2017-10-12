@@ -43,9 +43,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ValidatorsModule} from 'ng2-validators';
 import {TransportSettingsService} from './childs/transport/transport-settings.service';
 import {FruitSettingsService} from './childs/fruit/fruit-settings.service';
-import { FruitDetailsComponent } from './childs/fruit/fruit-details/fruit-details.component';
-import { FruitDeleteComponent } from './childs/fruit/fruit-delete/fruit-delete.component';
-import { FruitEditComponent } from './childs/fruit/fruit-edit/fruit-edit.component';
+import {FruitDetailsComponent} from './childs/fruit/fruit-details/fruit-details.component';
+import {FruitDeleteComponent} from './childs/fruit/fruit-delete/fruit-delete.component';
+import {FruitEditComponent} from './childs/fruit/fruit-edit/fruit-edit.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { FruitEditComponent } from './childs/fruit/fruit-edit/fruit-edit.compone
     FormsModule,
     ValidatorsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     MdIconRegistry,
