@@ -31,6 +31,10 @@ export class RestBackendDatabase<T extends IId> implements GenericDatabaseInterf
     return this.rest.get(id);
   }
 
+  public getAll(): Observable<T[]> {
+    return this.rest.getAll();
+  }
+
   public add(t: T): Observable<T> {
     return this.rest.add(t);
   }
