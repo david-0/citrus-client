@@ -39,12 +39,12 @@ export class GenericRestService<T extends IId> {
   getRange(offset: number, limit: number, filter: string,
            order: { columnName: string, direction: string }[]): Observable<RangeResult<T>> {
     const url = `${this.restUrl}/${offset}/${limit}`;
-    const httpParams = new HttpParams();
+    let httpParams = new HttpParams();
     if (order.length > 0) {
-      httpParams.set('columnName', order[0].columnName).set('direction', order[0].direction);
+      httpParams = httpParams.set('columnName', order[0].columnName).set('direction', order[0].direction);
     }
     if (filter) {
-      httpParams.set('filter', filter);
+      httpParams = httpParams.set('filter', filter);
     }
     return this.http
       .get<RangeResult<T>>(url, {headers: this.headers, params: httpParams})
