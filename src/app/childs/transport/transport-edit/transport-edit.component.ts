@@ -33,8 +33,10 @@ export class TransportEditComponent implements OnInit {
         this.transportDatabase.get(+params['id'])
           .subscribe(
             t => {
-              this.transport = TransportTO.deepcopyTransportForView(t, this.fruitDatabase.data);
-              this.transportId = this.transport.id;
+              TransportTO.deepcopyTransportForView(t, this.fruitDatabase.getAll()).subscribe((transport) => {
+                this.transport = transport;
+                this.transportId = this.transport.id;
+              });
             },
             err => {
               console.log(`Could not get transport with id ${params['id']} with error: ${err}`);

@@ -3,6 +3,7 @@ import {IFruitVolume} from '../entities/IFruitVolume';
 import {FruitDatabaseService} from '../childs/fruit/fruit-database.service';
 import {IFruit} from '../entities/IFruit';
 import {FruitVolumeTO} from './FruitVolumeTO';
+import {Observable} from 'rxjs/Observable';
 
 export class TransportTO implements ITransport {
 
@@ -25,10 +26,11 @@ export class TransportTO implements ITransport {
     return new TransportTO(transport.id, transport.departureDate, transport.comment, result);
   }
 
-  public static deepcopyTransportForView(t: ITransport, fruits: IFruit[]): ITransport {
-    const extendedFruitVolumes = fruits.slice()
-      .map(fruit => this.createNewFruitVolume(fruit, t.fruitVolumes));
-    return new TransportTO(t.id, t.departureDate, t.comment, extendedFruitVolumes);
+  public static deepcopyTransportForView(t: ITransport, fruitsObservable: Observable<IFruit[]>): Observable<ITransport> {
+    return fruitsObservable.map((fruits) => {
+      const extendedFruitVolumes = fruits.slice().map(fruit => this.createNewFruitVolume(fruit, t.fruitVolumes));
+      return new TransportTO(t.id, t.departureDate, t.comment, extendedFruitVolumes);
+    });
   }
 
   private static createNewFruitVolume(value: IFruit, fruitVolumes?: IFruitVolume[]): IFruitVolume {
