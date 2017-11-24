@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {GenericDatabase} from '../../table-support/generic-database';
-import {ITransport} from '../../entities/ITransport';
-import {IFruitVolume} from '../../entities/IFruitVolume';
-import {TransportTO} from '../../TransferObjects/TransportTO';
-import {FruitVolumeTO} from '../../TransferObjects/FruitVolumeTO';
-import {FruitDatabaseService} from '../fruit/fruit-database.service';
+import {Injectable} from "@angular/core";
+import {IFruitVolume} from "../../entities/IFruitVolume";
+import {ITransport} from "../../entities/ITransport";
+import {GenericDatabase} from "../../table-support/generic-database";
+import {FruitVolumeTO} from "../../TransferObjects/FruitVolumeTO";
+import {TransportTO} from "../../TransferObjects/TransportTO";
+import {FruitDatabaseService} from "../fruit/fruit-database.service";
 
 @Injectable()
 export class TransportDatabaseService extends GenericDatabase<ITransport> {
@@ -16,7 +16,7 @@ export class TransportDatabaseService extends GenericDatabase<ITransport> {
 
   private static filterCallback(item: ITransport, filterValue: string): boolean {
     if (item.comment == null) {
-      return filterValue === '';
+      return filterValue === "";
     }
     return item.comment.toUpperCase().indexOf(filterValue.toUpperCase()) > -1;
   }
@@ -26,20 +26,20 @@ export class TransportDatabaseService extends GenericDatabase<ITransport> {
       return 0;
     }
 
-    let propertyA: number | string | Date | IFruitVolume[] = '';
-    let propertyB: number | string | Date | IFruitVolume[] = '';
+    let propertyA: number | string | Date | IFruitVolume[] = "";
+    let propertyB: number | string | Date | IFruitVolume[] = "";
 
     switch (order[0].columnName) {
-      case 'id':
+      case "id":
         [propertyA, propertyB] = [a.id, b.id];
         break;
-      case 'departureDate':
+      case "departureDate":
         [propertyA, propertyB] = [a.departureDate, b.departureDate];
         break;
-      case 'fruitVolumes':
+      case "fruitVolumes":
         [propertyA, propertyB] = [a.fruitVolumes, b.fruitVolumes];
         break;
-      case 'comment':
+      case "comment":
         [propertyA, propertyB] = [a.comment, b.comment];
         break;
     }
@@ -47,21 +47,21 @@ export class TransportDatabaseService extends GenericDatabase<ITransport> {
     const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
     const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
 
-    return (valueA < valueB ? -1 : 1) * (order[0].direction === 'asc' ? 1 : -1);
+    return (valueA < valueB ? -1 : 1) * (order[0].direction === "asc" ? 1 : -1);
   }
 
   private getTransports(): ITransport[] {
     const f = FruitDatabaseService.getFruits();
 
-    const t1 = new TransportTO(1, new Date('05/01/2000'), 'a x 14');
-    const t2 = new TransportTO(2, new Date('05/02/2017'), 'a x 24');
-    const t3 = new TransportTO(3, new Date('05/03/2017'), 'b x 14');
-    const t4 = new TransportTO(4, new Date('05/04/2017'), 'b x 24');
-    const t5 = new TransportTO(5, new Date('05/05/2017'), 'c y 15');
-    const t6 = new TransportTO(6, new Date('05/06/2017'), 'c y 24');
-    const t7 = new TransportTO(7, new Date('05/07/2017'), 'c y 34');
-    const t8 = new TransportTO(8, new Date('05/08/2017'), 'd x 24');
-    const t9 = new TransportTO(9, new Date('05/09/2017'), 'd x 34');
+    const t1 = new TransportTO(1, new Date("05/01/2000"), "a x 14");
+    const t2 = new TransportTO(2, new Date("05/02/2017"), "a x 24");
+    const t3 = new TransportTO(3, new Date("05/03/2017"), "b x 14");
+    const t4 = new TransportTO(4, new Date("05/04/2017"), "b x 24");
+    const t5 = new TransportTO(5, new Date("05/05/2017"), "c y 15");
+    const t6 = new TransportTO(6, new Date("05/06/2017"), "c y 24");
+    const t7 = new TransportTO(7, new Date("05/07/2017"), "c y 34");
+    const t8 = new TransportTO(8, new Date("05/08/2017"), "d x 24");
+    const t9 = new TransportTO(9, new Date("05/09/2017"), "d x 34");
 
     t1.fruitVolumes = [
       new FruitVolumeTO(1, f[0], t1, 300),

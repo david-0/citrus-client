@@ -1,13 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MdDialog} from '@angular/material';
-import {OkCancelDialogComponent} from '../ok-cancel-dialog/ok-cancel-dialog.component';
-import {NgForm} from '@angular/forms';
+import {Component, Input, OnInit} from "@angular/core";
+import {NgForm} from "@angular/forms";
+import {MatDialog} from "@angular/material";
+import {ActivatedRoute, Router} from "@angular/router";
+import {OkCancelDialogComponent} from "../ok-cancel-dialog/ok-cancel-dialog.component";
 
 @Component({
-  selector: 'app-table-header',
-  templateUrl: './table-header.component.html',
-  styleUrls: ['./table-header.component.scss']
+  selector: "app-table-header",
+  templateUrl: "./table-header.component.html",
+  styleUrls: ["./table-header.component.scss"]
 })
 export class TableHeaderComponent implements OnInit {
   @Input() titleText: string;
@@ -20,22 +20,22 @@ export class TableHeaderComponent implements OnInit {
   @Input() label: string;
   @Input() form: NgForm;
 
-  constructor(private router: Router, private route: ActivatedRoute, public dialog: MdDialog) {
+  constructor(private router: Router, private route: ActivatedRoute, public dialog: MatDialog) {
   }
 
   ngOnInit() {
   }
 
   back() {
-    this.router.navigate([this.backLink ? this.backLink : '..'], {relativeTo: this.route});
+    this.router.navigate([this.backLink ? this.backLink : ".."], {relativeTo: this.route});
   }
 
   create() {
-    this.router.navigate(['create'], {relativeTo: this.route});
+    this.router.navigate(["create"], {relativeTo: this.route});
   }
 
   edit() {
-    this.router.navigate(['edit'], {relativeTo: this.route});
+    this.router.navigate(["edit"], {relativeTo: this.route});
   }
 
   delete() {
@@ -44,7 +44,7 @@ export class TableHeaderComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.router.navigate(['delete'], {relativeTo: this.route});
+        this.router.navigate(["delete"], {relativeTo: this.route});
       }
     });
   }

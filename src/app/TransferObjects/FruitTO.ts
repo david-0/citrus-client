@@ -1,4 +1,4 @@
-import {IFruit} from '../entities/IFruit';
+import {IFruit} from "../entities/IFruit";
 
 export class FruitTO implements IFruit {
 

@@ -1,9 +1,8 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import {IFruitVolume} from '../../../entities/IFruitVolume';
-import {IFruit} from '../../../entities/IFruit';
+import {Pipe, PipeTransform} from "@angular/core";
+import {IFruitVolume} from "../../../entities/IFruitVolume";
 
 @Pipe({
-  name: 'sortByFruitName'
+  name: "sortByFruitName"
 })
 export class SortByFruitNamePipe implements PipeTransform {
 

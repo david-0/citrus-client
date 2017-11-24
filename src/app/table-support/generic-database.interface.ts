@@ -1,7 +1,7 @@
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
-import {IId} from '../entities/IId';
-import {RangeResult} from './range-result';
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable} from "rxjs/Observable";
+import {IId} from "../entities/IId";
+import {RangeResult} from "./range-result";
 
 export interface GenericDatabaseInterface<T extends IId> {
 

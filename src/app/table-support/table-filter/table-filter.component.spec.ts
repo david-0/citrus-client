@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import { TableFilterComponent } from './table-filter.component';
+import {TableFilterComponent} from "./table-filter.component";
 
-describe('TableFilterComponent', () => {
+describe("TableFilterComponent", () => {
   let component: TableFilterComponent;
   let fixture: ComponentFixture<TableFilterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableFilterComponent ]
+      declarations: [TableFilterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('TableFilterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,20 +1,12 @@
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
-import {GenericDatabaseInterface} from './generic-database.interface';
-import {IId} from '../entities/IId';
-import {RangeResult} from './range-result';
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable} from "rxjs/Observable";
+import {IId} from "../entities/IId";
+import {GenericDatabaseInterface} from "./generic-database.interface";
+import {RangeResult} from "./range-result";
 
 export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<T> {
 
   public dataChange = new BehaviorSubject<T[]>([]);
-
-  private static noCompare<T>(a: T, b: T, order: [{ columnName: string, direction: string }]): number {
-    return 0;
-  }
-
-  private static noFilter<T>(t: T, filterValue: string): boolean {
-    return true;
-  }
 
   public constructor(private filterCallback: (item: T, filterValue: string) => boolean = GenericDatabase.noFilter,
                      private compareCallback: (a: T, b: T, order: { columnName: string, direction: string }[]) => number
@@ -29,12 +21,12 @@ export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<
     this.dataChange.next(items);
   }
 
-  private filterItems(items: T[], filter: string): T[] {
-    return items.filter(item => this.filterCallback(item, filter));
+  private static noCompare<T>(a: T, b: T, order: [{ columnName: string, direction: string }]): number {
+    return 0;
   }
 
-  private orderItems(items: T[], order: { columnName: string, direction: string }[]): T[] {
-    return items.sort((a: T, b: T) => this.compareCallback(a, b, order));
+  private static noFilter<T>(t: T, filterValue: string): boolean {
+    return true;
   }
 
   public select(start: number,
@@ -70,7 +62,7 @@ export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<
       if (length > dataCopy.length) {
         observer.next(t);
       } else {
-        observer.error('could not save');
+        observer.error("could not save");
       }
     });
   }
@@ -114,5 +106,13 @@ export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<
         observer.error(`could not update transport with id ${t.id}`);
       }
     });
+  }
+
+  private filterItems(items: T[], filter: string): T[] {
+    return items.filter(item => this.filterCallback(item, filter));
+  }
+
+  private orderItems(items: T[], order: { columnName: string, direction: string }[]): T[] {
+    return items.sort((a: T, b: T) => this.compareCallback(a, b, order));
   }
 }

@@ -1,5 +1,5 @@
-import {IId} from './IId';
+import {IId} from "./IId";
 
 export interface IFruit extends IId {
-    name: string;
+  name: string;
 }

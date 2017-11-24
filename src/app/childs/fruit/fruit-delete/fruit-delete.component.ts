@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {FruitDatabaseService} from '../fruit-database.service';
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {FruitDatabaseService} from "../fruit-database.service";
 
 @Component({
-  selector: 'app-fruit-delete',
-  templateUrl: './fruit-delete.component.html',
-  styleUrls: ['./fruit-delete.component.scss']
+  selector: "app-fruit-delete",
+  templateUrl: "./fruit-delete.component.html",
+  styleUrls: ["./fruit-delete.component.scss"]
 })
 export class FruitDeleteComponent implements OnInit {
 
@@ -18,7 +18,7 @@ export class FruitDeleteComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.fruitDatabase.remove(+params['id'])
+      this.fruitDatabase.remove(+params["id"])
         .subscribe(
           t => {
             this.message = `Die Frucht wurde gelöscht!`;

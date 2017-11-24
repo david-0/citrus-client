@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {TransportDatabaseService} from '../transport-database.service';
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {TransportDatabaseService} from "../transport-database.service";
 
 @Component({
-  selector: 'app-transport-delete',
-  templateUrl: './transport-delete.component.html',
-  styleUrls: ['./transport-delete.component.scss']
+  selector: "app-transport-delete",
+  templateUrl: "./transport-delete.component.html",
+  styleUrls: ["./transport-delete.component.scss"]
 })
 export class TransportDeleteComponent implements OnInit {
 
@@ -18,7 +18,7 @@ export class TransportDeleteComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.transportDatabase.remove(+params['id'])
+      this.transportDatabase.remove(+params["id"])
         .subscribe(
           t => {
             this.message = `Der Transport wurde gelöscht!`;

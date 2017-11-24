@@ -1,9 +1,8 @@
-import {ITransport} from '../entities/ITransport';
-import {IFruitVolume} from '../entities/IFruitVolume';
-import {FruitDatabaseService} from '../childs/fruit/fruit-database.service';
-import {IFruit} from '../entities/IFruit';
-import {FruitVolumeTO} from './FruitVolumeTO';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from "rxjs/Observable";
+import {IFruit} from "../entities/IFruit";
+import {IFruitVolume} from "../entities/IFruitVolume";
+import {ITransport} from "../entities/ITransport";
+import {FruitVolumeTO} from "./FruitVolumeTO";
 
 export class TransportTO implements ITransport {
 

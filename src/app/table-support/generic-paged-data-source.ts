@@ -1,16 +1,23 @@
-import {CollectionViewer, DataSource} from '@angular/cdk/collections';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/mergeMap';
-import {MdPaginator, MdSort} from '@angular/material';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {IId} from '../entities/IId';
-import {SettingsServiceInterface} from './settings-service-interface';
-import {GenericDatabaseInterface} from './generic-database.interface';
+import {CollectionViewer, DataSource} from "@angular/cdk/collections";
+import {MatPaginator, MatSort} from "@angular/material";
+import "rxjs/add/observable/merge";
+import "rxjs/add/operator/mergeMap";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable} from "rxjs/Observable";
+import {IId} from "../entities/IId";
+import {GenericDatabaseInterface} from "./generic-database.interface";
+import {SettingsServiceInterface} from "./settings-service-interface";
 
 export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
 
-  private filterChange = new BehaviorSubject('');
+  private filterChange = new BehaviorSubject("");
+
+  constructor(private database: GenericDatabaseInterface<T>,
+              private paginator: MatPaginator,
+              private sort: MatSort,
+              private settings: SettingsServiceInterface) {
+    super();
+  }
 
   public get filter(): string {
     return this.filterChange.value;
@@ -19,13 +26,6 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
   public set filter(filter: string) {
     this.paginator.pageIndex = 0;
     this.filterChange.next(filter);
-  }
-
-  constructor(private database: GenericDatabaseInterface<T>,
-              private paginator: MdPaginator,
-              private sort: MdSort,
-              private settings: SettingsServiceInterface) {
-    super();
   }
 
   public test(t: [number]) {
@@ -38,14 +38,14 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
       this.database.dataChange,
       this.filterChange,
       this.paginator.page,
-      this.sort.mdSortChange,
+      this.sort.sortChange,
     ];
 
     return Observable.merge(...displayDataChanges).mergeMap(() => {
       const t: { id: number }[] = [];
 
       const order: { columnName: string, direction: string }[] = [];
-      if (this.sort.direction !== '') {
+      if (this.sort.direction !== "") {
         order.push({columnName: this.sort.active, direction: this.sort.direction});
       }
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;

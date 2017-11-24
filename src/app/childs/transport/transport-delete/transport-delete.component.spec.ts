@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import { TransportDeleteComponent } from './transport-delete.component';
+import {TransportDeleteComponent} from "./transport-delete.component";
 
-describe('TransportDeleteComponent', () => {
+describe("TransportDeleteComponent", () => {
   let component: TransportDeleteComponent;
   let fixture: ComponentFixture<TransportDeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransportDeleteComponent ]
+      declarations: [TransportDeleteComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('TransportDeleteComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(component).toBeTruthy();
   });
 });

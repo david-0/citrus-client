@@ -1,11 +1,11 @@
-import {handleError} from './error-utils';
-import {Observable} from 'rxjs/Observable';
-import {IId} from '../entities/IId';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {RangeResult} from './range-result';
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
+import {IId} from "../entities/IId";
+import {handleError} from "./error-utils";
+import {RangeResult} from "./range-result";
 
 export class GenericRestService<T extends IId> {
-  private headers = new HttpHeaders({'Content-Type': 'application/json'});
+  private headers = new HttpHeaders({"Content-Type": "application/json"});
 
   constructor(private http: HttpClient, private restUrl: string) {
   }
@@ -41,10 +41,10 @@ export class GenericRestService<T extends IId> {
     const url = `${this.restUrl}/${offset}/${limit}`;
     let httpParams = new HttpParams();
     if (order.length > 0) {
-      httpParams = httpParams.set('columnName', order[0].columnName).set('direction', order[0].direction);
+      httpParams = httpParams.set("columnName", order[0].columnName).set("direction", order[0].direction);
     }
     if (filter) {
-      httpParams = httpParams.set('filter', filter);
+      httpParams = httpParams.set("filter", filter);
     }
     return this.http
       .get<RangeResult<T>>(url, {headers: this.headers, params: httpParams})

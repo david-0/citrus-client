@@ -1,6 +1,6 @@
-import {IFruit} from '../entities/IFruit';
-import {IFruitVolume} from '../entities/IFruitVolume';
-import {ITransport} from '../entities/ITransport';
+import {IFruit} from "../entities/IFruit";
+import {IFruitVolume} from "../entities/IFruitVolume";
+import {ITransport} from "../entities/ITransport";
 
 export class FruitVolumeTO implements IFruitVolume {
 

@@ -1,15 +1,15 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from "@angular/core/testing";
 
-import { TransportSettingsService } from './transport-settings.service';
+import {TransportSettingsService} from "./transport-settings.service";
 
-describe('TransportSettingsService', () => {
+describe("TransportSettingsService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [TransportSettingsService]
     });
   });
 
-  it('should be created', inject([TransportSettingsService], (service: TransportSettingsService) => {
+  it("should be created", inject([TransportSettingsService], (service: TransportSettingsService) => {
     expect(service).toBeTruthy();
   }));
 });

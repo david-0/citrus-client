@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, Input, OnInit} from "@angular/core";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-line',
-  templateUrl: './line.component.html',
-  styleUrls: ['./line.component.scss']
+  selector: "app-line",
+  templateUrl: "./line.component.html",
+  styleUrls: ["./line.component.scss"]
 })
 export class LineComponent implements OnInit {
   @Input() id: string;
@@ -24,14 +24,14 @@ export class LineComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.router.navigate(['edit', id], {relativeTo: this.route});
+    this.router.navigate(["edit", id], {relativeTo: this.route});
   }
 
   details(id: string) {
-    this.router.navigate(['detail', id], {relativeTo: this.route});
+    this.router.navigate(["detail", id], {relativeTo: this.route});
   }
 
   del(id: string) {
-    this.router.navigate(['delete', id], {relativeTo: this.route});
+    this.router.navigate(["delete", id], {relativeTo: this.route});
   }
 }

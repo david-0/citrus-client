@@ -1,3 +1,3 @@
 export interface IRole {
-    name: string;
+  name: string;
 }
