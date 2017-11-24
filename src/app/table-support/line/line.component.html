@@ -1,13 +1,13 @@
-<button md-raised-button class="button--responsive" (click)="edit(id)" [disabled]="disableEdit"
+<button mat-raised-button class="button--responsive" (click)="edit(id)" [disabled]="disableEdit"
         *ngIf="!hideEdit">
-  <md-icon>edit</md-icon>
+  <mat-icon>edit</mat-icon>
   <span class="size-xl">ändern</span></button>
-<button md-raised-button class="button--responsive" (click)="details(id)" [disabled]="disableDetails"
+<button mat-raised-button class="button--responsive" (click)="details(id)" [disabled]="disableDetails"
         *ngIf="!hideDetails">
-  <md-icon>details</md-icon>
+  <mat-icon>details</mat-icon>
   <span class="size-xl">Details</span></button>
-<button md-raised-button class="button--responsive" (click)="del(id)" [disabled]="disableDelete"
+<button mat-raised-button class="button--responsive" (click)="del(id)" [disabled]="disableDelete"
         *ngIf="!hideDelete">
-  <md-icon>delete</md-icon>
+  <mat-icon>delete</mat-icon>
   <span class="size-xl">löschen</span></button>
 <span class="span__gray">{{desc}}</span>

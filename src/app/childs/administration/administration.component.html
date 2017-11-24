@@ -1,17 +1,17 @@
-<md-sidenav-container class="example-container">
-  <md-sidenav mode="side" opened class="example-sidenav">
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened class="example-sidenav">
     <nav class="noPadding">
       <h3>Lieferungen</h3>
       <ul>
         <li>
           <a routerLinkActive="example-sidenav-item-selected" routerLink='transport'>
-            <md-icon>local_shipping</md-icon>
+            <mat-icon>local_shipping</mat-icon>
             <span>Transporte</span>
           </a>
         </li>
         <li>
           <a routerLinkActive="example-sidenav-item-selected" routerLink="storage" class="">
-            <md-icon>grid_on</md-icon>
+            <mat-icon>grid_on</mat-icon>
             <span>Lager</span>
           </a>
         </li>
@@ -19,21 +19,27 @@
       <h3>Stammdaten</h3>
       <ul>
         <li>
+          <a routerLinkActive="example-sidenav-item-selected" routerLink="address" class="">
+            <mat-icon>add_shopping_cart</mat-icon>
+            <span>Adressen</span>
+          </a>
+        </li>
+        <li>
           <a routerLinkActive="example-sidenav-item-selected" routerLink="fruit" class="">
-            <md-icon>list</md-icon>
+            <mat-icon>list</mat-icon>
             <span>Früchte</span>
           </a>
         </li>
         <li>
           <a routerLinkActive="example-sidenav-item-selected" routerLink="user" class="">
-            <md-icon>people</md-icon>
+            <mat-icon>people</mat-icon>
             <span>Benutzerverwaltung</span>
           </a>
         </li>
       </ul>
     </nav>
-  </md-sidenav>
+  </mat-sidenav>
   <div class="example-sidenav-content">
     <router-outlet></router-outlet>
   </div>
-</md-sidenav-container>
+</mat-sidenav-container>

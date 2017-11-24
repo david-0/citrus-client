@@ -25,6 +25,8 @@ import "hammerjs";
 import {ValidatorsModule} from "ng2-validators";
 
 import {AppComponent} from "./app.component";
+import {AddressOverviewComponent} from "./childs/address/address-overview/address-overview.component";
+import {AddressSettingsService} from "./childs/address/address-settings.service";
 import {AdministrationComponent} from "./childs/administration/administration.component";
 import {BuyComponent} from "./childs/buy/buy.component";
 import {FetchComponent} from "./childs/fetch/fetch.component";
@@ -47,6 +49,8 @@ import {UsersOverviewComponent} from "./childs/user/user-overview/users-overview
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {TableSupportModule} from "./table-support/table-support.module";
+import {AddressRestService} from "./childs/address/address-rest.service";
+import { AddressEditComponent } from './childs/address/address-edit/address-edit.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +71,8 @@ import {TableSupportModule} from "./table-support/table-support.module";
     FruitDetailsComponent,
     FruitDeleteComponent,
     FruitEditComponent,
+    AddressOverviewComponent,
+    AddressEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,6 +105,8 @@ import {TableSupportModule} from "./table-support/table-support.module";
     TransportSettingsService,
     FruitDatabaseService,
     FruitSettingsService,
+    AddressRestService,
+    AddressSettingsService,
     ConvertToFruitVolumePipe,
     SortByFruitNamePipe,
   ],

@@ -1,7 +1,7 @@
 <app-table-header titleText="Transport details" label="der Transport" showBack="true"
                   showDelete="true" showEdit="true"></app-table-header>
 <div class="main-container">
-  <md-card class="md-card-padding">
+  <mat-card class="mat-card-padding">
     <div>
       <p>Id: {{(transport | async).id}}</p>
       <p>Abfahrtstag: {{(transport | async).departureDate | date:'dd.MM.y'}}</p>
@@ -17,5 +17,5 @@
     <div>
       <p>Comment: {{(transport | async).comment}}</p>
     </div>
-  </md-card>
+  </mat-card>
 </div>

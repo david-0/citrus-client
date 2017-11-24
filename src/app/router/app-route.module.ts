@@ -14,6 +14,7 @@ import {TransportEditComponent} from "../childs/transport/transport-edit/transpo
 import {TransportOverviewComponent} from "../childs/transport/transport-overview/transport-overview.component";
 import {UsersOverviewComponent} from "../childs/user/user-overview/users-overview.component";
 import {DashboardComponent} from "../dashboard/dashboard.component";
+import {AddressOverviewComponent} from "../childs/address/address-overview/address-overview.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
@@ -30,6 +31,7 @@ const routes: Routes = [
     {path: "transport/:id/delete", component: TransportDeleteComponent},
     {path: "storage-overview", component: StorageOverviewComponent},
     {path: "users-overview", component: UsersOverviewComponent},
+    {path: "address", component: AddressOverviewComponent},
     {path: "fruit", component: FruitOverviewComponent},
     {path: "fruit/create", component: FruitEditComponent},
     {path: "fruit/:id", component: FruitDetailsComponent},

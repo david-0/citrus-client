@@ -1,27 +1,27 @@
 <div class="header--flex div--no-margins">
-  <button md-button type="button" class="size-xs button--responsive" (click)="back()" *ngIf="showBack">
-    <md-icon>arrow_back</md-icon>
+  <button mat-button type="button" class="size-xs button--responsive" (click)="back()" *ngIf="showBack">
+    <mat-icon>arrow_back</mat-icon>
   </button>
   <h3 class="h3--no-margins toolbar--title">{{titleText}}</h3>
   <span class="fill-remaining-space"></span>
-  <button md-button type="submit" class="button--responsive" (click)="create()" *ngIf="showCreate">
-    <md-icon>add</md-icon>
+  <button mat-button type="submit" class="button--responsive" (click)="create()" *ngIf="showCreate">
+    <mat-icon>add</mat-icon>
     <span class="size-xl">erstellen</span>
   </button>
-  <button md-button class="button--responsive" (click)="edit()" *ngIf="showEdit">
-    <md-icon>mode_edit</md-icon>
+  <button mat-button class="button--responsive" (click)="edit()" *ngIf="showEdit">
+    <mat-icon>mode_edit</mat-icon>
     <span class="size-xl">bearbeiten</span>
   </button>
-  <button md-button class="button--responsive" (click)="delete()" *ngIf="showDelete">
-    <md-icon>delete</md-icon>
+  <button mat-button class="button--responsive" (click)="delete()" *ngIf="showDelete">
+    <mat-icon>delete</mat-icon>
     <span class="size-xl">löschen</span>
   </button>
-  <button md-button type="button" class="size-xs button--responsive" (click)="back()" *ngIf="showCancelAndSave">
-    <md-icon>cancel</md-icon>
+  <button mat-button type="button" class="size-xs button--responsive" (click)="back()" *ngIf="showCancelAndSave">
+    <mat-icon>cancel</mat-icon>
     <span class="size-xl">abbrechen</span>
   </button>
-  <button md-button type="submit" class="size-xs button--responsive" *ngIf="showCancelAndSave" [disabled]="!form.valid">
-    <md-icon>save</md-icon>
+  <button mat-button type="submit" class="size-xs button--responsive" *ngIf="showCancelAndSave" [disabled]="!form.valid">
+    <mat-icon>save</mat-icon>
     <span class="size-xl">speichern</span>
     <!-- [disabled]="!f.valid" -->
   </button>

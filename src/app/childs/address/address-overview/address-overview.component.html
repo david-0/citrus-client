@@ -1,0 +1,44 @@
+<app-table-header titleText="Adressen" [showCreate]="true"></app-table-header>
+<app-table-filter (onChange)="onFilterChange($event)" [settings]="this.settings"
+                  placeholder="Filter Adressen"></app-table-filter>
+<mat-table #table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="id" hidden>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="prename">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.prename}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="street">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Strasse</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.street}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="number">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Number</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.number}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="plz">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>PLZ</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.plz}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="city">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Ort</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.city}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row class="table-row--highligthed" routerLink={{row.id}}
+          *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator #paginator [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

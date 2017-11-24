@@ -1,13 +1,14 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {ITransport} from "../../entities/ITransport";
+import {IAddress} from "citrus-common";
 import {GenericRestService} from "../../table-support/generic-rest.service";
 import {RestBackendDatabase} from "../../table-support/rest-backend-database";
 
 @Injectable()
-export class TransportDatabaseService extends RestBackendDatabase<ITransport> {
+export class AddressRestService  extends RestBackendDatabase<IAddress> {
 
   constructor(http: HttpClient) {
-    super(new GenericRestService(http, "http://localhost:3001/api/transport"));
+    super(new GenericRestService(http, "http://localhost:3001/api/address"));
   }
+
 }

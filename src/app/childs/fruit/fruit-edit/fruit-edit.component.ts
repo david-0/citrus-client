@@ -11,7 +11,6 @@ import {FruitDatabaseService} from "../fruit-database.service";
 })
 export class FruitEditComponent implements OnInit {
 
-
   public fruit: IFruit = new FruitTO("");
   public fruitId: number;
 
