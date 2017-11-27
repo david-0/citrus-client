@@ -4,24 +4,34 @@
   <div class="main-container">
     <mat-card class="mat-card-padding">
       <mat-form-field class="example-full-width" color="accent">
-        <input matInput placeholder="Name" #name [(ngModel)]="fruit.name"
-               maxlength="256" name="comment">
+        <input matInput placeholder="Name" #name [(ngModel)]="address.name"
+               maxlength="256" name="name">
         <mat-hint align="end">{{name.value.length}}</mat-hint>
       </mat-form-field>
       <mat-form-field class="example-full-width" color="accent">
-        <input matInput placeholder="Vorname" #name [(ngModel)]="fruit.name"
-               maxlength="256" name="comment">
-        <mat-hint align="end">{{name.value.length}}</mat-hint>
+        <input matInput placeholder="Vorname" #prename [(ngModel)]="address.prename"
+               maxlength="256" name="prename">
+        <mat-hint align="end">{{prename.value.length}}</mat-hint>
       </mat-form-field>
       <mat-form-field class="example-full-width" color="accent">
-        <input matInput placeholder="Name" #name [(ngModel)]="fruit.name"
-               maxlength="256" name="comment">
-        <mat-hint align="end">{{name.value.length}}</mat-hint>
+        <input matInput placeholder="Strasse" #street [(ngModel)]="address.street"
+               maxlength="256" name="street">
+        <mat-hint align="end">{{street.value.length}}</mat-hint>
       </mat-form-field>
       <mat-form-field class="example-full-width" color="accent">
-        <input matInput placeholder="Name" #name [(ngModel)]="fruit.name"
-               maxlength="256" name="comment">
-        <mat-hint align="end">{{name.value.length}}</mat-hint>
+        <input matInput placeholder="Nummer" #number [(ngModel)]="address.number"
+               maxlength="256" name="number">
+        <mat-hint align="end">{{number.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" color="accent">
+        <input matInput placeholder="PLZ" #plz [(ngModel)]="address.plz"
+               maxlength="256" name="plz">
+        <mat-hint align="end">{{plz.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" color="accent">
+        <input matInput placeholder="Stadt" #city [(ngModel)]="address.city"
+               maxlength="256" name="city">
+        <mat-hint align="end">{{city.value.length}}</mat-hint>
       </mat-form-field>
     </mat-card>
   </div>
