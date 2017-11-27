@@ -14,29 +14,21 @@ export class GenericRestService<T extends IId> {
   }
 
   add(item: T): Observable<T> {
-    return this.http
-      .post<T>(this.restUrl, JSON.stringify(item), {headers: this.headers})
-      .catch(handleError);
+    return this.http.post<T>(this.restUrl, JSON.stringify(item), {headers: this.headers});
   }
 
   update(item: T): Observable<boolean> {
     const url = `${this.restUrl}/${item.id}`;
-    return this.http
-      .put<boolean>(url, JSON.stringify(item), {headers: this.headers})
-      .catch(handleError);
+    return this.http.put<boolean>(url, JSON.stringify(item), {headers: this.headers});
   }
 
   del(id: number): Observable<boolean> {
     const url = `${this.restUrl}/${id}`;
-    return this.http
-      .delete<boolean>(url, {headers: this.headers})
-      .catch(handleError);
+    return this.http.delete<boolean>(url, {headers: this.headers});
   }
 
   getAll(): Observable<T[]> {
-    return this.http
-      .get<T[]>(this.restUrl)
-      .catch(handleError);
+    return this.http.get<T[]>(this.restUrl);
   }
 
   getRange(offset: number, limit: number, filter: string,
@@ -54,8 +46,6 @@ export class GenericRestService<T extends IId> {
 
   get(id: number): Observable<T> {
     const url = `${this.restUrl}/${id}`;
-    return this.http
-      .get<T>(url)
-      .catch(handleError);
+    return this.http.get<T>(url);
   }
 }
