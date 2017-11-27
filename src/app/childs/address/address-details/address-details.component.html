@@ -1,0 +1,15 @@
+<app-table-header titleText="Adresse details" label="die Adresse" showBack="true"
+                  showDelete="true" showEdit="true"></app-table-header>
+<div class="main-container">
+  <mat-card class="mat-card-padding">
+    <div>
+      <p>Id: {{(address | async)?.id}}</p>
+      <p>Name: {{(address | async)?.name}}</p>
+      <p>Vorname: {{(address | async)?.prename}}</p>
+      <p>Strasse: {{(address | async)?.street}}</p>
+      <p>Nummer: {{(address | async)?.number}}</p>
+      <p>PLZ: {{(address | async)?.plz}}</p>
+      <p>Stadt: {{(address | async)?.city}}</p>
+    </div>
+  </mat-card>
+</div>

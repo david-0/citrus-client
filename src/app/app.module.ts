@@ -25,7 +25,11 @@ import "hammerjs";
 import {ValidatorsModule} from "ng2-validators";
 
 import {AppComponent} from "./app.component";
+import {AddressDeleteComponent} from "./childs/address/address-delete/address-delete.component";
+import {AddressDetailsComponent} from "./childs/address/address-details/address-details.component";
+import {AddressEditComponent} from "./childs/address/address-edit/address-edit.component";
 import {AddressOverviewComponent} from "./childs/address/address-overview/address-overview.component";
+import {AddressRestService} from "./childs/address/address-rest.service";
 import {AddressSettingsService} from "./childs/address/address-settings.service";
 import {AdministrationComponent} from "./childs/administration/administration.component";
 import {BuyComponent} from "./childs/buy/buy.component";
@@ -49,8 +53,6 @@ import {UsersOverviewComponent} from "./childs/user/user-overview/users-overview
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {TableSupportModule} from "./table-support/table-support.module";
-import {AddressRestService} from "./childs/address/address-rest.service";
-import { AddressEditComponent } from './childs/address/address-edit/address-edit.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,8 @@ import { AddressEditComponent } from './childs/address/address-edit/address-edit
     FruitEditComponent,
     AddressOverviewComponent,
     AddressEditComponent,
+    AddressDetailsComponent,
+    AddressDeleteComponent,
   ],
   imports: [
     BrowserModule,

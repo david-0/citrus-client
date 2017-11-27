@@ -16,6 +16,8 @@ import {UsersOverviewComponent} from "../childs/user/user-overview/users-overvie
 import {DashboardComponent} from "../dashboard/dashboard.component";
 import {AddressOverviewComponent} from "../childs/address/address-overview/address-overview.component";
 import {AddressEditComponent} from "../childs/address/address-edit/address-edit.component";
+import {AddressDetailsComponent} from "../childs/address/address-details/address-details.component";
+import {AddressDeleteComponent} from "../childs/address/address-delete/address-delete.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
@@ -34,7 +36,9 @@ const routes: Routes = [
     {path: "users-overview", component: UsersOverviewComponent},
     {path: "address", component: AddressOverviewComponent},
     {path: "address/create", component: AddressEditComponent},
+    {path: "address/:id", component: AddressDetailsComponent},
     {path: "address/:id/edit", component: AddressEditComponent},
+    {path: "address/:id/delete", component: AddressDeleteComponent},
     {path: "fruit", component: FruitOverviewComponent},
     {path: "fruit/create", component: FruitEditComponent},
     {path: "fruit/:id", component: FruitDetailsComponent},
