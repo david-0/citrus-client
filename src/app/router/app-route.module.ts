@@ -6,7 +6,6 @@ import {AddressEditComponent} from "../childs/address/address-edit/address-edit.
 import {AddressOverviewComponent} from "../childs/address/address-overview/address-overview.component";
 import {AdministrationComponent} from "../childs/administration/administration.component";
 import {TransportDeleteComponent} from "../childs/transport/transport-delete/transport-delete.component";
-import {UsersOverviewComponent} from "../childs/user/user-overview/users-overview.component";
 import {DashboardComponent} from "../dashboard/dashboard.component";
 
 const routes: Routes = [
@@ -15,7 +14,6 @@ const routes: Routes = [
   {
     path: "administration", component: AdministrationComponent, children: [
     {path: "transport/:id/delete", component: TransportDeleteComponent},
-    {path: "users-overview", component: UsersOverviewComponent},
     {path: "address", component: AddressOverviewComponent},
     {path: "address/create", component: AddressEditComponent},
     {path: "address/:id", component: AddressDetailsComponent},

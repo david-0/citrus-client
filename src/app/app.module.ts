@@ -38,7 +38,6 @@ import {FruitDetailsComponent} from "./childs/fruit/fruit-details/fruit-details.
 import {FruitEditComponent} from "./childs/fruit/fruit-edit/fruit-edit.component";
 import {FruitOverviewComponent} from "./childs/fruit/fruit-overview/fruit-overview.component";
 import {FruitSettingsService} from "./childs/fruit/fruit-settings.service";
-import {StorageOverviewComponent} from "./childs/storage/storage-overview/storage-overview.component";
 import {ConvertToFruitVolumePipe} from "./childs/transport/pipes/convert-to-fruit-volume.pipe";
 import {SortByFruitNamePipe} from "./childs/transport/pipes/sort-by-fruit-name.pipe";
 import {TransportDatabaseService} from "./childs/transport/transport-database.service";
@@ -47,7 +46,6 @@ import {TransportDetailsComponent} from "./childs/transport/transport-details/tr
 import {TransportEditComponent} from "./childs/transport/transport-edit/transport-edit.component";
 import {TransportOverviewComponent} from "./childs/transport/transport-overview/transport-overview.component";
 import {TransportSettingsService} from "./childs/transport/transport-settings.service";
-import {UsersOverviewComponent} from "./childs/user/user-overview/users-overview.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {TableSupportModule} from "./table-support/table-support.module";
@@ -59,9 +57,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     AdministrationComponent,
     TransportOverviewComponent,
     TransportDeleteComponent,
-    StorageOverviewComponent,
     FruitOverviewComponent,
-    UsersOverviewComponent,
     TransportDetailsComponent,
     TransportEditComponent,
     ConvertToFruitVolumePipe,
