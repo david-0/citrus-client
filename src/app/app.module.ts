@@ -32,8 +32,6 @@ import {AddressOverviewComponent} from "./childs/address/address-overview/addres
 import {AddressRestService} from "./childs/address/address-rest.service";
 import {AddressSettingsService} from "./childs/address/address-settings.service";
 import {AdministrationComponent} from "./childs/administration/administration.component";
-import {BuyComponent} from "./childs/buy/buy.component";
-import {FetchComponent} from "./childs/fetch/fetch.component";
 import {FruitDatabaseService} from "./childs/fruit/fruit-database.service";
 import {FruitDeleteComponent} from "./childs/fruit/fruit-delete/fruit-delete.component";
 import {FruitDetailsComponent} from "./childs/fruit/fruit-details/fruit-details.component";
@@ -59,8 +57,6 @@ import {TableSupportModule} from "./table-support/table-support.module";
     AppComponent,
     DashboardComponent,
     AdministrationComponent,
-    FetchComponent,
-    BuyComponent,
     TransportOverviewComponent,
     TransportDeleteComponent,
     StorageOverviewComponent,

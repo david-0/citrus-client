@@ -17,16 +17,12 @@ $my-theme: mat-light-theme(
 
 @import "app/table-support/table-header/table-header.component.scss-theme";
 @import "app/childs/administration/administration.component.scss-theme";
-@import "app/childs/transport/transport-overview/transport-overview.component.scss-theme";
 @import "app/childs/address/address-overview/address-overview.component.scss-theme";
-@import "app/childs/fruit/fruit-overview/fruit-overview.component.scss-theme";
 
 @mixin my-component-theme($theme) {
   @include app-list-header-theme($theme);
   @include app-administration-theme($theme);
-  @include app-transport-overview-theme($theme);
   @include app-address-overview-theme($theme);
-  @include app-fruit-overview-theme($theme);
 }
 @include angular-material-theme($my-theme);
 @include my-component-theme($my-theme);
