@@ -4,9 +4,9 @@ import "rxjs/add/observable/merge";
 import "rxjs/add/operator/mergeMap";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
-import {IId} from "../entities/IId";
 import {GenericDatabaseInterface} from "./generic-database.interface";
 import {SettingsServiceInterface} from "./settings-service-interface";
+import {IId} from "citrus-common";
 
 export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
 

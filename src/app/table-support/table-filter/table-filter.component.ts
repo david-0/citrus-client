@@ -1,4 +1,8 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
+import "rxjs/add/observable/fromEvent";
+import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/distinctUntilChanged";
+import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 import {SettingsServiceInterface} from "../settings-service-interface";
 

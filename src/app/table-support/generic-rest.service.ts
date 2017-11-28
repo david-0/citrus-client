@@ -1,7 +1,6 @@
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {IId} from "citrus-common";
 import {Observable} from "rxjs/Observable";
-import {IId} from "../entities/IId";
-import {handleError} from "./error-utils";
 import {RangeResult} from "./range-result";
 
 export class GenericRestService<T extends IId> {

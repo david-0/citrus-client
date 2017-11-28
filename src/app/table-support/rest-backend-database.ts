@@ -1,9 +1,9 @@
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
-import {IId} from "../entities/IId";
 import {GenericDatabaseInterface} from "./generic-database.interface";
 import {GenericRestService} from "./generic-rest.service";
 import {RangeResult} from "./range-result";
+import {IId} from "citrus-common";
 
 export class RestBackendDatabase<T extends IId> implements GenericDatabaseInterface<T> {
 
