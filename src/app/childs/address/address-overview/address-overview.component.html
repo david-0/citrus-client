@@ -42,3 +42,5 @@
           *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
 <mat-paginator #paginator [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<app-progess-spinner [loading]="loading" delayInMs="150" minShowInMs="500"></app-progess-spinner>
+
