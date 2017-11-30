@@ -29,7 +29,7 @@ import {AddressDeleteComponent} from "./childs/address/address-delete/address-de
 import {AddressDetailsComponent} from "./childs/address/address-details/address-details.component";
 import {AddressEditComponent} from "./childs/address/address-edit/address-edit.component";
 import {AddressOverviewComponent} from "./childs/address/address-overview/address-overview.component";
-import {AddressRestService} from "./childs/address/address-rest.service";
+import {AddressRestDatabaseService} from "./childs/address/address-rest-database.service";
 import {AddressSettingsService} from "./childs/address/address-settings.service";
 import {AdministrationComponent} from "./childs/administration/administration.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
@@ -73,7 +73,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
   ],
   providers: [
     MatIconRegistry,
-    AddressRestService,
+    AddressRestDatabaseService,
     AddressSettingsService,
   ],
   bootstrap: [AppComponent]

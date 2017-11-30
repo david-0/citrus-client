@@ -3,7 +3,7 @@ import {MatPaginator, MatSort} from "@angular/material";
 import {IAddress} from "citrus-common";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {GenericPagedDataSource} from "../../../table-support/generic-paged-data-source";
-import {AddressRestService} from "../address-rest.service";
+import {AddressRestDatabaseService} from "../address-rest-database.service";
 import {AddressSettingsService} from "../address-settings.service";
 
 @Component({
@@ -19,7 +19,7 @@ export class AddressOverviewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private database: AddressRestService, public settings: AddressSettingsService) {
+  constructor(private database: AddressRestDatabaseService, public settings: AddressSettingsService) {
   }
 
   ngOnInit() {

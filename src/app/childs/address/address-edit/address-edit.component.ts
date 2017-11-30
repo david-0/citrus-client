@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {IAddress} from "citrus-common";
 import {AddressTO} from "../../../TransferObjects/AddressTO";
-import {AddressRestService} from "../address-rest.service";
+import {AddressRestDatabaseService} from "../address-rest-database.service";
 
 @Component({
   selector: "app-address-edit",
@@ -16,7 +16,7 @@ export class AddressEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              public addressDatabase: AddressRestService) {
+              public addressDatabase: AddressRestDatabaseService) {
   }
 
   ngOnInit() {
