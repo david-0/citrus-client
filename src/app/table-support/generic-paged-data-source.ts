@@ -1,12 +1,12 @@
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {MatPaginator, MatSort} from "@angular/material";
+import {IId} from "citrus-common";
 import "rxjs/add/observable/merge";
 import "rxjs/add/operator/mergeMap";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {GenericDatabaseInterface} from "./generic-database.interface";
 import {SettingsServiceInterface} from "./settings-service-interface";
-import {IId} from "citrus-common";
 
 export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
 
@@ -15,7 +15,8 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
   constructor(private database: GenericDatabaseInterface<T>,
               private paginator: MatPaginator,
               private sort: MatSort,
-              private settings: SettingsServiceInterface) {
+              private settings: SettingsServiceInterface,
+              private loading: BehaviorSubject<boolean> = null) {
     super();
   }
 
@@ -32,7 +33,6 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
     return null;
   }
 
-
   connect(collectionViewer: CollectionViewer): Observable<T[]> {
     const displayDataChanges = [
       this.database.dataChange,
@@ -42,6 +42,7 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
     ];
 
     return Observable.merge(...displayDataChanges).mergeMap(() => {
+      this.setLoading(true);
       const t: { id: number }[] = [];
 
       const order: { columnName: string, direction: string }[] = [];
@@ -53,9 +54,16 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
         this.paginator.length = result.count;
         this.paginator.pageSize = this.settings.pageSize;
         this.setPageIndex();
+        this.setLoading(false);
         return result.rows;
       });
     });
+  }
+
+  private setLoading(loading: boolean) {
+    if (this.loading && this.loading.getValue() != loading) {
+      this.loading.next(loading);
+    }
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
