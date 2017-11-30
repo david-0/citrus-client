@@ -5,10 +5,12 @@ import {
   MatButtonToggleModule,
   MatDialogModule,
   MatIconModule,
-  MatInputModule
+  MatInputModule,
+  MatProgressSpinnerModule, ProgressSpinnerMode
 } from "@angular/material";
 import {LineComponent} from "./line/line.component";
 import {OkCancelDialogComponent} from "./ok-cancel-dialog/ok-cancel-dialog.component";
+import {ProgessSpinnerComponent} from "./progess-spinner/progess-spinner.component";
 import {TableFilterComponent} from "./table-filter/table-filter.component";
 import {TableHeaderComponent} from "./table-header/table-header.component";
 
@@ -20,17 +22,20 @@ import {TableHeaderComponent} from "./table-header/table-header.component";
     MatButtonToggleModule,
     MatInputModule,
     MatIconModule,
+    MatProgressSpinnerModule,
   ],
   declarations: [
     LineComponent,
     TableHeaderComponent,
     OkCancelDialogComponent,
     TableFilterComponent,
+    ProgessSpinnerComponent,
   ],
   exports: [
     LineComponent,
     TableHeaderComponent,
     TableFilterComponent,
+    ProgessSpinnerComponent,
   ],
   entryComponents: [OkCancelDialogComponent]
 })
