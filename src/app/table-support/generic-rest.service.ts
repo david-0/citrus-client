@@ -6,10 +6,7 @@ import {RangeResult} from "./range-result";
 export class GenericRestService<T extends IId> {
   private headers = new HttpHeaders({"Content-Type": "application/json"});
 
-  private i = 2;
-
   constructor(private http: HttpClient, private restUrl: string) {
-    this.i = 3;
   }
 
   add(item: T): Observable<T> {
