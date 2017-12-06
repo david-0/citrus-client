@@ -1,0 +1,14 @@
+<app-table-header titleText="Benutzer details" label="der Benutzer" showBack="true"
+                  showDelete="true" showEdit="true"></app-table-header>
+<div class="main-container">
+  <mat-card class="mat-card-padding">
+    <div>
+      <p>Id: {{(userInfo | async)?.id}}</p>
+      <p>Email: {{(userInfo | async)?.email}}</p>
+      <p>Name: {{(userInfo | async)?.name}}</p>
+      <p>Vorname: {{(userInfo | async)?.prename}}</p>
+      <p>Phone: {{(userInfo | async)?.phone}}</p>
+      <p>Mobile: {{(userInfo | async)?.mobile}}</p>
+    </div>
+  </mat-card>
+</div>

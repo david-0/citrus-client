@@ -24,9 +24,14 @@
         <mat-hint align="end">{{number.value.length}}</mat-hint>
       </mat-form-field>
       <mat-form-field class="example-full-width" color="accent">
-        <input matInput placeholder="PLZ" #plz [(ngModel)]="address.plz"
-               maxlength="256" name="plz">
-        <mat-hint align="end">{{plz.value.length}}</mat-hint>
+        <input matInput placeholder="Zusatz" #addition [(ngModel)]="address.addition"
+               maxlength="256" name="addition">
+        <mat-hint align="end">{{addition.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" color="accent">
+        <input matInput placeholder="PLZ" #zipcode [(ngModel)]="address.zipcode"
+               maxlength="256" name="zipcode">
+        <mat-hint align="end">{{zipcode.value.length}}</mat-hint>
       </mat-form-field>
       <mat-form-field class="example-full-width" color="accent">
         <input matInput placeholder="Stadt" #city [(ngModel)]="address.city"

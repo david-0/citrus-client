@@ -1,0 +1,48 @@
+<form #f="ngForm" (ngSubmit)="submit()">
+  <app-table-header titleText="Benutzer bearbeiten" showBack="true" showCancelAndSave="true"
+                    [form]="f"></app-table-header>
+  <div class="main-container">
+    <mat-card class="mat-card-padding">
+      <mat-form-field class="example-full-width" color="accent">
+        <input matInput placeholder="Email" #email [(ngModel)]="userInfo.email"
+               maxlength="256" name="email">
+        <mat-hint align="end">{{email.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" color="accent">
+        <input matInput placeholder="Name" #name [(ngModel)]="userInfo.name"
+               maxlength="256" name="name">
+        <mat-hint align="end">{{name.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" color="accent">
+        <input matInput placeholder="Vorname" #prename [(ngModel)]="userInfo.prename"
+               maxlength="256" name="prename">
+        <mat-hint align="end">{{prename.value.length}}</mat-hint>
+      </mat-form-field>
+<!--      <mat-form-field class="example-full-width" color="accent">
+        <input matInput placeholder="Nummer" #number [(ngModel)]="address.number"
+               maxlength="256" name="number">
+        <mat-hint align="end">{{number.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" color="accent">
+        <input matInput placeholder="PLZ" #plz [(ngModel)]="address.plz"
+               maxlength="256" name="plz">
+        <mat-hint align="end">{{plz.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" color="accent">
+        <input matInput placeholder="Stadt" #city [(ngModel)]="address.city"
+               maxlength="256" name="city">
+        <mat-hint align="end">{{city.value.length}}</mat-hint>
+      </mat-form-field>-->
+      <mat-form-field class="example-full-width" color="accent">
+        <input matInput placeholder="Phone" #phone [(ngModel)]="userInfo.phone"
+               maxlength="256" name="phone">
+        <mat-hint align="end">{{phone.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" color="accent">
+        <input matInput placeholder="Mobile" #mobile [(ngModel)]="userInfo.mobile"
+               maxlength="256" name="mobile">
+        <mat-hint align="end">{{mobile.value.length}}</mat-hint>
+      </mat-form-field>
+    </mat-card>
+  </div>
+</form>

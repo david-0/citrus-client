@@ -32,6 +32,12 @@ import {AddressOverviewComponent} from "./childs/address/address-overview/addres
 import {AddressRestDatabaseService} from "./childs/address/address-rest-database.service";
 import {AddressSettingsService} from "./childs/address/address-settings.service";
 import {AdministrationComponent} from "./childs/administration/administration.component";
+import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-delete.component";
+import {UserInfoDetailsComponent} from "./childs/user/user-info-details/user-info-details.component";
+import {UserInfoEditComponent} from "./childs/user/user-info-edit/user-info-edit.component";
+import {UserInfoOverviewComponent} from "./childs/user/user-info-overview/user-info-overview.component";
+import {UserInfoRestDatabaseService} from "./childs/user/user-info-rest-database.service";
+import {UserDetailsSettingsService} from "./childs/user/user-info-settings.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {TableSupportModule} from "./table-support/table-support.module";
@@ -45,6 +51,10 @@ import {TableSupportModule} from "./table-support/table-support.module";
     AddressEditComponent,
     AddressDetailsComponent,
     AddressDeleteComponent,
+    UserInfoDeleteComponent,
+    UserInfoDetailsComponent,
+    UserInfoEditComponent,
+    UserInfoOverviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +85,8 @@ import {TableSupportModule} from "./table-support/table-support.module";
     MatIconRegistry,
     AddressRestDatabaseService,
     AddressSettingsService,
+    UserInfoRestDatabaseService,
+    UserDetailsSettingsService,
   ],
   bootstrap: [AppComponent]
 })

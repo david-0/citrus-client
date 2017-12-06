@@ -5,6 +5,10 @@ import {AddressDetailsComponent} from "../childs/address/address-details/address
 import {AddressEditComponent} from "../childs/address/address-edit/address-edit.component";
 import {AddressOverviewComponent} from "../childs/address/address-overview/address-overview.component";
 import {AdministrationComponent} from "../childs/administration/administration.component";
+import {UserInfoDeleteComponent} from "../childs/user/user-info-delete/user-info-delete.component";
+import {UserInfoDetailsComponent} from "../childs/user/user-info-details/user-info-details.component";
+import {UserInfoEditComponent} from "../childs/user/user-info-edit/user-info-edit.component";
+import {UserInfoOverviewComponent} from "../childs/user/user-info-overview/user-info-overview.component";
 import {DashboardComponent} from "../dashboard/dashboard.component";
 
 const routes: Routes = [
@@ -17,6 +21,11 @@ const routes: Routes = [
     {path: "address/:id", component: AddressDetailsComponent},
     {path: "address/:id/edit", component: AddressEditComponent},
     {path: "address/:id/delete", component: AddressDeleteComponent},
+    {path: "user", component: UserInfoOverviewComponent},
+    {path: "user/create", component: UserInfoEditComponent},
+    {path: "user/:id", component: UserInfoDetailsComponent},
+    {path: "user/:id/edit", component: UserInfoEditComponent},
+    {path: "user/:id/delete", component: UserInfoDeleteComponent},
     {path: "", redirectTo: "address", pathMatch: "full"},
   ]
   },

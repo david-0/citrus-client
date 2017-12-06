@@ -26,6 +26,4 @@ export class AddressDetailsComponent  implements OnInit {
       this._address = this.database.get(+params["id"]);
     });
   }
-
-
 }

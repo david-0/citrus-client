@@ -49,7 +49,7 @@ export class AddressEditComponent implements OnInit {
       this.addressDatabase.update(AddressTO.createAddressWithId(this.addressID, this.address))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
-          (err) => console.error(`could not update fruit: ${this.address.id} with Error: ${err}`));
+          (err) => console.error(`could not update address: ${this.address.id} with Error: ${err}`));
     }
   }
 }

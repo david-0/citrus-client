@@ -1,25 +1,25 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator, MatSort} from "@angular/material";
-import {IAddress} from "citrus-common";
+import {IUserInfo} from "citrus-common";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {GenericPagedDataSource} from "../../../table-support/generic-paged-data-source";
-import {AddressRestDatabaseService} from "../address-rest-database.service";
-import {AddressSettingsService} from "../address-settings.service";
+import {UserInfoRestDatabaseService} from "../user-info-rest-database.service";
+import {UserDetailsSettingsService} from "../user-info-settings.service";
 
 @Component({
-  selector: "app-address-overview",
-  templateUrl: "./address-overview.component.html",
-  styleUrls: ["./address-overview.component.scss"]
+  selector: "app-user-info-overview",
+  templateUrl: "./user-info-overview.component.html",
+  styleUrls: ["./user-info-overview.component.scss"]
 })
-export class AddressOverviewComponent implements OnInit {
-  public displayedColumns = ["name", "prename", "street", "number", "addition", "zipcode", "city"];
+export class UserInfoOverviewComponent implements OnInit {
+  public displayedColumns = ["email", "name", "prename", "phone", "mobile"];
   public loading = new BehaviorSubject<boolean>(false);
 
-  public dataSource: GenericPagedDataSource<IAddress> | null;
+  public dataSource: GenericPagedDataSource<IUserInfo> | null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private database: AddressRestDatabaseService, public settings: AddressSettingsService) {
+  constructor(private database: UserInfoRestDatabaseService, public settings: UserDetailsSettingsService) {
   }
 
   ngOnInit() {
