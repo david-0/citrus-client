@@ -12,7 +12,7 @@ import {AddressSettingsService} from "../address-settings.service";
   styleUrls: ["./address-overview.component.scss"]
 })
 export class AddressOverviewComponent implements OnInit {
-  public displayedColumns = ["name", "prename", "street", "number", "addition", "zipcode", "city"];
+  public displayedColumns = ["user", "description", "name", "prename", "street", "number", "addition", "zipcode", "city"];
   public loading = new BehaviorSubject<boolean>(false);
 
   public dataSource: GenericPagedDataSource<IAddress> | null;

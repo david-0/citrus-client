@@ -12,7 +12,7 @@ import {UserDetailsSettingsService} from "../user-info-settings.service";
   styleUrls: ["./user-info-overview.component.scss"]
 })
 export class UserInfoOverviewComponent implements OnInit {
-  public displayedColumns = ["email", "name", "prename", "phone", "mobile"];
+  public displayedColumns = ["number", "email", "name", "prename", "phone", "mobile"];
   public loading = new BehaviorSubject<boolean>(false);
 
   public dataSource: GenericPagedDataSource<IUserInfo> | null;
