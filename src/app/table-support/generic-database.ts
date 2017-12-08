@@ -1,15 +1,15 @@
+import {IId, IOrderDefinitions} from "citrus-common";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {GenericDatabaseInterface} from "./generic-database.interface";
 import {RangeResult} from "./range-result";
-import {IId} from "citrus-common";
 
 export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<T> {
 
   public dataChange = new BehaviorSubject<T[]>([]);
 
   public constructor(private filterCallback: (item: T, filterValue: string) => boolean = GenericDatabase.noFilter,
-                     private compareCallback: (a: T, b: T, order: { columnName: string, direction: string }[]) => number
+                     private compareCallback: (a: T, b: T, order: IOrderDefinitions) => number
                        = GenericDatabase.noCompare) {
   }
 
@@ -21,7 +21,7 @@ export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<
     this.dataChange.next(items);
   }
 
-  private static noCompare<T>(a: T, b: T, order: [{ columnName: string, direction: string }]): number {
+  private static noCompare<T>(a: T, b: T, order: IOrderDefinitions): number {
     return 0;
   }
 
@@ -32,7 +32,7 @@ export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<
   public select(start: number,
                 length: number,
                 filter: string,
-                order: { columnName: string; direction: string }[]): Observable<RangeResult<T>> {
+                order: IOrderDefinitions): Observable<RangeResult<T>> {
     const itemsCopy = this.data.slice();
     const filteredItems = this.filterItems(itemsCopy, filter);
     const countAll = filteredItems.length;
@@ -112,7 +112,7 @@ export class GenericDatabase<T extends IId> implements GenericDatabaseInterface<
     return items.filter(item => this.filterCallback(item, filter));
   }
 
-  private orderItems(items: T[], order: { columnName: string, direction: string }[]): T[] {
+  private orderItems(items: T[], order: IOrderDefinitions): T[] {
     return items.sort((a: T, b: T) => this.compareCallback(a, b, order));
   }
 }

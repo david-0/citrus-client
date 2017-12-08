@@ -5,6 +5,8 @@ import "rxjs/add/observable/merge";
 import "rxjs/add/operator/mergeMap";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
+import {OrderDefinition} from "../TransferObjects/OrderDefinition";
+import {OrderDefinitions} from "../TransferObjects/OrderDefinitions";
 import {GenericDatabaseInterface} from "./generic-database.interface";
 import {SettingsServiceInterface} from "./settings-service-interface";
 
@@ -45,9 +47,9 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
       this.setLoading(true);
       const t: { id: number }[] = [];
 
-      const order: { columnName: string, direction: string }[] = [];
+      const order = new OrderDefinitions();
       if (this.sort.direction !== "") {
-        order.push({columnName: this.sort.active, direction: this.sort.direction});
+        order.definitions.push( new OrderDefinition(this.sort.active, this.sort.direction));
       }
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       return this.database.select(startIndex, this.paginator.pageSize, this.filterChange.value, order).map((result) => {

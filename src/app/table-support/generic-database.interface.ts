@@ -1,7 +1,7 @@
+import {IId, IOrderDefinitions} from "citrus-common";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {RangeResult} from "./range-result";
-import {IId} from "citrus-common";
 
 export interface GenericDatabaseInterface<T extends IId> {
 
@@ -12,7 +12,7 @@ export interface GenericDatabaseInterface<T extends IId> {
   select(start: number,
          length: number,
          filter: string,
-         order: { columnName: string, direction: string }[]): Observable<RangeResult<T>>;
+         order: IOrderDefinitions): Observable<RangeResult<T>>;
 
   get(id: number): Observable<T>;
 

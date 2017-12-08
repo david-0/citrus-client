@@ -3,7 +3,7 @@ import {Observable} from "rxjs/Observable";
 import {GenericDatabaseInterface} from "./generic-database.interface";
 import {GenericRestService} from "./generic-rest.service";
 import {RangeResult} from "./range-result";
-import {IId} from "citrus-common";
+import {IId, IOrderDefinitions} from "citrus-common";
 
 export class RestBackendDatabase<T extends IId> implements GenericDatabaseInterface<T> {
 
@@ -23,7 +23,7 @@ export class RestBackendDatabase<T extends IId> implements GenericDatabaseInterf
   public select(start: number,
                 length: number,
                 filter: string,
-                order: { columnName: string, direction: string }[]): Observable<RangeResult<T>> {
+                order: IOrderDefinitions): Observable<RangeResult<T>> {
     return this.rest.getRange(start, length, filter, order);
   }
 

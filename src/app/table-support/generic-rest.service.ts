@@ -1,5 +1,5 @@
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {IId} from "citrus-common";
+import {IId, IOrderDefinitions} from "citrus-common";
 import {Observable} from "rxjs/Observable";
 import {RangeResult} from "./range-result";
 
@@ -27,12 +27,11 @@ export class GenericRestService<T extends IId> {
     return this.http.get<T[]>(this.restUrl);
   }
 
-  getRange(offset: number, limit: number, filter: string,
-           order: { columnName: string, direction: string }[]): Observable<RangeResult<T>> {
+  getRange(offset: number, limit: number, filter: string, order: IOrderDefinitions): Observable<RangeResult<T>> {
     const url = `${this.restUrl}/${offset}/${limit}`;
     let httpParams = new HttpParams();
-    if (order.length > 0) {
-      httpParams = httpParams.set("columnName", order[0].columnName).set("direction", order[0].direction);
+    if (order.definitions.length > 0) {
+      httpParams = httpParams.set("columnName", order.definitions[0].columnName).set("direction", order.definitions[0].direction);
     }
     if (filter) {
       httpParams = httpParams.set("filter", filter);
