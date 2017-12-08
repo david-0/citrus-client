@@ -1,23 +1,15 @@
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {IId, IOrderDefinitions} from "citrus-common";
 import {Observable} from "rxjs/Observable";
+import {Subject} from "rxjs/Subject";
 import {GenericDatabaseInterface} from "./generic-database.interface";
 import {GenericRestService} from "./generic-rest.service";
 import {RangeResult} from "./range-result";
-import {IId, IOrderDefinitions} from "citrus-common";
 
 export class RestBackendDatabase<T extends IId> implements GenericDatabaseInterface<T> {
 
-  public dataChange = new BehaviorSubject<T[]>([]);
+  public dataChanged = new Subject<object>();
 
   public constructor(private rest: GenericRestService<T>) {
-  }
-
-  public get data(): T[] {
-    return this.dataChange.value;
-  }
-
-  public set data(items: T[]) {
-    this.dataChange.next(items);
   }
 
   public select(start: number,
