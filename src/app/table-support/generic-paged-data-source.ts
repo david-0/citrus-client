@@ -37,7 +37,7 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
 
   connect(collectionViewer: CollectionViewer): Observable<T[]> {
     const displayDataChanges = [
-      this.database.dataChange,
+      this.database.dataChanged,
       this.filterChange,
       this.paginator.page,
       this.sort.sortChange,
