@@ -6,13 +6,8 @@ import {RangeResult} from "./range-result";
 export class GenericRestService<T extends IId> {
   private headers = new HttpHeaders({"Content-Type": "application/json"});
 
-  constructor(private http: HttpClient, private restUrl: string, private getRangeIncludes: string[] = [], private getIncludes: string[] = []) {
-    if (!this.getRangeIncludes) {
-      this.getRangeIncludes = [];
-    }
-    if (!this.getIncludes) {
-      this.getIncludes = [];
-    }
+  constructor(private http: HttpClient, private restUrl: string, private filterColumns: string[] = [],
+              private getRangeIncludes: string[] = [], private getIncludes: string[] = []) {
   }
 
   add(item: T): Observable<T> {
@@ -41,15 +36,18 @@ export class GenericRestService<T extends IId> {
     }
     if (filter) {
       httpParams = httpParams.set("filter", filter);
+      this.filterColumns.forEach((c) => {
+        httpParams = httpParams.append("filterColumns", c);
+      });
     }
     this.getRangeIncludes.forEach((i) => {
-      httpParams = httpParams.set("include", i);
+      httpParams = httpParams.set("includes", i);
     });
     return this.http.get<RangeResult<T>>(url, {headers: this.headers, params: httpParams});
   }
 
   get(id: number): Observable<T> {
     const url = `${this.restUrl}/${id}`;
-    return this.http.get<T>(url, {params: {include: this.getIncludes}});
+    return this.http.get<T>(url, {params: {includes: this.getIncludes}});
   }
 }
