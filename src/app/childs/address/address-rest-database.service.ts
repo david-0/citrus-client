@@ -8,7 +8,6 @@ import {RestBackendDatabase} from "../../table-support/rest-backend-database";
 export class AddressRestDatabaseService extends RestBackendDatabase<IAddress> {
 
   constructor(http: HttpClient) {
-    super(new GenericRestService(http, "http://localhost:3001/api/address"));
+    super(new GenericRestService(http, "http://localhost:3001/api/address", ["User"], ["User"]));
   }
-
 }
