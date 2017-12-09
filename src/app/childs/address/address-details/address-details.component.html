@@ -4,7 +4,7 @@
   <mat-card class="mat-card-padding">
     <div>
       <p>Id: {{(address | async)?.id}}</p>
-      <p>Benutzer: {{(address | async)?.user?.name}}</p>
+      <p>Benutzer: {{(address | async)?.user?.prename}} {{(address | async)?.user?.name}}</p>
       <p>Beschreibung: {{(address | async)?.description}}</p>
       <p>Name: {{(address | async)?.name}}</p>
       <p>Vorname: {{(address | async)?.prename}}</p>

@@ -9,7 +9,7 @@
 
   <ng-container matColumnDef="user">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Benutzer</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.user?.name}}</mat-cell>
+    <mat-cell *matCellDef="let row"> {{row.user?.name}} {{row.user?.prename}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="description">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Beschreibung</mat-header-cell>
