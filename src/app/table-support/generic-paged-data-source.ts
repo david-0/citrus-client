@@ -63,7 +63,7 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
   }
 
   private setLoading(loading: boolean) {
-    if (this.loading && this.loading.getValue() != loading) {
+    if (this.loading && this.loading.getValue() !== loading) {
       this.loading.next(loading);
     }
   }
