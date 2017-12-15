@@ -4,7 +4,7 @@ import {IUserInfo} from "citrus-common";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {UserInfoTO} from "../../../TransferObjects/UserInfoTO";
-import {UserInfoRestDatabaseService} from "../user-info-rest-database.service";
+import {UserInfoDatabaseService} from "../user-info-database.service";
 
 @Component({
   selector: "app-user-info-details",
@@ -14,7 +14,7 @@ import {UserInfoRestDatabaseService} from "../user-info-rest-database.service";
 export class UserInfoDetailsComponent implements OnInit {
   private _userInfo: Observable<IUserInfo> = new BehaviorSubject<IUserInfo>(UserInfoTO.createEmpty());
 
-  constructor(private route: ActivatedRoute, private database: UserInfoRestDatabaseService) {
+  constructor(private route: ActivatedRoute, private database: UserInfoDatabaseService) {
   }
 
   public get userInfo() {

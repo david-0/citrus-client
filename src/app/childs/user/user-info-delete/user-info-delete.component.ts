@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {UserInfoRestDatabaseService} from "../user-info-rest-database.service";
+import {UserInfoDatabaseService} from "../user-info-database.service";
 
 @Component({
   selector: "app-user-info-delete",
@@ -13,7 +13,7 @@ export class UserInfoDeleteComponent implements OnInit {
   public message: string;
 
   constructor(private route: ActivatedRoute,
-              public userDetailsDatabase: UserInfoRestDatabaseService) {
+              public userDetailsDatabase: UserInfoDatabaseService) {
   }
 
   ngOnInit() {

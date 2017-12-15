@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {AddressRestDatabaseService} from "../address-rest-database.service";
+import {AddressDatabaseService} from "../address-database.service";
 
 @Component({
   selector: "app-address-delete",
@@ -13,7 +13,7 @@ export class AddressDeleteComponent implements OnInit {
   public message: string;
 
   constructor(private route: ActivatedRoute,
-              public addressDatabase: AddressRestDatabaseService) {
+              public addressDatabase: AddressDatabaseService) {
   }
 
   ngOnInit() {

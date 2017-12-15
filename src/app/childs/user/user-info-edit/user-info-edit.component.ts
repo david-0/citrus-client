@@ -1,9 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {IUserInfo} from "citrus-common";
-import {AddressTO} from "../../../TransferObjects/AddressTO";
 import {UserInfoTO} from "../../../TransferObjects/UserInfoTO";
-import {UserInfoRestDatabaseService} from "../user-info-rest-database.service";
+import {UserInfoDatabaseService} from "../user-info-database.service";
 
 @Component({
   selector: "app-user-info-edit",
@@ -17,7 +16,7 @@ export class UserInfoEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              public userInfoDatabase: UserInfoRestDatabaseService) {
+              public userInfoDatabase: UserInfoDatabaseService) {
   }
 
   ngOnInit() {

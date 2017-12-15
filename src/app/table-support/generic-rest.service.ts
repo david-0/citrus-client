@@ -6,8 +6,7 @@ import {RangeResult} from "./range-result";
 export class GenericRestService<T extends IId> {
   private headers = new HttpHeaders({"Content-Type": "application/json"});
 
-  constructor(private http: HttpClient, private restUrl: string, private filterColumns: string[] = [],
-              private getRangeIncludes: string[] = [], private getIncludes: string[] = []) {
+  constructor(private http: HttpClient, private restUrl: string) {
   }
 
   add(item: T): Observable<T> {
@@ -24,11 +23,12 @@ export class GenericRestService<T extends IId> {
     return this.http.delete<boolean>(url, {headers: this.headers});
   }
 
-  getAll(): Observable<T[]> {
+  getAll(includedTypes: string[] = []): Observable<T[]> {
     return this.http.get<T[]>(this.restUrl);
   }
 
-  getRange(offset: number, limit: number, filter: string, order: IOrderDefinitions): Observable<RangeResult<T>> {
+  getRange(offset: number, limit: number, filter: string, filterColumns: string[], order: IOrderDefinitions,
+           includedTypes: string[]): Observable<RangeResult<T>> {
     const url = `${this.restUrl}/${offset}/${limit}`;
     let httpParams = new HttpParams();
     if (order.definitions.length > 0) {
@@ -36,18 +36,18 @@ export class GenericRestService<T extends IId> {
     }
     if (filter) {
       httpParams = httpParams.set("filter", filter);
-      this.filterColumns.forEach((c) => {
+      filterColumns.forEach((c) => {
         httpParams = httpParams.append("filterColumns", c);
       });
     }
-    this.getRangeIncludes.forEach((i) => {
+    includedTypes.forEach((i) => {
       httpParams = httpParams.set("includes", i);
     });
     return this.http.get<RangeResult<T>>(url, {headers: this.headers, params: httpParams});
   }
 
-  get(id: number): Observable<T> {
+  get(id: number, includedTypes: string[]): Observable<T> {
     const url = `${this.restUrl}/${id}`;
-    return this.http.get<T>(url, {params: {includes: this.getIncludes}});
+    return this.http.get<T>(url, {params: {includes: includedTypes}});
   }
 }

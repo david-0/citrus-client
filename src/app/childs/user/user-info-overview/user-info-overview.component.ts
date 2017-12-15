@@ -3,7 +3,7 @@ import {MatPaginator, MatSort} from "@angular/material";
 import {IUserInfo} from "citrus-common";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {GenericPagedDataSource} from "../../../table-support/generic-paged-data-source";
-import {UserInfoRestDatabaseService} from "../user-info-rest-database.service";
+import {UserInfoDatabaseService} from "../user-info-database.service";
 import {UserDetailsSettingsService} from "../user-info-settings.service";
 
 @Component({
@@ -19,7 +19,7 @@ export class UserInfoOverviewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private database: UserInfoRestDatabaseService, public settings: UserDetailsSettingsService) {
+  constructor(private database: UserInfoDatabaseService, public settings: UserDetailsSettingsService) {
   }
 
   ngOnInit() {

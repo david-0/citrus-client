@@ -25,18 +25,22 @@ import "hammerjs";
 import {ValidatorsModule} from "ng2-validators";
 
 import {AppComponent} from "./app.component";
+import {AddressCacheAdapterService} from "./cache/adapter/address-cache-adapter.service";
+import {UserInfoCacheAdapterService} from "./cache/adapter/user-info-cache-adapter.service";
+import {AddressCacheService} from "./cache/cache/address-cache.service";
+import {UserInfoCacheService} from "./cache/cache/user-info-cache.service";
+import {AddressDatabaseService} from "./childs/address/address-database.service";
 import {AddressDeleteComponent} from "./childs/address/address-delete/address-delete.component";
 import {AddressDetailsComponent} from "./childs/address/address-details/address-details.component";
 import {AddressEditComponent} from "./childs/address/address-edit/address-edit.component";
 import {AddressOverviewComponent} from "./childs/address/address-overview/address-overview.component";
-import {AddressRestDatabaseService} from "./childs/address/address-rest-database.service";
 import {AddressSettingsService} from "./childs/address/address-settings.service";
 import {AdministrationComponent} from "./childs/administration/administration.component";
+import {UserInfoDatabaseService} from "./childs/user/user-info-database.service";
 import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-delete.component";
 import {UserInfoDetailsComponent} from "./childs/user/user-info-details/user-info-details.component";
 import {UserInfoEditComponent} from "./childs/user/user-info-edit/user-info-edit.component";
 import {UserInfoOverviewComponent} from "./childs/user/user-info-overview/user-info-overview.component";
-import {UserInfoRestDatabaseService} from "./childs/user/user-info-rest-database.service";
 import {UserDetailsSettingsService} from "./childs/user/user-info-settings.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AppRouteModule} from "./router/app-route.module";
@@ -83,10 +87,14 @@ import {TableSupportModule} from "./table-support/table-support.module";
   ],
   providers: [
     MatIconRegistry,
-    AddressRestDatabaseService,
+    AddressDatabaseService,
     AddressSettingsService,
-    UserInfoRestDatabaseService,
+    AddressCacheAdapterService,
+    AddressCacheService,
+    UserInfoDatabaseService,
     UserDetailsSettingsService,
+    UserInfoCacheAdapterService,
+    UserInfoCacheService,
   ],
   bootstrap: [AppComponent]
 })
