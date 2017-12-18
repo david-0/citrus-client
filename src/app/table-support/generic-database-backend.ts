@@ -10,6 +10,7 @@ import {RangeResult} from "./range-result";
 export class GenericDatabaseBackend<T extends IId> implements GenericDatabaseInterface<T> {
 
   public dataChanged = new ReplaySubject<object>();
+  public all: ReplaySubject<T[]>;
 
   public constructor(private rest: GenericRestService<T>,
                      private cache: GenericCacheAdapterService<T>,
@@ -51,17 +52,20 @@ export class GenericDatabaseBackend<T extends IId> implements GenericDatabaseInt
   }
 
   public getAll(): Observable<T[]> {
-    const subject = new ReplaySubject<T[]>();
+    if (this.all) {
+      return this.all;
+    }
+    this.all = new ReplaySubject<T[]>()
     const cache = this.cache.getAll(this.includedTypesAtSelect);
     if (!isUndefined(cache)) {
-      subject.next(cache);
+      this.all.next(cache);
     } else {
       this.rest.getAll(this.includedTypesAtSelect).subscribe((result) => {
         this.cache.updateEntries(result, result.length);
-        subject.next(this.cache.getAll(this.includedTypesAtSelect));
+        this.all.next(this.cache.getAll(this.includedTypesAtSelect));
       });
     }
-    return subject;
+    return this.all;
   }
 
   public add(t: T): Observable<T> {
