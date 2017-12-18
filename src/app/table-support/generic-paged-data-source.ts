@@ -31,10 +31,6 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
     this.filterChange.next(filter);
   }
 
-  public test(t: [number]) {
-    return null;
-  }
-
   connect(collectionViewer: CollectionViewer): Observable<T[]> {
     const displayDataChanges = [
       this.database.dataChanged,
