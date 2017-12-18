@@ -12,7 +12,7 @@ export class UserInfoTO implements IUserInfo {
   public addresses: IAddress[];
   public customerOrders: ICustomerOrder[];
 
-  constructor(public userInfo: IUserInfo) {
+  constructor(userInfo: IUserInfo) {
     this.number = userInfo.number;
     this.email = userInfo.email;
     this.name = userInfo.name;

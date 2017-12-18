@@ -15,7 +15,7 @@ export class AddressTO implements IAddress {
   public city: string;
   public gpsLocation: IGpsLocation;
 
-  constructor(public address: IAddress) {
+  constructor(address: IAddress) {
     this.user = address.user;
     this.description = address.description;
     this.name = address.name;
