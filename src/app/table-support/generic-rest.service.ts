@@ -1,5 +1,6 @@
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {IId, IOrderDefinitions} from "citrus-common";
+import {IWhereDefinition} from "citrus-common/lib/interfaces/IWhereDefinition";
 import {Observable} from "rxjs/Observable";
 import {RangeResult} from "./range-result";
 
@@ -28,11 +29,14 @@ export class GenericRestService<T extends IId> {
   }
 
   getRange(offset: number, limit: number, filter: string, filterColumns: string[], order: IOrderDefinitions,
-           includedTypes: string[]): Observable<RangeResult<T>> {
+           where: IWhereDefinition, includedTypes: string[]): Observable<RangeResult<T>> {
     const url = `${this.restUrl}/${offset}/${limit}`;
     let httpParams = new HttpParams();
     if (order.definitions.length > 0) {
       httpParams = httpParams.set("columnName", order.definitions[0].columnName).set("direction", order.definitions[0].direction);
+    }
+    if (where && where.columnName && where.id) {
+      httpParams = httpParams.set("whereColumn", where.columnName).set("whereId", where.id.toString());
     }
     if (filter) {
       httpParams = httpParams.set("filter", filter);

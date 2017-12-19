@@ -1,11 +1,11 @@
-@mixin app-address-overview-theme($theme) {
+@mixin app-address-table-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
 
-  app-address-overview {
+  app-address-table {
     .table-row--highligthed:hover {
       background-color: mat-color($primary);
       transition: all 0.3s ease-in

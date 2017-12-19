@@ -1,6 +1,7 @@
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {MatPaginator, MatSort} from "@angular/material";
 import {IId} from "citrus-common";
+import {IWhereDefinition} from "citrus-common/lib/interfaces/IWhereDefinition";
 import "rxjs/add/observable/merge";
 import "rxjs/add/operator/mergeMap";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
@@ -13,6 +14,7 @@ import {SettingsServiceInterface} from "./settings-service-interface";
 export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
 
   private filterChange = new BehaviorSubject("");
+  private whereChange = new BehaviorSubject<IWhereDefinition>({columnName: undefined, id: undefined});
 
   constructor(private database: GenericDatabaseInterface<T>,
               private paginator: MatPaginator,
@@ -31,12 +33,18 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
     this.filterChange.next(filter);
   }
 
+  public set where(where: IWhereDefinition) {
+    this.paginator.pageIndex = 0;
+    this.whereChange.next(where);
+  }
+
   connect(collectionViewer: CollectionViewer): Observable<T[]> {
     const displayDataChanges = [
       this.database.dataChanged,
       this.filterChange,
       this.paginator.page,
       this.sort.sortChange,
+      this.whereChange,
     ];
 
     return Observable.merge(...displayDataChanges).mergeMap(() => {
@@ -45,10 +53,11 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
 
       const order = new OrderDefinitions();
       if (this.sort.direction !== "") {
-        order.definitions.push( new OrderDefinition(this.sort.active, this.sort.direction));
+        order.definitions.push(new OrderDefinition(this.sort.active, this.sort.direction));
       }
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-      return this.database.select(startIndex, this.paginator.pageSize, this.filterChange.value, order).map((result) => {
+      return this.database.select(startIndex, this.paginator.pageSize, this.filterChange.value,
+        order, this.whereChange.getValue()).map((result) => {
         this.paginator.length = result.count;
         this.paginator.pageSize = this.settings.pageSize;
         this.setPageIndex();

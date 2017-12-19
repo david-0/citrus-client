@@ -1,4 +1,5 @@
 import {IId, IOrderDefinitions} from "citrus-common";
+import {IWhereDefinition} from "citrus-common/lib/interfaces/IWhereDefinition";
 import {Observable} from "rxjs/Observable";
 import {Subject} from "rxjs/Subject";
 import {isUndefined} from "util";
@@ -10,6 +11,10 @@ export abstract class GenericCacheService<T extends IId> {
   private cache = new Map<number, T>();
 
   constructor() {
+  }
+
+  public isFullyLoaded(): boolean {
+    return this.state === CacheState.fullyLoaded;
   }
 
   public get dataChanged(): Observable<object> {
@@ -27,12 +32,14 @@ export abstract class GenericCacheService<T extends IId> {
     return undefined;
   }
 
-  public getRange(offset: number, limit: number, filter: string, order: IOrderDefinitions): RangeResult<T> {
+  public getRange(offset: number, limit: number, filter: string, order: IOrderDefinitions,
+                  where: IWhereDefinition): RangeResult<T> {
     if (this.state === CacheState.fullyLoaded) {
       const values = Array.from(this.cache.values());
-      const filteredvalues = values.filter((t) => this.filterFunction(t, filter));
-      filteredvalues.sort((a, b) => this.compareFunction(a, b, order));
-      return new RangeResult(filteredvalues, this.cache.size);
+      const whereFilteredValues = values.filter((t) => this.whereFunction(t, where.columnName, where.id));
+      const filteredValues = whereFilteredValues.filter((t) => this.filterFunction(t, filter));
+      filteredValues.sort((a, b) => this.compareFunction(a, b, order));
+      return new RangeResult(filteredValues, this.cache.size);
     }
     return undefined;
   }
@@ -81,6 +88,17 @@ export abstract class GenericCacheService<T extends IId> {
       .length > 0;
   }
 
+  private whereFunction(item: T, columnName: string, id: number) {
+    if (!columnName || !id) {
+      return true;
+    }
+    return Object.getOwnPropertyNames(item)
+      .filter(name => name === columnName)
+      .map((name) => Object.getOwnPropertyDescriptor(item, name).value)
+      .filter(value => value === id)
+      .length > 0;
+  }
+
   private compareFunction(a: T, b: T, order: IOrderDefinitions): number {
     let compareResult = 0;
     order.definitions.forEach(definition => {
@@ -90,7 +108,7 @@ export abstract class GenericCacheService<T extends IId> {
         if (typeof valueA === "string") {
           const compareValue = valueA.localeCompare(valueB);
           if (compareValue !== 0) {
-            compareResult =  definition.direction === "asc" ? compareValue : compareValue * -1;
+            compareResult = definition.direction === "asc" ? compareValue : compareValue * -1;
           }
         }
         if (typeof valueA === "number") {

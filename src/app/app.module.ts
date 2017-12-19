@@ -35,6 +35,7 @@ import {AddressDetailsComponent} from "./childs/address/address-details/address-
 import {AddressEditComponent} from "./childs/address/address-edit/address-edit.component";
 import {AddressOverviewComponent} from "./childs/address/address-overview/address-overview.component";
 import {AddressSettingsService} from "./childs/address/address-settings.service";
+import {AddressTableComponent} from "./childs/address/address-table/address-table.component";
 import {AdministrationComponent} from "./childs/administration/administration.component";
 import {UserInfoDatabaseService} from "./childs/user/user-info-database.service";
 import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-delete.component";
@@ -54,6 +55,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     AddressOverviewComponent,
     AddressEditComponent,
     AddressDetailsComponent,
+    AddressTableComponent,
     AddressDeleteComponent,
     UserInfoDeleteComponent,
     UserInfoDetailsComponent,

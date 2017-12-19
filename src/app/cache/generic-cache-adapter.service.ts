@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {IId, IOrderDefinitions} from "citrus-common";
+import {IWhereDefinition} from "citrus-common/lib/interfaces/IWhereDefinition";
 import {isUndefined} from "util";
 import {RangeResult} from "../table-support/range-result";
 import {GenericCacheService} from "./generic-cache.service";
@@ -30,8 +31,9 @@ export abstract class GenericCacheAdapterService<T extends IId> {
     return ids.map(id => this.get(id)).filter(cacheItem => cacheItem);
   }
 
-  public getRange(offset: number, limit: number, filter: string, order: IOrderDefinitions, includedTypes: string[]): RangeResult<T> {
-    const cacheItems = this.cache.getRange(offset, limit, filter, order);
+  public getRange(offset: number, limit: number, filter: string, order: IOrderDefinitions,
+                  where: IWhereDefinition, includedTypes: string[]): RangeResult<T> {
+    const cacheItems = this.cache.getRange(offset, limit, filter, order, where);
     if (!isUndefined(cacheItems) && this.areTypesLoaded(cacheItems.rows, includedTypes)) {
       return cacheItems;
     }
@@ -53,6 +55,8 @@ export abstract class GenericCacheAdapterService<T extends IId> {
   public remove(id: number) {
     return this.cache.remove(id);
   }
+
+  protected abstract fetchChilds(item: T);
 
   protected abstract updateChilds(item: T);
 

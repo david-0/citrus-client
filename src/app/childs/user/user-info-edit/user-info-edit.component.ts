@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {IUserInfo} from "citrus-common";
+import {IUser} from "citrus-common";
 import {UserInfoTO} from "../../../TransferObjects/UserInfoTO";
 import {UserInfoDatabaseService} from "../user-info-database.service";
 
@@ -11,7 +11,7 @@ import {UserInfoDatabaseService} from "../user-info-database.service";
 })
 export class UserInfoEditComponent implements OnInit {
 
-  public userInfo: IUserInfo = UserInfoTO.createEmpty();
+  public userInfo: IUser = UserInfoTO.createEmpty();
   public userInfoId: number;
 
   constructor(private route: ActivatedRoute,
