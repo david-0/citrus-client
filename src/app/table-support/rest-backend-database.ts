@@ -1,4 +1,5 @@
 import {IId, IOrderDefinitions} from "citrus-common";
+import {IWhereDefinition} from "citrus-common/lib/interfaces/IWhereDefinition";
 import {Observable} from "rxjs/Observable";
 import {Subject} from "rxjs/Subject";
 import {GenericDatabaseInterface} from "./generic-database.interface";
@@ -18,8 +19,9 @@ export class RestBackendDatabase<T extends IId> implements GenericDatabaseInterf
   public select(start: number,
                 length: number,
                 filter: string,
-                order: IOrderDefinitions): Observable<RangeResult<T>> {
-    return this.rest.getRange(start, length, filter, this.filterColumns, order, this.includedTypesAtSelect);
+                order: IOrderDefinitions,
+                where: IWhereDefinition): Observable<RangeResult<T>> {
+    return this.rest.getRange(start, length, filter, this.filterColumns, order, where, this.includedTypesAtSelect);
   }
 
   public get(id: number): Observable<T> {

@@ -1,9 +1,10 @@
-import {IAddress, ICustomerOrder, IUser, IUser} from "citrus-common";
+import {IAddress, ICustomerOrder, IUser} from "citrus-common";
 
 export class UserInfoTO implements IUser {
 
   public id: number;
   public number: number;
+  public password: string;
   public email: string;
   public name: string;
   public prename: string;
@@ -14,6 +15,7 @@ export class UserInfoTO implements IUser {
 
   constructor(userInfo: IUser) {
     this.number = userInfo.number;
+    this.password = userInfo.password;
     this.email = userInfo.email;
     this.name = userInfo.name;
     this.prename = userInfo.prename;
@@ -24,11 +26,31 @@ export class UserInfoTO implements IUser {
   }
 
   public static createEmpty(): IUser {
-    return new UserInfoTO({number: 0, email: "", name: "", prename: "", phone: "", mobile: "", customerOrders: [], addresses: []});
+    return new UserInfoTO({
+      number: 0,
+      password: "",
+      email: "",
+      name: "",
+      prename: "",
+      phone: "",
+      mobile: "",
+      customerOrders: [],
+      addresses: []
+    });
   }
 
   public static createEmptyUser(): IUser {
-    return ({number: 0, password: "", email: "", name: "", prename: "", phone: "", mobile: "", customerOrders: [], addresses: []});
+    return ({
+      number: 0,
+      password: "",
+      email: "",
+      name: "",
+      prename: "",
+      phone: "",
+      mobile: "",
+      customerOrders: [],
+      addresses: []
+    });
   }
 
   static createUserInfoWithId(id: number, userInfo: IUser): IUser {

@@ -11,22 +11,25 @@ export class AddressCacheAdapterService extends GenericCacheAdapterService<IAddr
     super(addressCache);
   }
 
-  protected fetchChilds(item: IAddress) {
+  protected fetchChilds(item: IAddress): boolean {
+    let fetchAll = false;
     if (isUndefined(item.user) && item["userId"]) {
       const alreadyCached = this.userInfoCache.get(item["userId"]);
       if (!!alreadyCached) {
         item.user = alreadyCached;
+        fetchAll = true;
       }
     }
     if (isUndefined(item.gpsLocation)) {
       // update gpsLocation cache
     }
+    return fetchAll;
   }
 
   protected updateChilds(item: IAddress) {
     this.replaceChildsWithAlreadyCachedItem(item);
     if (!!item.user) {
-        this.userInfoCache.update(item.user);
+      this.userInfoCache.update(item.user);
     }
     if (!isUndefined(item.gpsLocation)) {
       // update gpsLocation cache

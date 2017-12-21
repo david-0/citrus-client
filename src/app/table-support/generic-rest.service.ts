@@ -24,8 +24,12 @@ export class GenericRestService<T extends IId> {
     return this.http.delete<boolean>(url, {headers: this.headers});
   }
 
-  getAll(includedTypes: string[] = []): Observable<T[]> {
-    return this.http.get<T[]>(this.restUrl);
+  getAll(includedTypes: string[] = [], where: IWhereDefinition = null): Observable<T[]> {
+    let httpParams = new HttpParams();
+    if (where && where.columnName && where.id) {
+      httpParams = httpParams.set("whereColumn", where.columnName).set("whereId", where.id.toString());
+    }
+    return this.http.get<T[]>(this.restUrl, {params: httpParams});
   }
 
   getRange(offset: number, limit: number, filter: string, filterColumns: string[], order: IOrderDefinitions,

@@ -13,14 +13,20 @@ export abstract class GenericCacheAdapterService<T extends IId> {
 
   public get(id: number, includedTypes: string[] = []): T | undefined {
     const cacheItem = this.cache.get(id);
-    if (!isUndefined(cacheItem) && this.areTypesLoaded([cacheItem], includedTypes)) {
-      return cacheItem;
+    if (!!cacheItem) {
+      if (this.areTypesLoaded([cacheItem], includedTypes)) {
+        return cacheItem;
+      } else {
+        if (this.fetchChilds(cacheItem)) {
+          return cacheItem;
+        }
+      }
     }
     return undefined;
   }
 
-  public getAll(includedTypes: string[]): T[] | undefined {
-    const cacheItems = this.cache.getAll();
+  public getAll(includedTypes: string[], scopeCondition: IWhereDefinition): T[] | undefined {
+    const cacheItems = this.cache.getAll(scopeCondition);
     if (!isUndefined(cacheItems) && this.areTypesLoaded(cacheItems, includedTypes)) {
       return cacheItems;
     }
@@ -40,11 +46,18 @@ export abstract class GenericCacheAdapterService<T extends IId> {
     return undefined;
   }
 
-  public updateEntries(items: T[], countIfAllLoaded: number = -1) {
+  public updateEntries(items: T[], scopeCondition: IWhereDefinition = null, countIfAllLoaded: number = -1) {
     items.forEach((item) => {
       this.updateChilds(item);
     });
-    this.cache.updateEntries(items, countIfAllLoaded);
+    this.cache.updateEntries(items, scopeCondition, countIfAllLoaded);
+  }
+
+  public updateAllEntries(items: T[], scopeCondition: IWhereDefinition = null) {
+    items.forEach((item) => {
+      this.updateChilds(item);
+    });
+    this.cache.updateAllEntries(items, scopeCondition);
   }
 
   public update(t: T) {
@@ -56,7 +69,7 @@ export abstract class GenericCacheAdapterService<T extends IId> {
     return this.cache.remove(id);
   }
 
-  protected abstract fetchChilds(item: T);
+  protected abstract fetchChilds(item: T): boolean;
 
   protected abstract updateChilds(item: T);
 

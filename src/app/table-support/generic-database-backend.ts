@@ -14,7 +14,7 @@ export class GenericDatabaseBackend<T extends IId> implements GenericDatabaseInt
   public all: ReplaySubject<T[]>;
 
   public constructor(private rest: GenericRestService<T>,
-                     private cache: GenericCacheAdapterService<T>,
+                     private cacheAdapter: GenericCacheAdapterService<T>,
                      private filterColumns: string[] = [],
                      private includedTypesAtSelect: string[] = [],
                      private includedTypesAtGet: string[] = []) {
@@ -26,13 +26,17 @@ export class GenericDatabaseBackend<T extends IId> implements GenericDatabaseInt
                 order: IOrderDefinitions,
                 where: IWhereDefinition): Observable<RangeResult<T>> {
     const subject = new ReplaySubject<RangeResult<T>>();
-    const cache = this.cache.getRange(start, length, filter, order, where, this.includedTypesAtSelect);
+    const cache = this.cacheAdapter.getRange(start, length, filter, order, where, this.includedTypesAtSelect);
     if (!isUndefined(cache)) {
       subject.next(cache);
     } else {
       this.rest.getRange(start, length, filter, this.filterColumns, order, where, this.includedTypesAtSelect).subscribe((result) => {
-        this.cache.updateEntries(result.rows, result.count);
-        result.rows = this.cache.getByIds(result.rows.map((item) => item.id), this.includedTypesAtSelect);
+        if (!!filter) {
+          this.cacheAdapter.updateEntries(result.rows, where); // count == all entries that matches "where condition" and "filter"
+        } else {
+          this.cacheAdapter.updateEntries(result.rows, where, result.count); // count == all entries that matches "where condition"
+        }
+        result.rows = this.cacheAdapter.getByIds(result.rows.map((item) => item.id), this.includedTypesAtSelect);
         subject.next(result);
       });
     }
@@ -41,30 +45,30 @@ export class GenericDatabaseBackend<T extends IId> implements GenericDatabaseInt
 
   public get(id: number): Observable<T> {
     const subject = new ReplaySubject<T>();
-    const cache = this.cache.get(id, this.includedTypesAtGet);
+    const cache = this.cacheAdapter.get(id, this.includedTypesAtGet);
     if (!isUndefined(cache)) {
       subject.next(cache);
     } else {
       this.rest.get(id, this.includedTypesAtGet).subscribe((entry) => {
-        this.cache.update(entry);
+        this.cacheAdapter.update(entry);
         subject.next(entry);
       });
     }
     return subject;
   }
 
-  public getAll(): Observable<T[]> {
+  public getAll(scopeCondition: IWhereDefinition = {columnName: undefined, id: undefined}): Observable<T[]> {
     if (this.all) {
       return this.all;
     }
-    this.all = new ReplaySubject<T[]>()
-    const cache = this.cache.getAll(this.includedTypesAtSelect);
+    this.all = new ReplaySubject<T[]>();
+    const cache = this.cacheAdapter.getAll(this.includedTypesAtSelect, scopeCondition);
     if (!isUndefined(cache)) {
       this.all.next(cache);
     } else {
-      this.rest.getAll(this.includedTypesAtSelect).subscribe((result) => {
-        this.cache.updateEntries(result, result.length);
-        this.all.next(this.cache.getAll(this.includedTypesAtSelect));
+      this.rest.getAll(this.includedTypesAtSelect, scopeCondition).subscribe((result) => {
+        this.cacheAdapter.updateAllEntries(result, scopeCondition);
+        this.all.next(this.cacheAdapter.getAll(this.includedTypesAtSelect, scopeCondition));
       });
     }
     return this.all;
@@ -73,7 +77,7 @@ export class GenericDatabaseBackend<T extends IId> implements GenericDatabaseInt
   public add(t: T): Observable<T> {
     const subject = new ReplaySubject<T>();
     this.rest.add(t).subscribe((item) => {
-      this.cache.update(item);
+      this.cacheAdapter.update(item);
       subject.next(item);
     });
     return subject;
@@ -83,7 +87,7 @@ export class GenericDatabaseBackend<T extends IId> implements GenericDatabaseInt
     const subject = new ReplaySubject<boolean>();
     this.rest.del(id).subscribe((success) => {
       if (success) {
-        this.cache.remove(id);
+        this.cacheAdapter.remove(id);
       }
       subject.next(success);
     });
@@ -94,7 +98,7 @@ export class GenericDatabaseBackend<T extends IId> implements GenericDatabaseInt
     const subject = new ReplaySubject<boolean>();
     this.rest.update(t).subscribe((success) => {
       if (success) {
-        this.cache.update(t);
+        this.cacheAdapter.update(t);
       }
       subject.next(success);
     });

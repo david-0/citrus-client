@@ -47,7 +47,7 @@ export class GenericPagedDataSource<T extends IId> extends DataSource<T> {
       this.whereChange,
     ];
 
-    return Observable.merge(...displayDataChanges).mergeMap(() => {
+    return Observable.merge(...displayDataChanges).mergeMap((value) => {
       this.setLoading(true);
       const t: { id: number }[] = [];
 
