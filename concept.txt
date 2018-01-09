@@ -1,0 +1,47 @@
+Requirements
+- working with interfaces or Model Objects?
+- Different model's on client needed: YES
+  - DTO's = T Model (defined in common)
+    - Load with different Scope's from db
+      - different DTO's for the same Objects (loading)
+      - different Rest calls (inamed with included types)?
+      - update/save: always the same objects 
+        - equivalent to db table
+          - linked member with ids
+          - linked member array: update in the referenced object
+  - Cache = C Model (Cache Model)
+    - Model like DB tablefields 
+    - contains data's
+  - Client = D Model (defined in client)
+    - states:
+      - fully connected
+      - linked member: null = not set in DB
+      - linked member: undefined = not loaded
+      - linked member array: null = not set in DB
+      - linked member array: undefined = not loaded
+  - projection from one to the other
+
+API:
+T-Model:
+
+C-Model:
+
+D-Model:
+
+
+
+USE CASES
+1: get all Users with dependencies
+- D-Model User-Database.getAll()
+  -> check, if Observable already exists
+  -> create Observable and return / get and return
+- call C-Model User-Cache.getAll() 
+
+2: get all Address included the Owner (User)
+- D-Model Address-Database.getAll()
+  -> create Observable 
+
+3: get all Address with UserID X
+- D-Model: Address-Database.getAll(where: UserId=X)
+  -> create Observable
+- call C-Model
