@@ -2,22 +2,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatDatepickerModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatIconRegistry,
-  MatInputModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSortModule,
-  MatTableModule,
-  MatToolbarModule,
-  MatTooltipModule,
+  MatButtonModule, MatButtonToggleModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatIconModule,
+  MatIconRegistry, MatInputModule, MatNativeDateModule, MatPaginatorModule, MatSelectModule, MatSidenavModule,
+  MatSortModule, MatTableModule, MatToolbarModule, MatTooltipModule,
 } from "@angular/material";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -44,6 +31,8 @@ import {UserInfoEditComponent} from "./childs/user/user-info-edit/user-info-edit
 import {UserInfoOverviewComponent} from "./childs/user/user-info-overview/user-info-overview.component";
 import {UserDetailsSettingsService} from "./childs/user/user-info-settings.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {InMemoryDatabaseService} from "./in-memory-db/in-memory-database.service";
+import {RequestService} from "./in-memory-db/websocket/request.service";
 import {AppRouteModule} from "./router/app-route.module";
 import {TableSupportModule} from "./table-support/table-support.module";
 
@@ -97,6 +86,8 @@ import {TableSupportModule} from "./table-support/table-support.module";
     UserDetailsSettingsService,
     UserInfoCacheAdapterService,
     UserInfoCacheService,
+    InMemoryDatabaseService,
+    RequestService,
   ],
   bootstrap: [AppComponent]
 })
