@@ -1,17 +1,17 @@
+import {IRequest} from "citrus-common";
 import {Observable} from "rxjs/Observable";
 import {CModel} from "../model/c/c-model";
-import {IRequest} from "../request/i-request";
 import {Session} from "./session";
 
 export class Sessions {
-  private sessions = new Map<string, Session<any>>();
+  private sessions = new Map<string, Session>();
 
   /**
    * Is this request already in the sessions available?
    * @param {Request<T extends CModel>} request
    * @returns {boolean}
    */
-  public has<T extends CModel>(request: IRequest<T>): boolean {
+  public has(request: IRequest): boolean {
     return this.sessions.has(request.toString());
   }
 
@@ -20,7 +20,7 @@ export class Sessions {
    * @param {Request<C extends CModel>} request
    * @returns {Session<C extends CModel>}
    */
-  public get<C extends CModel>(request: IRequest<C>): Session<C> {
+  public get<C extends CModel>(request: IRequest): Session {
     return this.sessions.get(request.toString());
   }
 
@@ -29,9 +29,9 @@ export class Sessions {
    * @param {typeof CModel} type
    * @returns {Session<C extends CModel>[]}
    */
-  private getSessionsOfType<C extends CModel>(type: typeof CModel): Session<C>[] {
+  private getSessionsOfType(typeName: string): Session[] {
     return Array.from(this.sessions.values())
-      .filter(s => s.request.type === type)
+      .filter(s => s.request.typeName === typeName)
       .sort(s => s.isLoaded() ? 1 : 0);
   }
 
@@ -41,7 +41,7 @@ export class Sessions {
    * @param {Request<C extends CModel>} request
    * @returns {Session<C extends CModel> | undefined}
    */
-  public getParentSession<C extends CModel>(request: IRequest<C>): Session<C> | undefined {
+  public getParentSession(request: IRequest): Session | undefined {
     const parentSessions = Array.from(this.sessions.values())
       .filter(session => session.request.isSubRequest(request));
     if (parentSessions.length > 0) {
@@ -56,15 +56,15 @@ export class Sessions {
    * @param {typeof CModel} type
    * @returns {Observable<boolean>}
    */
-  public areRequestedItemsLoaded<C extends CModel>(request: IRequest<C>): Observable<boolean> {
-    const type = request.type;
+  public areRequestedItemsLoaded(request: IRequest): Observable<boolean> {
+    const type = request.typeName;
     const sessions = this.getSessionsOfType(type);
     return Observable.from(sessions)
       .flatMap(s => s.areAllLoaded())
       .reduce((acc, curr) => acc || curr, false);
   }
 
-  public add<T extends CModel>(session: Session<T>): void {
+  public add<T extends CModel>(session: Session): void {
     this.sessions.set(session.request.toString(), session);
   }
 }

@@ -1,14 +1,14 @@
+import {IRequest} from "citrus-common";
 import {Observable} from "rxjs/Observable";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {CModel} from "../model/c/c-model";
-import {IRequest} from "../request/i-request";
 
-export class Session<C extends CModel> {
-  private lastValues: C[] = undefined;
+export class Session {
+  private lastValues: any[] = undefined;
   private lastValuesIdIndex: Set<number> = new Set<number>();
-  private _subject = new ReplaySubject<C[]>();
+  private _subject = new ReplaySubject<any[]>();
 
-  constructor(private _request: IRequest<C>, private inputSubject: ReplaySubject<C[]>) {
+  constructor(private _request: IRequest, private inputSubject: ReplaySubject<any[]>) {
     this.inputSubject.subscribe(values => {
         this.lastValues = values;
         this.lastValuesIdIndex = new Set<number>(values.map(v => v.id));
@@ -22,7 +22,7 @@ export class Session<C extends CModel> {
    * Returns the Request of this session.
    * @returns {Request<T extends CModel>}
    */
-  public get request(): IRequest<C> {
+  public get request(): IRequest {
     return this._request;
   }
 
@@ -30,7 +30,7 @@ export class Session<C extends CModel> {
    * Returns the subject with the last result, the subject may not already have a value.
    * @returns {ReplaySubject<T[]>}
    */
-  public get subject(): ReplaySubject<C[]> {
+  public get subject(): ReplaySubject<any[]> {
     return this._subject;
   }
 
@@ -39,8 +39,8 @@ export class Session<C extends CModel> {
    * @param {Request<T extends CModel>} request
    * @returns {boolean}
    */
-  public hasSameType(request: IRequest<C>): boolean {
-    return this._request.type === request.type;
+  public hasSameType(request: IRequest): boolean {
+    return this._request.typeName === request.typeName;
   }
 
   /**

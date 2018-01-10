@@ -23,11 +23,11 @@ export class GenericRestService<T extends TModel> {
     return this.http.delete<boolean>(url);
   }
 
-  getAll(includedFields: string[] = [], condition: IRequestCondition<any> = null): Observable<T[]> {
+  getAll(includedFields: string[] = [], condition: IRequestCondition = null): Observable<T[]> {
     return this.http.post<T[]>(this.restUrl, {includedFields: includedFields, condition: condition});
   }
 
-  getRange(offset: number, limit: number, includedFields: string[] = [], condition: IRequestCondition<any>,
+  getRange(offset: number, limit: number, includedFields: string[] = [], condition: IRequestCondition,
            order: IOrderDefinitions): Observable<RangeResult<T>> {
     const url = `${this.restUrl}/${offset}/${limit}`;
     return this.http.post<RangeResult<T>>(url, {includedFields: includedFields, condition: condition, order: order});

@@ -34,7 +34,7 @@ export class GenericDatabaseBackend<T extends IId> implements GenericDatabaseInt
     if (!isUndefined(cache)) {
       subject.next(cache);
     } else {
-      const req = new Request<CAddress>(CAddress, [], []);
+      const req = new Request("CAddress", [], []);
       this.inMemoryDb.get(req).subscribe(addresses => {
         console.info(addresses);
       });

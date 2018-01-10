@@ -1,10 +1,10 @@
 import {IRequestCondition} from "citrus-common";
 
-export class RequestContainsCondition<C> implements IRequestCondition<C> {
-  constructor(private _names: string[], private _value: C) {
+export class RequestContainsCondition implements IRequestCondition {
+  constructor(private _names: string[], private _value: any) {
   }
 
-  public match(item: C): boolean {
+  public match(item: any): boolean {
     return this._names.map(name => {
       const desc = Object.getOwnPropertyDescriptor(item, name);
       return !!desc && desc.get().toString().indexOf(this._value) > -1;

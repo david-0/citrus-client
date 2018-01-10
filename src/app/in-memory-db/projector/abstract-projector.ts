@@ -1,15 +1,13 @@
-import {CModel} from "../model/c/c-model";
 import {Caches} from "../cache/caches";
-import {TModel} from "../model/t/t-id";
 import {Projectors} from "./projectors";
 
-export abstract class AbstractProjector<C extends CModel, T extends TModel> {
+export abstract class AbstractProjector {
   constructor(private _caches: Caches, private _projectors: Projectors) {
   }
 
-  public abstract projectOneAndUpdateCache(tItem: T): C;
+  public abstract projectOneAndUpdateCache(tItem: any): any;
 
-  public projectManyAndUpdateCache(tItems: T[]): C[] {
+  public projectManyAndUpdateCache(tItems: any[]): any[] {
     return tItems.map(tItem => this.projectOneAndUpdateCache(tItem));
   }
 

@@ -4,9 +4,7 @@ import {ReplaySubject} from "rxjs/ReplaySubject";
 import {Caches} from "./cache/caches";
 import {TypeCache} from "./cache/type-cache";
 import {CAddress} from "./model/c/c-address";
-import {CModel} from "./model/c/c-model";
 import {CUser} from "./model/c/c-user";
-import {TModel} from "./model/t/t-id";
 import {AbstractProjector} from "./projector/abstract-projector";
 import {AddressProjector} from "./projector/address-projector";
 import {Projectors} from "./projector/projectors";
@@ -25,23 +23,24 @@ export class InMemoryDatabaseService {
   private projectors = new Projectors();
 
   constructor(private requestService: RequestService) {
-    this.caches.addCache(CAddress, new TypeCache());
-    this.caches.addCache(CUser, new TypeCache());
-    this.projectors.add(CAddress, new AddressProjector(this.caches, this.projectors));
-    this.projectors.add(CUser, new UserProjector(this.caches, this.projectors));
+    this.caches.addCache("CAddress", new TypeCache());
+    this.caches.addCache("CUser", new TypeCache());
+    this.projectors.add("CAddress", new AddressProjector(this.caches, this.projectors));
+    this.projectors.add("CUser", new UserProjector(this.caches, this.projectors));
   }
 
-  public get<C extends CModel, T extends TModel>(cRequest: Request<C>): Observable<C[]> {
+  public get(cRequest: Request): Observable<any[]> {
     if (!this.activeSessions.has(cRequest)) {
-      const subject = new ReplaySubject<C[]>();
+      const subject = new ReplaySubject<any[]>();
       const parentSession = this.activeSessions.getParentSession(cRequest);
       if (parentSession) {
         parentSession.subject.subscribe(cItems => {
+          // TODO: have to get the values from cache
           subject.next(cItems.filter(cItem => cRequest.matchId(cItem.id)));
         });
       } else {
-        this.requestService.get(cRequest).subscribe((rangeResult: RangeResult<T>) => {
-          const projector: AbstractProjector<C, T> = this.projectors.get(cRequest.type);
+        this.requestService.get(cRequest).subscribe((rangeResult: RangeResult<any>) => {
+          const projector: AbstractProjector = this.projectors.get(cRequest.typeName);
           subject.next(projector.projectManyAndUpdateCache(rangeResult.rows));
         });
       }

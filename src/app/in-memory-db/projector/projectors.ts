@@ -1,15 +1,13 @@
-import {CModel} from "../model/c/c-model";
-import {TModel} from "../model/t/t-id";
 import {AbstractProjector} from "./abstract-projector";
 
 export class Projectors {
-  private projectors = new Map<typeof CModel, AbstractProjector<any, any>>();
+  private projectors = new Map<string, AbstractProjector>();
 
-  public get<C extends CModel, T extends TModel>(cType: typeof CModel): AbstractProjector<C, T> {
-    return this.projectors.get(cType);
+  public get(typeName: string): AbstractProjector {
+    return this.projectors.get(typeName);
   }
 
-  public add<C extends CModel, T extends TModel>(cType: typeof CModel, projector: AbstractProjector<C, T>): void {
-    this.projectors.set(cType, projector);
+  public add(typeName: string, projector: AbstractProjector): void {
+    this.projectors.set(typeName, projector);
   }
 }

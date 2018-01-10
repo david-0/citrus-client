@@ -1,41 +1,40 @@
 import {IRequestCondition, IRequestField} from "citrus-common";
-import {CModel} from "../model/c/c-model";
 import {Request} from "./request";
 
-export class RequestBuilder<T extends CModel> {
+export class RequestBuilder {
   private includedFields: IRequestField[] = [];
-  private conditions: IRequestCondition<T>[] = [];
+  private conditions: IRequestCondition[] = [];
 
-  public constructor(private type: typeof CModel) {
+  public constructor(private typeName: string) {
   }
 
-  static createFromRequest<T extends CModel>(request: Request<T>): RequestBuilder<T> {
-    return new RequestBuilder(request.type)
+  static createFromRequest(request: Request): RequestBuilder {
+    return new RequestBuilder(request.typeName)
       .addFields(request.includedFields)
       .addConditions(request.conditions);
   }
 
-  public addFields(fields: IRequestField[]): RequestBuilder<T> {
+  public addFields(fields: IRequestField[]): RequestBuilder {
     this.includedFields.push(...fields);
     return this;
   }
 
-  public addField(field: IRequestField): RequestBuilder<T> {
+  public addField(field: IRequestField): RequestBuilder {
     this.includedFields.push(field);
     return this;
   }
 
-  public addCondition(condition: IRequestCondition<T>) {
+  public addCondition(condition: IRequestCondition) {
     this.conditions.push(condition);
     return this;
   }
 
-  public addConditions(conditions: IRequestCondition<T>[]) {
+  public addConditions(conditions: IRequestCondition[]) {
     this.conditions.push(...conditions);
     return this;
   }
 
-  public build(): Request<T> {
-    return new Request(this.type, this.includedFields, this.conditions);
+  public build(): Request {
+    return new Request(this.typeName, this.includedFields, this.conditions);
   }
 }

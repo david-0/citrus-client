@@ -14,7 +14,7 @@ export class RequestService {
     this.restUrl = "http://localhost:3001/api/request";
   }
 
-  public get<T extends TModel, C extends CModel>(request: Request<C>): Observable<RangeResult<T>> {
+  public get<T extends TModel, C extends CModel>(request: Request): Observable<RangeResult<any>> {
     return this.http.post<RangeResult<T>>(this.restUrl, request);
   }
 }

@@ -2,13 +2,13 @@ import {CModel} from "../model/c/c-model";
 import {TypeCache} from "./type-cache";
 
 export class Caches {
-  private caches = new Map<typeof CModel, TypeCache<any>>();
+  private caches = new Map<string, TypeCache<any>>();
 
-  public getCache(name: typeof CModel) {
+  public getCache(typeName: string) {
     return this.caches.get(name);
   }
 
-  public addCache(name: typeof CModel, typeCache: TypeCache<any>) {
+  public addCache(typeName: string, typeCache: TypeCache<any>) {
     return this.caches.set(name, typeCache);
   }
 }

@@ -1,10 +1,10 @@
 import {IRequestCondition} from "citrus-common";
 
-export class RequestOrCondition<C> implements IRequestCondition<C> {
-  constructor(private requestConditions: IRequestCondition<C>[]) {
+export class RequestOrCondition implements IRequestCondition {
+  constructor(private requestConditions: IRequestCondition[]) {
   }
 
-  public match(item: C): boolean {
+  public match(item: any): boolean {
     return this.requestConditions.map(c => c.match(item)).reduce((c1, c2) => c1 || c2);
   }
 
