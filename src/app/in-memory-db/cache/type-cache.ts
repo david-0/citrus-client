@@ -1,5 +1,6 @@
 import {isUndefined} from "util";
 import {CModel} from "../model/c/c-model";
+import {ImmutableWrapper} from "./immutable-wrapper";
 
 export class TypeCache<C extends CModel> {
   private cache = new Map<number, C>();
@@ -17,11 +18,7 @@ export class TypeCache<C extends CModel> {
   }
 
   public synchronizeMany(items: C[]): C[] {
-    return items.filter(item => item).map(item => this.synchronizeOne(item));
-  }
-
-  public set(id: number, t: C) {
-    this.cache.set(id, t);
+    return items.map(item => this.synchronizeOne(item));
   }
 
   public delete(id: number): boolean {
@@ -29,13 +26,13 @@ export class TypeCache<C extends CModel> {
   }
 
   public synchronizeOne(item: C): C {
-    const cacheEntry = this.cache.get(item.id);
+    let cacheEntry = this.cache.get(item.id);
     if (isUndefined(cacheEntry)) {
-      this.cache.set(item.id, item);
-      return item;
+      cacheEntry = <C>{id: item.id};
+      this.cache.set(item.id, cacheEntry);
     }
     this.projectItem(cacheEntry, item);
-    return cacheEntry;
+    return ImmutableWrapper.wrap(cacheEntry);
   }
 
   private projectItem(cacheItem: C, item: C): boolean {
@@ -44,7 +41,7 @@ export class TypeCache<C extends CModel> {
     itemPropertyNames.forEach((name) => {
       const itemDesc = Object.getOwnPropertyDescriptor(item, name);
       const itemValue = itemDesc.value;
-      if (!isUndefined(itemValue) && itemValue !== cacheItem[name]) {
+      if (!!itemValue && itemValue !== cacheItem[name]) {
         cacheItem[name] = itemValue;
         changed = true;
       }
