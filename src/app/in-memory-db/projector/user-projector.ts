@@ -12,12 +12,12 @@ export class UserProjector extends AbstractProjector {
     cUser.phone = tItem.phone;
     cUser.mobile = tItem.mobile;
     if (!!tItem.addresses) {
-      cUser.addressIds = this.projectors.get("CUser")
+      cUser.addressIds = this.projectors.get("User")
         .projectManyAndUpdateCache(tItem.addresses)
         .map(address => address.id);
     } else {
       cUser.addressIds = tItem.addressIds;
     }
-    return this.caches.getCache("CUser").synchronizeOne(cUser);
+    return this.caches.getCache("User").synchronizeOne(cUser);
   }
 }

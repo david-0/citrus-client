@@ -3,8 +3,6 @@ import {Observable} from "rxjs/Observable";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {Caches} from "./cache/caches";
 import {TypeCache} from "./cache/type-cache";
-import {CAddress} from "./model/c/c-address";
-import {CUser} from "./model/c/c-user";
 import {AbstractProjector} from "./projector/abstract-projector";
 import {AddressProjector} from "./projector/address-projector";
 import {Projectors} from "./projector/projectors";
@@ -23,10 +21,10 @@ export class InMemoryDatabaseService {
   private projectors = new Projectors();
 
   constructor(private requestService: RequestService) {
-    this.caches.addCache("CAddress", new TypeCache());
-    this.caches.addCache("CUser", new TypeCache());
-    this.projectors.add("CAddress", new AddressProjector(this.caches, this.projectors));
-    this.projectors.add("CUser", new UserProjector(this.caches, this.projectors));
+    this.caches.addCache("Address", new TypeCache());
+    this.caches.addCache("User", new TypeCache());
+    this.projectors.add("Address", new AddressProjector(this.caches, this.projectors));
+    this.projectors.add("User", new UserProjector(this.caches, this.projectors));
   }
 
   public get(cRequest: Request): Observable<any[]> {
@@ -35,7 +33,6 @@ export class InMemoryDatabaseService {
       const parentSession = this.activeSessions.getParentSession(cRequest);
       if (parentSession) {
         parentSession.subject.subscribe(cItems => {
-          // TODO: have to get the values from cache
           subject.next(cItems.filter(cItem => cRequest.matchId(cItem.id)));
         });
       } else {

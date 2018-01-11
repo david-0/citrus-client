@@ -13,10 +13,10 @@ export class AddressProjector extends AbstractProjector {
     cAddress.zipcode = tItem.zipcode;
     cAddress.city = tItem.city;
     if (!!tItem.user) {
-      cAddress.userId = this.projectors.get("CAddress").projectOneAndUpdateCache(tItem.user).id;
+      cAddress.userId = this.projectors.get("Address").projectOneAndUpdateCache(tItem.user).id;
     } else {
       cAddress.userId = tItem.userId;
     }
-    return this.caches.getCache("CAddress").synchronizeOne(cAddress);
+    return this.caches.getCache("Address").synchronizeOne(cAddress);
   }
 }
