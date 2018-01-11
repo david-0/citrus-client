@@ -8,7 +8,7 @@ describe("UserInfoEditComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [detailsUserDetailsEditComponent]
+      declarations: [UserInfoEditComponent]
     })
       .compileComponents();
   }));
