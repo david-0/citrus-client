@@ -5,7 +5,7 @@ import {ReplaySubject} from "rxjs/ReplaySubject";
 import {isUndefined} from "util";
 import {GenericCacheAdapterService} from "../cache/generic-cache-adapter.service";
 import {InMemoryDatabaseService} from "../in-memory-db/in-memory-database.service";
-import {CAddress} from "../in-memory-db/model/c/c-address";
+import {RequestField} from "../in-memory-db/request/request-field";
 import {Request} from "./../in-memory-db/request/request";
 import {GenericDatabaseInterface} from "./generic-database.interface";
 import {GenericRestService} from "./generic-rest.service";
@@ -29,15 +29,17 @@ export class GenericDatabaseBackend<T extends IId> implements GenericDatabaseInt
                 filter: string,
                 order: IOrderDefinitions,
                 where: IWhereDefinition): Observable<RangeResult<T>> {
+
+    const req = new Request("Address", [new RequestField("user", "User")], [], [], length, start);
+    this.inMemoryDb.get(req).subscribe(addresses => {
+      console.info(addresses);
+    });
+
     const subject = new ReplaySubject<RangeResult<T>>();
     const cache = this.cacheAdapter.getRange(start, length, filter, order, where, this.includedTypesAtSelect);
     if (!isUndefined(cache)) {
       subject.next(cache);
     } else {
-      const req = new Request("CAddress", [], []);
-      this.inMemoryDb.get(req).subscribe(addresses => {
-        console.info(addresses);
-      });
       this.rest.getRange(start, length, filter, this.filterColumns, order, where, this.includedTypesAtSelect).subscribe((result) => {
         if (!!filter) {
           this.cacheAdapter.updateEntries(result.rows, where); // count == all entries that matches "where condition" and "filter"
