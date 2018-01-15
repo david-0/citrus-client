@@ -12,7 +12,7 @@ export class UserProjector extends AbstractProjector {
     cUser.phone = tItem.phone;
     cUser.mobile = tItem.mobile;
     if (!!tItem.addresses) {
-      cUser.addressIds = this.projectors.get("User")
+      cUser.addressIds = this.projectors.get("Address")
         .projectManyAndUpdateCache(tItem.addresses)
         .map(address => address.id);
     } else {
