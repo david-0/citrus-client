@@ -1,7 +1,7 @@
 import {HttpClient} from "@angular/common/http";
 import {IOrderDefinitions, IRequestCondition} from "citrus-common";
 import {Observable} from "rxjs/Observable";
-import {TModel} from "../model/t/t-id";
+import {TModel} from "../model/t/t-model";
 import {RangeResult} from "./range-result";
 
 export class GenericRestService<T extends TModel> {

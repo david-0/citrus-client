@@ -1,4 +1,4 @@
-import {TModel} from "./t-id";
+import {TModel} from "./t-model";
 import {TUser} from "./t-user";
 
 export class TAddress extends TModel {

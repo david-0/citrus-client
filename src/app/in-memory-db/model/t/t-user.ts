@@ -1,5 +1,5 @@
 import {TAddress} from "./t-address";
-import {TModel} from "./t-id";
+import {TModel} from "./t-model";
 
 export class TUser extends TModel {
   number: number;

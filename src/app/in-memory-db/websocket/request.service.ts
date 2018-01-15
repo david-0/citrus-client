@@ -2,7 +2,7 @@ import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {CModel} from "../model/c/c-model";
-import {TModel} from "../model/t/t-id";
+import {TModel} from "../model/t/t-model";
 import {Request} from "../request/request";
 import {RangeResult} from "../rest/range-result";
 
