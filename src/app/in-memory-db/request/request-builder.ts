@@ -16,7 +16,7 @@ export class RequestBuilder {
       .addFields(request.includedFields)
       .addConditions(request.conditions);
     if (!!request.order) {
-      rb.addOrder(request.order);
+      rb.addOrderDefinitions(request.order);
     }
     if (!!request.limit) {
       rb.addLimit(request.limit);
@@ -47,8 +47,19 @@ export class RequestBuilder {
     return this;
   }
 
-  public addOrder(order: IOrderDefinition[]): RequestBuilder {
-    this.order.push(...order);
+  public addOrderDefinitions(orderDefinitions: IOrderDefinition[]): RequestBuilder {
+    if (!this.order) {
+      this.order = [];
+    }
+    this.order.push(...orderDefinitions);
+    return this;
+  }
+
+  public addOrderDefinition(orderDefinition: IOrderDefinition): RequestBuilder {
+    if (!this.order) {
+      this.order = [];
+    }
+    this.order.push(orderDefinition);
     return this;
   }
 
@@ -63,6 +74,6 @@ export class RequestBuilder {
   }
 
   public build(): Request {
-    return new Request(this.typeName, this.includedFields, this.conditions);
+    return new Request(this.typeName, this.includedFields, this.conditions, this.order, this.limit, this.offset);
   }
 }
