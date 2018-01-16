@@ -5,17 +5,15 @@ export class RequestAndCondition implements IRequestCondition {
   }
 
   public match(item: any): boolean {
-    return this.requestConditions.map(c => c.match(item)).reduce((c1, c2) => c1 && c2);
+    return this.requestConditions.map(c => c.match(item)).reduce((b1, b2) => b1 && b2);
   }
 
   matchId(id: number): boolean {
-    return this.requestConditions.map(c => c.matchId(id)).reduce((c1, c2) => c1 && c2);
+    return this.requestConditions.map(c => c.matchId(id)).reduce((b1, b2) => b1 && b2);
   }
 
   isRangeCondition(): boolean {
-    return this.requestConditions
-      .map(cond => cond.isRangeCondition())
-      .reduce((acc, curr) => acc || curr, false); // is one a range Condition?
+    return this.requestConditions.map(c => c.isRangeCondition()).reduce((b1, b2) => b1 || b2);
   }
 
   public toString(): string {
