@@ -1,11 +1,11 @@
 import {IRequestField} from "citrus-common";
 
 export class RequestField implements IRequestField {
-  constructor(public fieldName: string, public typeName: string) {
+  constructor(public readonly fieldName: string, public readonly typeName: string) {
   }
 
   public toString() {
-    return name + ":" + this.typeName;
+    return this.fieldName + ":" + this.typeName;
   }
 
   public isEquals(field: RequestField): boolean {
