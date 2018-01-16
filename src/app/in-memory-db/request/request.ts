@@ -1,12 +1,12 @@
 import {IOrderDefinition, IRequest, IRequestCondition, IRequestField} from "citrus-common";
 
 export class Request implements IRequest {
-  constructor(public typeName: string,
-              public includedFields?: IRequestField[],
-              public conditions?: IRequestCondition[],
-              public order?: IOrderDefinition[],
-              public limit?: number,
-              public offset?: number) {
+  constructor(public readonly typeName: string,
+              public readonly includedFields?: IRequestField[],
+              public readonly conditions?: IRequestCondition[],
+              public readonly order?: IOrderDefinition[],
+              public readonly limit?: number,
+              public readonly offset?: number) {
   }
 
   private isRangeRequest(): boolean {
