@@ -22,7 +22,7 @@ export class RequestContainsCondition implements IRequestCondition {
   }
 
   public toString(): string {
-    return "[" + this._names.join(",") + "]==" + this._value.toString();
+    return "[" + this._names.join(",") + "] contains " + this._value.toString();
   }
 
 }
