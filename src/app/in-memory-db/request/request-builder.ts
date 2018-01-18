@@ -3,7 +3,7 @@ import {Request} from "./request";
 
 export class RequestBuilder {
   private includedFields: IRequestField[] = [];
-  private conditions: IRequestCondition[] = [];
+  private condition: IRequestCondition;
   private order?: IOrderDefinition[];
   private limit?: number;
   private offset?: number;
@@ -14,7 +14,7 @@ export class RequestBuilder {
   static createFromRequest(request: Request): RequestBuilder {
     const rb = new RequestBuilder(request.typeName)
       .addFields(request.includedFields)
-      .addConditions(request.conditions);
+      .addCondition(request.condition);
     if (!!request.order) {
       rb.addOrderDefinitions(request.order);
     }
@@ -38,12 +38,7 @@ export class RequestBuilder {
   }
 
   public addCondition(condition: IRequestCondition): RequestBuilder {
-    this.conditions.push(condition);
-    return this;
-  }
-
-  public addConditions(conditions: IRequestCondition[]): RequestBuilder {
-    this.conditions.push(...conditions);
+    this.condition = condition;
     return this;
   }
 
@@ -74,6 +69,6 @@ export class RequestBuilder {
   }
 
   public build(): Request {
-    return new Request(this.typeName, this.includedFields, this.conditions, this.order, this.limit, this.offset);
+    return new Request(this.typeName, this.offset, this.limit, this.condition, this.includedFields, this.order);
   }
 }

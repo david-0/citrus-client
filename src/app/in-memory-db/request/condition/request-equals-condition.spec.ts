@@ -13,7 +13,7 @@ describe("RequestEqualsCondition", () => {
         return 92;
       },
     });
-  });the condition
+  });
 
   it("shoud match, if item has the defined attribute", () => {
     const condition = new RequestEqualsCondition("attr1", "val1");

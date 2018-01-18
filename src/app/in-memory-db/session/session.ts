@@ -75,7 +75,7 @@ export class Session {
    * @returns {Observable<boolean>}
    */
   public areAllLoaded(): Observable<boolean> {
-    if (!this._request.hasCondition()) {
+    if (!this._request.condition) {
       return this.waitLoaded();
     }
     return Observable.create(observer =>

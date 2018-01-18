@@ -7,7 +7,7 @@ describe("RequestBuilder", () => {
     const request = new RequestBuilder("XYZ").build();
     expect(request.typeName).toBe("XYZ");
     expect(request.includedFields).toEqual([]);
-    expect(request.conditions).toEqual([]);
+    expect(request.condition).toBeUndefined();
     expect(request.order).toBeUndefined();
     expect(request.limit).toBeUndefined();
     expect(request.offset).toBeUndefined();
@@ -20,21 +20,7 @@ describe("RequestBuilder", () => {
     const request = builder.build();
     expect(request.typeName).toBe("XYZ");
     expect(request.includedFields).toEqual([]);
-    expect(request.conditions).toEqual([dummyCondition]);
-    expect(request.order).toBeUndefined();
-    expect(request.limit).toBeUndefined();
-    expect(request.offset).toBeUndefined();
-  });
-
-  it("addConditions and build", () => {
-    const builder = new RequestBuilder("XYZ");
-    const dummyCondition1 = createSpyObj(["dummy"]);
-    const dummyCondition2 = createSpyObj(["dummy"]);
-    builder.addConditions([dummyCondition1, dummyCondition2]);
-    const request = builder.build();
-    expect(request.typeName).toBe("XYZ");
-    expect(request.includedFields).toEqual([]);
-    expect(request.conditions).toEqual([dummyCondition1, dummyCondition2]);
+    expect(request.condition).toEqual(dummyCondition);
     expect(request.order).toBeUndefined();
     expect(request.limit).toBeUndefined();
     expect(request.offset).toBeUndefined();
@@ -47,7 +33,7 @@ describe("RequestBuilder", () => {
     const request = builder.build();
     expect(request.typeName).toBe("XYZ");
     expect(request.includedFields).toEqual([dummyField]);
-    expect(request.conditions).toEqual([]);
+    expect(request.condition).toBeUndefined();
     expect(request.order).toBeUndefined();
     expect(request.limit).toBeUndefined();
     expect(request.offset).toBeUndefined();
@@ -61,7 +47,7 @@ describe("RequestBuilder", () => {
     const request = builder.build();
     expect(request.typeName).toBe("XYZ");
     expect(request.includedFields).toEqual([dummyField1, dummyField2]);
-    expect(request.conditions).toEqual([]);
+    expect(request.condition).toBeUndefined();
     expect(request.order).toBeUndefined();
     expect(request.limit).toBeUndefined();
     expect(request.offset).toBeUndefined();
@@ -74,7 +60,7 @@ describe("RequestBuilder", () => {
     const request = builder.build();
     expect(request.typeName).toBe("XYZ");
     expect(request.includedFields).toEqual([]);
-    expect(request.conditions).toEqual([]);
+    expect(request.condition).toBeUndefined();
     expect(request.order).toEqual([dummyOrderDefinition]);
     expect(request.limit).toBeUndefined();
     expect(request.offset).toBeUndefined();
@@ -88,7 +74,7 @@ describe("RequestBuilder", () => {
     const request = builder.build();
     expect(request.typeName).toBe("XYZ");
     expect(request.includedFields).toEqual([]);
-    expect(request.conditions).toEqual([]);
+    expect(request.condition).toBeUndefined();
     expect(request.order).toEqual([dummyOrderDefinition1, dummyOrderDefinition2]);
     expect(request.limit).toBeUndefined();
     expect(request.offset).toBeUndefined();
@@ -100,7 +86,7 @@ describe("RequestBuilder", () => {
     const request = builder.build();
     expect(request.typeName).toBe("XYZ");
     expect(request.includedFields).toEqual([]);
-    expect(request.conditions).toEqual([]);
+    expect(request.condition).toBeUndefined();
     expect(request.order).toBeUndefined();
     expect(request.limit).toBe(15);
     expect(request.offset).toBeUndefined();
@@ -112,14 +98,15 @@ describe("RequestBuilder", () => {
     const request = builder.build();
     expect(request.typeName).toBe("XYZ");
     expect(request.includedFields).toEqual([]);
-    expect(request.conditions).toEqual([]);
+    expect(request.condition).toBeUndefined();
     expect(request.order).toBeUndefined();
     expect(request.limit).toBeUndefined();
     expect(request.offset).toBe(33);
   });
 
   it("create from request (with all fields set) and build", () => {
-    const input = new Request("XYZ", [], [], [], 11, 12);
+    const mockCondition = createSpyObj(["match", "matchId", "isRangeCondition"]);
+    const input = new Request("XYZ", 12, 11, mockCondition, [], []);
     const request = RequestBuilder.createFromRequest(input).build();
     expect(request).toEqual(input);
   });
@@ -129,7 +116,7 @@ describe("RequestBuilder", () => {
     const request = RequestBuilder.createFromRequest(input).build();
     expect(request.typeName).toBe("XYZ");
     expect(request.includedFields).toEqual([]);
-    expect(request.conditions).toEqual([]);
+    expect(request.condition).toBeUndefined();
     expect(request.order).toBeUndefined();
     expect(request.limit).toBeUndefined();
     expect(request.offset).toBeUndefined();

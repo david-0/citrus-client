@@ -30,7 +30,7 @@ export class GenericDatabaseBackend<T extends IId> implements GenericDatabaseInt
                 order: IOrderDefinitions,
                 where: IWhereDefinition): Observable<RangeResult<T>> {
 
-    const req = new Request("Address", [new RequestField("user", "User")], [], [], length, start);
+    const req = new Request("Address", start, length, undefined, [new RequestField("user", "User")], []);
     this.inMemoryDb.get(req).subscribe(addresses => {
       console.info(addresses);
     });

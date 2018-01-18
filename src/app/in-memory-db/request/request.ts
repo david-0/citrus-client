@@ -2,25 +2,27 @@ import {IOrderDefinition, IRequest, IRequestCondition, IRequestField} from "citr
 
 export class Request implements IRequest {
   constructor(public readonly typeName: string,
-              public readonly includedFields?: IRequestField[],
-              public readonly conditions?: IRequestCondition[],
-              public readonly order?: IOrderDefinition[],
+              public readonly offset?: number,
               public readonly limit?: number,
-              public readonly offset?: number) {
-  }
-
-  private isRangeRequest(): boolean {
-    return this.conditions
-      .map(cond => cond.isRangeCondition())
-      .reduce((acc, curr) => acc || curr, false); // is one a range Condition?
+              public readonly condition?: IRequestCondition,
+              public readonly includedFields: IRequestField[] = [],
+              public readonly order: IOrderDefinition[] = []) {
   }
 
   public isSubRequest(subRequest: IRequest): boolean {
+    if (this.typeName !== subRequest.typeName) {
+      return false;
+    }
     // TODO: the hasCondition is only true, if we have no condition, make it better --> isSubCondition??
-    return !this.hasCondition() && this.areAllFieldsIncluded(subRequest.includedFields);
+    return !this.condition && this.areAllFieldsIncluded(subRequest.includedFields);
   }
 
-  private areAllFieldsIncluded(subFields: IRequestField[]): boolean {
+  /**
+   * Checks, if the current request contains all the subFields from the parameter.
+   * @param {IRequestField[]} subFields
+   * @returns {boolean}
+   */
+  public areAllFieldsIncluded(subFields: IRequestField[]): boolean {
     return subFields
       .filter(subField => this.includedFields
         .filter(myField => myField.isEquals(subField))
@@ -28,20 +30,15 @@ export class Request implements IRequest {
       .length === subFields.length;
   }
 
-  public hasCondition(): boolean {
-    return this.conditions.length > 0;
-  }
-
   public match(item: any): boolean {
-    return this.conditions.map(c => c.match(item)).reduce((b1, b2) => b1 || b2);
+    return !!this.condition && this.condition.match(item);
   }
 
   public matchId(id: number): boolean {
-    return this.conditions.map(c => c.matchId(id)).reduce((b1, b2) => b1 || b2);
+    return !!this.condition && this.condition.matchId(id);
   }
 
   public toString(): string {
-    return `${this.typeName}_${this.includedFields.map(f => f.toString()).join("+")}` +
-      `_${this.conditions.map(c => c.toString()).join("+")}`;
+    return JSON.stringify(this);
   }
 }
