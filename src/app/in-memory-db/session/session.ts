@@ -6,32 +6,16 @@ import {CModel} from "../model/c/c-model";
 export class Session {
   private lastValues: any[] = undefined;
   private lastValuesIdIndex: Set<number> = new Set<number>();
-  private _subject = new ReplaySubject<any[]>();
+  public readonly subject = new ReplaySubject<any[]>();
 
-  constructor(private _request: IRequest, private inputSubject: ReplaySubject<any[]>) {
+  constructor(public readonly request: IRequest, private inputSubject: ReplaySubject<any[]>) {
     this.inputSubject.subscribe(values => {
         this.lastValues = values;
         this.lastValuesIdIndex = new Set<number>(values.map(v => v.id));
-        this._subject.next(values);
+        this.subject.next(values);
       },
-      err => this._subject.error(err),
-      () => this._subject.complete());
-  }
-
-  /**
-   * Returns the Request of this session.
-   * @returns {Request<T extends CModel>}
-   */
-  public get request(): IRequest {
-    return this._request;
-  }
-
-  /**
-   * Returns the subject with the last result, the subject may not already have a value.
-   * @returns {ReplaySubject<T[]>}
-   */
-  public get subject(): ReplaySubject<any[]> {
-    return this._subject;
+      err => this.subject.error(err),
+      () => this.subject.complete());
   }
 
   /**
@@ -40,7 +24,7 @@ export class Session {
    * @returns {boolean}
    */
   public hasSameType(request: IRequest): boolean {
-    return this._request.typeName === request.typeName;
+    return this.request.typeName === request.typeName;
   }
 
   /**
@@ -51,34 +35,55 @@ export class Session {
     return this.lastValues !== undefined;
   }
 
-  public waitLoaded(): Observable<boolean> {
+  private waitLoaded(): Observable<boolean> {
+    let loaded = false;
+    let observerCompleted = false;
     return Observable.create(observer => {
-      const subscrition = this._subject.subscribe(items => {
+      const subscrition = this.subject.subscribe(items => {
+          loaded = true;
           observer.next(true);
           observer.complete();
-          subscrition.unsubscribe();
+          observerCompleted = true;
+          if (subscrition) {
+            subscrition.unsubscribe();
+          }
         },
         err => {
           observer.error(err);
-          subscrition.unsubscribe();
+          observerCompleted = true;
+          if (subscrition) {
+            subscrition.unsubscribe();
+          }
         },
         () => {
+          if (!loaded) {
+            observer.next(false);
+          }
           observer.complete();
-          subscrition.unsubscribe();
+          observerCompleted = true;
+          if (subscrition) {
+            subscrition.unsubscribe();
+          }
         });
+      if (observerCompleted) {
+        subscrition.unsubscribe();
+      }
     });
   }
 
   /**
-   * This methode returns an observable, with one value (true) if this session has all items of the request-type loaded.
+   * This methode returns an observable, with one value (true) if this session
+   * has all items of the request-type loaded.
    * Otherwise, with the value false. Then the observer is completed.
    * @returns {Observable<boolean>}
    */
   public areAllLoaded(): Observable<boolean> {
-    if (!this._request.condition) {
-      return this.waitLoaded();
+    if (this.request.condition) {
+      return Observable.create(observer => {
+        observer.next(false);
+        observer.complete();
+      });
     }
-    return Observable.create(observer =>
-      observer.next(false));
+    return this.waitLoaded();
   }
 }

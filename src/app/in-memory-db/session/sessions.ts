@@ -1,5 +1,7 @@
 import {IRequest} from "citrus-common";
+import "rxjs/add/operator/reduce";
 import {Observable} from "rxjs/Observable";
+import {FromObservable} from "rxjs/observable/FromObservable";
 import {CModel} from "../model/c/c-model";
 import {Session} from "./session";
 
@@ -24,15 +26,15 @@ export class Sessions {
     return this.sessions.get(request.toString());
   }
 
-  /**
+  /**anonymous
    * Returns all Sessions of the requested type
    * @param {typeof CModel} type
    * @returns {Session<C extends CModel>[]}
    */
-  private getSessionsOfType(typeName: string): Session[] {
+  getSessionsOfType(typeName: string): Session[] {
     return Array.from(this.sessions.values())
       .filter(s => s.request.typeName === typeName)
-      .sort(s => s.isLoaded() ? 1 : 0);
+      .sort(s => s.isLoaded() ? 0 : 1);
   }
 
   /**
@@ -59,9 +61,9 @@ export class Sessions {
   public areRequestedItemsLoaded(request: IRequest): Observable<boolean> {
     const type = request.typeName;
     const sessions = this.getSessionsOfType(type);
-    return Observable.from(sessions)
+    return FromObservable.create<Session, Session>(sessions)
       .flatMap(s => s.areAllLoaded())
-      .reduce((acc, curr) => acc || curr, false);
+      .reduce((b1, b2) => b1 || b2, false);
   }
 
   public add<T extends CModel>(session: Session): void {
