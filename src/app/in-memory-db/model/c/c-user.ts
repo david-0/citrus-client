@@ -1,4 +1,3 @@
-import {CAddress} from "./c-address";
 import {CModel} from "./c-model";
 
 export class CUser extends CModel {
