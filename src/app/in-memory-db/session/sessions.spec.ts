@@ -1,4 +1,3 @@
-import {Observable} from "rxjs/Observable";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {Sessions} from "./sessions";
 import createSpy = jasmine.createSpy;
@@ -8,8 +7,9 @@ describe("Sessions", () => {
   let sessionSpy;
   let sessionSpy2;
   let sessionSpyLoaded;
-  let sessionSpyNotLoaded;
   let inputSubject;
+  let sessionSpyNotLoaded;
+  let inputSubjectNotLoaded;
   beforeEach(() => {
     sessionSpy = createSpyObj("session", {isLoaded: false});
     sessionSpy.request = createSpyObj("reqest", {
@@ -24,7 +24,8 @@ describe("Sessions", () => {
     sessionSpy2.request.typeName = "type2";
 
     inputSubject = new ReplaySubject<boolean>();
-    sessionSpyLoaded = createSpyObj("sessionLoaded", {isLoaded: true,
+    sessionSpyLoaded = createSpyObj("sessionLoaded", {
+      isLoaded: true,
       areAllLoaded: inputSubject,
     });
     sessionSpyLoaded.request = createSpyObj("reqest", {
@@ -32,6 +33,17 @@ describe("Sessions", () => {
       isSubRequest: true,
     });
     sessionSpyLoaded.request.typeName = "type";
+
+    inputSubjectNotLoaded = new ReplaySubject<boolean>();
+    sessionSpyNotLoaded = createSpyObj("sessionLoaded", {
+      isLoaded: false,
+      areAllLoaded: inputSubjectNotLoaded,
+    });
+    sessionSpyNotLoaded.request = createSpyObj("reqest", {
+      toString: createSpy("toString").and.returnValue("request3"),
+      isSubRequest: true,
+    });
+    sessionSpyNotLoaded.request.typeName = "type";
   });
 
   it("has true, if session already added", () => {
@@ -101,6 +113,16 @@ describe("Sessions", () => {
     expect(called).toBeTruthy();
   });
 
+  it("areRequestedItemsLoaded should return observable with false, if no session of this type", () => {
+    let called = false;
+    const sessions = new Sessions();
+    sessions.areRequestedItemsLoaded(sessionSpy.request).subscribe(next => {
+      expect(next).toBeFalsy();
+      called = true;
+    });
+    expect(called).toBeTruthy();
+  });
+
   it("areRequestedItemsLoaded should return observable with false, if correct type and not loaded", () => {
     let called = false;
     const sessions = new Sessions();
@@ -111,8 +133,25 @@ describe("Sessions", () => {
     });
     expect(called).toBeFalsy();
     inputSubject.next(false);
+    // waiting until inputSuject is completed, all false must complete
     expect(called).toBeFalsy();
     inputSubject.complete();
+    // now, all are completed
+    expect(called).toBeTruthy();
+  });
+
+  it("areRequestedItemsLoaded should return observable with true, if first true", () => {
+    let called = false;
+    const sessions = new Sessions();
+    sessions.add(sessionSpyLoaded);
+    sessions.add(sessionSpyNotLoaded);
+    sessions.areRequestedItemsLoaded(sessionSpy.request).subscribe(next => {
+      expect(next).toBeTruthy();
+      called = true;
+    });
+    expect(called).toBeFalsy();
+    inputSubject.next(true);
+    // not waiting until inputSuject is completed, one true is enought
     expect(called).toBeTruthy();
   });
 });

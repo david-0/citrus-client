@@ -1,5 +1,5 @@
 import {IRequest} from "citrus-common";
-import "rxjs/add/operator/reduce";
+import "rxjs/add/operator/first";
 import {Observable} from "rxjs/Observable";
 import {FromObservable} from "rxjs/observable/FromObservable";
 import {CModel} from "../model/c/c-model";
@@ -63,7 +63,7 @@ export class Sessions {
     const sessions = this.getSessionsOfType(type);
     return FromObservable.create<Session, Session>(sessions)
       .flatMap(s => s.areAllLoaded())
-      .reduce((b1, b2) => b1 || b2, false);
+      .first(value => !!value, void 0, false);
   }
 
   public add<T extends CModel>(session: Session): void {
