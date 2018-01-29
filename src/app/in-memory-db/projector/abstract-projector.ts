@@ -1,8 +1,8 @@
-import {Caches} from "../cache/caches";
-import {Projectors} from "./projectors";
+import {CacheService} from "../cache/cache-service";
+import {ProjectorService} from "./projector.service";
 
 export abstract class AbstractProjector {
-  constructor(protected readonly caches: Caches, protected readonly projectors: Projectors) {
+  constructor(protected readonly caches: CacheService, protected readonly projectors: ProjectorService) {
   }
 
   public abstract projectOneAndUpdateCache(tItem: any): any;

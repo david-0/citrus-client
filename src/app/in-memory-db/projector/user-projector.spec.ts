@@ -1,7 +1,7 @@
-import {Caches} from "../cache/caches";
+import {CacheService} from "../cache/cache-service";
 import {CAddress} from "../model/c/c-address";
 import {TUser} from "../model/t/t-user";
-import {Projectors} from "./projectors";
+import {ProjectorService} from "./projector.service";
 import {UserProjector} from "./user-projector";
 
 describe("UserProjector", () => {
@@ -13,7 +13,7 @@ describe("UserProjector", () => {
     actual.addressIds = addressIds;
 
     const cacheSpy = jasmine.createSpyObj(["synchronizeOne"]);
-    const caches = new Caches();
+    const caches = new CacheService();
     spyOn(caches, "getCache").and.callFake(typeName => cacheSpy);
 
     const projector = new UserProjector(caches, null);
@@ -39,10 +39,10 @@ describe("UserProjector", () => {
 
     const userCacheSpy = jasmine.createSpyObj(["synchronizeOne"]);
     const addressCacheSpy = jasmine.createSpyObj(["synchronizeMany"]);
-    const caches = new Caches();
+    const caches = new CacheService();
     spyOn(caches, "getCache").and.callFake(typeName => typeName === "Address" ? addressCacheSpy : userCacheSpy);
 
-    const projectors = new Projectors();
+    const projectors = new ProjectorService(caches);
     const addressProjectorSpy = {
       projectManyAndUpdateCache: jasmine.createSpy("projectManyAndUpdateCache").and.returnValue([new CAddress(15), new CAddress(16)])
     };

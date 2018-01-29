@@ -1,14 +1,10 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {ReplaySubject} from "rxjs/ReplaySubject";
-import {Caches} from "./cache/caches";
-import {TypeCache} from "./cache/type-cache";
+import {CacheService} from "./cache/cache-service";
 import {AbstractProjector} from "./projector/abstract-projector";
-import {AddressProjector} from "./projector/address-projector";
-import {Projectors} from "./projector/projectors";
-import {UserProjector} from "./projector/user-projector";
+import {ProjectorService} from "./projector/projector.service";
 import {Request} from "./request/request";
-import {RangeResult} from "./rest/range-result";
 import {Session} from "./session/session";
 import {Sessions} from "./session/sessions";
 import {RequestService} from "./websocket/request.service";
@@ -16,33 +12,37 @@ import {RequestService} from "./websocket/request.service";
 @Injectable()
 export class InMemoryDatabaseService {
 
-  private caches = new Caches();
   private activeSessions = new Sessions();
-  private projectors = new Projectors();
 
-  constructor(private requestService: RequestService) {
-    this.caches.addCache("Address", new TypeCache());
-    this.caches.addCache("User", new TypeCache());
-    this.projectors.add("Address", new AddressProjector(this.caches, this.projectors));
-    this.projectors.add("User", new UserProjector(this.caches, this.projectors));
+  constructor(private cacheService: CacheService,
+              private projectorService: ProjectorService,
+              private requestService: RequestService) {
+  }
+
+  private getMatchesFromSession(session: Session, cRequest: Request): Observable<any[]> {
+    return session.subject.map(items => items.filter(item => cRequest.matchId(item.id)));
+  }
+
+  private getItemsFromRequestService(cRequest: Request): Observable<any[]> {
+    return this.requestService.get(cRequest).map(rangeResult => {
+      const projector: AbstractProjector = this.projectorService.get(cRequest.typeName);
+      return projector.projectManyAndUpdateCache(rangeResult.rows);
+    });
+  }
+
+  private createNewActiveSession(cRequest: Request, observable: Observable<any[]>): Observable<any[]> {
+    const replaySubject = ReplaySubject.create(new ReplaySubject(), observable);
+    this.activeSessions.add(new Session(cRequest, replaySubject));
+    return replaySubject.asObservable();
   }
 
   public get(cRequest: Request): Observable<any[]> {
     if (!this.activeSessions.has(cRequest)) {
-      const subject = new ReplaySubject<any[]>();
-      const parentSession = this.activeSessions.getParentSession(cRequest);
-      if (parentSession) {
-        parentSession.subject.subscribe(cItems => {
-          subject.next(cItems.filter(cItem => cRequest.matchId(cItem.id)));
-        });
-      } else {
-        this.requestService.get(cRequest).subscribe((rangeResult: RangeResult<any>) => {
-          const projector: AbstractProjector = this.projectors.get(cRequest.typeName);
-          subject.next(projector.projectManyAndUpdateCache(rangeResult.rows));
-        });
-      }
-      this.activeSessions.add(new Session(cRequest, subject));
-      return subject.asObservable();
+      const sessions = this.activeSessions.getSessionOfType(cRequest);
+      return sessions.first(session => true,
+        session => this.getMatchesFromSession(session, cRequest),
+        this.createNewActiveSession(cRequest, this.getItemsFromRequestService(cRequest))
+      ).flatMap(result => result);
     }
     return this.activeSessions.get(cRequest).subject.asObservable();
   }

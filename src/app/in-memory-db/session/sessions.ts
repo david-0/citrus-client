@@ -1,11 +1,17 @@
 import {IRequest} from "citrus-common";
+import "rxjs/add/observable/from";
+import "rxjs/add/operator/filter";
 import "rxjs/add/operator/first";
 import {Observable} from "rxjs/Observable";
-import {FromObservable} from "rxjs/observable/FromObservable";
 import {CModel} from "../model/c/c-model";
 import {Session} from "./session";
 
 export class Sessions {
+  /**
+   * Key: is request to String
+   * Value: the session
+   * @type {Map<string, Session>}
+   */
   private sessions = new Map<string, Session>();
 
   /**
@@ -52,6 +58,11 @@ export class Sessions {
     return undefined;
   }
 
+  public getSessionOfType(request: IRequest): Observable<Session> {
+    return Observable.from(Array.from(this.sessions.values()))
+      .filter(session => session.request.isSubRequest(request));
+  }
+
   /**
    * Call next(true) of the returned observable, when all items of this type are loaded,
    * if not all items are loaded, the next value is false.
@@ -61,7 +72,7 @@ export class Sessions {
   public areRequestedItemsLoaded(request: IRequest): Observable<boolean> {
     const type = request.typeName;
     const sessions = this.getSessionsOfType(type);
-    return FromObservable.create<Session, Session>(sessions)
+    return Observable.from<Session, Session>(sessions)
       .flatMap(s => s.areAllLoaded())
       .first(value => !!value, void 0, false);
   }
