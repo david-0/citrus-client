@@ -3,49 +3,49 @@
                     [form]="f"></app-table-header>
   <div class="main-container">
     <mat-card class="mat-card-padding">
-      <mat-form-field class="example-full-width" color="accent">
+      <mat-form-field class="full-width" color="accent">
         <mat-select placeholder="Benutzer" #user name="user" [(ngModel)]="address.user">
           <mat-option *ngFor="let user of userDatabase.getAll() | async" [value]="user">
             {{ user.name }} {{ user.prename}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="example-full-width" color="accent">
+      <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Beschreibung" #description [(ngModel)]="address.description"
                maxlength="256" name="description">
         <mat-hint align="end">{{description.value.length}}</mat-hint>
       </mat-form-field>
-      <mat-form-field class="example-full-width" color="accent">
+      <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Name" #name [(ngModel)]="address.name"
                maxlength="256" name="name">
         <mat-hint align="end">{{name.value.length}}</mat-hint>
       </mat-form-field>
-      <mat-form-field class="example-full-width" color="accent">
+      <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Vorname" #prename [(ngModel)]="address.prename"
                maxlength="256" name="prename">
         <mat-hint align="end">{{prename.value.length}}</mat-hint>
       </mat-form-field>
-      <mat-form-field class="example-full-width" color="accent">
+      <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Strasse" #street [(ngModel)]="address.street"
                maxlength="256" name="street">
         <mat-hint align="end">{{street.value.length}}</mat-hint>
       </mat-form-field>
-      <mat-form-field class="example-full-width" color="accent">
+      <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Nummer" #number [(ngModel)]="address.number"
                maxlength="256" name="number">
         <mat-hint align="end">{{number.value.length}}</mat-hint>
       </mat-form-field>
-      <mat-form-field class="example-full-width" color="accent">
+      <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Zusatz" #addition [(ngModel)]="address.addition"
                maxlength="256" name="addition">
         <mat-hint align="end">{{addition.value.length}}</mat-hint>
       </mat-form-field>
-      <mat-form-field class="example-full-width" color="accent">
+      <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="PLZ" #zipcode [(ngModel)]="address.zipcode"
                maxlength="256" name="zipcode">
         <mat-hint align="end">{{zipcode.value.length}}</mat-hint>
       </mat-form-field>
-      <mat-form-field class="example-full-width" color="accent">
+      <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Stadt" #city [(ngModel)]="address.city"
                maxlength="256" name="city">
         <mat-hint align="end">{{city.value.length}}</mat-hint>

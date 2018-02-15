@@ -1,10 +1,23 @@
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
-  MatButtonModule, MatButtonToggleModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatIconModule,
-  MatIconRegistry, MatInputModule, MatNativeDateModule, MatPaginatorModule, MatSelectModule, MatSidenavModule,
-  MatSortModule, MatTableModule, MatToolbarModule, MatTooltipModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatIconRegistry,
+  MatInputModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSortModule,
+  MatTableModule,
+  MatToolbarModule,
+  MatTooltipModule,
 } from "@angular/material";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -31,10 +44,16 @@ import {UserInfoEditComponent} from "./childs/user/user-info-edit/user-info-edit
 import {UserInfoOverviewComponent} from "./childs/user/user-info-overview/user-info-overview.component";
 import {UserDetailsSettingsService} from "./childs/user/user-info-settings.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {CacheService} from "./in-memory-db/cache/cache-service";
 import {InMemoryDatabaseService} from "./in-memory-db/in-memory-database.service";
+import {ProjectorService} from "./in-memory-db/projector/projector.service";
+import {AuthService} from "./in-memory-db/websocket/auth.service";
+import {ClientIdInterceptor} from "./in-memory-db/websocket/client-id-interceptor";
 import {RequestService} from "./in-memory-db/websocket/request.service";
+import {TokenInterceptor} from "./in-memory-db/websocket/token-interceptor";
 import {AppRouteModule} from "./router/app-route.module";
 import {TableSupportModule} from "./table-support/table-support.module";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +69,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     UserInfoDetailsComponent,
     UserInfoEditComponent,
     UserInfoOverviewComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +108,19 @@ import {TableSupportModule} from "./table-support/table-support.module";
     UserInfoCacheService,
     InMemoryDatabaseService,
     RequestService,
+    ProjectorService,
+    CacheService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ClientIdInterceptor,
+      multi: true
+    },
+/*    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }*/
   ],
   bootstrap: [AppComponent]
 })
