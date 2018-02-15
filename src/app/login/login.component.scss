@@ -1,0 +1,24 @@
+.main-container {
+  display: flex;
+}
+
+.header-background {
+  background: yellow;
+}
+
+.mat-card-padding {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  flex: 1 1 100%;
+}
+
+.container {
+  display: flex;
+}
+
+.bottom-padding {
+  padding-bottom: 0.5em;
+}

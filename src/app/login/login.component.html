@@ -1,0 +1,30 @@
+<form [formGroup]="loginForm" #f="ngForm" (ngSubmit)="submit()">
+  <div class="main-container">
+    <div class="full-width"></div>
+    <mat-card class="mat-card-padding">
+      <mat-card-title>Login</mat-card-title>
+      <mat-form-field class="bottom-padding full-width" color="accent">
+        <input matInput placeholder="Email" maxlength="256" [formControl]="email" value="" required>
+        <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+          {{getErrorMessage(email)}}
+        </mat-error>
+        <mat-hint align="end">{{email.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width bottom-padding" color="accent">
+        <input matInput placeholder="Passwort" maxlength="256" [formControl]="password" value="" required
+               [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+          {{getErrorMessage(password)}}
+        </mat-error>
+        <mat-hint align="end">{{password.value.length}}</mat-hint>
+      </mat-form-field>
+      <div class="full-width container">
+        <div class="full-width"></div>
+        <button type="submit" [disabled]="loginForm.invalid" mat-raised-button>Login</button>
+        <div class="full-width"></div>
+      </div>
+    </mat-card>
+    <div class="full-width"></div>
+  </div>
+</form>

@@ -48,12 +48,11 @@ import {CacheService} from "./in-memory-db/cache/cache-service";
 import {InMemoryDatabaseService} from "./in-memory-db/in-memory-database.service";
 import {ProjectorService} from "./in-memory-db/projector/projector.service";
 import {AuthService} from "./in-memory-db/websocket/auth.service";
-import {ClientIdInterceptor} from "./in-memory-db/websocket/client-id-interceptor";
 import {RequestService} from "./in-memory-db/websocket/request.service";
 import {TokenInterceptor} from "./in-memory-db/websocket/token-interceptor";
+import {LoginComponent} from "./login/login.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -113,14 +112,9 @@ import { LoginComponent } from './login/login.component';
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ClientIdInterceptor,
-      multi: true
-    },
-/*    {
-      provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }*/
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -10,10 +10,12 @@ import {UserInfoDetailsComponent} from "../childs/user/user-info-details/user-in
 import {UserInfoEditComponent} from "../childs/user/user-info-edit/user-info-edit.component";
 import {UserInfoOverviewComponent} from "../childs/user/user-info-overview/user-info-overview.component";
 import {DashboardComponent} from "../dashboard/dashboard.component";
+import {LoginComponent} from "../login/login.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
   {path: "dashboard", component: DashboardComponent},
+  {path: "login", component: LoginComponent},
   {
     path: "administration", component: AdministrationComponent, children: [
     {path: "address", component: AddressOverviewComponent},
