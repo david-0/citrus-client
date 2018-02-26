@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../authentication/authentication.service";
 
 @Component({
   selector: "app-login",
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   hide = true;
   loginForm: FormGroup;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -32,9 +33,13 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    // console.info(`email: ${this.email.value} password: ${this.password.value}`);
-    // check auth-service
-    this.router.navigate(["administration"]);
+    this.authService.login(this.email.value, this.password.value).subscribe( successfully => {
+      if (successfully) {
+        this.router.navigate(["administration"]);
+      } else {
+        console.error("Login failed");
+      }
+    });
   }
 
   getErrorMessage(control: FormControl) {

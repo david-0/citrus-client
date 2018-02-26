@@ -23,7 +23,7 @@ export class ClientSocketService {
   get(name: string): Observable<SocketItem> {
     const socketUrl = this.host + name;
     this.socket = io.connect(socketUrl, {
-      "query": "token=" + this.authService.getToken()
+      "query": "token=" + this.authService.getAccessToken()
     });
     this.socket.on("connect", () => this.connect(name));
     this.socket.on("disconnect", () => this.disconnect(name));

@@ -25,6 +25,8 @@ import "hammerjs";
 import {ValidatorsModule} from "ng2-validators";
 
 import {AppComponent} from "./app.component";
+import {AuthGuard} from "./authentication/auth-guard.service";
+import {AuthenticationService} from "./authentication/authentication.service";
 import {AddressCacheAdapterService} from "./cache/adapter/address-cache-adapter.service";
 import {UserInfoCacheAdapterService} from "./cache/adapter/user-info-cache-adapter.service";
 import {AddressCacheService} from "./cache/cache/address-cache.service";
@@ -47,9 +49,8 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {CacheService} from "./in-memory-db/cache/cache-service";
 import {InMemoryDatabaseService} from "./in-memory-db/in-memory-database.service";
 import {ProjectorService} from "./in-memory-db/projector/projector.service";
-import {AuthService} from "./in-memory-db/websocket/auth.service";
 import {RequestService} from "./in-memory-db/websocket/request.service";
-import {TokenInterceptor} from "./in-memory-db/websocket/token-interceptor";
+import {TokenInterceptor} from "./authentication/token-interceptor";
 import {LoginComponent} from "./login/login.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {TableSupportModule} from "./table-support/table-support.module";
@@ -109,7 +110,8 @@ import {TableSupportModule} from "./table-support/table-support.module";
     RequestService,
     ProjectorService,
     CacheService,
-    AuthService,
+    AuthGuard,
+    AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
