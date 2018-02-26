@@ -1,5 +1,6 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
+import {AuthGuard} from "../authentication/auth-guard.service";
 import {AddressDeleteComponent} from "../childs/address/address-delete/address-delete.component";
 import {AddressDetailsComponent} from "../childs/address/address-details/address-details.component";
 import {AddressEditComponent} from "../childs/address/address-edit/address-edit.component";
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path: "dashboard", component: DashboardComponent},
   {path: "login", component: LoginComponent},
   {
-    path: "administration", component: AdministrationComponent, children: [
+    path: "administration", canActivate: [AuthGuard], component: AdministrationComponent, children: [
     {path: "address", component: AddressOverviewComponent},
     {path: "address/create", component: AddressEditComponent},
     {path: "address/:id", component: AddressDetailsComponent},
