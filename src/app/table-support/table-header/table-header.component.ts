@@ -17,6 +17,7 @@ export class TableHeaderComponent implements OnInit {
   @Input() showEdit: boolean;
   @Input() showDelete: boolean;
   @Input() showCancelAndSave: boolean;
+  @Input() showPasswordChange: boolean;
   @Input() label: string;
   @Input() form: NgForm;
 
@@ -36,6 +37,10 @@ export class TableHeaderComponent implements OnInit {
 
   edit() {
     this.router.navigate(["edit"], {relativeTo: this.route});
+  }
+
+  passwordChange() {
+    this.router.navigate(["passwordChange"], {relativeTo: this.route});
   }
 
   delete() {

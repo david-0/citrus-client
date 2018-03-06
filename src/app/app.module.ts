@@ -25,6 +25,7 @@ import "hammerjs";
 import {ValidatorsModule} from "ng2-validators";
 
 import {AppComponent} from "./app.component";
+import {AuthGuardAdmin} from "./authentication/auth-guard-admin.service";
 import {AuthGuard} from "./authentication/auth-guard.service";
 import {AuthenticationService} from "./authentication/authentication.service";
 import {AddressCacheAdapterService} from "./cache/adapter/address-cache-adapter.service";
@@ -54,6 +55,7 @@ import {TokenInterceptor} from "./authentication/token-interceptor";
 import {LoginComponent} from "./login/login.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {TableSupportModule} from "./table-support/table-support.module";
+import { UserInfoPasswordChangeComponent } from './childs/user/user-info-password-change/user-info-password-change.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     UserInfoEditComponent,
     UserInfoOverviewComponent,
     LoginComponent,
+    UserInfoPasswordChangeComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,6 +114,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     ProjectorService,
     CacheService,
     AuthGuard,
+    AuthGuardAdmin,
     AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,

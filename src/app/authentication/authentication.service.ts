@@ -10,6 +10,7 @@ export class AuthenticationService {
   private static readonly accessToken = "access_token";
   private jwtHelper: JwtHelper = new JwtHelper();
   private email: string;
+  private roles: string[];
 
   constructor(private http: HttpClient) {
     const token = localStorage.getItem(AuthenticationService.accessToken);
@@ -46,6 +47,7 @@ export class AuthenticationService {
   private decodeToken(token: string) {
     const decodedToken = this.jwtHelper.decodeToken(this.getAccessToken());
     this.email = decodedToken.email;
+    this.roles = decodedToken.roles.map(role => role.name);
   }
 
   logout(): void {
@@ -63,5 +65,18 @@ export class AuthenticationService {
 
   getLoggedInUsername(): string {
     return this.loggedIn() ? this.email : null;
+  }
+
+  isAdmin():  boolean {
+    if (!this.loggedIn()) {
+      return false;
+    }
+    let ret = false;
+    this.roles.forEach(role => {
+      if (role === "admin") {
+        ret = true;
+      }
+    });
+    return ret;
   }
 }

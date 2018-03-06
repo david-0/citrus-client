@@ -12,6 +12,10 @@
     <mat-icon>mode_edit</mat-icon>
     <span class="size-xl">bearbeiten</span>
   </button>
+  <button mat-button class="button--responsive" (click)="passwordChange()" *ngIf="showPasswordChange">
+    <mat-icon>security</mat-icon>
+    <span class="size-xl">Passwort ändern</span>
+  </button>
   <button mat-button class="button--responsive" (click)="delete()" *ngIf="showDelete">
     <mat-icon>delete</mat-icon>
     <span class="size-xl">löschen</span>
