@@ -1,15 +1,15 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from "@angular/core/testing";
 
-import { UserInfoCacheService } from './user-info-cache.service';
+import {UserInfoCacheService} from "./user-info-cache.service";
 
-describe('UserInfoCacheService', () => {
+describe("UserInfoCacheService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [UserInfoCacheService]
     });
   });
 
-  it('should be created', inject([UserInfoCacheService], (service: UserInfoCacheService) => {
+  it("should be created", inject([UserInfoCacheService], (service: UserInfoCacheService) => {
     expect(service).toBeTruthy();
   }));
 });
