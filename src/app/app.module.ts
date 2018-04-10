@@ -9,7 +9,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatIconRegistry,
-  MatInputModule,
+  MatInputModule, MatMenuModule,
   MatNativeDateModule,
   MatPaginatorModule,
   MatSelectModule,
@@ -28,6 +28,7 @@ import {AppComponent} from "./app.component";
 import {AuthGuardAdmin} from "./authentication/auth-guard-admin.service";
 import {AuthGuard} from "./authentication/auth-guard.service";
 import {AuthenticationService} from "./authentication/authentication.service";
+import {TokenInterceptor} from "./authentication/token-interceptor";
 import {AddressCacheAdapterService} from "./cache/adapter/address-cache-adapter.service";
 import {UserInfoCacheAdapterService} from "./cache/adapter/user-info-cache-adapter.service";
 import {AddressCacheService} from "./cache/cache/address-cache.service";
@@ -45,17 +46,16 @@ import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-
 import {UserInfoDetailsComponent} from "./childs/user/user-info-details/user-info-details.component";
 import {UserInfoEditComponent} from "./childs/user/user-info-edit/user-info-edit.component";
 import {UserInfoOverviewComponent} from "./childs/user/user-info-overview/user-info-overview.component";
+import {UserInfoPasswordChangeComponent} from "./childs/user/user-info-password-change/user-info-password-change.component";
 import {UserDetailsSettingsService} from "./childs/user/user-info-settings.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {CacheService} from "./in-memory-db/cache/cache-service";
 import {InMemoryDatabaseService} from "./in-memory-db/in-memory-database.service";
 import {ProjectorService} from "./in-memory-db/projector/projector.service";
 import {RequestService} from "./in-memory-db/websocket/request.service";
-import {TokenInterceptor} from "./authentication/token-interceptor";
 import {LoginComponent} from "./login/login.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { UserInfoPasswordChangeComponent } from './childs/user/user-info-password-change/user-info-password-change.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +98,7 @@ import { UserInfoPasswordChangeComponent } from './childs/user/user-info-passwor
     ValidatorsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatMenuModule,
   ],
   providers: [
     MatIconRegistry,

@@ -2,7 +2,20 @@
   <mat-toolbar color="primary">
     <span>Citrus</span>
     <span class="fill-remaining-space"></span>
-    <a routerLink='login'><span>login</span></a>
+    <a *ngIf="!authService.loggedIn()" routerLink='login'><span>login</span></a>
+    <button *ngIf="authService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <a class="menu-entry"><span>logout</span></a>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>security</mat-icon>
+        <a class="menu-entry"><span>Passwort ändern</span></a>
+      </button>
+    </mat-menu>
   </mat-toolbar>
   <router-outlet></router-outlet>
 </div>
