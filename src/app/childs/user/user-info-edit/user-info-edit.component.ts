@@ -49,7 +49,7 @@ export class UserInfoEditComponent implements OnInit {
       this.userInfoDatabase.update(UserInfoTO.createUserInfoWithId(this.userInfoId, this.userInfo))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
-          (err) => console.error(`could not update userInfofruit: ${this.userInfo.id} with Error: ${err}`));
+          (err) => console.error(`could not update userInfo: ${this.userInfo.id} with Error: ${err}`));
     }
   }
 }
