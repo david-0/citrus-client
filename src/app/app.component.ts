@@ -13,4 +13,8 @@ export class AppComponent {
               public authService: AuthenticationService) {
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["logout"]);
+  }
 }

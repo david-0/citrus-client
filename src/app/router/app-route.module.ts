@@ -14,11 +14,13 @@ import {UserInfoOverviewComponent} from "../childs/user/user-info-overview/user-
 import {UserInfoPasswordChangeComponent} from "../childs/user/user-info-password-change/user-info-password-change.component";
 import {DashboardComponent} from "../dashboard/dashboard.component";
 import {LoginComponent} from "../login/login.component";
+import {LogoutComponent} from "../logout/logout.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
   {path: "dashboard", component: DashboardComponent},
   {path: "login", component: LoginComponent},
+  {path: "logout", component: LogoutComponent},
   {
     path: "administration", canActivate: [AuthGuard], component: AdministrationComponent, children: [
     {path: "address", component: AddressOverviewComponent},
