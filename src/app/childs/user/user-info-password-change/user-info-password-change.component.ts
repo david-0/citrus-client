@@ -1,5 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AuthenticationService} from "../../../authentication/authentication.service";
 
 @Component({
   selector: "app-user-info-password-change",
@@ -10,11 +12,21 @@ export class UserInfoPasswordChangeComponent implements OnInit {
 
   hide = true;
   passwordChangeForm: FormGroup;
+  userInfoId: number;
 
-  constructor() {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private authService: AuthenticationService) {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params["id"] == null) {
+        console.error(`Internal server error, no id param`);
+      } else {
+        this.userInfoId = +params["id"];
+      }
+    });
     this.passwordChangeForm = new FormGroup({
       password: new FormControl("password",
         [Validators.required, Validators.minLength(7)]),
@@ -36,13 +48,13 @@ export class UserInfoPasswordChangeComponent implements OnInit {
   }
 
   submit() {
-    // this.authService.login(this.email.value, this.password.value).subscribe( successfully => {
-    //   if (successfully) {
-    //     this.router.navigate(["administration"]);
-    //   } else {
-    //     console.error("Login failed");
-    //   }
-    // });
+    this.authService.changePassword(this.userInfoId, this.password.value).subscribe(successfully => {
+      if (successfully) {
+        this.router.navigate(["administration"]);
+      } else {
+        console.error("Login failed");
+      }
+    });
   }
 
   getErrorMessage(control: FormControl) {
