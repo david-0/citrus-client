@@ -22,11 +22,15 @@ export class AuthenticationService {
 
   public login(email: string, password: string): Observable<boolean> {
     return this.verifyPassword(new EmailPassword(email, password), (authToken: AuthToken) => {
-      // store jwt token in local storage to keep user logged in between page refreshs
-      localStorage.setItem(AuthenticationService.accessToken, authToken.token);
-      this.decodeToken(authToken.token);
+      this.updateToken(authToken);
       console.log(`login succeeded. email: ${this.email}`);
     });
+  }
+
+  private updateToken(authToken: AuthToken) {
+    // store jwt token in local storage to keep user logged in between page refreshs
+    localStorage.setItem(AuthenticationService.accessToken, authToken.token);
+    this.decodeToken(authToken.token);
   }
 
   public verify(email: string, password: string): Observable<boolean> {
@@ -39,6 +43,26 @@ export class AuthenticationService {
       // login successful if there's a jwt token in the response
       if (!!authToken && !!authToken.token) {
         processCallback(authToken);
+      }
+      return !!authToken;
+    });
+  }
+
+  public changeMyPassword(password: string): Observable<boolean> {
+    return this.http.post<AuthToken>("http://localhost:3001/api/user/changemypassword", {password}).map(authToken => {
+      // changePassword successful if there's a jwt token in the response
+      if (!!authToken && !!authToken.token) {
+        this.updateToken(authToken);
+      }
+      return !!authToken;
+    });
+  }
+
+  public changePassword(userId: number, password: string): Observable<boolean> {
+    return this.http.post<AuthToken>(`http://localhost:3001/api/user/${userId}/changepassword`, {password}).map(authToken => {
+      // changePassword successful if there's a jwt token in the response
+      if (!!authToken && !!authToken.token) {
+        this.updateToken(authToken);
       }
       return !!authToken;
     });
@@ -67,7 +91,7 @@ export class AuthenticationService {
     return this.loggedIn() ? this.email : null;
   }
 
-  isAdmin():  boolean {
+  isAdmin(): boolean {
     if (!this.loggedIn()) {
       return false;
     }
