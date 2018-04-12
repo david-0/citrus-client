@@ -31,7 +31,7 @@ export class UserInfoPasswordChangeComponent implements OnInit {
       if (successfully) {
         this.router.navigate([`/administration/user/${this.userInfoId}`]);
       } else {
-        console.error("Login failed");
+        console.error("Passwort change failed");
       }
     });
   }

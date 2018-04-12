@@ -71,7 +71,9 @@ export class AuthenticationService {
   private decodeToken(token: string) {
     const decodedToken = this.jwtHelper.decodeToken(this.getAccessToken());
     this.email = decodedToken.email;
-    this.roles = decodedToken.roles.map(role => role.name);
+    if (decodedToken.roles) {
+      this.roles = decodedToken.roles;
+    }
   }
 
   logout(): void {

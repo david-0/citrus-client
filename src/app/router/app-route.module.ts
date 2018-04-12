@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {AuthGuardAdmin} from "../authentication/auth-guard-admin.service";
 import {AuthGuard} from "../authentication/auth-guard.service";
+import {ChangeMyPasswordComponent} from "../change-my-password/change-my-password.component";
 import {AddressDeleteComponent} from "../childs/address/address-delete/address-delete.component";
 import {AddressDetailsComponent} from "../childs/address/address-details/address-details.component";
 import {AddressEditComponent} from "../childs/address/address-edit/address-edit.component";
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: "dashboard", component: DashboardComponent},
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent},
+  {path: "changeMyPassword", component: ChangeMyPasswordComponent},
   {
     path: "administration", canActivate: [AuthGuard], component: AdministrationComponent, children: [
     {path: "address", component: AddressOverviewComponent},
