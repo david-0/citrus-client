@@ -57,6 +57,7 @@ import {LoginComponent} from "./login/login.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {TableSupportModule} from "./table-support/table-support.module";
 import { LogoutComponent } from './logout/logout.component';
+import { PasswordChangeComponent } from './authentication/password-change/password-change.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { LogoutComponent } from './logout/logout.component';
     LoginComponent,
     UserInfoPasswordChangeComponent,
     LogoutComponent,
+    PasswordChangeComponent,
   ],
   imports: [
     BrowserModule,
