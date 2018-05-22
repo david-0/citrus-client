@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {IUser} from "citrus-common";
-import {UserInfoTO} from "../../../TransferObjects/UserInfoTO";
 import {UserInfoDatabaseService} from "../user-info-database.service";
 
 @Component({
@@ -11,7 +10,7 @@ import {UserInfoDatabaseService} from "../user-info-database.service";
 })
 export class UserInfoEditComponent implements OnInit {
 
-  public userInfo: IUser = UserInfoTO.createEmpty();
+  public userInfo: UserInfoDto = UserInfoTO.createEmpty();
   public userInfoId: number;
 
   constructor(private route: ActivatedRoute,
@@ -22,7 +21,7 @@ export class UserInfoEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
-        this.userInfo = UserInfoTO.createEmpty();
+        this.userInfo = UserInfoDto.createEmpty();
         this.userInfoId = this.userInfo.id;
       } else {
         this.userInfoDatabase.get(+params["id"])
@@ -40,13 +39,13 @@ export class UserInfoEditComponent implements OnInit {
 
   public submit() {
     if (this.userInfoId == null) {
-      this.userInfoDatabase.add(new UserInfoTO(this.userInfo))
+      this.userInfoDatabase.add(new UserInfoDto(this.userInfo))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not save userInfo: ${this.userInfo.id} with Error: ${err}`)
         );
     } else {
-      this.userInfoDatabase.update(UserInfoTO.createUserInfoWithId(this.userInfoId, this.userInfo))
+      this.userInfoDatabase.update(UserInfoDto.createUserInfoWithId(this.userInfoId, this.userInfo))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not update userInfo: ${this.userInfo.id} with Error: ${err}`));

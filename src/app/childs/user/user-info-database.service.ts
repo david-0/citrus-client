@@ -1,13 +1,13 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {IUser} from "citrus-common";
+import {UserInfoDto} from "citrus-common";
 import {UserInfoCacheAdapterService} from "../../cache/adapter/user-info-cache-adapter.service";
 import {InMemoryDatabaseService} from "../../in-memory-db/in-memory-database.service";
 import {GenericDatabaseBackend} from "../../table-support/generic-database-backend";
 import {GenericRestService} from "../../table-support/generic-rest.service";
 
 @Injectable()
-export class UserInfoDatabaseService extends GenericDatabaseBackend<IUser> {
+export class UserInfoDatabaseService extends GenericDatabaseBackend<UserInfoDto> {
   constructor(http: HttpClient,
               userInfoCacheAdapter: UserInfoCacheAdapterService,
               inMemoryDb: InMemoryDatabaseService) {

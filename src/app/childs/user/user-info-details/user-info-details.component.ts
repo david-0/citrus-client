@@ -1,9 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {IUser} from "citrus-common";
+import {UserInfoDto} from "citrus-common";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
-import {UserInfoTO} from "../../../TransferObjects/UserInfoTO";
 import {UserInfoDatabaseService} from "../user-info-database.service";
 
 @Component({
@@ -12,7 +11,7 @@ import {UserInfoDatabaseService} from "../user-info-database.service";
   styleUrls: ["./user-info-details.component.scss"]
 })
 export class UserInfoDetailsComponent implements OnInit {
-  private _userInfo: Observable<IUser> = new BehaviorSubject<IUser>(UserInfoTO.createEmpty());
+  private _userInfo: Observable<UserInfoDto> = new BehaviorSubject<UserInfoDto>(UserInfoDto.createEmpty());
   public displayedColumns = ["description", "name", "prename", "street", "number", "addition", "zipcode", "city"];
   public whereDefinition = {columnName: undefined, id: undefined};
 

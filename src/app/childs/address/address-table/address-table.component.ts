@@ -1,7 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator, MatSort} from "@angular/material";
-import {IAddress} from "citrus-common";
-import {IWhereDefinition} from "citrus-common/lib/interfaces/IWhereDefinition";
+import {AddressDto, IWhereDefinition} from "citrus-common";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {GenericPagedDataSource} from "../../../table-support/generic-paged-data-source";
 import {AddressDatabaseService} from "../address-database.service";
@@ -14,7 +13,7 @@ import {AddressSettingsService} from "../address-settings.service";
 })
 export class AddressTableComponent implements OnInit {
 
-  public dataSource: GenericPagedDataSource<IAddress> | null;
+  public dataSource: GenericPagedDataSource<AddressDto> | null;
   public loading = new BehaviorSubject<boolean>(false);
 
   @Input() displayedColumns: string[];

@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator, MatSort} from "@angular/material";
-import {IUser} from "citrus-common";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {GenericPagedDataSource} from "../../../table-support/generic-paged-data-source";
 import {UserInfoDatabaseService} from "../user-info-database.service";
@@ -15,7 +14,7 @@ export class UserInfoOverviewComponent implements OnInit {
   public displayedColumns = ["number", "email", "name", "prename", "phone", "mobile"];
   public loading = new BehaviorSubject<boolean>(false);
 
-  public dataSource: GenericPagedDataSource<IUser> | null;
+  public dataSource: GenericPagedDataSource<UserInfoDto> | null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
