@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {AddressDatabaseService} from "../address-database.service";
+import {AddressDtoRestService} from "../address-dto-rest.service";
 
 @Component({
   selector: "app-address-delete",
@@ -13,12 +13,12 @@ export class AddressDeleteComponent implements OnInit {
   public message: string;
 
   constructor(private route: ActivatedRoute,
-              public addressDatabase: AddressDatabaseService) {
+              public rest: AddressDtoRestService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.addressDatabase.remove(+params["id"])
+      this.rest.del(+params["id"])
         .subscribe(
           t => {
             this.message = `Die Adresse wurde gelöscht!`;

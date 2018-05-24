@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {MatPaginator, MatSort} from "@angular/material";
+import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {UserInfoDto} from "citrus-common";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {GenericPagedDataSource} from "../../../table-support/generic-paged-data-source";
-import {UserInfoDatabaseService} from "../user-info-database.service";
+import {UserInfoDtoRestService} from "../user-info-dto-rest.service";
 import {UserDetailsSettingsService} from "../user-info-settings.service";
 
 @Component({
@@ -11,28 +11,24 @@ import {UserDetailsSettingsService} from "../user-info-settings.service";
   styleUrls: ["./user-info-overview.component.scss"]
 })
 export class UserInfoOverviewComponent implements OnInit {
-  public displayedColumns = ["number", "email", "name", "prename", "phone", "mobile"];
   public loading = new BehaviorSubject<boolean>(false);
+  datasource = new MatTableDataSource<UserInfoDto>();
 
-  public dataSource: GenericPagedDataSource<UserInfoDto> | null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private database: UserInfoDatabaseService, public settings: UserDetailsSettingsService) {
+  constructor(private rest: UserInfoDtoRestService, public settings: UserDetailsSettingsService) {
   }
 
   ngOnInit() {
-    this.dataSource = new GenericPagedDataSource(this.database, this.paginator, this.sort, this.settings, this.loading);
-    this.paginator.page.subscribe(event => {
-      this.settings.pageIndex = event.pageIndex;
-      this.settings.pageSize = event.pageSize;
+    const subscription = this.rest.getAll().subscribe(data => {
+      this.datasource.data = data;
     });
   }
 
-  public onFilterChange(filter: string) {
-    if (!this.dataSource) {
-      return;
-    }
-    this.dataSource.filter = filter;
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.datasource.filter = filterValue;
   }
 }

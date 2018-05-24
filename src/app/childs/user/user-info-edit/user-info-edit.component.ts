@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {IUser} from "citrus-common";
-import {UserInfoDatabaseService} from "../user-info-database.service";
+import {UserInfoDto} from "citrus-common";
+import {UserInfoDtoRestService} from "../user-info-dto-rest.service";
 
 @Component({
   selector: "app-user-info-edit",
@@ -10,12 +10,12 @@ import {UserInfoDatabaseService} from "../user-info-database.service";
 })
 export class UserInfoEditComponent implements OnInit {
 
-  public userInfo: UserInfoDto = UserInfoTO.createEmpty();
+  public userInfo: UserInfoDto = UserInfoDto.createEmpty();
   public userInfoId: number;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              public userInfoDatabase: UserInfoDatabaseService) {
+              public rest: UserInfoDtoRestService) {
   }
 
   ngOnInit() {
@@ -24,10 +24,10 @@ export class UserInfoEditComponent implements OnInit {
         this.userInfo = UserInfoDto.createEmpty();
         this.userInfoId = this.userInfo.id;
       } else {
-        this.userInfoDatabase.get(+params["id"])
+        this.rest.get(+params["id"])
           .subscribe(
             t => {
-              this.userInfo = UserInfoTO.createUserInfoWithId(t.id, t);
+              this.userInfo = UserInfoDto.createUserInfoWithId(t.id, t);
               this.userInfoId = this.userInfo.id;
             },
             err => {
@@ -39,13 +39,13 @@ export class UserInfoEditComponent implements OnInit {
 
   public submit() {
     if (this.userInfoId == null) {
-      this.userInfoDatabase.add(new UserInfoDto(this.userInfo))
+      this.rest.add(new UserInfoDto(this.userInfo))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not save userInfo: ${this.userInfo.id} with Error: ${err}`)
         );
     } else {
-      this.userInfoDatabase.update(UserInfoDto.createUserInfoWithId(this.userInfoId, this.userInfo))
+      this.rest.update(UserInfoDto.createUserInfoWithId(this.userInfoId, this.userInfo))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not update userInfo: ${this.userInfo.id} with Error: ${err}`));

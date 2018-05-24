@@ -1,8 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AddressDto} from "citrus-common";
-import {UserInfoDatabaseService} from "../../user/user-info-database.service";
-import {AddressDatabaseService} from "../address-database.service";
+import {AddressDtoRestService} from "../address-dto-rest.service";
 
 @Component({
   selector: "app-address-edit",
@@ -16,8 +15,7 @@ export class AddressEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              public addressDatabase: AddressDatabaseService,
-              public userDatabase: UserInfoDatabaseService) {
+              private rest: AddressDtoRestService) {
   }
 
   ngOnInit() {
@@ -26,7 +24,7 @@ export class AddressEditComponent implements OnInit {
         this.address = AddressDto.createEmpty();
         this.addressID = this.address.id;
       } else {
-        this.addressDatabase.get(+params["id"])
+        this.rest.get(+params["id"])
           .subscribe(
             t => {
               this.address = AddressDto.createAddressWithId(t.id, t);
@@ -41,13 +39,13 @@ export class AddressEditComponent implements OnInit {
 
   public submit() {
     if (this.addressID == null) {
-      this.addressDatabase.add(new AddressDto(this.address))
+      this.rest.add(new AddressDto(this.address))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not save address: ${this.address.id} with Error: ${err}`)
         );
     } else {
-      this.addressDatabase.update(AddressDto.createAddressWithId(this.addressID, this.address))
+      this.rest.update(AddressDto.createAddressWithId(this.addressID, this.address))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not update address: ${this.address.id} with Error: ${err}`));

@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import { AddressTableComponent } from './address-table.component';
+import {AddressTableComponent} from "./address-table.component";
 
-describe('AddressTableComponent', () => {
+describe("AddressTableComponent", () => {
   let component: AddressTableComponent;
   let fixture: ComponentFixture<AddressTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddressTableComponent ]
+      declarations: [AddressTableComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('AddressTableComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,10 +1,8 @@
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {IId, IOrderDefinitions} from "citrus-common";
-import {IWhereDefinition} from "citrus-common/lib/interfaces/IWhereDefinition";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {DtoId} from "citrus-common/lib/dto-old/dto-id";
 import {Observable} from "rxjs/Observable";
-import {RangeResult} from "./range-result";
 
-export class GenericRestService<T extends IId> {
+export class GenericRestService<T extends DtoId> {
   private headers = new HttpHeaders({"Content-Type": "application/json"});
 
   constructor(private http: HttpClient, private restUrl: string) {
@@ -24,38 +22,12 @@ export class GenericRestService<T extends IId> {
     return this.http.delete<boolean>(url, {headers: this.headers});
   }
 
-  getAll(includedTypes: string[] = [], where: IWhereDefinition = null): Observable<T[]> {
-    let httpParams = new HttpParams();
-    if (where && where.columnName && where.id) {
-      httpParams = httpParams.set("whereColumn", where.columnName).set("whereId", where.id.toString());
-    }
-    return this.http.get<T[]>(this.restUrl, {params: httpParams});
+  getAll(): Observable<T[]> {
+    return this.http.get<T[]>(this.restUrl, {headers: this.headers});
   }
 
-  getRange(offset: number, limit: number, filter: string, filterColumns: string[], order: IOrderDefinitions,
-           where: IWhereDefinition, includedTypes: string[]): Observable<RangeResult<T>> {
-    const url = `${this.restUrl}/${offset}/${limit}`;
-    let httpParams = new HttpParams();
-    if (order.definitions.length > 0) {
-      httpParams = httpParams.set("columnName", order.definitions[0].columnName).set("direction", order.definitions[0].direction);
-    }
-    if (where && where.columnName && where.id) {
-      httpParams = httpParams.set("whereColumn", where.columnName).set("whereId", where.id.toString());
-    }
-    if (filter) {
-      httpParams = httpParams.set("filter", filter);
-      filterColumns.forEach((c) => {
-        httpParams = httpParams.append("filterColumns", c);
-      });
-    }
-    includedTypes.forEach((i) => {
-      httpParams = httpParams.set("includes", i);
-    });
-    return this.http.get<RangeResult<T>>(url, {headers: this.headers, params: httpParams});
-  }
-
-  get(id: number, includedTypes: string[]): Observable<T> {
+  get(id: number): Observable<T> {
     const url = `${this.restUrl}/${id}`;
-    return this.http.get<T>(url, {params: {includes: includedTypes}});
+    return this.http.get<T>(url, {headers: this.headers});
   }
 }

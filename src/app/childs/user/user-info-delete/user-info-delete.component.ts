@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {UserInfoDatabaseService} from "../user-info-database.service";
+import {UserInfoDtoRestService} from "../user-info-dto-rest.service";
 
 @Component({
   selector: "app-user-info-delete",
@@ -13,12 +13,12 @@ export class UserInfoDeleteComponent implements OnInit {
   public message: string;
 
   constructor(private route: ActivatedRoute,
-              public userDetailsDatabase: UserInfoDatabaseService) {
+              public rest: UserInfoDtoRestService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.userDetailsDatabase.remove(+params["id"])
+      this.rest.del(+params["id"])
         .subscribe(
           t => {
             this.message = `Der Benuzter wurde gelöscht!`;
