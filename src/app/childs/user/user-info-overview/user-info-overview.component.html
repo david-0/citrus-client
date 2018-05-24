@@ -1,5 +1,5 @@
 <app-table-header titleText="Benutzer" [showCreate]="true"></app-table-header>
-<app-table-filter (onChange)="onFilterChange($event)" [settings]="this.settings"
+<app-table-filter (onChange)="applyFilter($event)" [settings]="this.settings"
                   placeholder="Filter Benutzer"></app-table-filter>
 <mat-table #table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="id" hidden>

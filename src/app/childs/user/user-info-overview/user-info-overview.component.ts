@@ -12,7 +12,9 @@ import {UserDetailsSettingsService} from "../user-info-settings.service";
 })
 export class UserInfoOverviewComponent implements OnInit {
   public loading = new BehaviorSubject<boolean>(false);
-  datasource = new MatTableDataSource<UserInfoDto>();
+  dataSource = new MatTableDataSource<UserInfoDto>();
+
+  public displayedColumns = ["number", "email", "name", "prename", "phone", "mobile"];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -22,13 +24,13 @@ export class UserInfoOverviewComponent implements OnInit {
 
   ngOnInit() {
     const subscription = this.rest.getAll().subscribe(data => {
-      this.datasource.data = data;
+      this.dataSource.data = data;
     });
   }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.datasource.filter = filterValue;
+    this.dataSource.filter = filterValue;
   }
 }

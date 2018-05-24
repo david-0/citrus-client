@@ -40,6 +40,10 @@ import {AddressOverviewComponent} from "./childs/address/address-overview/addres
 import {AddressSettingsService} from "./childs/address/address-settings.service";
 import {AddressTableComponent} from "./childs/address/address-table/address-table.component";
 import {AdministrationComponent} from "./childs/administration/administration.component";
+import {ArticleDeleteComponent} from "./childs/article/article-delete/article-delete.component";
+import {ArticleDetailsComponent} from "./childs/article/article-details/article-details.component";
+import {ArticleEditComponent} from "./childs/article/article-edit/article-edit.component";
+import {ArticleOverviewComponent} from "./childs/article/article-overview/article-overview.component";
 import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-delete.component";
 import {UserInfoDetailsComponent} from "./childs/user/user-info-details/user-info-details.component";
 import {UserInfoDtoRestService} from "./childs/user/user-info-dto-rest.service";
@@ -68,6 +72,10 @@ import {TableSupportModule} from "./table-support/table-support.module";
     UserInfoDetailsComponent,
     UserInfoEditComponent,
     UserInfoOverviewComponent,
+    ArticleDeleteComponent,
+    ArticleDetailsComponent,
+    ArticleEditComponent,
+    ArticleOverviewComponent,
     LoginComponent,
     UserInfoPasswordChangeComponent,
     LogoutComponent,
