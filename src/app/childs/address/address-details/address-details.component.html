@@ -3,16 +3,16 @@
 <div class="main-container">
   <mat-card class="mat-card-padding">
     <div>
-      <p>Id: {{(address | async)?.id}}</p>
-      <p>Benutzer: {{(address | async)?.user?.prename}} {{(address | async)?.user?.name}}</p>
-      <p>Beschreibung: {{(address | async)?.description}}</p>
-      <p>Name: {{(address | async)?.name}}</p>
-      <p>Vorname: {{(address | async)?.prename}}</p>
-      <p>Strasse: {{(address | async)?.street}}</p>
-      <p>Nummer: {{(address | async)?.number}}</p>
-      <p>Zusatz: {{(address | async)?.addition}}</p>
-      <p>PLZ: {{(address | async)?.zipcode}}</p>
-      <p>Stadt: {{(address | async)?.city}}</p>
+      <p>Id: {{address.id}}</p>
+      <p>Benutzer: {{address.user?.prename}} {{address.user?.name}}</p>
+      <p>Beschreibung: {{address .description}}</p>
+      <p>Name: {{address.name}}</p>
+      <p>Vorname: {{address.prename}}</p>
+      <p>Strasse: {{address.street}}</p>
+      <p>Nummer: {{address.number}}</p>
+      <p>Zusatz: {{address.addition}}</p>
+      <p>PLZ: {{address.zipcode}}</p>
+      <p>Stadt: {{address.city}}</p>
     </div>
   </mat-card>
 </div>

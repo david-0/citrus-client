@@ -1,8 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {AddressDto} from "citrus-common";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
+import {Subscription} from "rxjs/Subscription";
 import {AddressDtoRestService} from "../address-dto-rest.service";
 
 @Component({
@@ -10,19 +9,29 @@ import {AddressDtoRestService} from "../address-dto-rest.service";
   templateUrl: "./address-details.component.html",
   styleUrls: ["./address-details.component.scss"]
 })
-export class AddressDetailsComponent  implements OnInit {
-  private _address: Observable<AddressDto> = new BehaviorSubject<AddressDto>(AddressDto.createEmpty());
+export class AddressDetailsComponent implements OnInit, OnDestroy {
+  private _address: AddressDto = AddressDto.createEmpty();
+  private subscription: Subscription;
 
   constructor(private route: ActivatedRoute, private rest: AddressDtoRestService) {
   }
 
-  public get address() {
+  public get address(): AddressDto {
     return this._address;
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this._address = this.rest.get(+params["id"]);
+      const addressPromise = this.rest.get(+params["id"]);
+      this.subscription = addressPromise.subscribe((address) => {
+        this._address = address;
+      });
     });
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
