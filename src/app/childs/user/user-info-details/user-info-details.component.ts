@@ -1,8 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {UserInfoDto} from "citrus-common";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
+import {Subscription} from "rxjs/Subscription";
 import {UserInfoDtoRestService} from "../user-info-dto-rest.service";
 
 @Component({
@@ -11,21 +10,25 @@ import {UserInfoDtoRestService} from "../user-info-dto-rest.service";
   styleUrls: ["./user-info-details.component.scss"]
 })
 export class UserInfoDetailsComponent implements OnInit {
-  private _userInfo: Observable<UserInfoDto> = new BehaviorSubject<UserInfoDto>(UserInfoDto.createEmpty());
   public displayedColumns = ["description", "name", "prename", "street", "number", "addition", "zipcode", "city"];
-//  public whereDefinition = {columnName: undefined, id: undefined};
+
+  private _userInfo: UserInfoDto = UserInfoDto.createEmpty();
+  private subscription: Subscription;
+
 
   constructor(private route: ActivatedRoute, private rest: UserInfoDtoRestService) {
   }
 
-  public get userInfo() {
+  public get userInfo(): UserInfoDto {
     return this._userInfo;
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this._userInfo = this.rest.get(+params["id"]);
-//      this.whereDefinition = {columnName: "userId", id: +params["id"].toString()};
+      const userInfoPromise = this.rest.get(+params["id"]);
+      this.subscription = userInfoPromise.subscribe((userInfo) => {
+        this._userInfo = userInfo;
+      });
     });
   }
 

@@ -3,14 +3,14 @@
 <div class="main-container">
   <mat-card class="mat-card-padding">
     <div>
-      <p>Id: {{(userInfo | async)?.id}}</p>
-      <p>Kundennummer: {{(userInfo | async)?.number}}</p>
-      <p>Email: {{(userInfo | async)?.email}}</p>
-      <p>Name: {{(userInfo | async)?.name}}</p>
-      <p>Vorname: {{(userInfo | async)?.prename}}</p>
-      <p>Phone: {{(userInfo | async)?.phone}}</p>
-      <p>Mobile: {{(userInfo | async)?.mobile}}</p>
+      <p>Id: {{userInfo.id}}</p>
+      <p>Kundennummer: {{userInfo.number}}</p>
+      <p>Email: {{userInfo.email}}</p>
+      <p>Name: {{userInfo.name}}</p>
+      <p>Vorname: {{userInfo.prename}}</p>
+      <p>Phone: {{userInfo.phone}}</p>
+      <p>Mobile: {{userInfo.mobile}}</p>
     </div>
   </mat-card>
-<!--  <app-address-table [displayedColumns]="displayedColumns" [whereDefinition]="whereDefinition"></app-address-table>-->
+  <!--  <app-address-table [displayedColumns]="displayedColumns" [whereDefinition]="whereDefinition"></app-address-table>-->
 </div>
