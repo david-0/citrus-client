@@ -3,13 +3,13 @@
                     [form]="f"></app-table-header>
   <div class="main-container">
     <mat-card class="mat-card-padding">
-<!--      <mat-form-field class="full-width" color="accent">
+      <mat-form-field class="full-width" color="accent">
         <mat-select placeholder="Benutzer" #user name="user" [(ngModel)]="address.user">
-          <mat-option *ngFor="let user of userDatabase.getAll() | async" [value]="user">
+          <mat-option *ngFor="let user of userInfoSubject | async" [value]="user">
             {{ user.name }} {{ user.prename}}
           </mat-option>
         </mat-select>
-      </mat-form-field>-->
+      </mat-form-field>
       <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Beschreibung" #description [(ngModel)]="address.description"
                maxlength="256" name="description">
