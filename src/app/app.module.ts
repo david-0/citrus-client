@@ -44,6 +44,8 @@ import {ArticleDeleteComponent} from "./childs/article/article-delete/article-de
 import {ArticleDetailsComponent} from "./childs/article/article-details/article-details.component";
 import {ArticleEditComponent} from "./childs/article/article-edit/article-edit.component";
 import {ArticleOverviewComponent} from "./childs/article/article-overview/article-overview.component";
+import {UnitOfMeasurementDtoRestService} from "./childs/unit-of-measurement/unit-of-measurement-dto-rest.service";
+import {UnitOfMeasurementSettingsService} from "./childs/unit-of-measurement/unit-of-measurement-settings.service";
 import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-delete.component";
 import {UserInfoDetailsComponent} from "./childs/user/user-info-details/user-info-details.component";
 import {UserInfoDtoRestService} from "./childs/user/user-info-dto-rest.service";
@@ -57,6 +59,11 @@ import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
+import { UnitOfMeasurementDeleteComponent } from './childs/unit-of-measurement/unit-of-measurement-delete/unit-of-measurement-delete.component';
+import { UnitOfMeasurementDetailsComponent } from './childs/unit-of-measurement/unit-of-measurement-details/unit-of-measurement-details.component';
+import { UnitOfMeasurementEditComponent } from './childs/unit-of-measurement/unit-of-measurement-edit/unit-of-measurement-edit.component';
+import { UnitOfMeasurementOverviewComponent } from './childs/unit-of-measurement/unit-of-measurement-overview/unit-of-measurement-overview.component';
+import { UnitOfMeasurementTableComponent } from './childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +88,11 @@ import {TableSupportModule} from "./table-support/table-support.module";
     LogoutComponent,
     PasswordChangeComponent,
     ChangeMyPasswordComponent,
+    UnitOfMeasurementDeleteComponent,
+    UnitOfMeasurementDetailsComponent,
+    UnitOfMeasurementEditComponent,
+    UnitOfMeasurementOverviewComponent,
+    UnitOfMeasurementTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +127,8 @@ import {TableSupportModule} from "./table-support/table-support.module";
     AddressSettingsService,
     UserDetailsSettingsService,
     UserInfoDtoRestService,
+    UnitOfMeasurementDtoRestService,
+    UnitOfMeasurementSettingsService,
     AuthGuard,
     AuthGuardAdmin,
     AuthenticationService,

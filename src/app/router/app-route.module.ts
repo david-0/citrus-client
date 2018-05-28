@@ -8,6 +8,10 @@ import {AddressDetailsComponent} from "../childs/address/address-details/address
 import {AddressEditComponent} from "../childs/address/address-edit/address-edit.component";
 import {AddressOverviewComponent} from "../childs/address/address-overview/address-overview.component";
 import {AdministrationComponent} from "../childs/administration/administration.component";
+import {UnitOfMeasurementDeleteComponent} from "../childs/unit-of-measurement/unit-of-measurement-delete/unit-of-measurement-delete.component";
+import {UnitOfMeasurementDetailsComponent} from "../childs/unit-of-measurement/unit-of-measurement-details/unit-of-measurement-details.component";
+import {UnitOfMeasurementEditComponent} from "../childs/unit-of-measurement/unit-of-measurement-edit/unit-of-measurement-edit.component";
+import {UnitOfMeasurementOverviewComponent} from "../childs/unit-of-measurement/unit-of-measurement-overview/unit-of-measurement-overview.component";
 import {UserInfoDeleteComponent} from "../childs/user/user-info-delete/user-info-delete.component";
 import {UserInfoDetailsComponent} from "../childs/user/user-info-details/user-info-details.component";
 import {UserInfoEditComponent} from "../childs/user/user-info-edit/user-info-edit.component";
@@ -25,19 +29,24 @@ const routes: Routes = [
   {path: "changeMyPassword", component: ChangeMyPasswordComponent},
   {
     path: "administration", canActivate: [AuthGuard], component: AdministrationComponent, children: [
-    {path: "address", component: AddressOverviewComponent},
-    {path: "address/create", component: AddressEditComponent},
-    {path: "address/:id", component: AddressDetailsComponent},
-    {path: "address/:id/edit", component: AddressEditComponent},
-    {path: "address/:id/delete", component: AddressDeleteComponent},
-    {path: "user", component: UserInfoOverviewComponent},
-    {path: "user/create", component: UserInfoEditComponent},
-    {path: "user/:id", component: UserInfoDetailsComponent},
-    {path: "user/:id/edit", component: UserInfoEditComponent},
-    {path: "user/:id/delete", component: UserInfoDeleteComponent},
-    {path: "user/:id/passwordChange", canActivate: [AuthGuardAdmin], component: UserInfoPasswordChangeComponent},
-    {path: "", redirectTo: "address", pathMatch: "full"},
-  ]
+      {path: "address", component: AddressOverviewComponent},
+      {path: "address/create", component: AddressEditComponent},
+      {path: "address/:id", component: AddressDetailsComponent},
+      {path: "address/:id/edit", component: AddressEditComponent},
+      {path: "address/:id/delete", component: AddressDeleteComponent},
+      {path: "user", component: UserInfoOverviewComponent},
+      {path: "user/create", component: UserInfoEditComponent},
+      {path: "user/:id", component: UserInfoDetailsComponent},
+      {path: "user/:id/edit", component: UserInfoEditComponent},
+      {path: "user/:id/delete", component: UserInfoDeleteComponent},
+      {path: "user/:id/passwordChange", canActivate: [AuthGuardAdmin], component: UserInfoPasswordChangeComponent},
+      {path: "unitOfMeasurement", component: UnitOfMeasurementOverviewComponent},
+      {path: "unitOfMeasurement/create", component: UnitOfMeasurementEditComponent},
+      {path: "unitOfMeasurement/:id", component: UnitOfMeasurementDetailsComponent},
+      {path: "unitOfMeasurement/:id/edit", component: UnitOfMeasurementEditComponent},
+      {path: "unitOfMeasurement/:id/delete", component: UnitOfMeasurementDeleteComponent},
+      {path: "", redirectTo: "address", pathMatch: "full"},
+    ]
   },
 ];
 

@@ -1,0 +1,19 @@
+<app-table-filter (onChange)="applyFilter($event)" [settings]="this.settings"
+                  placeholder="Filter Masseinheiten"></app-table-filter>
+<mat-table #table [dataSource]="datasource" matSort>
+  <ng-container matColumnDef="id" hidden>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="shortcut">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Abkürzung</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.shortcut}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Beschreibung</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row class="table-row--highligthed" routerLink={{row.id}}
+           *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
