@@ -33,7 +33,7 @@ export class AddressEditComponent implements OnInit {
         const userObservable: Observable<UserInfoDto[]> = this.userInfoRest.getAll();
         const addressObservable = this.rest.get(+params["id"]);
         Observable.combineLatest(addressObservable, userObservable, (a, users) => {
-          const address = AddressDto.createAddressWithId(a.id, a);
+          const address = AddressDto.createWithId(a.id, a);
           this.userInfoSubject.next(users);
           for (const user of users) {
             if ((address.user != null && address.user.id === user.id) ||
@@ -63,7 +63,7 @@ export class AddressEditComponent implements OnInit {
           (err) => console.error(`could not save address: ${this.address.id} with Error: ${err}`)
         );
     } else {
-      this.rest.update(AddressDto.createAddressWithId(this.addressID, this.address))
+      this.rest.update(AddressDto.createWithId(this.addressID, this.address))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not update address: ${this.address.id} with Error: ${err}`));

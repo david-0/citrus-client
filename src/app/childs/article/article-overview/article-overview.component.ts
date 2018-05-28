@@ -6,11 +6,12 @@ import {Component, OnInit} from "@angular/core";
   styleUrls: ["./article-overview.component.scss"]
 })
 export class ArticleOverviewComponent implements OnInit {
+  public displayedColumns = ["number", "description", "stock", "status", "unitOfMeasurement"];
 
   constructor() {
   }
 
   ngOnInit() {
   }
-
 }
+

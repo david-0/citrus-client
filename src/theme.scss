@@ -19,12 +19,16 @@ $my-theme: mat-light-theme(
 @import "app/childs/administration/administration.component.scss-theme";
 @import "app/childs/address/address-table/address-table.component.scss-theme";
 @import "app/childs/user/user-info-overview/user-info-overview.component.scss-theme";
+@import "app/childs/article/article-table/article-table.component.scss-theme.scss";
+@import "app/childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component.scss-theme.scss";
 
 @mixin my-component-theme($theme) {
   @include app-list-header-theme($theme);
   @include app-administration-theme($theme);
   @include app-address-table-theme($theme);
   @include app-user-info-overview-theme($theme);
+  @include app-unit-of-measurement-table-theme($theme);
+  @include app-article-table-theme($theme);
 }
 @include angular-material-theme($my-theme);
 @include my-component-theme($my-theme);

@@ -27,7 +27,7 @@ export class UserInfoEditComponent implements OnInit {
         this.rest.get(+params["id"])
           .subscribe(
             t => {
-              this.userInfo = UserInfoDto.createUserInfoWithId(t.id, t);
+              this.userInfo = UserInfoDto.createWithId(t.id, t);
               this.userInfoId = this.userInfo.id;
             },
             err => {
@@ -45,7 +45,7 @@ export class UserInfoEditComponent implements OnInit {
           (err) => console.error(`could not save userInfo: ${this.userInfo.id} with Error: ${err}`)
         );
     } else {
-      this.rest.update(UserInfoDto.createUserInfoWithId(this.userInfoId, this.userInfo))
+      this.rest.update(UserInfoDto.createWithId(this.userInfoId, this.userInfo))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not update userInfo: ${this.userInfo.id} with Error: ${err}`));

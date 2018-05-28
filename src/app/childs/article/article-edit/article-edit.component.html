@@ -1,3 +1,35 @@
-<p>
-  article-edit works!
-</p>
+<form #f="ngForm" (ngSubmit)="submit()">
+  <app-table-header titleText="Address bearbeiten" showBack="true" showCancelAndSave="true"
+                    [form]="f"></app-table-header>
+  <div class="main-container">
+    <mat-card class="mat-card-padding">
+      <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Artikelnummer" #number [(ngModel)]="article.number"
+               maxlength="256" name="number">
+        <mat-hint align="end">{{number.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Beschreibung" #description [(ngModel)]="article.description"
+               maxlength="256" name="description">
+        <mat-hint align="end">{{description.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Lagerbestand" #stock [(ngModel)]="article.stock"
+               maxlength="256" name="stock">
+        <mat-hint align="end">{{stock.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Status" #status [(ngModel)]="article.status"
+               maxlength="256" name="status">
+        <mat-hint align="end">{{status.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width" color="accent">
+        <mat-select placeholder="Masseinheit" #unitOfMeasurement name="unitOfMeasurement" [(ngModel)]="article.unitOfMeasurement">
+          <mat-option *ngFor="let unitOfMeasurement of unitSubject | async" [value]="unitOfMeasurement">
+            {{ unitOfMeasurement.shortcut }} ({{unitOfMeasurement.description}})
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card>
+  </div>
+</form>

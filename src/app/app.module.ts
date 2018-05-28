@@ -42,10 +42,18 @@ import {AddressTableComponent} from "./childs/address/address-table/address-tabl
 import {AdministrationComponent} from "./childs/administration/administration.component";
 import {ArticleDeleteComponent} from "./childs/article/article-delete/article-delete.component";
 import {ArticleDetailsComponent} from "./childs/article/article-details/article-details.component";
+import {ArticleDtoRestService} from "./childs/article/article-dto-rest.service";
 import {ArticleEditComponent} from "./childs/article/article-edit/article-edit.component";
 import {ArticleOverviewComponent} from "./childs/article/article-overview/article-overview.component";
+import {ArticleSettingsService} from "./childs/article/article-settings.service";
+import {ArticleTableComponent} from "./childs/article/article-table/article-table.component";
+import {UnitOfMeasurementDeleteComponent} from "./childs/unit-of-measurement/unit-of-measurement-delete/unit-of-measurement-delete.component";
+import {UnitOfMeasurementDetailsComponent} from "./childs/unit-of-measurement/unit-of-measurement-details/unit-of-measurement-details.component";
 import {UnitOfMeasurementDtoRestService} from "./childs/unit-of-measurement/unit-of-measurement-dto-rest.service";
+import {UnitOfMeasurementEditComponent} from "./childs/unit-of-measurement/unit-of-measurement-edit/unit-of-measurement-edit.component";
+import {UnitOfMeasurementOverviewComponent} from "./childs/unit-of-measurement/unit-of-measurement-overview/unit-of-measurement-overview.component";
 import {UnitOfMeasurementSettingsService} from "./childs/unit-of-measurement/unit-of-measurement-settings.service";
+import {UnitOfMeasurementTableComponent} from "./childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component";
 import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-delete.component";
 import {UserInfoDetailsComponent} from "./childs/user/user-info-details/user-info-details.component";
 import {UserInfoDtoRestService} from "./childs/user/user-info-dto-rest.service";
@@ -59,11 +67,6 @@ import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { UnitOfMeasurementDeleteComponent } from './childs/unit-of-measurement/unit-of-measurement-delete/unit-of-measurement-delete.component';
-import { UnitOfMeasurementDetailsComponent } from './childs/unit-of-measurement/unit-of-measurement-details/unit-of-measurement-details.component';
-import { UnitOfMeasurementEditComponent } from './childs/unit-of-measurement/unit-of-measurement-edit/unit-of-measurement-edit.component';
-import { UnitOfMeasurementOverviewComponent } from './childs/unit-of-measurement/unit-of-measurement-overview/unit-of-measurement-overview.component';
-import { UnitOfMeasurementTableComponent } from './childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +96,7 @@ import { UnitOfMeasurementTableComponent } from './childs/unit-of-measurement/un
     UnitOfMeasurementEditComponent,
     UnitOfMeasurementOverviewComponent,
     UnitOfMeasurementTableComponent,
+    ArticleTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,6 +133,8 @@ import { UnitOfMeasurementTableComponent } from './childs/unit-of-measurement/un
     UserInfoDtoRestService,
     UnitOfMeasurementDtoRestService,
     UnitOfMeasurementSettingsService,
+    ArticleDtoRestService,
+    ArticleSettingsService,
     AuthGuard,
     AuthGuardAdmin,
     AuthenticationService,

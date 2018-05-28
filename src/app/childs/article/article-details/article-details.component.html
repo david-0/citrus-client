@@ -1,3 +1,14 @@
-<p>
-  article-details works!
-</p>
+<app-table-header titleText="Artikel details" label="dieser Artikel" showBack="true"
+                  showDelete="true" showEdit="true"></app-table-header>
+<div class="main-container">
+  <mat-card class="mat-card-padding">
+    <div>
+      <p>Id: {{article.id}}</p>
+      <p>Artikelnummer: {{article.number}}</p>
+      <p>Beschreibung: {{article .description}}</p>
+      <p>lagerbestand: {{article.stock}}</p>
+      <p>Status: {{article.status}}</p>
+      <p>Masseinheit: {{article.unitOfMeasurement?.shortcut}} ({{article.unitOfMeasurement?.description}})</p>
+    </div>
+  </mat-card>
+</div>

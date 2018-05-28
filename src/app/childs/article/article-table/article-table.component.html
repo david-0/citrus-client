@@ -1,0 +1,32 @@
+<app-table-filter (onChange)="applyFilter($event)" [settings]="this.settings"
+                  placeholder="Filter Artikel"></app-table-filter>
+<mat-table #table [dataSource]="datasource" matSort>
+  <ng-container matColumnDef="id" hidden>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="number">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Artikelnummer</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.number}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Beschreibung</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="stock">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Lagerbestand</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.stock}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Artikelstatus</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.status}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="unitOfMeasurement">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Masseinheit</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.unitOfMeasurement?.shortcut}} ({{row.unitOfMeasurement?.description}})</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row class="table-row--highligthed" routerLink={{row.id}}
+           *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

@@ -1,11 +1,11 @@
-@mixin app-unit-of-measurement-table-theme($theme) {
+@mixin app-article-table-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
 
-  app-unit-of-measurement-table {
+  app-article-table {
     .table-row--highligthed:hover {
       background-color: mat-color($primary);
       transition: all 0.3s ease-in

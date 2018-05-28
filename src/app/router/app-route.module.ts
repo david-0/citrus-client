@@ -8,6 +8,10 @@ import {AddressDetailsComponent} from "../childs/address/address-details/address
 import {AddressEditComponent} from "../childs/address/address-edit/address-edit.component";
 import {AddressOverviewComponent} from "../childs/address/address-overview/address-overview.component";
 import {AdministrationComponent} from "../childs/administration/administration.component";
+import {ArticleDeleteComponent} from "../childs/article/article-delete/article-delete.component";
+import {ArticleDetailsComponent} from "../childs/article/article-details/article-details.component";
+import {ArticleEditComponent} from "../childs/article/article-edit/article-edit.component";
+import {ArticleOverviewComponent} from "../childs/article/article-overview/article-overview.component";
 import {UnitOfMeasurementDeleteComponent} from "../childs/unit-of-measurement/unit-of-measurement-delete/unit-of-measurement-delete.component";
 import {UnitOfMeasurementDetailsComponent} from "../childs/unit-of-measurement/unit-of-measurement-details/unit-of-measurement-details.component";
 import {UnitOfMeasurementEditComponent} from "../childs/unit-of-measurement/unit-of-measurement-edit/unit-of-measurement-edit.component";
@@ -45,6 +49,11 @@ const routes: Routes = [
       {path: "unitOfMeasurement/:id", component: UnitOfMeasurementDetailsComponent},
       {path: "unitOfMeasurement/:id/edit", component: UnitOfMeasurementEditComponent},
       {path: "unitOfMeasurement/:id/delete", component: UnitOfMeasurementDeleteComponent},
+      {path: "article", component: ArticleOverviewComponent},
+      {path: "article/create", component: ArticleEditComponent},
+      {path: "article/:id", component: ArticleDetailsComponent},
+      {path: "article/:id/edit", component: ArticleEditComponent},
+      {path: "article/:id/delete", component: ArticleDeleteComponent},
       {path: "", redirectTo: "address", pathMatch: "full"},
     ]
   },

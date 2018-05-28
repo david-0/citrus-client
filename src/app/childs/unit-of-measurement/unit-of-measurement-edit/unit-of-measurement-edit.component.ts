@@ -27,7 +27,7 @@ export class UnitOfMeasurementEditComponent implements OnInit {
         this.rest.get(+params["id"])
           .subscribe(
             t => {
-              this.unitOfMeasurement = UnitOfMeasurementDto.createUserInfoWithId(t.id, t);
+              this.unitOfMeasurement = UnitOfMeasurementDto.createWithId(t.id, t);
               this.unitOfMeasurementId = this.unitOfMeasurement.id;
             },
             err => {
@@ -45,7 +45,7 @@ export class UnitOfMeasurementEditComponent implements OnInit {
           (err) => console.error(`could not save unitOfMeasurement: ${this.unitOfMeasurement.id} with Error: ${err}`)
         );
     } else {
-      this.rest.update(UnitOfMeasurementDto.createUserInfoWithId(this.unitOfMeasurementId, this.unitOfMeasurement))
+      this.rest.update(UnitOfMeasurementDto.createWithId(this.unitOfMeasurementId, this.unitOfMeasurement))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not update unitOfMeasurement: ${this.unitOfMeasurement.id} with Error: ${err}`));
