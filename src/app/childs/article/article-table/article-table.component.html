@@ -14,6 +14,10 @@
     <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.price}}</mat-cell>
+  </ng-container>
   <ng-container matColumnDef="stock">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Lagerbestand</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.stock}}</mat-cell>

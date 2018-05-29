@@ -6,11 +6,10 @@
       <p>Id: {{article.id}}</p>
       <p>Artikelnummer: {{article.number}}</p>
       <p>Beschreibung: {{article .description}}</p>
+      <p>Preis: {{article.price}}</p>
       <p>lagerbestand: {{article.stock}}</p>
       <p>Status: {{article.status}}</p>
       <p>Masseinheit: {{article.unitOfMeasurement?.shortcut}} ({{article.unitOfMeasurement?.description}})</p>
     </div>
   </mat-card>
-  <app-table-header titleText="Preise" [showCreate]="true"></app-table-header>
-  <app-priced-article-table [observable]="observable" [displayedColumns]="displayedColumns"></app-priced-article-table>
 </div>

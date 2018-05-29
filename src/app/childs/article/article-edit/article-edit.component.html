@@ -14,6 +14,11 @@
         <mat-hint align="end">{{description.value.length}}</mat-hint>
       </mat-form-field>
       <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Preis" #price [(ngModel)]="article.price"
+               maxlength="256" name="price">
+        <mat-hint align="end">{{price.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Lagerbestand" #stock [(ngModel)]="article.stock"
                maxlength="256" name="stock">
         <mat-hint align="end">{{stock.value.length}}</mat-hint>
