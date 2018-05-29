@@ -35,15 +35,7 @@ export class ArticleEditComponent implements OnInit {
         const unitObservable: Observable<UnitOfMeasurementDto[]> = this.unitRest.getAll();
         const articleObservable = this.rest.get(+params["id"]);
         Observable.combineLatest(articleObservable, unitObservable, (a, units) => {
-          const article = ArticleDto.createWithId(a.id, a);
-          this.unitSubject.next(units);
-          for (const unit of units) {
-            if ((article.unitOfMeasurement != null && article.unitOfMeasurement.id === unit.id) ||
-              (article.unitOfMeasurementId === unit.id)) {
-              article.unitOfMeasurement = unit;
-            }
-          }
-          return article;
+          return this.ensureUnitInArtile(a, units);
         }).subscribe(
           t => {
             this.article = t;
@@ -54,6 +46,21 @@ export class ArticleEditComponent implements OnInit {
           });
       }
     });
+  }
+
+  private ensureUnitInArtile(article, units): ArticleDto {
+    this.unitSubject.next(units);
+    for (const unit of units) {
+      if (this.isUnitWithSameId(article, unit)) {
+        article.unitOfMeasurement = unit;
+      }
+    }
+    return article;
+  }
+
+  private isUnitWithSameId(article: ArticleDto, unit: UnitOfMeasurementDto): boolean {
+    return article.unitOfMeasurementId === unit.id ||
+      (article.unitOfMeasurement != null && article.unitOfMeasurement.id === unit.id);
   }
 
   public submit() {

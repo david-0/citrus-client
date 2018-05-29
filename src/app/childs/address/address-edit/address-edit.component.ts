@@ -33,15 +33,7 @@ export class AddressEditComponent implements OnInit {
         const userObservable: Observable<UserInfoDto[]> = this.userInfoRest.getAll();
         const addressObservable = this.rest.get(+params["id"]);
         Observable.combineLatest(addressObservable, userObservable, (a, users) => {
-          const address = AddressDto.createWithId(a.id, a);
-          this.userInfoSubject.next(users);
-          for (const user of users) {
-            if ((address.user != null && address.user.id === user.id) ||
-              (address.userId === user.id)) {
-              address.user = user;
-            }
-          }
-          return address;
+          return this.ensureUserInAddress(a, users);
         }).subscribe(
           t => {
             this.address = t;
@@ -52,6 +44,21 @@ export class AddressEditComponent implements OnInit {
           });
       }
     });
+  }
+
+  private ensureUserInAddress(address: AddressDto, users: UserInfoDto[]): AddressDto {
+    this.userInfoSubject.next(users);
+    for (const user of users) {
+      if (this.isUserWithSameId(address, user)) {
+        address.user = user;
+      }
+    }
+    return address;
+  }
+
+  private isUserWithSameId(address: AddressDto, user: UserInfoDto): boolean {
+    return address.userId === user.id ||
+      (address.user != null && address.user.id === user.id);
   }
 
   public submit() {
