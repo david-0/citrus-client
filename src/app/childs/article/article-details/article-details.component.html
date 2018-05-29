@@ -11,4 +11,6 @@
       <p>Masseinheit: {{article.unitOfMeasurement?.shortcut}} ({{article.unitOfMeasurement?.description}})</p>
     </div>
   </mat-card>
+  <app-table-header titleText="Preise" [showCreate]="true"></app-table-header>
+  <app-priced-article-table [observable]="observable" [displayedColumns]="displayedColumns"></app-priced-article-table>
 </div>

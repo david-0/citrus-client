@@ -43,6 +43,7 @@ import {AdministrationComponent} from "./childs/administration/administration.co
 import {ArticleDeleteComponent} from "./childs/article/article-delete/article-delete.component";
 import {ArticleDetailsComponent} from "./childs/article/article-details/article-details.component";
 import {ArticleDtoRestService} from "./childs/article/article-dto-rest.service";
+import {ArticleDtoWithPriceRestService} from "./childs/article/article-dto-with-price-rest.service";
 import {ArticleEditComponent} from "./childs/article/article-edit/article-edit.component";
 import {ArticleOverviewComponent} from "./childs/article/article-overview/article-overview.component";
 import {ArticleSettingsService} from "./childs/article/article-settings.service";
@@ -67,6 +68,7 @@ import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
+import { PricedArticleTableComponent } from './childs/priced-article/priced-article-table/priced-article-table.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +99,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     UnitOfMeasurementOverviewComponent,
     UnitOfMeasurementTableComponent,
     ArticleTableComponent,
+    PricedArticleTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -128,6 +131,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     MatIconRegistry,
     RestUrlPrefixService,
     AddressDtoRestService,
+    ArticleDtoWithPriceRestService,
     AddressSettingsService,
     UserDetailsSettingsService,
     UserInfoDtoRestService,
