@@ -29,7 +29,7 @@ module.exports = function (config) {
     autoWatch: true,
 //    browsers: ['Chrome'],
     singleRun: false,
-    browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadless_without_security'],
+    browsers: ['ChromeHeadless_without_security'],
     customLaunchers: {
       ChromeHeadless_without_security: {
         base: 'ChromeHeadless',
