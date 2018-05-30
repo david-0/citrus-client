@@ -1,6 +1,6 @@
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
-import {MockListHeaderComponent, MockTableHeaderComponent} from "./testing-mocks.component";
+import {MockTableHeaderComponent} from "./testing-mocks.component";
 
 @NgModule({
   imports: [
