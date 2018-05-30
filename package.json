@@ -25,7 +25,7 @@
     "@angular/router": "^5.2.5",
     "@types/socket.io-client": "^1.4.32",
     "angular2-jwt": "^0.2.3",
-    "citrus-common": "file:../citrus-common/citrus-common-0.2.7.tgz",
+    "citrus-common": "^0.2.7",
     "core-js": "^2.5.3",
     "hammerjs": "^2.0.8",
     "material-design-icons": "^3.0.1",
