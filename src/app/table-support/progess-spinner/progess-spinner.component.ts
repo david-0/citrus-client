@@ -3,6 +3,7 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {Subscription} from "rxjs/Subscription";
 import "rxjs/add/observable/merge";
+import "rxjs/add/operator/mergeMap";
 
 @Component({
   selector: "app-progess-spinner",

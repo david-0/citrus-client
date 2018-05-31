@@ -1,6 +1,6 @@
 ﻿import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {JwtHelper, tokenNotExpired} from "angular2-jwt";
+import {JwtHelperService} from "@auth0/angular-jwt/src/jwthelper.service";
 import {Observable} from "rxjs/Observable";
 import {AuthToken} from "./auth-token";
 import {EmailPassword} from "./email-password";
@@ -8,7 +8,7 @@ import {EmailPassword} from "./email-password";
 @Injectable()
 export class AuthenticationService {
   private static readonly accessToken = "access_token";
-  private jwtHelper: JwtHelper = new JwtHelper();
+  private jwtHelper: JwtHelperService = new JwtHelperService();
   private email: string;
   private roles: string[];
 
@@ -81,7 +81,7 @@ export class AuthenticationService {
   }
 
   loggedIn(): boolean {
-    const isLoggedIn = tokenNotExpired(AuthenticationService.accessToken);
+    const isLoggedIn = !this.jwtHelper.isTokenExpired(AuthenticationService.accessToken);
     return isLoggedIn;
   }
 
