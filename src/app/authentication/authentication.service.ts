@@ -1,7 +1,7 @@
 ﻿import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {JwtHelperService} from "@auth0/angular-jwt/src/jwthelper.service";
 import {Observable} from "rxjs/Observable";
+import {JwtHelperService} from "../angular-jwt/jwthelper.service";
 import {AuthToken} from "./auth-token";
 import {EmailPassword} from "./email-password";
 

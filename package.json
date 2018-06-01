@@ -23,7 +23,6 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
-    "@auth0/angular-jwt": "https://github.com/lwensveen/angular2-jwt.git",
     "@types/socket.io-client": "^1.4.32",
     "citrus-common": "^0.2.7",
     "core-js": "^2.5.7",
