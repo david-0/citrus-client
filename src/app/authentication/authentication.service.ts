@@ -81,7 +81,7 @@ export class AuthenticationService {
   }
 
   loggedIn(): boolean {
-    const isLoggedIn = !this.jwtHelper.isTokenExpired(AuthenticationService.accessToken);
+    const isLoggedIn = !this.jwtHelper.isTokenExpired(this.getAccessToken());
     return isLoggedIn;
   }
 
