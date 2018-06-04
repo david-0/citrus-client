@@ -2,3 +2,18 @@
   display: flex;
   justify-content: center;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}

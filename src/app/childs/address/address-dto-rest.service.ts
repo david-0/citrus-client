@@ -7,6 +7,6 @@ import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service"
 @Injectable()
 export class AddressDtoRestService extends GenericRestService<AddressDto> {
   constructor(http: HttpClient, private restUrlPrefix: RestUrlPrefixService) {
-    super(http, restUrlPrefix.getRestPrefix() + "/address");
+    super(http, restUrlPrefix.getApiRestPrefix() + "/address");
   }
 }

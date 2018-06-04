@@ -3,7 +3,11 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class RestUrlPrefixService {
 
-  public getRestPrefix(): string {
-    return "http://localhost:3001/api";
+  public getApiRestPrefix(): string {
+    return this.getPublicRestPrefix() + "/api";
+  }
+
+  public getPublicRestPrefix(): string {
+    return "http://localhost:3001";
   }
 }

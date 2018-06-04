@@ -8,6 +8,6 @@ import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service"
 export class UserInfoDtoRestService extends GenericRestService<UserInfoDto> {
 
   constructor(http: HttpClient, private restUrlPrefix: RestUrlPrefixService) {
-    super(http, restUrlPrefix.getRestPrefix() + "/userInfo");
+    super(http, restUrlPrefix.getApiRestPrefix() + "/userInfo");
   }
 }

@@ -62,11 +62,13 @@ import {UserInfoOverviewComponent} from "./childs/user/user-info-overview/user-i
 import {UserInfoPasswordChangeComponent} from "./childs/user/user-info-password-change/user-info-password-change.component";
 import {UserDetailsSettingsService} from "./childs/user/user-info-settings.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {PublicArticleDtoRestService} from "./dashboard/public-article-dto-rest.service";
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
+import { PublicArticleDetailComponent } from './dashboard/public-article-detail/public-article-detail.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +99,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     UnitOfMeasurementOverviewComponent,
     UnitOfMeasurementTableComponent,
     ArticleTableComponent,
+    PublicArticleDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -134,6 +137,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     UnitOfMeasurementDtoRestService,
     UnitOfMeasurementSettingsService,
     ArticleDtoRestService,
+    PublicArticleDtoRestService,
     ArticleSettingsService,
     AuthGuard,
     AuthGuardAdmin,
