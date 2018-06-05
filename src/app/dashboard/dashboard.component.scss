@@ -20,6 +20,13 @@
   align-items: center;
 }
 
+.cart-footer {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  height: 3.5em;
+}
+
 .icon-margin {
   margin: 0.5em;
 }
@@ -35,6 +42,20 @@ button.button--responsive {
   padding-right: 0.5em;
 }
 
+button.cash-button {
+  min-width: 10px;
+  margin: 0.2em;
+  border-radius: 1.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 .height-without-toolbar {
   height: calc(100% - 64px);
+}
+
+.sidebar-positions {
+  display: flex;
+  align-content: space-between;
+  flex-direction: column;
 }
