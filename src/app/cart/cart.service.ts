@@ -22,8 +22,8 @@ export class CartService {
     return [];
   }
 
-  private saveCart(cartEntries: CartEntry[]) {
-    localStorage.setItem("cart", JSON.stringify(cartEntries));
+  private saveCart() {
+    localStorage.setItem("cart", JSON.stringify(this.cart.getValue()));
   }
 
   public getCart(): Observable<CartEntry[]> {
@@ -32,12 +32,19 @@ export class CartService {
 
   public clear() {
     this.cart.next([]);
-    this.saveCart(this.cart.getValue());
+    this.saveCart();
   }
 
   public addArticle(article: ArticleDto, count: number) {
     this.updateCart(article, count);
-    this.saveCart(this.cart.getValue());
+    this.saveCart();
+  }
+
+  public removeArticle(article: ArticleDto) {
+    const entries = this.cart.getValue();
+    const entriesWithoutArticle = entries.filter(e => e.article.id !== article.id);
+    this.cart.next(entriesWithoutArticle);
+    this.saveCart();
   }
 
   private updateCart(article: ArticleDto, count: number) {
@@ -54,9 +61,11 @@ export class CartService {
         this.cart.next(entries);
       }
     } else {
-      const entry: CartEntry = {article: article, price: article.price * count, count};
-      entries.push(entry);
-      this.cart.next(entries);
+      if (count > 0) {
+        const entry: CartEntry = {article: article, price: article.price * count, count};
+        entries.push(entry);
+        this.cart.next(entries);
+      }
     }
   }
 }

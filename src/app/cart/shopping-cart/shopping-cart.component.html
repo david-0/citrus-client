@@ -11,6 +11,20 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.price | currency: 'CHF '}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="cart">
+    <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+    <mat-cell *matCellDef="let row" class="center" >
+      <button mat-button type="submit" class="button--responsive" (click)="increase(row)">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+      <button mat-button type="submit" class="button--responsive" (click)="decrease(row)">
+        <mat-icon>remove_circle</mat-icon>
+      </button>
+      <button mat-button type="submit" class="button--responsive" (click)="remove(row)">
+        <mat-icon>remove_shopping_cart</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
   <mat-row class="table-row--highligthed" *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
 

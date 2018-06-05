@@ -11,7 +11,7 @@ import {CartService} from "../cart.service";
 export class ShoppingCartComponent implements OnInit {
 
   datasource = new MatTableDataSource<CartEntry>();
-  public displayedColumns = ["article", "count", "price"];
+  public displayedColumns = ["article", "count", "price", "cart"];
 
   constructor(private cartService: CartService) {
     this.datasource.data = [];
@@ -21,6 +21,18 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public increase(cartEntry: CartEntry) {
+    this.cartService.addArticle(cartEntry.article, 1);
+  }
+
+  public decrease(cartEntry: CartEntry) {
+    this.cartService.addArticle(cartEntry.article, -1);
+  }
+
+  public remove(cartEntry: CartEntry) {
+    this.cartService.removeArticle(cartEntry.article);
   }
 
 }

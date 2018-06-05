@@ -12,7 +12,7 @@ import {PublicArticleDtoRestService} from "../public-article-dto-rest.service";
 export class PublicArticleListComponent implements OnInit {
 
   datasource = new MatTableDataSource<ArticleDto>();
-  public displayedColumns = ["number", "description", "price", "stock", "status", "Warenkorb"];
+  public displayedColumns = ["number", "description", "price", "stock", "status", "cart"];
 
   constructor(private rest: PublicArticleDtoRestService, private cartService: CartService) {
   }
