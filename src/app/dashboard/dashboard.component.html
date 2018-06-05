@@ -1,4 +1,4 @@
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container class="example-container" style="height: calc(100% - 64px);" >
   <mat-sidenav position="end" #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
                (closed)="events.push('close!')" class="sidebar" [fixedInViewport]="false">
     <div class="cart-header">
@@ -11,7 +11,6 @@
     </div>
     <app-shopping-cart></app-shopping-cart>
   </mat-sidenav>
-
   <mat-sidenav-content>
     <app-public-article-list class="articles"></app-public-article-list>
   </mat-sidenav-content>

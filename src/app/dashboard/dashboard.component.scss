@@ -34,3 +34,7 @@ button.button--responsive {
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
+
+.height-without-toolbar {
+  height: calc(100% - 64px);
+}
