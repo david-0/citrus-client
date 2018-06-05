@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   MatButtonModule,
   MatButtonToggleModule,
-  MatCardModule,
+  MatCardModule, MatCheckboxModule,
   MatDatepickerModule,
   MatFormFieldModule,
   MatIconModule,
@@ -69,6 +69,8 @@ import {AppRouteModule} from "./router/app-route.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
 import { PublicArticleDetailComponent } from './dashboard/public-article-detail/public-article-detail.component';
+import { ShoppingCartComponent } from './cart/shopping-cart/shopping-cart.component';
+import { PublicArticleListComponent } from './dashboard/public-article-list/public-article-list.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +102,8 @@ import { PublicArticleDetailComponent } from './dashboard/public-article-detail/
     UnitOfMeasurementTableComponent,
     ArticleTableComponent,
     PublicArticleDetailComponent,
+    ShoppingCartComponent,
+    PublicArticleListComponent,
   ],
   imports: [
     BrowserModule,
@@ -126,6 +130,8 @@ import { PublicArticleDetailComponent } from './dashboard/public-article-detail/
     ReactiveFormsModule,
     HttpClientModule,
     MatMenuModule,
+    MatCheckboxModule,
+    MatSidenavModule,
   ],
   providers: [
     MatIconRegistry,

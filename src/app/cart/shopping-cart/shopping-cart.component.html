@@ -1,0 +1,17 @@
+<mat-table #table [dataSource]="datasource" matSort>
+  <ng-container matColumnDef="article">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Artikel</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.article.description}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="count">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Anzahl</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.count}} {{row.article.unitOfMeasurement.shortcut}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.price | currency: 'CHF '}}</mat-cell>
+  </ng-container>
+  <mat-row class="table-row--highligthed" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+

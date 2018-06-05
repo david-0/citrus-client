@@ -1,19 +1,28 @@
-.container {
-  display: flex;
-  justify-content: center;
+.example-container {
+  position: absolute;
+  width: 100%;
 }
 
-.center {
-  display: flex;
-  justify-content: center;
+.example-events {
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #555;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+.sidebar {
+  width: 20em;
+  background-color: #DDDDDD;
 }
 
-.fill-remaining-space {
-  flex: 1 1 auto;
+.cart-header {
+  // height: 3em;
+  display: flex;
+  align-items: center;
+  color: "accent";
 }
+
+.cart-header mat-icon {
+  margin: 0.5em;
+}
+
