@@ -31,6 +31,7 @@ import {AuthGuard} from "./authentication/auth-guard.service";
 import {AuthenticationService} from "./authentication/authentication.service";
 import {PasswordChangeComponent} from "./authentication/password-change/password-change.component";
 import {TokenInterceptor} from "./authentication/token-interceptor";
+import {CartService} from "./cart/cart.service";
 import {ChangeMyPasswordComponent} from "./change-my-password/change-my-password.component";
 import {AddressDeleteComponent} from "./childs/address/address-delete/address-delete.component";
 import {AddressDetailsComponent} from "./childs/address/address-details/address-details.component";
@@ -145,6 +146,7 @@ import { PublicArticleListComponent } from './dashboard/public-article-list/publ
     ArticleDtoRestService,
     PublicArticleDtoRestService,
     ArticleSettingsService,
+    CartService,
     AuthGuard,
     AuthGuardAdmin,
     AuthenticationService,

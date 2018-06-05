@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
-import {ArticleDto, UnitOfMeasurementDto} from "citrus-common";
-import {Observable} from "rxjs/Rx";
+import {ArticleDto} from "citrus-common";
+import {BehaviorSubject, Observable} from "rxjs/Rx";
 import {CartEntry} from "./cart-entry";
 
 @Injectable({
@@ -8,21 +8,50 @@ import {CartEntry} from "./cart-entry";
 })
 export class CartService {
 
+  private cart: BehaviorSubject<CartEntry[]>;
+
   constructor() {
+    this.cart = new BehaviorSubject<CartEntry[]>(this.getSavedCart());
+  }
+
+  private getSavedCart(): CartEntry[] {
+    const item = localStorage.getItem("cart");
+    if (item) {
+      return JSON.parse(item);
+    }
+    return [];
+  }
+
+  private saveCart(cartEntries: CartEntry[]) {
+    localStorage.setItem("cart", JSON.stringify(cartEntries));
   }
 
   public getCart(): Observable<CartEntry[]> {
-    const article = ArticleDto.createEmpty();
-    article.description = "Orangen";
-    article.unitOfMeasurement = UnitOfMeasurementDto.createEmpty();
-    article.unitOfMeasurement.shortcut = "kg";
-    const article1 = ArticleDto.createEmpty();
-    article1.description = "Zitrone";
-    article1.unitOfMeasurement = UnitOfMeasurementDto.createEmpty();
-    article1.unitOfMeasurement.shortcut = "Stk";
-    return new Observable<CartEntry[]>((s) => {
-      s.next([{article, count: 5, price: 5.75},
-        {article: article1, count: 3, price: 7.80}]);
-    });
+    return this.cart;
+  }
+
+  public addArticle(article: ArticleDto, count: number) {
+    this.updateCart(article, count);
+    this.saveCart(this.cart.getValue());
+  }
+
+  private updateCart(article: ArticleDto, count: number) {
+    const entries = this.cart.getValue();
+    const articleAlreadyInCart = entries.filter(e => e.article.id === article.id);
+    if (articleAlreadyInCart.length > 0) {
+      const newCount = articleAlreadyInCart[0].count + count;
+      if (newCount <= 0) {
+        this.cart.next(entries.filter(e => e.article.id !== article.id));
+      } else {
+        const newPrice = article.price * newCount;
+        articleAlreadyInCart[0].price = newPrice;
+        articleAlreadyInCart[0].count = newCount;
+        this.cart.next(entries);
+      }
+    } else {
+      const entry: CartEntry = {article: article, price: article.price * count, count};
+      entries.push(entry);
+      this.cart.next(entries);
+    }
   }
 }

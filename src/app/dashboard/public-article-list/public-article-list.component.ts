@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {MatTableDataSource} from "@angular/material";
 import {ArticleDto} from "citrus-common";
+import {CartService} from "../../cart/cart.service";
 import {PublicArticleDtoRestService} from "../public-article-dto-rest.service";
 
 @Component({
@@ -13,7 +14,7 @@ export class PublicArticleListComponent implements OnInit {
   datasource = new MatTableDataSource<ArticleDto>();
   public displayedColumns = ["number", "description", "price", "stock", "status", "Warenkorb"];
 
-  constructor(private rest: PublicArticleDtoRestService) {
+  constructor(private rest: PublicArticleDtoRestService, private cartService: CartService) {
   }
 
   ngOnInit() {
@@ -28,7 +29,7 @@ export class PublicArticleListComponent implements OnInit {
     this.datasource.filter = filterValue;
   }
 
-  addToCart(articleId: number) {
-
+  addToCart(article: ArticleDto) {
+    this.cartService.addArticle(article, 1);
   }
 }

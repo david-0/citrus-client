@@ -28,11 +28,11 @@
   </ng-container>
   <ng-container matColumnDef="Warenkorb">
     <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-    <mat-cell *matCellDef="let row" class="center">
+    <mat-cell *matCellDef="let row" class="center" (click)="addToCart(row)">
       <mat-icon>add_shopping_cart</mat-icon>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row class="table-row--highligthed" (click)="addToCart(row.id)"
+  <mat-row class="table-row--highligthed"
            *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
