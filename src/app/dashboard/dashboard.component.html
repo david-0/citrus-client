@@ -2,8 +2,12 @@
   <mat-sidenav position="end" #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
                (closed)="events.push('close!')" class="sidebar" [fixedInViewport]="false">
     <div class="cart-header">
-      <mat-icon>shopping_cart</mat-icon>
-      <span>Warenkorb</span>
+      <mat-icon class="icon-margin">shopping_cart</mat-icon>
+      <span class="fill-remaining-space">Warenkorb</span>
+      <button mat-button type="submit" class="button--responsive" (click)="clearCart()">
+        <mat-icon>delete</mat-icon>
+        <span class="size-xl">leeren</span>
+      </button>
     </div>
     <app-shopping-cart></app-shopping-cart>
   </mat-sidenav>

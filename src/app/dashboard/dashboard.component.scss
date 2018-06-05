@@ -16,13 +16,21 @@
 }
 
 .cart-header {
-  // height: 3em;
   display: flex;
   align-items: center;
-  color: "accent";
 }
 
-.cart-header mat-icon {
+.icon-margin {
   margin: 0.5em;
 }
 
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+button.button--responsive {
+  min-width: 10px;
+  margin: 0.2em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}

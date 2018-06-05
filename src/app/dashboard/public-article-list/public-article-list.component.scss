@@ -17,3 +17,10 @@
 .fill-remaining-space {
   flex: 1 1 auto;
 }
+
+button.button--responsive {
+  min-width: 10px;
+  margin: 0.2em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}

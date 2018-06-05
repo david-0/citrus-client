@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {CartService} from "../cart/cart.service";
 
 @Component({
   selector: "app-dashboard",
@@ -10,6 +11,13 @@ export class DashboardComponent implements OnInit {
   events: string[] = [];
   opened = true;
 
+  constructor(private cartService: CartService) {
+  }
+
   ngOnInit() {
+  }
+
+  clearCart() {
+    this.cartService.clear();
   }
 }

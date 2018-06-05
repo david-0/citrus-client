@@ -30,6 +30,11 @@ export class CartService {
     return this.cart;
   }
 
+  public clear() {
+    this.cart.next([]);
+    this.saveCart(this.cart.getValue());
+  }
+
   public addArticle(article: ArticleDto, count: number) {
     this.updateCart(article, count);
     this.saveCart(this.cart.getValue());
