@@ -1,11 +1,9 @@
-.container {
+.cart-button-column {
   display: flex;
-  justify-content: center;
-}
-
-.center {
-  display: flex;
-  justify-content: center;
+  align-content: stretch;
+  padding-right: 0.5em;
+  min-width: 3em;
+  max-width: 8em;
 }
 
 .container {
@@ -18,8 +16,14 @@
   flex: 1 1 auto;
 }
 
+.cart-color-green {
+  background-color: #00BB00;
+}
+
 button.button--responsive {
-  min-width: 10px;
+  border-radius: 0.5em;
+  min-width: 30px;
+  flex-grow: 1;
   margin: 0.2em;
   padding-left: 0.5em;
   padding-right: 0.5em;

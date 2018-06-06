@@ -28,8 +28,8 @@
   </ng-container>
   <ng-container matColumnDef="cart">
     <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-    <mat-cell *matCellDef="let row" class="center" >
-      <button mat-button type="submit" class="button--responsive" (click)="addToCart(row)">
+    <mat-cell *matCellDef="let row" class="cart-button-column" >
+      <button mat-button type="submit" class="button--responsive cart-color-green" (click)="addToCart(row)">
         <mat-icon>add_shopping_cart</mat-icon>
       </button>
     </mat-cell>
