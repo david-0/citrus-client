@@ -4,7 +4,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   MatButtonModule,
   MatButtonToggleModule,
-  MatCardModule, MatCheckboxModule,
+  MatCardModule,
+  MatCheckboxModule,
   MatDatepickerModule,
   MatFormFieldModule,
   MatIconModule,
@@ -32,6 +33,7 @@ import {AuthenticationService} from "./authentication/authentication.service";
 import {PasswordChangeComponent} from "./authentication/password-change/password-change.component";
 import {TokenInterceptor} from "./authentication/token-interceptor";
 import {CartService} from "./cart/cart.service";
+import {ShoppingCartComponent} from "./cart/shopping-cart/shopping-cart.component";
 import {ChangeMyPasswordComponent} from "./change-my-password/change-my-password.component";
 import {AddressDeleteComponent} from "./childs/address/address-delete/address-delete.component";
 import {AddressDetailsComponent} from "./childs/address/address-details/address-details.component";
@@ -63,15 +65,14 @@ import {UserInfoOverviewComponent} from "./childs/user/user-info-overview/user-i
 import {UserInfoPasswordChangeComponent} from "./childs/user/user-info-password-change/user-info-password-change.component";
 import {UserDetailsSettingsService} from "./childs/user/user-info-settings.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {PublicArticleDetailComponent} from "./dashboard/public-article-detail/public-article-detail.component";
 import {PublicArticleDtoRestService} from "./dashboard/public-article-dto-rest.service";
+import {PublicArticleListComponent} from "./dashboard/public-article-list/public-article-list.component";
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { PublicArticleDetailComponent } from './dashboard/public-article-detail/public-article-detail.component';
-import { ShoppingCartComponent } from './cart/shopping-cart/shopping-cart.component';
-import { PublicArticleListComponent } from './dashboard/public-article-list/public-article-list.component';
 
 @NgModule({
   declarations: [
@@ -154,7 +155,7 @@ import { PublicArticleListComponent } from './dashboard/public-article-list/publ
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

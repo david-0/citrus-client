@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../authentication/authentication.service";
 
 @Component({
@@ -12,8 +12,9 @@ export class LoginComponent implements OnInit {
 
   hide = true;
   loginForm: FormGroup;
+  returnUrl: string;
 
-  constructor(private router: Router, private authService: AuthenticationService) {
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl("password", [Validators.required,
         Validators.minLength(7)])
     });
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
   }
 
   get email() {
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
   submit() {
     this.authService.login(this.email.value, this.password.value).subscribe( successfully => {
       if (successfully) {
-        this.router.navigate(["administration"]);
+        this.router.navigate([this.returnUrl]);
       } else {
         console.error("Login failed");
       }

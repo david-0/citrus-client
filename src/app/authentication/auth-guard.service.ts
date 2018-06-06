@@ -5,9 +5,6 @@ import {AuthenticationService} from "./authentication.service";
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
 
-  // originally requested url before being logged-in
-  public redirectUrl: string;
-
   constructor(private authenticationService: AuthenticationService, private router: Router) {
   }
 
@@ -24,10 +21,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     if (this.authenticationService.loggedIn()) {
       return true;
     }
-    // Store the attempted URL for redirecting
-    this.redirectUrl = url;
     // Navigate to the login page
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/login"], { queryParams: { returnUrl: url }});
     return false;
   }
 }

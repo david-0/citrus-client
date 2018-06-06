@@ -9,7 +9,7 @@ import {AuthenticationService} from "./authentication/authentication.service";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  constructor(private router: Router,
+  constructor(public router: Router,
               public authService: AuthenticationService) {
   }
 

@@ -2,9 +2,10 @@
   <mat-toolbar color="primary">
     <span>Citrus</span>
     <span class="fill-remaining-space"></span>
-    <a *ngIf="!authService.loggedIn()" routerLink='login'><span>admin</span></a>
+    <a *ngIf="!authService.loggedIn()" routerLink='login'><span>login</span></a>
+    <span *ngIf="authService.loggedIn()">{{authService.getLoggedInUsername()}}</span>
     <button *ngIf="authService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>person</mat-icon>
+      <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="logout()">
@@ -14,6 +15,10 @@
       <button mat-menu-item>
         <mat-icon>security</mat-icon>
         <a class="menu-entry" routerLink="/changeMyPassword"><span>Passwort ändern</span></a>
+      </button>
+      <button *ngIf="authService.isAdmin()" mat-menu-item >
+        <mat-icon>list</mat-icon>
+        <a class="menu-entry" routerLink="/administration"><span>admin</span></a>
       </button>
     </mat-menu>
   </mat-toolbar>
