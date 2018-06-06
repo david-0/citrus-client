@@ -73,6 +73,7 @@ import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
+import { CashComponent } from './cash/cash.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     PublicArticleDetailComponent,
     ShoppingCartComponent,
     PublicArticleListComponent,
+    CashComponent,
   ],
   imports: [
     BrowserModule,
