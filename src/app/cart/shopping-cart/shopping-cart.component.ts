@@ -11,7 +11,7 @@ import {CartService} from "../cart.service";
 export class ShoppingCartComponent implements OnInit {
 
   datasource = new MatTableDataSource<CartEntry>();
-  public displayedColumns = ["article", "count", "price", "cart"];
+  public displayedColumns = ["article", "cart"];
 
   constructor(private cartService: CartService) {
     this.datasource.data = [];
