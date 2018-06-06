@@ -1,0 +1,21 @@
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Abholungsort</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Abschliessen</ng-template>
+    Bestellung abschliessen.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

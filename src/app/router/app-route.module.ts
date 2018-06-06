@@ -24,14 +24,14 @@ import {UserInfoPasswordChangeComponent} from "../childs/user/user-info-password
 import {DashboardComponent} from "../dashboard/dashboard.component";
 import {LoginComponent} from "../login/login.component";
 import {LogoutComponent} from "../logout/logout.component";
-import {CashComponent} from "../cash/cash.component";
+import {CheckoutComponent} from "../checkout/checkout.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
   {path: "dashboard", component: DashboardComponent},
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent},
-  {path: "cash", canActivate: [AuthGuard], component: CashComponent},
+  {path: "checkout", canActivate: [AuthGuard], component: CheckoutComponent},
   {path: "changeMyPassword", component: ChangeMyPasswordComponent},
   {
     path: "administration", canActivate: [AuthGuard, AuthGuardAdmin], component: AdministrationComponent, children: [
