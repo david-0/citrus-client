@@ -1,5 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
+import {UserInfoDto} from "citrus-common";
+import {BaseDeleteComponent} from "../../../base/base-delete.component";
 import {UserInfoDtoRestService} from "../user-info-dto-rest.service";
 
 @Component({
@@ -7,25 +9,10 @@ import {UserInfoDtoRestService} from "../user-info-dto-rest.service";
   templateUrl: "./user-info-delete.component.html",
   styleUrls: ["./user-info-delete.component.scss"]
 })
-export class UserInfoDeleteComponent implements OnInit {
+export class UserInfoDeleteComponent extends BaseDeleteComponent<UserInfoDto> {
 
-  public id: string;
-  public message: string;
-
-  constructor(private route: ActivatedRoute,
-              public rest: UserInfoDtoRestService) {
-  }
-
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.rest.del(+params["id"])
-        .subscribe(
-          t => {
-            this.message = `Der Benuzter wurde gelöscht!`;
-          },
-          err => {
-            this.message = `Der Bneutzer konnte nicht gelöscht werden (Error: ${err}).`;
-          });
-    });
+  constructor(route: ActivatedRoute,
+              rest: UserInfoDtoRestService) {
+    super(route, rest, "User");
   }
 }

@@ -1,5 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
+import {ArticleDto} from "citrus-common";
+import {BaseDeleteComponent} from "../../../base/base-delete.component";
 import {ArticleDtoRestService} from "../article-dto-rest.service";
 
 @Component({
@@ -7,26 +9,11 @@ import {ArticleDtoRestService} from "../article-dto-rest.service";
   templateUrl: "./article-delete.component.html",
   styleUrls: ["./article-delete.component.scss"]
 })
-export class ArticleDeleteComponent implements OnInit {
+export class ArticleDeleteComponent extends BaseDeleteComponent<ArticleDto> {
 
-  public id: string;
-  public message: string;
-
-  constructor(private route: ActivatedRoute,
-              public rest: ArticleDtoRestService) {
-  }
-
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.rest.del(+params["id"])
-        .subscribe(
-          t => {
-            this.message = `Dieser Artikel wurde gelöscht!`;
-          },
-          err => {
-            this.message = `Dieser Artikel konnte nicht gelöscht werden (Error: ${err}).`;
-          });
-    });
+  constructor(route: ActivatedRoute,
+              rest: ArticleDtoRestService) {
+    super(route, rest, "Artikel");
   }
 
 }
