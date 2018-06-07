@@ -29,6 +29,10 @@ export class AddressEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
         this.addressID = this.address.id;
+        const userObservable: Observable<UserInfoDto[]> = this.userInfoRest.getAll();
+        userObservable.subscribe(users => {
+          this.userInfoSubject.next(users);
+        });
       } else {
         const userObservable: Observable<UserInfoDto[]> = this.userInfoRest.getAll();
         const addressObservable = this.rest.get(+params["id"]);
