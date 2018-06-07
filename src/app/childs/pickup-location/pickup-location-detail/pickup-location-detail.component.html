@@ -1,3 +1,10 @@
-<p>
-  pickup-location-detail works!
-</p>
+<app-table-header titleText="Abholstation details" label="diese Abholstation" showBack="true"
+                  showDelete="true" showEdit="true"></app-table-header>
+<div class="main-container">
+  <mat-card class="mat-card-padding">
+    <div>
+      <p>Id: {{pickupLocation.id}}</p>
+      <p>Beschreibung: {{pickupLocation.description}}</p>
+    </div>
+  </mat-card>
+</div>

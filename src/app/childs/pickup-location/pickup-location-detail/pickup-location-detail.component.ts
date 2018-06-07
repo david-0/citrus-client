@@ -1,16 +1,37 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
+import {Subscription} from "rxjs/Subscription";
+import {PickupLocationDtoService} from "../pickup-location-dto.service";
 
 @Component({
   selector: "app-pickup-location-detail",
   templateUrl: "./pickup-location-detail.component.html",
   styleUrls: ["./pickup-location-detail.component.scss"]
 })
-export class PickupLocationDetailComponent implements OnInit {
+export class PickupLocationDetailComponent implements OnInit, OnDestroy {
+  private _pickupLocation: PickupLocationDto = PickupLocationDto.createEmpty();
+  private subscription: Subscription;
 
-  constructor() {
+  constructor(private route: ActivatedRoute, private rest: PickupLocationDtoService) {
+  }
+
+  public get pickupLocation(): PickupLocationDto {
+    return this._pickupLocation;
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      const promise = this.rest.get(+params["id"]);
+      this.subscription = promise.subscribe((pickupLocation) => {
+        this._pickupLocation = pickupLocation;
+      });
+    });
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }
