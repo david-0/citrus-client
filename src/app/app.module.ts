@@ -74,6 +74,11 @@ import {AppRouteModule} from "./router/app-route.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
 import { CheckoutComponent } from './checkout/checkout.component';
+import { PickupLocationOverviewComponent } from './childs/pickup-location/pickup-location-overview/pickup-location-overview.component';
+import { PickupLocationTableComponent } from './childs/pickup-location/pickup-location-table/pickup-location-table.component';
+import { PickupLocationEditComponent } from './childs/pickup-location/pickup-location-edit/pickup-location-edit.component';
+import { PickupLocationDeleteComponent } from './childs/pickup-location/pickup-location-delete/pickup-location-delete.component';
+import { PickupLocationDetailComponent } from './childs/pickup-location/pickup-location-detail/pickup-location-detail.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +113,11 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ShoppingCartComponent,
     PublicArticleListComponent,
     CheckoutComponent,
+    PickupLocationOverviewComponent,
+    PickupLocationTableComponent,
+    PickupLocationEditComponent,
+    PickupLocationDeleteComponent,
+    PickupLocationDetailComponent,
   ],
   imports: [
     BrowserModule,

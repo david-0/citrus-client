@@ -12,6 +12,10 @@ import {ArticleDeleteComponent} from "../childs/article/article-delete/article-d
 import {ArticleDetailsComponent} from "../childs/article/article-details/article-details.component";
 import {ArticleEditComponent} from "../childs/article/article-edit/article-edit.component";
 import {ArticleOverviewComponent} from "../childs/article/article-overview/article-overview.component";
+import {PickupLocationDeleteComponent} from "../childs/pickup-location/pickup-location-delete/pickup-location-delete.component";
+import {PickupLocationDetailComponent} from "../childs/pickup-location/pickup-location-detail/pickup-location-detail.component";
+import {PickupLocationEditComponent} from "../childs/pickup-location/pickup-location-edit/pickup-location-edit.component";
+import {PickupLocationOverviewComponent} from "../childs/pickup-location/pickup-location-overview/pickup-location-overview.component";
 import {UnitOfMeasurementDeleteComponent} from "../childs/unit-of-measurement/unit-of-measurement-delete/unit-of-measurement-delete.component";
 import {UnitOfMeasurementDetailsComponent} from "../childs/unit-of-measurement/unit-of-measurement-details/unit-of-measurement-details.component";
 import {UnitOfMeasurementEditComponent} from "../childs/unit-of-measurement/unit-of-measurement-edit/unit-of-measurement-edit.component";
@@ -56,6 +60,11 @@ const routes: Routes = [
       {path: "article/:id", component: ArticleDetailsComponent},
       {path: "article/:id/edit", component: ArticleEditComponent},
       {path: "article/:id/delete", component: ArticleDeleteComponent},
+      {path: "pickupLocation", component: PickupLocationOverviewComponent},
+      {path: "pickupLocation/create", component: PickupLocationEditComponent},
+      {path: "pickupLocation/:id", component: PickupLocationDetailComponent},
+      {path: "pickupLocation/:id/edit", component: PickupLocationEditComponent},
+      {path: "pickupLocation/:id/delete", component: PickupLocationDeleteComponent},
       {path: "", redirectTo: "address", pathMatch: "full"},
     ]
   },
