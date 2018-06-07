@@ -16,7 +16,8 @@ import {
   MatPaginatorModule,
   MatSelectModule,
   MatSidenavModule,
-  MatSortModule, MatStepperModule,
+  MatSortModule,
+  MatStepperModule,
   MatTableModule,
   MatToolbarModule,
   MatTooltipModule,
@@ -35,6 +36,7 @@ import {TokenInterceptor} from "./authentication/token-interceptor";
 import {CartService} from "./cart/cart.service";
 import {ShoppingCartComponent} from "./cart/shopping-cart/shopping-cart.component";
 import {ChangeMyPasswordComponent} from "./change-my-password/change-my-password.component";
+import {CheckoutComponent} from "./checkout/checkout.component";
 import {AddressDeleteComponent} from "./childs/address/address-delete/address-delete.component";
 import {AddressDetailsComponent} from "./childs/address/address-details/address-details.component";
 import {AddressDtoRestService} from "./childs/address/address-dto-rest.service";
@@ -50,6 +52,11 @@ import {ArticleEditComponent} from "./childs/article/article-edit/article-edit.c
 import {ArticleOverviewComponent} from "./childs/article/article-overview/article-overview.component";
 import {ArticleSettingsService} from "./childs/article/article-settings.service";
 import {ArticleTableComponent} from "./childs/article/article-table/article-table.component";
+import {PickupLocationDeleteComponent} from "./childs/pickup-location/pickup-location-delete/pickup-location-delete.component";
+import {PickupLocationDetailComponent} from "./childs/pickup-location/pickup-location-detail/pickup-location-detail.component";
+import {PickupLocationEditComponent} from "./childs/pickup-location/pickup-location-edit/pickup-location-edit.component";
+import {PickupLocationOverviewComponent} from "./childs/pickup-location/pickup-location-overview/pickup-location-overview.component";
+import {PickupLocationTableComponent} from "./childs/pickup-location/pickup-location-table/pickup-location-table.component";
 import {UnitOfMeasurementDeleteComponent} from "./childs/unit-of-measurement/unit-of-measurement-delete/unit-of-measurement-delete.component";
 import {UnitOfMeasurementDetailsComponent} from "./childs/unit-of-measurement/unit-of-measurement-details/unit-of-measurement-details.component";
 import {UnitOfMeasurementDtoRestService} from "./childs/unit-of-measurement/unit-of-measurement-dto-rest.service";
@@ -73,12 +80,6 @@ import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { CheckoutComponent } from './checkout/checkout.component';
-import { PickupLocationOverviewComponent } from './childs/pickup-location/pickup-location-overview/pickup-location-overview.component';
-import { PickupLocationTableComponent } from './childs/pickup-location/pickup-location-table/pickup-location-table.component';
-import { PickupLocationEditComponent } from './childs/pickup-location/pickup-location-edit/pickup-location-edit.component';
-import { PickupLocationDeleteComponent } from './childs/pickup-location/pickup-location-delete/pickup-location-delete.component';
-import { PickupLocationDetailComponent } from './childs/pickup-location/pickup-location-detail/pickup-location-detail.component';
 
 @NgModule({
   declarations: [

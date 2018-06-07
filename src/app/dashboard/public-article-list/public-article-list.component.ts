@@ -1,6 +1,6 @@
-import {Component, OnInit} from "@angular/core";
-import {MatTableDataSource} from "@angular/material";
+import {Component} from "@angular/core";
 import {ArticleDto} from "citrus-common";
+import {BaseTableComponent} from "../../base/base-table.component";
 import {CartService} from "../../cart/cart.service";
 import {PublicArticleDtoRestService} from "../public-article-dto-rest.service";
 
@@ -9,24 +9,12 @@ import {PublicArticleDtoRestService} from "../public-article-dto-rest.service";
   templateUrl: "./public-article-list.component.html",
   styleUrls: ["./public-article-list.component.scss"]
 })
-export class PublicArticleListComponent implements OnInit {
+export class PublicArticleListComponent extends BaseTableComponent<ArticleDto> {
 
-  datasource = new MatTableDataSource<ArticleDto>();
   public displayedColumns = ["number", "description", "price", "stock", "status", "cart"];
 
-  constructor(private rest: PublicArticleDtoRestService, private cartService: CartService) {
-  }
-
-  ngOnInit() {
-    const subscription = this.rest.getAll().subscribe(data => {
-      this.datasource.data = data;
-    });
-  }
-
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.datasource.filter = filterValue;
+  constructor(rest: PublicArticleDtoRestService, private cartService: CartService) {
+    super(rest, null);
   }
 
   addToCart(article: ArticleDto) {
