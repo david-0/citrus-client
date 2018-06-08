@@ -7,7 +7,7 @@ import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service"
 @Injectable({
   providedIn: "root"
 })
-export class PickupLocationDtoService extends GenericRestService<PickupLocationDto> {
+export class PickupLocationDtoRestService extends GenericRestService<PickupLocationDto> {
   constructor(http: HttpClient, private restUrlPrefix: RestUrlPrefixService) {
     super(http, restUrlPrefix.getApiRestPrefix() + "/pickupLocation");
   }

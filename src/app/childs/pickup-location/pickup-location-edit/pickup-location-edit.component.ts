@@ -5,7 +5,7 @@ import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {AddressDtoRestService} from "../../address/address-dto-rest.service";
-import {PickupLocationDtoService} from "../pickup-location-dto.service";
+import {PickupLocationDtoRestService} from "../pickup-location-dto-rest.service";
 
 @Component({
   selector: "app-pickup-location-edit",
@@ -20,7 +20,7 @@ export class PickupLocationEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private rest: PickupLocationDtoService,
+              private rest: PickupLocationDtoRestService,
               public addressRest: AddressDtoRestService) {
   }
 

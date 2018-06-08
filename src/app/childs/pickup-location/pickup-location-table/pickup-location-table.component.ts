@@ -3,7 +3,7 @@ import {MatPaginator, MatSort} from "@angular/material";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
 import {Observable} from "rxjs/Rx";
 import {BaseTableComponent} from "../../../base/base-table.component";
-import {PickupLocationDtoService} from "../pickup-location-dto.service";
+import {PickupLocationDtoRestService} from "../pickup-location-dto-rest.service";
 import {PickupLocationSettingsService} from "../pickup-location-settings.service";
 
 @Component({
@@ -19,7 +19,7 @@ export class PickupLocationTableComponent extends BaseTableComponent<PickupLocat
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(rest: PickupLocationDtoService, settings: PickupLocationSettingsService) {
+  constructor(rest: PickupLocationDtoRestService, settings: PickupLocationSettingsService) {
     super(rest, settings);
   }
 

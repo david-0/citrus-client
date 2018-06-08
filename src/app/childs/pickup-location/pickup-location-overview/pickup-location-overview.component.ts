@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
 import {BehaviorSubject} from "rxjs/Rx";
-import {PickupLocationDtoService} from "../pickup-location-dto.service";
+import {PickupLocationDtoRestService} from "../pickup-location-dto-rest.service";
 
 @Component({
   selector: "app-pickup-location-overview",
@@ -12,7 +12,7 @@ export class PickupLocationOverviewComponent implements OnInit {
   public displayedColumns = ["id", "description", "address"];
   public dataObservable = new BehaviorSubject<PickupLocationDto[]>([]);
 
-  constructor(private rest: PickupLocationDtoService) {
+  constructor(private rest: PickupLocationDtoRestService) {
   }
 
   ngOnInit() {

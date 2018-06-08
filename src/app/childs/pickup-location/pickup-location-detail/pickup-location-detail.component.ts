@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
 import {Subscription} from "rxjs/Subscription";
-import {PickupLocationDtoService} from "../pickup-location-dto.service";
+import {PickupLocationDtoRestService} from "../pickup-location-dto-rest.service";
 
 @Component({
   selector: "app-pickup-location-detail",
@@ -13,7 +13,7 @@ export class PickupLocationDetailComponent implements OnInit, OnDestroy {
   private _pickupLocation: PickupLocationDto = PickupLocationDto.createEmpty();
   private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private rest: PickupLocationDtoService) {
+  constructor(private route: ActivatedRoute, private rest: PickupLocationDtoRestService) {
   }
 
   public get pickupLocation(): PickupLocationDto {

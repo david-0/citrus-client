@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
 import {BaseDeleteComponent} from "../../../base/base-delete.component";
-import {PickupLocationDtoService} from "../pickup-location-dto.service";
+import {PickupLocationDtoRestService} from "../pickup-location-dto-rest.service";
 
 @Component({
   selector: "app-pickup-location-delete",
@@ -12,7 +12,7 @@ import {PickupLocationDtoService} from "../pickup-location-dto.service";
 export class PickupLocationDeleteComponent extends BaseDeleteComponent<PickupLocationDto> {
 
   constructor(route: ActivatedRoute,
-              rest: PickupLocationDtoService) {
+              rest: PickupLocationDtoRestService) {
     super(route, rest, "Abholstation");
   }
 }
