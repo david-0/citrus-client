@@ -1,3 +1,20 @@
-<p>
-  pickup-location-edit works!
-</p>
+<form #f="ngForm" (ngSubmit)="submit()">
+  <app-table-header titleText="Abholstation bearbeiten" showBack="true" showCancelAndSave="true"
+                    [form]="f"></app-table-header>
+  <div class="main-container">
+    <mat-card class="mat-card-padding">
+      <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Beschreibung" #description [(ngModel)]="pickupLocation.description"
+               maxlength="256" name="description">
+        <mat-hint align="end">{{description.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width" color="accent">
+        <mat-select placeholder="Adresse" #user name="address" [(ngModel)]="pickupLocation.address">
+          <mat-option *ngFor="let address of addressSubject | async" [value]="address">
+            {{address.prename}} {{address.name}}, {{address.street}} {{address.number}}, {{address.zipcode}} {{address.city}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card>
+  </div>
+</form>

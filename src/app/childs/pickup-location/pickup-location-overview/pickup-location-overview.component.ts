@@ -9,7 +9,7 @@ import {PickupLocationDtoService} from "../pickup-location-dto.service";
   styleUrls: ["./pickup-location-overview.component.scss"]
 })
 export class PickupLocationOverviewComponent implements OnInit {
-  public displayedColumns = ["id", "description"];
+  public displayedColumns = ["id", "description", "address"];
   public dataObservable = new BehaviorSubject<PickupLocationDto[]>([]);
 
   constructor(private rest: PickupLocationDtoService) {

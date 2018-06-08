@@ -9,6 +9,12 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Beschreibung</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="address">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Addresse</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.address.prename}} {{row.address.name}}, {{row.address.street}} {{row.address.number}}, {{row.address.zipcode}}
+      {{row.address.city}}
+    </mat-cell>
+  </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="table-row--highligthed" routerLink={{row.id}}
            *matRowDef="let row; columns: displayedColumns;"></mat-row>
