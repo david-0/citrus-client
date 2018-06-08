@@ -18,7 +18,7 @@ import {
   MatSidenavModule,
   MatSortModule,
   MatStepperModule,
-  MatTableModule,
+  MatTableModule, MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
 } from "@angular/material";
@@ -148,6 +148,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     MatCheckboxModule,
     MatSidenavModule,
     MatStepperModule,
+    MatTabsModule,
   ],
   providers: [
     MatIconRegistry,

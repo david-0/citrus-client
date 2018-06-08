@@ -6,6 +6,7 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {AddressDtoRestService} from "../../address/address-dto-rest.service";
 import {PickupLocationDtoRestService} from "../pickup-location-dto-rest.service";
+import {PickupLocationWithOpeninghHoursDtoRestService} from "../pickup-location-with-openingh-hours-dto-rest.service";
 
 @Component({
   selector: "app-pickup-location-edit",
@@ -20,7 +21,7 @@ export class PickupLocationEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private rest: PickupLocationDtoRestService,
+              private rest: PickupLocationWithOpeninghHoursDtoRestService,
               public addressRest: AddressDtoRestService) {
   }
 

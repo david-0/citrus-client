@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
 import {Subscription} from "rxjs/Subscription";
 import {PickupLocationDtoRestService} from "../pickup-location-dto-rest.service";
+import {PickupLocationWithOpeninghHoursDtoRestService} from "../pickup-location-with-openingh-hours-dto-rest.service";
 
 @Component({
   selector: "app-pickup-location-detail",
@@ -13,7 +14,7 @@ export class PickupLocationDetailComponent implements OnInit, OnDestroy {
   private _pickupLocation: PickupLocationDto = PickupLocationDto.createEmpty();
   private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private rest: PickupLocationDtoRestService) {
+  constructor(private route: ActivatedRoute, private rest: PickupLocationWithOpeninghHoursDtoRestService) {
   }
 
   public get pickupLocation(): PickupLocationDto {
