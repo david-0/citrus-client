@@ -11,7 +11,8 @@
   </ng-container>
   <ng-container matColumnDef="address">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Addresse</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.address.prename}} {{row.address.name}}, {{row.address.street}} {{row.address.number}}, {{row.address.zipcode}}
+    <mat-cell *matCellDef="let row" class="small-font"> {{row.address.prename}} {{row.address.name}}<br/>{{row.address.street}}
+      {{row.address.number}}<br/>{{row.address.zipcode}}
       {{row.address.city}}
     </mat-cell>
   </ng-container>
