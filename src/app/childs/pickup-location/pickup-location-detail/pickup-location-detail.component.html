@@ -2,12 +2,15 @@
                   showDelete="true" showEdit="true"></app-table-header>
 <div class="main-container">
   <mat-card class="mat-card-padding">
-    <div>
-      <p>Id: {{pickupLocation.id}}</p>
-      <p>Beschreibung: {{pickupLocation.description}}</p>
-      <p>Adresse: {{pickupLocation.address.prename}} {{pickupLocation.address.name}},
-        {{pickupLocation.address.street}} {{pickupLocation.address.number}},
-        {{pickupLocation.address.zipcode}} {{pickupLocation.address.city}}</p>
+    <div class="common_table">
+      <div><div>Beschreibung</div><div>{{pickupLocation.description}}</div></div>
+      <div>
+        <div>Adresse</div>
+        <div>{{pickupLocation.address.prename}} {{pickupLocation.address.name}}<br/>
+          {{pickupLocation.address.street}} {{pickupLocation.address.number}}<br/>
+          {{pickupLocation.address.zipcode}} {{pickupLocation.address.city}}
+        </div>
+      </div>
     </div>
   </mat-card>
 </div>
