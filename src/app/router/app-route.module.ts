@@ -3,6 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {AuthGuardAdmin} from "../authentication/auth-guard-admin.service";
 import {AuthGuard} from "../authentication/auth-guard.service";
 import {ChangeMyPasswordComponent} from "../change-my-password/change-my-password.component";
+import {CheckoutComponent} from "../checkout/checkout.component";
 import {AddressDeleteComponent} from "../childs/address/address-delete/address-delete.component";
 import {AddressDetailsComponent} from "../childs/address/address-details/address-details.component";
 import {AddressEditComponent} from "../childs/address/address-edit/address-edit.component";
@@ -12,6 +13,10 @@ import {ArticleDeleteComponent} from "../childs/article/article-delete/article-d
 import {ArticleDetailsComponent} from "../childs/article/article-details/article-details.component";
 import {ArticleEditComponent} from "../childs/article/article-edit/article-edit.component";
 import {ArticleOverviewComponent} from "../childs/article/article-overview/article-overview.component";
+import {OpeningHourDeleteComponent} from "../childs/opening-hour/opening-hour-delete/opening-hour-delete.component";
+import {OpeningHourDetailsComponent} from "../childs/opening-hour/opening-hour-details/opening-hour-details.component";
+import {OpeningHourEditComponent} from "../childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
+import {OpeningHourOverviewComponent} from "../childs/opening-hour/opening-hour-overview/opening-hour-overview.component";
 import {PickupLocationDeleteComponent} from "../childs/pickup-location/pickup-location-delete/pickup-location-delete.component";
 import {PickupLocationDetailComponent} from "../childs/pickup-location/pickup-location-detail/pickup-location-detail.component";
 import {PickupLocationEditComponent} from "../childs/pickup-location/pickup-location-edit/pickup-location-edit.component";
@@ -28,7 +33,6 @@ import {UserInfoPasswordChangeComponent} from "../childs/user/user-info-password
 import {DashboardComponent} from "../dashboard/dashboard.component";
 import {LoginComponent} from "../login/login.component";
 import {LogoutComponent} from "../logout/logout.component";
-import {CheckoutComponent} from "../checkout/checkout.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
@@ -63,7 +67,15 @@ const routes: Routes = [
       {path: "pickupLocation", component: PickupLocationOverviewComponent},
       {path: "pickupLocation/create", component: PickupLocationEditComponent},
       {path: "pickupLocation/:id", component: PickupLocationDetailComponent},
-      {path: "pickupLocation/:id/edit", component: PickupLocationEditComponent},
+      {
+        path: "pickupLocation/:id/edit", component: PickupLocationEditComponent, children: [
+          {path: "opening-hour", component: OpeningHourOverviewComponent, outlet: "opening-hour"},
+          {path: "opening-hour/create", component: OpeningHourEditComponent, outlet: "opening-hour"},
+          {path: "opening-hour/:id", component: OpeningHourDetailsComponent, outlet: "opening-hour"},
+          {path: "opening-hour/:id/e  dit", component: OpeningHourEditComponent, outlet: "opening-hour"},
+          {path: "opening-hour/:id/delete", component: OpeningHourDeleteComponent, outlet: "opening-hour"},
+        ]
+      },
       {path: "pickupLocation/:id/delete", component: PickupLocationDeleteComponent},
       {path: "", redirectTo: "address", pathMatch: "full"},
     ]

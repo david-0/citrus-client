@@ -1,0 +1,21 @@
+<mat-table #table [dataSource]="datasource" matSort>
+  <ng-container matColumnDef="id" hidden>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Datum</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.fromDate | date: "d.MM.y"}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="from">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Von</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.fromDate | date: "HH:mm"}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="to">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Bis</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.toDate | date: "HH:mm"}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row class="table-row--highligthed" routerLink={{row.id}}
+           *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

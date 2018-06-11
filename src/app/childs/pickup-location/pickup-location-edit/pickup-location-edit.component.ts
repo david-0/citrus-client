@@ -5,7 +5,6 @@ import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {AddressDtoRestService} from "../../address/address-dto-rest.service";
-import {PickupLocationDtoRestService} from "../pickup-location-dto-rest.service";
 import {PickupLocationWithOpeninghHoursDtoRestService} from "../pickup-location-with-openingh-hours-dto-rest.service";
 
 @Component({
@@ -26,6 +25,7 @@ export class PickupLocationEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.router.navigate([this.router.routerState.snapshot.url, {outlets: {"opening-hour": ["opening-hour"]}}]);
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
         this.pickupLocationID = this.pickupLocation.id;
