@@ -53,8 +53,11 @@ import {ArticleEditComponent} from "./childs/article/article-edit/article-edit.c
 import {ArticleOverviewComponent} from "./childs/article/article-overview/article-overview.component";
 import {ArticleSettingsService} from "./childs/article/article-settings.service";
 import {ArticleTableComponent} from "./childs/article/article-table/article-table.component";
+import {OpeningHourDeleteComponent} from "./childs/opening-hour/opening-hour-delete/opening-hour-delete.component";
+import {OpeningHourDetailsComponent} from "./childs/opening-hour/opening-hour-details/opening-hour-details.component";
+import {OpeningHourEditComponent} from "./childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
+import {OpeningHourOverviewComponent} from "./childs/opening-hour/opening-hour-overview/opening-hour-overview.component";
 import {OpeningHourTableComponent} from "./childs/opening-hour/opening-hour-table/opening-hour-table.component";
-import {OpeningHoursTableComponent} from "./childs/opening-hours/opening-hours-table/opening-hours-table.component";
 import {PickupLocationDeleteComponent} from "./childs/pickup-location/pickup-location-delete/pickup-location-delete.component";
 import {PickupLocationDetailComponent} from "./childs/pickup-location/pickup-location-detail/pickup-location-detail.component";
 import {PickupLocationEditComponent} from "./childs/pickup-location/pickup-location-edit/pickup-location-edit.component";
@@ -83,10 +86,6 @@ import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { OpeningHourOverviewComponent } from './childs/opening-hour/opening-hour-overview/opening-hour-overview.component';
-import { OpeningHourEditComponent } from './childs/opening-hour/opening-hour-edit/opening-hour-edit.component';
-import { OpeningHourDeleteComponent } from './childs/opening-hour/opening-hour-delete/opening-hour-delete.component';
-import { OpeningHourDetailsComponent } from './childs/opening-hour/opening-hour-details/opening-hour-details.component';
 
 @NgModule({
   declarations: [

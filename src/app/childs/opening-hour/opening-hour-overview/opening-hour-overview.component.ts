@@ -1,8 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AddressDto} from "citrus-common";
-import {Observable} from "rxjs/Observable";
-import {AddressDtoRestService} from "../../address/address-dto-rest.service";
+import {OpeningHourDto} from "citrus-common/lib/dto/opening-hour-dto";
+import {BehaviorSubject} from "rxjs/Rx";
 import {PickupLocationWithOpeninghHoursDtoRestService} from "../../pickup-location/pickup-location-with-openingh-hours-dto-rest.service";
 
 @Component({
@@ -14,14 +13,20 @@ export class OpeningHourOverviewComponent implements OnInit {
 
   public id: number;
 
+  dataObservable = new BehaviorSubject<OpeningHourDto[]>([]);
+
   constructor(private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private rest: PickupLocationWithOpeninghHoursDtoRestService) {
   }
 
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
       if (params["id"] !== null) {
         this.id = +params["id"];
+        this.rest.get(+params["id"]).subscribe(pickupLocation => {
+          this.dataObservable.next(pickupLocation.openingHours);
+        });
       }
     });
 

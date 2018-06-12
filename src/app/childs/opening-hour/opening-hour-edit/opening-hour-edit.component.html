@@ -1,3 +1,23 @@
-<p>
-  opening-hour-edit works!
-</p>
+<form #f="ngForm" (ngSubmit)="submit()">
+  <app-table-header titleText="Öffnungszeiten bearbeiten" showBack="true" showCancelAndSave="true"
+                    [form]="f"></app-table-header>
+  <div class="main-container">
+    <mat-card class="mat-card-padding">
+      <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Datum" #date [(ngModel)]="openingHour.fromDate"
+               maxlength="256" name="date">
+        <mat-hint align="end">{{date.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Von" #from [(ngModel)]="openingHour.fromDate"
+               maxlength="256" name="from">
+        <mat-hint align="end">{{from.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Bis" #to [(ngModel)]="openingHour.toDate"
+               maxlength="256" name="from">
+        <mat-hint align="end">{{to.value.length}}</mat-hint>
+      </mat-form-field>
+    </mat-card>
+  </div>
+</form>

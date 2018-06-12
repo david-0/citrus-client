@@ -16,20 +16,24 @@
   widht: 100%;
 }
 
-.common_table{
-  display:table;
+.common_table {
+  display: table;
   flex: 1 1 auto;
-  border-collapse:collapse;
+  border-collapse: collapse;
   > div:nth-child(even) {
     background-color: #eaeaea;
   }
-  div{
+  div {
     padding: 0.5em;
-    display:table-row;
+    display: table-row;
     border-top: 1px solid #eaeaea;
     border-bottom: 1px solid #eaeaea;
-    div{
-      display:table-cell;
+    div {
+      display: table-cell;
     }
   }
+}
+
+.opening-hour-line {
+  margin: 0;
 }

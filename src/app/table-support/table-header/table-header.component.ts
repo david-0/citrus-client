@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from "@angular/core";
 import {NgForm} from "@angular/forms";
 import {MatDialog} from "@angular/material";
 import {ActivatedRoute, Router} from "@angular/router";
-import {OkCancelDialogComponent} from "../ok-cancel-dialog/ok-cancel-dialog.component";
 
 @Component({
   selector: "app-table-header",
@@ -44,13 +43,13 @@ export class TableHeaderComponent implements OnInit {
   }
 
   delete() {
-    const dialogRef = this.dialog.open(OkCancelDialogComponent, {
-      data: {label: this.label}
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.router.navigate(["delete"], {relativeTo: this.route});
-      }
-    });
+    // const dialogRef = this.dialog.open(OkCancelDialogComponent, {
+    //   data: {label: this.label}
+    // });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    this.router.navigate(["delete"], {relativeTo: this.route});
+    //   }
+    // });
   }
 }

@@ -72,7 +72,7 @@ const routes: Routes = [
           {path: "opening-hour", component: OpeningHourOverviewComponent, outlet: "opening-hour"},
           {path: "opening-hour/create", component: OpeningHourEditComponent, outlet: "opening-hour"},
           {path: "opening-hour/:id", component: OpeningHourDetailsComponent, outlet: "opening-hour"},
-          {path: "opening-hour/:id/e  dit", component: OpeningHourEditComponent, outlet: "opening-hour"},
+          {path: "opening-hour/:id/edit", component: OpeningHourEditComponent, outlet: "opening-hour"},
           {path: "opening-hour/:id/delete", component: OpeningHourDeleteComponent, outlet: "opening-hour"},
         ]
       },

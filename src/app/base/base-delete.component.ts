@@ -20,7 +20,7 @@ export class BaseDeleteComponent<T extends DtoId> implements OnInit {
             this.message = `Die ${this.dtoName} wurde gelöscht!`;
           },
           err => {
-            this.message = `Die ${this.dtoName} konnte nicht gelöscht werden (Error: ${err}).`;
+            this.message = `Die ${this.dtoName} konnte nicht gelöscht werden (Error: ${err.error}).`;
           });
     });
   }

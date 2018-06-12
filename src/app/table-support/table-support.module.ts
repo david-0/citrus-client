@@ -6,7 +6,7 @@ import {
   MatDialogModule,
   MatIconModule,
   MatInputModule,
-  MatProgressSpinnerModule, ProgressSpinnerMode
+  MatProgressSpinnerModule
 } from "@angular/material";
 import {LineComponent} from "./line/line.component";
 import {OkCancelDialogComponent} from "./ok-cancel-dialog/ok-cancel-dialog.component";
