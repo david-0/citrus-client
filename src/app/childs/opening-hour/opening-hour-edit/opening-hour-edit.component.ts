@@ -52,8 +52,8 @@ export class OpeningHourEditComponent implements OnInit {
           }
           this._openingHourId = this._openingHour.id;
           this.dateForPicker = moment(this._openingHour.fromDate);
-          this.fromTime =  this.dateForPicker.format("hh:mm");
-          this.toTime = moment(this._openingHour.toDate).format("hh:mm");
+          this.fromTime =  this.dateForPicker.format("HH:mm");
+          this.toTime = moment(this._openingHour.toDate).format("HH:mm");
         });
       });
     });

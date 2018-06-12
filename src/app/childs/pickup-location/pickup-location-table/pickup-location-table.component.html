@@ -11,9 +11,18 @@
   </ng-container>
   <ng-container matColumnDef="address">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Addresse</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="small-font"> {{row.address.prename}} {{row.address.name}}<br/>{{row.address.street}}
+    <mat-cell *matCellDef="let row" class="small-font start"> {{row.address.prename}} {{row.address.name}}<br/>{{row.address.street}}
       {{row.address.number}}<br/>{{row.address.zipcode}}
       {{row.address.city}}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="openingHours">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Öffnungszeiten</mat-header-cell>
+    <mat-cell *matCellDef="let row" class="small-font start">
+        <div class="opening-hour-line" *ngFor="let openingHour of row.openingHours">
+          {{openingHour.fromDate | date: "EEEE dd.MM.y"}}, geöffnet von: {{openingHour.fromDate | date: "HH:mm"}}
+          bis: {{openingHour.toDate | date: "HH:mm"}}
+        </div>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
