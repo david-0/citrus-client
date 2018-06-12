@@ -1,14 +1,23 @@
 import {Component, OnInit} from "@angular/core";
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material";
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from "@angular/material-moment-adapter";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OpeningHourDto} from "citrus-common/lib/dto/opening-hour-dto";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
+import {Moment} from "moment";
 import {PickupLocationWithOpeninghHoursDtoRestService} from "../../pickup-location/pickup-location-with-openingh-hours-dto-rest.service";
 import {OpeningHourDtoRestService} from "../opening-hour-dto-rest.service";
+import * as moment from "moment";
 
 @Component({
   selector: "app-opening-hour-edit",
   templateUrl: "./opening-hour-edit.component.html",
-  styleUrls: ["./opening-hour-edit.component.scss"]
+  styleUrls: ["./opening-hour-edit.component.scss"],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: "de-CH"},
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ],
 })
 export class OpeningHourEditComponent implements OnInit {
 
@@ -16,6 +25,9 @@ export class OpeningHourEditComponent implements OnInit {
   private _openingHour: OpeningHourDto = OpeningHourDto.createEmpty(this._pickupLocation);
 
   public _openingHourId: number;
+  public dateForPicker: Moment;
+  public fromTime: string;
+  public toTime: string;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -39,12 +51,16 @@ export class OpeningHourEditComponent implements OnInit {
             this._openingHour = this._pickupLocation.openingHours.filter(o => o.id === +openingHourParams["id"])[0];
           }
           this._openingHourId = this._openingHour.id;
+          this.dateForPicker = moment(this._openingHour.fromDate);
+          this.fromTime =  this.dateForPicker.format("hh:mm");
+          this.toTime = moment(this._openingHour.toDate).format("hh:mm");
         });
       });
     });
   }
 
   public submit() {
+    this.updateDates();
     const copy = OpeningHourDto.createWithId(this._openingHourId, this.openingHour);
     if (this._openingHourId == null) {
       this.openingHourRest.add(new OpeningHourDto(copy)).subscribe(
@@ -63,5 +79,16 @@ export class OpeningHourEditComponent implements OnInit {
         },
         (err) => console.error(`could not update pickupLocation: ${copy.id} with Error: ${err}`));
     }
+  }
+
+  private updateDates() {
+    const fromTime = moment(this.fromTime, "h:mm");
+    const toTime = moment(this.toTime, "h:mm");
+    this.dateForPicker.hour(fromTime.hour());
+    this.dateForPicker.minute(fromTime.minute());
+    this._openingHour.fromDate = this.dateForPicker.toDate();
+    this.dateForPicker.hour(toTime.hour());
+    this.dateForPicker.minute(toTime.minute());
+    this._openingHour.toDate = this.dateForPicker.toDate();
   }
 }

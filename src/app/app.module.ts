@@ -23,6 +23,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from "@angular/material";
+import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import "hammerjs";
@@ -143,6 +144,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     MatButtonToggleModule,
     MatIconModule,
     MatDatepickerModule,
+    MatMomentDateModule,
     MatNativeDateModule,
     MatInputModule,
     MatFormFieldModule,
