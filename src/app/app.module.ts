@@ -14,6 +14,7 @@ import {
   MatMenuModule,
   MatNativeDateModule,
   MatPaginatorModule,
+  MatRadioModule,
   MatSelectModule,
   MatSidenavModule,
   MatSortModule,
@@ -60,6 +61,7 @@ import {OpeningHourEditComponent} from "./childs/opening-hour/opening-hour-edit/
 import {OpeningHourOverviewComponent} from "./childs/opening-hour/opening-hour-overview/opening-hour-overview.component";
 import {OpeningHourTableComponent} from "./childs/opening-hour/opening-hour-table/opening-hour-table.component";
 import {PickupLocationDeleteComponent} from "./childs/pickup-location/pickup-location-delete/pickup-location-delete.component";
+import {PickupLocationDetailOnlyComponent} from "./childs/pickup-location/pickup-location-detail-only/pickup-location-detail-only.component";
 import {PickupLocationDetailComponent} from "./childs/pickup-location/pickup-location-detail/pickup-location-detail.component";
 import {PickupLocationEditComponent} from "./childs/pickup-location/pickup-location-edit/pickup-location-edit.component";
 import {PickupLocationOverviewComponent} from "./childs/pickup-location/pickup-location-overview/pickup-location-overview.component";
@@ -131,6 +133,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     OpeningHourEditComponent,
     OpeningHourDeleteComponent,
     OpeningHourDetailsComponent,
+    PickupLocationDetailOnlyComponent,
   ],
   imports: [
     BrowserModule,
@@ -162,6 +165,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     MatSidenavModule,
     MatStepperModule,
     MatTabsModule,
+    MatRadioModule,
   ],
   providers: [
     MatIconRegistry,

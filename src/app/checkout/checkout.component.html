@@ -1,12 +1,29 @@
 <mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Abholungsort</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
+    <form [formGroup]="firstFormGroup" >
+      <ng-template matStepLabel>Abholstation</ng-template>
+      <div class="step1-cards">
+        <mat-card class="step1-cards--background">
+          <mat-card-title>Abholstationen</mat-card-title>
+          <mat-radio-group class="radio-group" formControlName="firstCtrl" required>
+            <mat-radio-button class="radio-button" *ngFor="let location of locations" [value]="location">
+              {{location.description}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </mat-card>
+        <mat-card class="step1-cards--background">
+          <mat-card-title>ausgewählt Abholstation:</mat-card-title>
+          <mat-card-content class="selected-value">
+            <app-pickup-location-detail-only *ngIf="selectedLocation"
+                                             [pickupLocation]="selectedLocation"></app-pickup-location-detail-only>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <mat-toolbar class="footer">
+        <span class="fill-remaining-space"></span>
+        <button [disabled]="!firstFormGroup.valid" mat-raised-button matStepperNext>Weiter</button>
+      </mat-toolbar>
       <div>
-        <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>

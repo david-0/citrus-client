@@ -1,28 +1,3 @@
 <app-table-header titleText="Abholstation details" label="diese Abholstation" showBack="true"
                   showDelete="true" showEdit="true"></app-table-header>
-<div class="main-container">
-  <mat-card class="mat-card-padding">
-    <div class="common_table">
-      <div>
-        <div>Beschreibung</div>
-        <div>{{pickupLocation.description}}</div>
-      </div>
-      <div>
-        <div>Adresse</div>
-        <div>{{pickupLocation.address.prename}} {{pickupLocation.address.name}}<br/>
-          {{pickupLocation.address.street}} {{pickupLocation.address.number}}<br/>
-          {{pickupLocation.address.zipcode}} {{pickupLocation.address.city}}
-        </div>
-      </div>
-      <div>
-        <div>Öffnungszeiten</div>
-        <div>
-          <p class="opening-hour-line" *ngFor="let openingHour of pickupLocation.openingHours">
-            {{openingHour.fromDate | date: "EEEE dd.MM.y"}}, geöffnet von: {{openingHour.fromDate | date: "HH:mm"}}
-            bis: {{openingHour.toDate | date: "HH:mm"}}
-          </p>
-        </div>
-      </div>
-    </div>
-  </mat-card>
-</div>
+<app-pickup-location-detail-only class="main-container" [pickupLocation]="pickupLocation"></app-pickup-location-detail-only>

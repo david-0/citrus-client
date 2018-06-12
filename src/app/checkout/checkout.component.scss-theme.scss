@@ -1,12 +1,12 @@
-@mixin app-table-header-theme($theme) {
+@mixin app-checkout-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
 
-  app-table-header {
-    >div {
+  app-checkout{
+    .footer {
       background-color: mat-color($accent);
     }
   }
