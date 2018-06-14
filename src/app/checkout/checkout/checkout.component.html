@@ -56,12 +56,38 @@
     </mat-toolbar>
   </mat-step>
 </mat-horizontal-stepper>
-
+<div *ngIf="state==='saving'">
+  <mat-card class="step-cards--background">
+    <mat-card-title>Bestellung wird verarbeitet</mat-card-title>
+    <mat-card-content>
+      <p>Bitte warten ...</p>
+    </mat-card-content>
+    <!--<mat-spinner></mat-spinner>-->
+    <mat-toolbar class="footer">
+      <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+  </mat-card>
+</div>
 <div *ngIf="state==='finished'">
   <mat-card class="step-cards--background">
     <mat-card-title>Bestellung abgeschlossen</mat-card-title>
     <mat-card-content>
+      <p>Die Bestellnummer lautet: {{orderNumber}}.</p>
       <p>Danke für die Bestellung.</p>
+    </mat-card-content>
+    <mat-toolbar class="footer">
+      <span class="fill-remaining-space"></span>
+      <button mat-raised-button (click)="back()">Fertig</button>
+      <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+  </mat-card>
+</div>
+<div *ngIf="state==='error'">
+  <mat-card class="step-cards--background">
+    <mat-card-title>Bestellung fehlgeschlagen</mat-card-title>
+    <mat-card-content>
+      <p>Während der bearbeitung der Bestellung ist ein Fehler aufgetreten.</p>
+      <p>{{error}}</p>
     </mat-card-content>
     <mat-toolbar class="footer">
       <span class="fill-remaining-space"></span>
