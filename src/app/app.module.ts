@@ -39,7 +39,8 @@ import {TokenInterceptor} from "./authentication/token-interceptor";
 import {CartService} from "./cart/cart.service";
 import {ShoppingCartComponent} from "./cart/shopping-cart/shopping-cart.component";
 import {ChangeMyPasswordComponent} from "./change-my-password/change-my-password.component";
-import {CheckoutComponent} from "./checkout/checkout.component";
+import {CheckoutDetailComponent} from "./checkout/checkout-detail/checkout-detail.component";
+import {CheckoutComponent} from "./checkout/checkout/checkout.component";
 import {AddressDeleteComponent} from "./childs/address/address-delete/address-delete.component";
 import {AddressDetailsComponent} from "./childs/address/address-details/address-details.component";
 import {AddressDtoRestService} from "./childs/address/address-dto-rest.service";
@@ -134,6 +135,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     OpeningHourDeleteComponent,
     OpeningHourDetailsComponent,
     PickupLocationDetailOnlyComponent,
+    CheckoutDetailComponent,
   ],
   imports: [
     BrowserModule,

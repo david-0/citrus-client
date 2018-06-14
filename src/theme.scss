@@ -22,7 +22,7 @@ $my-theme: mat-light-theme(
 @import "app/childs/article/article-table/article-table.component.scss-theme.scss";
 @import "app/childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component.scss-theme.scss";
 @import "app/dashboard/dashboard.component.scss-theme.scss";
-@import "app/checkout/checkout.component.scss-theme.scss";
+@import "app/checkout/checkout/checkout.component.scss-theme";
 
 @mixin my-component-theme($theme) {
   @include app-table-header-theme($theme);

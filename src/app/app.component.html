@@ -1,6 +1,6 @@
 <div class="noPadding toolbar-content">
   <mat-toolbar color="primary">
-    <span>Citrus</span>
+    <span><a class="title" routerLink="/">Citrus</a></span>
     <span class="fill-remaining-space"></span>
     <a *ngIf="!authService.loggedIn()" routerLink='login'><span>login</span></a>
     <span *ngIf="authService.loggedIn()">{{authService.getLoggedInUsername()}}</span>
