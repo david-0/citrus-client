@@ -23,7 +23,7 @@ export class CheckoutComponent implements OnInit {
   locations: PickupLocationDto[];
   state = "emptyCart";
   orderNumber: number;
-  currentCartEntries = [];
+    currentCartEntries = [];
   error: string;
 
   constructor(private router: Router,
@@ -65,7 +65,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   private orderCart(cartEntries: CartEntry[]) {
-    const cartEntryDtos = cartEntries.map(entry => new CartEntryDto(entry.article.id, entry.count, entry.price));
+    const cartEntryDtos = cartEntries.map(entry =>  new CartEntryDto(entry.article.id, entry.count, entry.price));
     const requestCartDto = new CartDto(cartEntryDtos, this.selectedLocation.id);
     this.cartRestService.add(requestCartDto).subscribe(responseCartDto => {
         this.orderNumber = responseCartDto.id;

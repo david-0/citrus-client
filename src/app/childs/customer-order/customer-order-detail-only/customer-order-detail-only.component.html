@@ -1,0 +1,32 @@
+<mat-card class="mat-card-padding">
+  <div class="common_table">
+    <div>
+      <div>Bestelldatum</div>
+      <div>{{customerOrder.date | date: "HH:mm dd.MM.y"}}</div>
+    </div>
+    <div>
+      <div>Benutzer</div>
+      <div>{{customerOrder.user?.prename}} {{customerOrder.user?.name}}</div>
+    </div>
+    <div>
+      <div>Artikel</div>
+      <div>
+        <p class="customer-order-item-line" *ngFor="let item of customerOrder.customerOrderItems">
+          {{item.quantity}} {{item.article?.unitOfMeasurement?.shortcut}} {{item.article?.description}} für
+          {{item.copiedPrice | currency: "CHF "}}</p>
+      </div>
+    </div>
+    <div>
+      <div>Total</div>
+      <div>{{customerOrder.totalPrice | currency: "CHF "}}</div>
+    </div>
+    <div>
+      <div>Abholstation</div>
+      <div>{{customerOrder.pickupLocation.description}}<br/>
+        {{customerOrder.pickupLocation.address.prename}} {{customerOrder.pickupLocation.address.name}}<br/>
+        {{customerOrder.pickupLocation.address.street}} {{customerOrder.pickupLocation.address.number}}<br/>
+        {{customerOrder.pickupLocation.address.zipcode}} {{customerOrder.pickupLocation.address.city}}
+      </div>
+    </div>
+  </div>
+</mat-card>

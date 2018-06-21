@@ -56,6 +56,17 @@ import {ArticleEditComponent} from "./childs/article/article-edit/article-edit.c
 import {ArticleOverviewComponent} from "./childs/article/article-overview/article-overview.component";
 import {ArticleSettingsService} from "./childs/article/article-settings.service";
 import {ArticleTableComponent} from "./childs/article/article-table/article-table.component";
+import {CustomerOrderItemDeleteComponent} from "./childs/customer-order-item/customer-order-item-delete/customer-order-item-delete.component";
+import {CustomerOrderItemDetailComponent} from "./childs/customer-order-item/customer-order-item-detail/customer-order-item-detail.component";
+import {CustomerOrderItemEditComponent} from "./childs/customer-order-item/customer-order-item-edit/customer-order-item-edit.component";
+import {CustomerOrderItemOverviewComponent} from "./childs/customer-order-item/customer-order-item-overview/customer-order-item-overview.component";
+import {CustomerOrderItemTableComponent} from "./childs/customer-order-item/customer-order-item-table/customer-order-item-table.component";
+import {CustomerOrderDeleteComponent} from "./childs/customer-order/customer-order-delete/customer-order-delete.component";
+import {CustomerOrderDetailOnlyComponent} from "./childs/customer-order/customer-order-detail-only/customer-order-detail-only.component";
+import {CustomerOrderDetailComponent} from "./childs/customer-order/customer-order-detail/customer-order-detail.component";
+import {CustomerOrderEditComponent} from "./childs/customer-order/customer-order-edit/customer-order-edit.component";
+import {CustomerOrderOverviewComponent} from "./childs/customer-order/customer-order-overview/customer-order-overview.component";
+import {CustomerOrderTableComponent} from "./childs/customer-order/customer-order-table/customer-order-table.component";
 import {OpeningHourDeleteComponent} from "./childs/opening-hour/opening-hour-delete/opening-hour-delete.component";
 import {OpeningHourDetailsComponent} from "./childs/opening-hour/opening-hour-details/opening-hour-details.component";
 import {OpeningHourEditComponent} from "./childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
@@ -136,6 +147,17 @@ import {TableSupportModule} from "./table-support/table-support.module";
     OpeningHourDetailsComponent,
     PickupLocationDetailOnlyComponent,
     CheckoutDetailComponent,
+    CustomerOrderDeleteComponent,
+    CustomerOrderDetailComponent,
+    CustomerOrderDetailOnlyComponent,
+    CustomerOrderEditComponent,
+    CustomerOrderOverviewComponent,
+    CustomerOrderTableComponent,
+    CustomerOrderItemTableComponent,
+    CustomerOrderItemDeleteComponent,
+    CustomerOrderItemDetailComponent,
+    CustomerOrderItemEditComponent,
+    CustomerOrderItemOverviewComponent,
   ],
   imports: [
     BrowserModule,

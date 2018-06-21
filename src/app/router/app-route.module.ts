@@ -13,6 +13,14 @@ import {ArticleDeleteComponent} from "../childs/article/article-delete/article-d
 import {ArticleDetailsComponent} from "../childs/article/article-details/article-details.component";
 import {ArticleEditComponent} from "../childs/article/article-edit/article-edit.component";
 import {ArticleOverviewComponent} from "../childs/article/article-overview/article-overview.component";
+import {CustomerOrderItemDeleteComponent} from "../childs/customer-order-item/customer-order-item-delete/customer-order-item-delete.component";
+import {CustomerOrderItemDetailComponent} from "../childs/customer-order-item/customer-order-item-detail/customer-order-item-detail.component";
+import {CustomerOrderItemEditComponent} from "../childs/customer-order-item/customer-order-item-edit/customer-order-item-edit.component";
+import {CustomerOrderItemOverviewComponent} from "../childs/customer-order-item/customer-order-item-overview/customer-order-item-overview.component";
+import {CustomerOrderDeleteComponent} from "../childs/customer-order/customer-order-delete/customer-order-delete.component";
+import {CustomerOrderDetailComponent} from "../childs/customer-order/customer-order-detail/customer-order-detail.component";
+import {CustomerOrderEditComponent} from "../childs/customer-order/customer-order-edit/customer-order-edit.component";
+import {CustomerOrderOverviewComponent} from "../childs/customer-order/customer-order-overview/customer-order-overview.component";
 import {OpeningHourDeleteComponent} from "../childs/opening-hour/opening-hour-delete/opening-hour-delete.component";
 import {OpeningHourDetailsComponent} from "../childs/opening-hour/opening-hour-details/opening-hour-details.component";
 import {OpeningHourEditComponent} from "../childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
@@ -64,6 +72,25 @@ const routes: Routes = [
       {path: "article/:id", component: ArticleDetailsComponent},
       {path: "article/:id/edit", component: ArticleEditComponent},
       {path: "article/:id/delete", component: ArticleDeleteComponent},
+
+      {path: "customerOrder", component: CustomerOrderOverviewComponent},
+      {path: "customerOrder/create", component: CustomerOrderEditComponent},
+      {path: "customerOrder/:id", component: CustomerOrderDetailComponent},
+      {
+        path: "customerOrder/:id/edit", component: CustomerOrderEditComponent, children: [
+          {path: "customerOrderItem", component: CustomerOrderItemOverviewComponent, outlet: "customerOrderItem"},
+          {path: "customerOrderItem/create", component: CustomerOrderItemEditComponent, outlet: "customerOrderItem"},
+          {path: "customerOrderItem/:id", component: CustomerOrderItemDetailComponent, outlet: "customerOrderItem"},
+          {path: "customerOrderItem/:id/edit", component: CustomerOrderItemEditComponent, outlet: "customerOrderItem"},
+          {
+            path: "customerOrderItem/:id/delete",
+            component: CustomerOrderItemDeleteComponent,
+            outlet: "customerOrderItem"
+          },
+        ]
+      },
+      {path: "customerOrder/:id/delete", component: CustomerOrderDeleteComponent},
+
       {path: "pickupLocation", component: PickupLocationOverviewComponent},
       {path: "pickupLocation/create", component: PickupLocationEditComponent},
       {path: "pickupLocation/:id", component: PickupLocationDetailComponent},
