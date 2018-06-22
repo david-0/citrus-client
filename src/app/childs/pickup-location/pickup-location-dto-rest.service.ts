@@ -9,6 +9,6 @@ import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service"
 })
 export class PickupLocationDtoRestService extends GenericRestService<PickupLocationDto> {
   constructor(http: HttpClient, private restUrlPrefix: RestUrlPrefixService) {
-    super(http, restUrlPrefix.getApiRestPrefix() + "/customerOrder");
+    super(http, restUrlPrefix.getApiRestPrefix() + "/pickupLocation");
   }
 }

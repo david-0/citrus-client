@@ -22,10 +22,10 @@
     </div>
     <div>
       <div>Abholstation</div>
-      <div>{{customerOrder.pickupLocation.description}}<br/>
-        {{customerOrder.pickupLocation.address.prename}} {{customerOrder.pickupLocation.address.name}}<br/>
-        {{customerOrder.pickupLocation.address.street}} {{customerOrder.pickupLocation.address.number}}<br/>
-        {{customerOrder.pickupLocation.address.zipcode}} {{customerOrder.pickupLocation.address.city}}
+      <div>{{customerOrder.pickupLocation?.description}}<br/>
+        {{customerOrder.pickupLocation?.address.prename}} {{customerOrder.pickupLocation?.address.name}}<br/>
+        {{customerOrder.pickupLocation?.address.street}} {{customerOrder.pickupLocation?.address.number}}<br/>
+        {{customerOrder.pickupLocation?.address.zipcode}} {{customerOrder.pickupLocation?.address.city}}
       </div>
     </div>
   </div>

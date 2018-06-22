@@ -29,10 +29,7 @@ export class PickupLocationEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
         this.pickupLocationID = this.pickupLocation.id;
-        const addressObservable: Observable<AddressDto[]> = this.addressRest.getAll();
-        addressObservable.subscribe(addresses => {
-          this.addressSubject.next(addresses);
-        });
+        this.addressRest.getAll().subscribe(addresses => this.addressSubject.next(addresses));
       } else {
         const addressObservable: Observable<AddressDto[]> = this.addressRest.getAll();
         const pickupLocationObservable = this.rest.get(+params["id"]);

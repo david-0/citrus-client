@@ -9,7 +9,7 @@
         <mat-hint align="end">{{description.value.length}}</mat-hint>
       </mat-form-field>
       <mat-form-field class="full-width" color="accent">
-        <mat-select placeholder="Adresse" #user name="address" [(ngModel)]="pickupLocation.address">
+        <mat-select placeholder="Adresse" name="address" [(ngModel)]="pickupLocation.address">
           <mat-option *ngFor="let address of addressSubject | async" [value]="address">
             {{address.prename}} {{address.name}}, {{address.street}} {{address.number}}, {{address.zipcode}} {{address.city}}
           </mat-option>

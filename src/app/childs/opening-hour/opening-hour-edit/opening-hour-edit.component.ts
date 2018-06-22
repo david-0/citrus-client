@@ -4,10 +4,10 @@ import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from "@angular/material-mome
 import {ActivatedRoute, Router} from "@angular/router";
 import {OpeningHourDto} from "citrus-common/lib/dto/opening-hour-dto";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
+import * as moment from "moment";
 import {Moment} from "moment";
 import {PickupLocationWithOpeninghHoursDtoRestService} from "../../pickup-location/pickup-location-with-openingh-hours-dto-rest.service";
 import {OpeningHourDtoRestService} from "../opening-hour-dto-rest.service";
-import * as moment from "moment";
 
 @Component({
   selector: "app-opening-hour-edit",
