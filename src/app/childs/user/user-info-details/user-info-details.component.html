@@ -1,16 +1,26 @@
 <app-table-header titleText="Benutzer details" label="der Benutzer" showBack="true"
                   showDelete="true" showEdit="true" showPasswordChange="true"></app-table-header>
-<div class="main-container">
-  <mat-card class="mat-card-padding">
+<mat-card class="mat-card-padding">
+  <div class="common_table">
     <div>
-      <p>Id: {{userInfo.id}}</p>
-      <p>Kundennummer: {{userInfo.number}}</p>
-      <p>Email: {{userInfo.email}}</p>
-      <p>Name: {{userInfo.name}}</p>
-      <p>Vorname: {{userInfo.prename}}</p>
-      <p>Phone: {{userInfo.phone}}</p>
-      <p>Mobile: {{userInfo.mobile}}</p>
+      <div>Kundennummer</div>
+      <div>{{userInfo.number}}</div>
     </div>
-  </mat-card>
-  <!--  <app-customerOrder-table [displayedColumns]="displayedColumns" [whereDefinition]="whereDefinition"></app-customerOrder-table>-->
-</div>
+    <div>
+      <div>Email</div>
+      <div>{{userInfo.email}}</div>
+    </div>
+    <div>
+      <div>Name</div>
+      <div>{{userInfo.prename}} {{userInfo.name}}</div>
+    </div>
+    <div>
+      <div>Phone</div>
+      <div>{{userInfo.phone}}</div>
+    </div>
+    <div>
+      <div>Mobile</div>
+      <div>{{userInfo.mobile}}</div>
+    </div>
+  </div>
+</mat-card>
