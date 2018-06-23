@@ -1,15 +1,30 @@
 <app-table-header titleText="Artikel details" label="dieser Artikel" showBack="true"
                   showDelete="true" showEdit="true"></app-table-header>
-<div class="main-container">
-  <mat-card class="mat-card-padding">
+<mat-card class="mat-card-padding">
+  <div class="common_table">
     <div>
-      <p>Id: {{article.id}}</p>
-      <p>Artikelnummer: {{article.number}}</p>
-      <p>Beschreibung: {{article .description}}</p>
-      <p>Preis: {{article.price}}</p>
-      <p>lagerbestand: {{article.stock}}</p>
-      <p>Status: {{article.status}}</p>
-      <p>Masseinheit: {{article.unitOfMeasurement?.shortcut}} ({{article.unitOfMeasurement?.description}})</p>
+      <div>Artikelnummer</div>
+      <div>{{article.number}}</div>
     </div>
-  </mat-card>
-</div>
+    <div>
+      <div>Beschreibung</div>
+      <div>{{article.description}}</div>
+    </div>
+    <div>
+      <div>Preis</div>
+      <div>{{article.price}}</div>
+    </div>
+    <div>
+      <div>lagerbestand</div>
+      <div>{{article.stock}}</div>
+    </div>
+    <div>
+      <div>Status</div>
+      <div>{{article.status}}</div>
+    </div>
+    <div>
+      <div>Masseinheit</div>
+      <div>{{article.unitOfMeasurement?.shortcut}} ({{article.unitOfMeasurement?.description}})</div>
+    </div>
+  </div>
+</mat-card>
