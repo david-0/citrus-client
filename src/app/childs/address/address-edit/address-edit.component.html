@@ -1,20 +1,20 @@
 <form #f="ngForm" (ngSubmit)="submit()">
   <app-table-header titleText="Address bearbeiten" showBack="true" showCancelAndSave="true"
                     [form]="f"></app-table-header>
-  <div class="main-container">
-    <mat-card class="mat-card-padding">
-      <mat-form-field class="full-width" color="accent">
-        <mat-select placeholder="Benutzer" #user name="user" [(ngModel)]="address.user">
-          <mat-option *ngFor="let user of userInfoSubject | async" [value]="user">
-            {{ user.name }} {{ user.prename}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="full-width" color="accent">
-        <input matInput placeholder="Beschreibung" #description [(ngModel)]="address.description"
-               maxlength="256" name="description">
-        <mat-hint align="end">{{description.value.length}}</mat-hint>
-      </mat-form-field>
+  <mat-card class="mat-card-padding">
+    <mat-form-field class="full-width" color="accent">
+      <mat-select placeholder="Benutzer" #user name="user" [(ngModel)]="address.user">
+        <mat-option *ngFor="let user of userInfoSubject | async" [value]="user">
+          {{ user.name }} {{ user.prename}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" color="accent">
+      <input matInput placeholder="Beschreibung" #description [(ngModel)]="address.description"
+             maxlength="256" name="description">
+      <mat-hint align="end">{{description.value.length}}</mat-hint>
+    </mat-form-field>
+    <div class="row_50_50">
       <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Name" #name [(ngModel)]="address.name"
                maxlength="256" name="name">
@@ -25,6 +25,8 @@
                maxlength="256" name="prename">
         <mat-hint align="end">{{prename.value.length}}</mat-hint>
       </mat-form-field>
+    </div>
+    <div class="row_80_20">
       <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Strasse" #street [(ngModel)]="address.street"
                maxlength="256" name="street">
@@ -35,11 +37,13 @@
                maxlength="256" name="number">
         <mat-hint align="end">{{number.value.length}}</mat-hint>
       </mat-form-field>
-      <mat-form-field class="full-width" color="accent">
-        <input matInput placeholder="Zusatz" #addition [(ngModel)]="address.addition"
-               maxlength="256" name="addition">
-        <mat-hint align="end">{{addition.value.length}}</mat-hint>
-      </mat-form-field>
+    </div>
+    <mat-form-field class="full-width" color="accent">
+      <input matInput placeholder="Zusatz" #addition [(ngModel)]="address.addition"
+             maxlength="256" name="addition">
+      <mat-hint align="end">{{addition.value.length}}</mat-hint>
+    </mat-form-field>
+    <div class="row_20_80">
       <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="PLZ" #zipcode [(ngModel)]="address.zipcode"
                maxlength="256" name="zipcode">
@@ -50,6 +54,6 @@
                maxlength="256" name="city">
         <mat-hint align="end">{{city.value.length}}</mat-hint>
       </mat-form-field>
-    </mat-card>
-  </div>
+    </div>
+  </mat-card>
 </form>

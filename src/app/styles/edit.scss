@@ -1,0 +1,41 @@
+.mat-card-padding {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+}
+
+.row_50_50 {
+  display: flex;
+  mat-form-field:nth-child(1) {
+    margin-right: 0.2em;
+    flex: 1 1 auto;
+  }
+  mat-form-field:nth-child(2) {
+    margin-left: 0.2em;
+    flex: 1 1 auto;
+  }
+}
+
+.row_80_20 {
+  display: flex;
+  mat-form-field:nth-child(1) {
+    margin-right: 0.2em;
+    flex: 4 4 auto;
+  }
+  mat-form-field:nth-child(2) {
+    margin-left: 0.2em;
+    flex: 1 1 auto;
+  }
+}
+
+.row_20_80 {
+  display: flex;
+  mat-form-field:nth-child(1) {
+    margin-right: 0.2em;
+    flex: 1 1 auto;
+  }
+  mat-form-field:nth-child(2) {
+    margin-left: 0.2em;
+    flex: 4 4 auto;
+  }
+}
