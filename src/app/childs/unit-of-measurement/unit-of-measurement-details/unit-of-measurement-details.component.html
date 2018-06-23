@@ -1,11 +1,14 @@
 <app-table-header titleText="Masseinheit details" label="die Masseinheit" showBack="true"
                   showDelete="true" showEdit="true"></app-table-header>
-<div class="main-container">
-  <mat-card class="mat-card-padding">
+<mat-card class="mat-card-padding">
+  <div class="common_table">
     <div>
-      <p>Id: {{unitOfMeasurement.id}}</p>
-      <p>Abkürzung: {{unitOfMeasurement .shortcut}}</p>
-      <p>Beschreibung: {{unitOfMeasurement .description}}</p>
+      <div>Abkürzung</div>
+      <div>{{unitOfMeasurement.shortcut}}</div>
     </div>
-  </mat-card>
-</div>
+    <div>
+      <div>Beschreibung</div>
+      <div>{{unitOfMeasurement.description}}</div>
+    </div>
+  </div>
+</mat-card>

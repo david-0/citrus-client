@@ -6,7 +6,7 @@ import {Component, OnInit} from "@angular/core";
   styleUrls: ["./unit-of-measurement-overview.component.scss"]
 })
 export class UnitOfMeasurementOverviewComponent implements OnInit {
-  public displayedColumns = ["id", "shortcut", "description"];
+  public displayedColumns = ["shortcut", "description"];
 
   constructor() {
   }
