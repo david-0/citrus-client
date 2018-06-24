@@ -9,12 +9,12 @@ import {CartEntry} from "../../cart/cart-entry";
 export class CheckoutDetailComponent implements OnInit {
 
   @Input() cartEntries: CartEntry[];
-  total: number = 0;
+  total = 0;
 
   constructor() {
   }
 
   ngOnInit() {
-    this.cartEntries.forEach(entry => { this.total = this.total + entry.price; } );
+    this.cartEntries.forEach(entry => { this.total = this.total + (entry.price * entry.count); } );
   }
 }

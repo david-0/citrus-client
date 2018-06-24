@@ -5,7 +5,8 @@
     <div class="common_table">
       <div><div>Artikel</div><div>{{customerOrderItem.article?.description}}</div></div>
       <div><div>Menge</div><div>{{customerOrderItem.quantity}} {{customerOrderItem.article?.unitOfMeasurement?.shortcut}}</div></div>
-      <div><div>Preis</div><div>{{customerOrderItem.copiedPrice | currency: "CHF "}}</div></div>
+      <div><div>Preis pro Einheit</div><div>{{customerOrderItem.copiedPrice | currency: "CHF "}}</div></div>
+      <div><div>Preis</div><div>{{customerOrderItem.copiedPrice * customerOrderItem.quantity | currency: "CHF "}}</div></div>
     </div>
   </mat-card>
 </div>

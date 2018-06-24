@@ -13,7 +13,7 @@
       <div>
         <p class="customer-order-item-line" *ngFor="let item of customerOrder.customerOrderItems">
           {{item.quantity}} {{item.article?.unitOfMeasurement?.shortcut}} {{item.article?.description}} für
-          {{item.copiedPrice | currency: "CHF "}}</p>
+          {{item.copiedPrice * item.quantity | currency: "CHF "}}</p>
       </div>
     </div>
     <div>

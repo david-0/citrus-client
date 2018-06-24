@@ -9,7 +9,7 @@
     <div *ngFor="let cartEntry of cartEntries">
       <div>{{cartEntry.article.description}}</div>
       <div>{{cartEntry.count}} {{cartEntry.article.unitOfMeasurement.shortcut}}</div>
-      <div>{{cartEntry.price | currency: 'CHF '}}</div>
+      <div>{{cartEntry.price * cartEntry.count | currency: 'CHF '}}</div>
     </div>
     <div class="bold">
       <div>Total</div>

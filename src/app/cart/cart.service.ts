@@ -55,14 +55,14 @@ export class CartService {
       if (newCount <= 0) {
         this.cart.next(entries.filter(e => e.article.id !== article.id));
       } else {
-        const newPrice = article.price * newCount;
+        const newPrice = article.price;
         articleAlreadyInCart[0].price = newPrice;
         articleAlreadyInCart[0].count = newCount;
         this.cart.next(entries);
       }
     } else {
       if (count > 0) {
-        const entry: CartEntry = {article: article, price: article.price * count, count};
+        const entry: CartEntry = {article: article, price: article.price, count};
         entries.push(entry);
         this.cart.next(entries);
       }
