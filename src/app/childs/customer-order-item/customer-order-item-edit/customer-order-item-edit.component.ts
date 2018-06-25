@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ArticleDto} from "citrus-common";
 import {CustomerOrderDto} from "citrus-common/lib/dto/customer-order-dto";
 import {CustomerOrderItemDto} from "citrus-common/lib/dto/customer-order-item-dto";
+import {OpeningHourDto} from "citrus-common/lib/dto/opening-hour-dto";
 import {BehaviorSubject} from "rxjs/Rx";
 import {ArticleDtoRestService} from "../../article/article-dto-rest.service";
 import {CustomerOrderWithItemsAndArticleDtoRestService} from "../../customer-order/customer-order-with-items-and-article-dto-rest.service";
@@ -37,7 +38,11 @@ export class CustomerOrderItemEditComponent implements OnInit {
       promise.subscribe((customerOrder) => {
         this._customerOrder = customerOrder;
         this.route.params.subscribe(customerOrderItemParams => {
-          this._customerOrderItem = this._customerOrder.customerOrderItems.filter(o => o.id === +customerOrderItemParams["id"])[0];
+          if (customerOrderItemParams["id"] == null) {
+            this._customerOrderItem = CustomerOrderItemDto.createEmpty(this._customerOrder);
+          } else {
+            this._customerOrderItem = this._customerOrder.customerOrderItems.filter(o => o.id === +customerOrderItemParams["id"])[0];
+          }
           this._customerOrderItemId = this._customerOrderItem.id;
           this.articleRest.getAll().subscribe(articles => {
             this.ensureArticleInCustomerOrderItem(this._customerOrderItem, articles);
