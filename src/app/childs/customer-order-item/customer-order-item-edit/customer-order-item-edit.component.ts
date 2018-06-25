@@ -34,22 +34,34 @@ export class CustomerOrderItemEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.parent.params.subscribe(customerOrderParams => {
-      const promise = this.customerOrderRest.get(+customerOrderParams["id"]);
-      promise.subscribe((customerOrder) => {
-        this._customerOrder = customerOrder;
-        this.route.params.subscribe(customerOrderItemParams => {
-          if (customerOrderItemParams["id"] == null) {
-            this._customerOrderItem = CustomerOrderItemDto.createEmpty(this._customerOrder);
-          } else {
-            this._customerOrderItem = this._customerOrder.customerOrderItems.filter(o => o.id === +customerOrderItemParams["id"])[0];
-          }
-          this._customerOrderItemId = this._customerOrderItem.id;
-          this.articleRest.getAll().subscribe(articles => {
-            this.ensureArticleInCustomerOrderItem(this._customerOrderItem, articles);
-            this._articleSubeject.next(articles);
-          });
-        });
-      });
+      this.updateCustomerOrder(customerOrderParams);
+    });
+  }
+
+  private updateCustomerOrder(customerOrderParams) {
+    const promise = this.customerOrderRest.get(+customerOrderParams["id"]);
+    promise.subscribe((customerOrder) => {
+      this._customerOrder = customerOrder;
+      this.updateCustomerOrderItem();
+    });
+  }
+
+  private updateCustomerOrderItem() {
+    this.route.params.subscribe(customerOrderItemParams => {
+      if (customerOrderItemParams["id"] == null) {
+        this._customerOrderItem = CustomerOrderItemDto.createEmpty(this._customerOrder);
+      } else {
+        this._customerOrderItem = this._customerOrder.customerOrderItems.filter(o => o.id === +customerOrderItemParams["id"])[0];
+      }
+      this._customerOrderItemId = this._customerOrderItem.id;
+      this.updateAllArticles();
+    });
+  }
+
+  private updateAllArticles() {
+    this.articleRest.getAll().subscribe(articles => {
+      this.ensureArticleInCustomerOrderItem(this._customerOrderItem, articles);
+      this._articleSubeject.next(articles);
     });
   }
 
