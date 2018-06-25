@@ -2,7 +2,7 @@
                   placeholder="Filter Kundenbestellungen"></app-table-filter>
 <mat-table #table [dataSource]="datasource" matSort>
   <ng-container matColumnDef="id" hidden>
-    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Bestellnummer</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="date">
