@@ -11,7 +11,7 @@ import {PublicArticleDtoRestService} from "../public-article-dto-rest.service";
 })
 export class PublicArticleListComponent extends BaseTableComponent<ArticleDto> {
 
-  public displayedColumns = ["number", "description", "price", "available", "status", "cart"];
+  public displayedColumns = ["number", "description", "price", "available", "cart"];
 
   constructor(rest: PublicArticleDtoRestService, private cartService: CartService) {
     super(rest, null);
