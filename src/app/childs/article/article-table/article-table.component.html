@@ -19,11 +19,11 @@
     <mat-cell *matCellDef="let row"> {{row.price}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="stock">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Verfügbar</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Lagerbestand</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.stock}} {{row.unitOfMeasurement?.shortcut}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="reservedInOpenOrders">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Verfügbar</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>reserviert in Bestellungen</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.reservedInOpenOrders}} {{row.unitOfMeasurement?.shortcut}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="available">
