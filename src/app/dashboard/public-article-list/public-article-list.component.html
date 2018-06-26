@@ -18,9 +18,9 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.price | currency: 'CHF '}}</mat-cell>
   </ng-container>
-  <ng-container matColumnDef="stock">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Lagerbestand</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.stock}} {{row.unitOfMeasurement.shortcut}}</mat-cell>
+  <ng-container matColumnDef="available">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Verfügbar</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.stock - row.reservedInOpenOrders}} {{row.unitOfMeasurement.shortcut}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="status">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Artikelstatus</mat-header-cell>

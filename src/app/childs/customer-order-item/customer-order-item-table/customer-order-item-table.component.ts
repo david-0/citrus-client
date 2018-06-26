@@ -11,7 +11,7 @@ import {BaseTableComponent} from "../../../base/base-table.component";
 export class CustomerOrderItemTableComponent extends BaseTableComponent<CustomerOrderItemDto> implements OnInit {
 
   @Input() dataObservable: BehaviorSubject<CustomerOrderItemDto[]>;
-  public displayedColumns = ["article", "quantity", "copiedPrice"];
+  public displayedColumns = ["article", "quantity", "copiedPrice", "totalPrice"];
 
   constructor() {
     super(null, null);
