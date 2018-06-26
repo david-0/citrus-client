@@ -79,7 +79,7 @@ export class CustomerOrderItemEditComponent implements OnInit {
 
   public submit() {
     this.customerOrderItem.articleId = this.customerOrderItem.article.id;
-    this.customerOrderItem.copiedPrice = this.customerOrderItem.article.price * this.customerOrderItem.quantity;
+    this.customerOrderItem.copiedPrice = this.customerOrderItem.article.price;
     const copiedItem = CustomerOrderItemDto.createWithId(this._customerOrderItemId, this.customerOrderItem);
     if (this._customerOrderItemId == null) {
       this.createNewItem(copiedItem);
