@@ -32,7 +32,9 @@
   </ng-container>
   <ng-container matColumnDef="status">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Artikelstatus</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.status}}</mat-cell>
+    <mat-cell *matCellDef="let row">
+      <app-status-detail [status]="row.status"></app-status-detail>
+    </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="table-row--highligthed" routerLink={{row.id}}

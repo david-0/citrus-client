@@ -28,7 +28,9 @@
     </div>
     <div>
       <div>Status</div>
-      <div>{{article.status}}</div>
+      <div>
+        <app-status-detail [status]="article.status"></app-status-detail>
+      </div>
     </div>
   </div>
 </mat-card>

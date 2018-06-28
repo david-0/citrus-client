@@ -100,7 +100,9 @@ import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
+import {StatusDetailComponent} from "./table-support/status-detail/status-detail.component";
 import {TableSupportModule} from "./table-support/table-support.module";
+
 
 @NgModule({
   declarations: [
@@ -158,6 +160,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     CustomerOrderItemDetailComponent,
     CustomerOrderItemEditComponent,
     CustomerOrderItemOverviewComponent,
+    StatusDetailComponent,
   ],
   imports: [
     BrowserModule,
