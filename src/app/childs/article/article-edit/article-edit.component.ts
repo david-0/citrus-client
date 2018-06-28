@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ArticleDto, UnitOfMeasurementDto} from "citrus-common";
+import {EArticleStatus} from "citrus-common/lib/entity/e-article-status";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {UnitOfMeasurementDtoRestService} from "../../unit-of-measurement/unit-of-measurement-dto-rest.service";

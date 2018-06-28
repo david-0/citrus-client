@@ -4,6 +4,10 @@
   padding: 1em;
 }
 
+.flex-display {
+  display: flex;
+}
+
 .row_50_50 {
   display: flex;
   mat-form-field:nth-child(1) {
