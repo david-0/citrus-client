@@ -23,6 +23,8 @@ $my-theme: mat-light-theme(
 @import "app/childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component.scss-theme.scss";
 @import "app/dashboard/dashboard.component.scss-theme.scss";
 @import "app/checkout/checkout/checkout.component.scss-theme";
+@import "app/childs/pickup-location/pickup-location-table/pickup-location-table.component.scss-theme.scss";
+@import "app/childs/customer-order/customer-order-table/customer-order-table.component.scss-theme";
 
 @mixin my-component-theme($theme) {
   @include app-table-header-theme($theme);
@@ -33,6 +35,8 @@ $my-theme: mat-light-theme(
   @include app-article-table-theme($theme);
   @include app-dashboard-theme($theme);
   @include app-checkout-theme($theme);
+  @include app-pickup-location-table-theme($theme);
+  @include app-customer-order-table-theme($theme);
 }
 @include angular-material-theme($my-theme);
 @include my-component-theme($my-theme);
