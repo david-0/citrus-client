@@ -103,6 +103,7 @@ import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {StatusDetailComponent} from "./table-support/status-detail/status-detail.component";
 import {StatusEditComponent} from "./table-support/status-edit/status-edit.component";
 import {TableSupportModule} from "./table-support/table-support.module";
+import { PublicArticleGridComponent } from './dashboard/public-article-grid/public-article-grid.component';
 
 
 @NgModule({
@@ -163,6 +164,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     CustomerOrderItemOverviewComponent,
     StatusDetailComponent,
     StatusEditComponent,
+    PublicArticleGridComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,17 @@
+<div class="main-container">
+  <mat-card *ngFor="let article of articles" class="card-dimensions">
+    <mat-card-title>{{article.description}}</mat-card-title>
+    <mat-card-content>
+      <img src="/assets/images/citrus.png" class="article-image">
+      <div class="card-lagerbestand">
+        <span>Lagerbestand: </span>
+        <span>{{article.stock - article.reservedInOpenOrders}} {{article.unitOfMeasurement.shortcut}}</span>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="card-action-bar">
+      <button mat-button type="submit" class="button--responsive cart-color-green" (click)="addToCart(article)">
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
