@@ -13,11 +13,11 @@
   <ng-container matColumnDef="cart">
     <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
     <mat-cell *matCellDef="let row" class="center-buttons">
-      <button mat-button type="submit" class="button--responsive cart-color-green" (click)="increase(row)">
-        <mat-icon>add_circle</mat-icon>
-      </button>
       <button mat-button type="submit" class="button--responsive cart-color-green" (click)="decrease(row)">
         <mat-icon>remove_circle</mat-icon>
+      </button>
+      <button mat-button type="submit" class="button--responsive cart-color-green" (click)="increase(row)">
+        <mat-icon>add_circle</mat-icon>
       </button>
       <button mat-button type="submit" class="button--responsive cart-color-red" (click)="remove(row)">
         <mat-icon>remove_shopping_cart</mat-icon>
