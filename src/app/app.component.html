@@ -3,8 +3,8 @@
     <span><a class="title" routerLink="/">Citrus</a></span>
     <span class="fill-remaining-space"></span>
     <a *ngIf="!authService.loggedIn()" routerLink='login'><span>login</span></a>
-    <span *ngIf="authService.loggedIn()">{{authService.getLoggedInUsername()}}</span>
-    <button *ngIf="authService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
+    <button *ngIf="authService.loggedIn()" mat-button [matMenuTriggerFor]="menu">
+      <span *ngIf="authService.loggedIn()">{{authService.getLoggedInUsername()}}</span>
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
