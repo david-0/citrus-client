@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
   events: string[] = [];
   opened = true;
 
-  constructor(private cartService: CartService) {
+  constructor(public cartService: CartService) {
   }
 
   ngOnInit() {

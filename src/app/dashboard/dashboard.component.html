@@ -4,7 +4,7 @@
     <div class="cart-header">
       <mat-icon class="icon-margin">shopping_cart</mat-icon>
       <span class="fill-remaining-space">Warenkorb</span>
-      <button mat-button type="submit" class="button--responsive" (click)="clearCart()">
+      <button *ngIf="(cartService.getCart() | async).length > 0" mat-button type="submit" class="button--responsive" (click)="clearCart()">
         <mat-icon>delete</mat-icon>
         <span class="size-xl">leeren</span>
       </button>
