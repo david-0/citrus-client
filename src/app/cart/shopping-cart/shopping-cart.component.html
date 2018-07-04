@@ -6,7 +6,7 @@
       <div class="container cart-data-font">
         <span>{{row.count}} {{row.article.unitOfMeasurement.shortcut}}</span>
         <span class="fill-remaining-space"></span>
-        <span>{{row.price * row.count | currency: 'CHF '}}</span>
+        <span class="highlighted-font">{{row.price * row.count | currency: 'CHF '}}</span>
       </div>
     </mat-cell>
   </ng-container>

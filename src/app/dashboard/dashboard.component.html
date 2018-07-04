@@ -11,12 +11,15 @@
     </div>
     <app-shopping-cart></app-shopping-cart>
     <span class="fill-remaining-space"></span>
+    <div *ngIf="(cartService.getCart() | async).length > 0"
+         class="cart-total-price">
+      <span class="space">Gesamter Preis: </span>
+      <span class="space highlighted-font">{{totalPrice | currency: 'CHF '}}</span>
+    </div>
     <div class="cart-footer">
-      <span class="fill-remaining-space"></span>
       <button mat-button type="submit" class="cash-button" routerLink="/checkout">
         <span class="size-xl">zur Kasse</span>
       </button>
-      <span class="fill-remaining-space"></span>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -13,9 +13,28 @@
   align-items: center;
 }
 
+.cart-total-price {
+  display: flex;
+  align-items: center;
+  background-color: #eaeaea;
+  justify-content: space-between;
+  font-size: 13px;
+  height: 2em;
+}
+
+.space {
+  padding-left: 1em;
+  padding-right: 0.5em;
+}
+
+.highlighted-font {
+  font-weight: bold;
+}
+
 .cart-footer {
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: white;
   height: 3.5em;
 }
