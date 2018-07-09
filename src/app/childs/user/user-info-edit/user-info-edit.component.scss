@@ -1,1 +1,15 @@
 @import "../../../styles/edit";
+
+.role-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.role-card {
+  margin-top: 12px;
+  padding: 12px;
+}
+
+.rolen-title {
+  font-size: 1.1em;
+}

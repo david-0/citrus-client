@@ -1,7 +1,11 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {UserInfoDto} from "citrus-common";
-import {UserInfoDtoRestService} from "../user-info-dto-rest.service";
+import {RoleDto} from "citrus-common/lib/dto/role-dto";
+import "rxjs/add/operator/zip";
+import {Observable} from "rxjs/Rx";
+import {RoleDtoRestService} from "../role-dto-rest.service";
+import {UserInfoWithRolesDtoRestService} from "../user-info--with-roles-dto-rest.service";
 
 @Component({
   selector: "app-user-info-edit",
@@ -11,33 +15,57 @@ import {UserInfoDtoRestService} from "../user-info-dto-rest.service";
 export class UserInfoEditComponent implements OnInit {
 
   public userInfo: UserInfoDto = UserInfoDto.createEmpty();
+  private _roles: {role: RoleDto, checked: boolean}[] = [];
   public userInfoId: number;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              public rest: UserInfoDtoRestService) {
+              private rest: UserInfoWithRolesDtoRestService,
+              private roleRest: RoleDtoRestService) {
+  }
+
+  public get rolePairs(): {role: RoleDto, checked: boolean}[] {
+    return this._roles;
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      if (params["id"] == null) {
+    const roles$ = this.roleRest.getAll();
+    Observable.zip(roles$, this.route.params, (roles: RoleDto[], params: Params) => ({
+      params,
+      roles
+    })).subscribe((result) => {
+      if (result.params["id"] == null) {
+        this._roles = this.createRolePairs(result.roles, []);
         this.userInfo = UserInfoDto.createEmpty();
         this.userInfoId = this.userInfo.id;
       } else {
-        this.rest.get(+params["id"])
-          .subscribe(
-            t => {
-              this.userInfo = UserInfoDto.createWithId(t.id, t);
-              this.userInfoId = this.userInfo.id;
-            },
-            err => {
-              console.log(`Could not get address with id ${params["id"]} with error: ${err}`);
-            });
+        this.rest.get(+result.params["id"]).subscribe(
+          t => {
+            this.userInfo = UserInfoDto.createWithId(t.id, t);
+            this.userInfoId = this.userInfo.id;
+            this._roles = this.createRolePairs(result.roles, t.roles);
+          },
+          err => {
+            console.log(`Could not get address with id ${result.params["id"]} with error: ${err}`);
+          });
       }
     });
   }
 
+  private createRolePairs(rolesAvailable: RoleDto[], userRoles: RoleDto[]): {role: RoleDto, checked: boolean}[] {
+    return rolesAvailable.map(r => ({role: r, checked: this.containsRole(userRoles, r)}));
+  }
+
+  private containsRole(roles: RoleDto[], roleToFind: RoleDto): boolean {
+    return roles.findIndex(role => role.id === roleToFind.id) >= 0;
+  }
+
+  private getSelectedRoles(rolePairs: {role: RoleDto, checked: boolean}[]): RoleDto[] {
+    return rolePairs.filter(rp => rp.checked).map(rp => rp.role);
+  }
+
   public submit() {
+    this.userInfo.roles = this.getSelectedRoles(this.rolePairs);
     if (this.userInfoId == null) {
       this.rest.add(new UserInfoDto(this.userInfo))
         .subscribe(
@@ -48,7 +76,7 @@ export class UserInfoEditComponent implements OnInit {
       this.rest.update(UserInfoDto.createWithId(this.userInfoId, this.userInfo))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
-          (err) => console.error(`could not update userInfo: ${this.userInfo.id} with Error: ${err}`));
+          (err) => console.error(`could not update userInfo: ${this.userInfo.id} with Error: ${err.error}`));
     }
   }
 }

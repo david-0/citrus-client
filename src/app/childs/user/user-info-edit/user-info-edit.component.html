@@ -39,6 +39,15 @@
           <mat-hint align="end">{{mobile.value.length}}</mat-hint>
         </mat-form-field>
       </div>
+      <mat-card class="role-card">
+        <mat-card-title class="rolen-title">Rolen</mat-card-title>
+        <mat-card-content class="role-content">
+          <!--<mat-checkbox *ngFor="let role of roles" class="example-margin" [(ngModel)]="userInfo.roles">{{role.name}}</mat-checkbox>-->
+          <mat-checkbox *ngFor="let rolePair of rolePairs" name="{{rolePair.role.name}}" [(ngModel)]="rolePair.checked">
+            {{rolePair.role.name}}
+          </mat-checkbox>
+        </mat-card-content>
+      </mat-card>
     </mat-card>
   </div>
 </form>

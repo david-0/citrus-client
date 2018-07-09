@@ -2,7 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {UserInfoDto} from "citrus-common";
 import {Subscription} from "rxjs/Subscription";
-import {UserInfoDtoRestService} from "../user-info-dto-rest.service";
+import {isUndefined} from "util";
+import {UserInfoWithRolesDtoRestService} from "../user-info--with-roles-dto-rest.service";
 
 @Component({
   selector: "app-user-info-details",
@@ -16,7 +17,7 @@ export class UserInfoDetailsComponent implements OnInit {
   private subscription: Subscription;
 
 
-  constructor(private route: ActivatedRoute, private rest: UserInfoDtoRestService) {
+  constructor(private route: ActivatedRoute, private rest: UserInfoWithRolesDtoRestService) {
   }
 
   public get userInfo(): UserInfoDto {
@@ -30,6 +31,15 @@ export class UserInfoDetailsComponent implements OnInit {
         this._userInfo = userInfo;
       });
     });
+  }
+
+  public getRoles(): string {
+    if (!!this._userInfo.roles && this._userInfo.roles.length > 0) {
+      return this._userInfo.roles
+        .map((u) => u.name)
+        .reduce((u1, u2) => u1 + ", " + u2);
+    }
+    return "";
   }
 
 }

@@ -7,6 +7,7 @@ import {
   MatCardModule,
   MatCheckboxModule,
   MatDatepickerModule,
+  MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
   MatIconRegistry,
@@ -22,8 +23,7 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
-  MatDividerModule,,
+  MatTooltipModule,
 } from "@angular/material";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {BrowserModule} from "@angular/platform-browser";
@@ -86,6 +86,8 @@ import {UnitOfMeasurementEditComponent} from "./childs/unit-of-measurement/unit-
 import {UnitOfMeasurementOverviewComponent} from "./childs/unit-of-measurement/unit-of-measurement-overview/unit-of-measurement-overview.component";
 import {UnitOfMeasurementSettingsService} from "./childs/unit-of-measurement/unit-of-measurement-settings.service";
 import {UnitOfMeasurementTableComponent} from "./childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component";
+import {RoleDtoRestService} from "./childs/user/role-dto-rest.service";
+import {UserInfoWithRolesDtoRestService} from "./childs/user/user-info--with-roles-dto-rest.service";
 import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-delete.component";
 import {UserInfoDetailsComponent} from "./childs/user/user-info-details/user-info-details.component";
 import {UserInfoDtoRestService} from "./childs/user/user-info-dto-rest.service";
@@ -96,6 +98,7 @@ import {UserDetailsSettingsService} from "./childs/user/user-info-settings.servi
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {PublicArticleDetailComponent} from "./dashboard/public-article-detail/public-article-detail.component";
 import {PublicArticleDtoRestService} from "./dashboard/public-article-dto-rest.service";
+import {PublicArticleGridComponent} from "./dashboard/public-article-grid/public-article-grid.component";
 import {PublicArticleListComponent} from "./dashboard/public-article-list/public-article-list.component";
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
@@ -104,7 +107,6 @@ import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {StatusDetailComponent} from "./table-support/status-detail/status-detail.component";
 import {StatusEditComponent} from "./table-support/status-edit/status-edit.component";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { PublicArticleGridComponent } from "./dashboard/public-article-grid/public-article-grid.component";
 
 
 @NgModule({
@@ -212,6 +214,8 @@ import { PublicArticleGridComponent } from "./dashboard/public-article-grid/publ
     ArticleDtoRestService,
     PublicArticleDtoRestService,
     ArticleSettingsService,
+    UserInfoWithRolesDtoRestService,
+    RoleDtoRestService,
     CartService,
     AuthGuard,
     AuthGuardAdmin,
