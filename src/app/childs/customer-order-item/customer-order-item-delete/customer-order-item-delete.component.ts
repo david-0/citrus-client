@@ -13,7 +13,7 @@ export class CustomerOrderItemDeleteComponent extends BaseDeleteComponent<Custom
 
   constructor(route: ActivatedRoute,
               rest: CustomerOrderItemDtoRestService) {
-    super(route, rest, "bestellte Artikel");
+    super(route, rest, "Der bestellte Artikel");
   }
 
 }

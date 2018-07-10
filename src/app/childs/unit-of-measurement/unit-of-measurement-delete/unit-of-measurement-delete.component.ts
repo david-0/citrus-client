@@ -13,7 +13,7 @@ export class UnitOfMeasurementDeleteComponent extends BaseDeleteComponent<UnitOf
 
   constructor(route: ActivatedRoute,
               rest: UnitOfMeasurementDtoRestService) {
-    super(route, rest, "Masseinheit");
+    super(route, rest, "Die Masseinheit");
   }
 
 }

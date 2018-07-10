@@ -13,7 +13,7 @@ export class ArticleDeleteComponent extends BaseDeleteComponent<ArticleDto> {
 
   constructor(route: ActivatedRoute,
               rest: ArticleDtoRestService) {
-    super(route, rest, "Artikel");
+    super(route, rest, "Der Artikel");
   }
 
 }

@@ -13,6 +13,6 @@ export class UserInfoDeleteComponent extends BaseDeleteComponent<UserInfoDto> {
 
   constructor(route: ActivatedRoute,
               rest: UserInfoDtoRestService) {
-    super(route, rest, "User");
+    super(route, rest, "Der Benutzer");
   }
 }

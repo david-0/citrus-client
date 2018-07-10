@@ -1,7 +1,7 @@
 <app-table-header titleText="Artikel details" label="dieser Artikel" showBack="true"
                   showDelete="true" showEdit="true"></app-table-header>
 <mat-card class="mat-card-padding">
-  <div class="common_table">
+  <mat-card-content class="common_table">
     <div>
       <div>Artikelnummer</div>
       <div>{{article.number}}</div>
@@ -32,5 +32,5 @@
         <app-status-detail [status]="article.status"></app-status-detail>
       </div>
     </div>
-  </div>
+  </mat-card-content>
 </mat-card>

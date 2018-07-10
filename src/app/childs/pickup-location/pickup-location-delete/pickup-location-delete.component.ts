@@ -13,6 +13,6 @@ export class PickupLocationDeleteComponent extends BaseDeleteComponent<PickupLoc
 
   constructor(route: ActivatedRoute,
               rest: PickupLocationDtoRestService) {
-    super(route, rest, "Abholstation");
+    super(route, rest, "Die Abholstation");
   }
 }

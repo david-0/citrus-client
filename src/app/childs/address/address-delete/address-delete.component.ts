@@ -13,6 +13,6 @@ export class AddressDeleteComponent extends BaseDeleteComponent<AddressDto> {
 
   constructor(route: ActivatedRoute,
               rest: AddressDtoRestService) {
-    super(route, rest, "Adresse");
+    super(route, rest, "Die Adresse");
   }
 }

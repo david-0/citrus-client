@@ -13,6 +13,6 @@ export class OpeningHourDeleteComponent extends BaseDeleteComponent<OpeningHourD
 
   constructor(route: ActivatedRoute,
               rest: OpeningHourDtoRestService) {
-    super(route, rest, "Öffnungszeit");
+    super(route, rest, "Die Öffnungszeit");
   }
 }

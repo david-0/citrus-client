@@ -1,7 +1,7 @@
 <app-table-header titleText="Adresse details" label="die Adresse" showBack="true"
                   showDelete="true" showEdit="true"></app-table-header>
 <mat-card class="mat-card-padding">
-  <div class="common_table">
+  <mat-card-content class="common_table">
     <div>
       <div>Benuzter</div>
       <div>{{address.user?.prename}} {{address.user?.name}}</div>
@@ -26,6 +26,6 @@
       <div>Ort</div>
       <div>{{address.zipcode}} {{address.city}}</div>
     </div>
-  </div>
+  </mat-card-content>
 </mat-card>
 

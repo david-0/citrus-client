@@ -1,12 +1,22 @@
 <app-table-header titleText="Artikel" label="diesen Artikel" showBack="true"
                   showDelete="true" showEdit="true"></app-table-header>
-<div class="main-container">
-  <mat-card class="mat-card-padding">
-    <div class="common_table">
-      <div><div>Artikel</div><div>{{customerOrderItem.article?.description}}</div></div>
-      <div><div>Menge</div><div>{{customerOrderItem.quantity}} {{customerOrderItem.article?.unitOfMeasurement?.shortcut}}</div></div>
-      <div><div>Preis pro Einheit</div><div>{{customerOrderItem.copiedPrice | currency: "CHF "}}</div></div>
-      <div><div>Preis</div><div>{{customerOrderItem.copiedPrice * customerOrderItem.quantity | currency: "CHF "}}</div></div>
+<mat-card class="mat-card-padding">
+  <mat-card-content class="common_table">
+    <div>
+      <div>Artikel</div>
+      <div>{{customerOrderItem.article?.description}}</div>
     </div>
-  </mat-card>
-</div>
+    <div>
+      <div>Menge</div>
+      <div>{{customerOrderItem.quantity}} {{customerOrderItem.article?.unitOfMeasurement?.shortcut}}</div>
+    </div>
+    <div>
+      <div>Preis pro Einheit</div>
+      <div>{{customerOrderItem.copiedPrice | currency: "CHF "}}</div>
+    </div>
+    <div>
+      <div>Preis</div>
+      <div>{{customerOrderItem.copiedPrice * customerOrderItem.quantity | currency: "CHF "}}</div>
+    </div>
+  </mat-card-content>
+</mat-card>
