@@ -31,7 +31,7 @@ export class UnitOfMeasurementEditComponent implements OnInit {
               this.unitOfMeasurementId = this.unitOfMeasurement.id;
             },
             err => {
-              console.log(`Could not get address with id ${params["id"]} with error: ${err}`);
+              console.log(`Could not get measurementUnit with id ${params["id"]} with error: ${err}`);
             });
       }
     });

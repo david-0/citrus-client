@@ -29,6 +29,10 @@ import {PickupLocationDeleteComponent} from "../childs/pickup-location/pickup-lo
 import {PickupLocationDetailComponent} from "../childs/pickup-location/pickup-location-detail/pickup-location-detail.component";
 import {PickupLocationEditComponent} from "../childs/pickup-location/pickup-location-edit/pickup-location-edit.component";
 import {PickupLocationOverviewComponent} from "../childs/pickup-location/pickup-location-overview/pickup-location-overview.component";
+import {RoleDeleteComponent} from "../childs/role/role-delete/role-delete.component";
+import {RoleDetailComponent} from "../childs/role/role-detail/role-detail.component";
+import {RoleEditComponent} from "../childs/role/role-edit/role-edit.component";
+import {RoleOverviewComponent} from "../childs/role/role-overview/role-overview.component";
 import {UnitOfMeasurementDeleteComponent} from "../childs/unit-of-measurement/unit-of-measurement-delete/unit-of-measurement-delete.component";
 import {UnitOfMeasurementDetailsComponent} from "../childs/unit-of-measurement/unit-of-measurement-details/unit-of-measurement-details.component";
 import {UnitOfMeasurementEditComponent} from "../childs/unit-of-measurement/unit-of-measurement-edit/unit-of-measurement-edit.component";
@@ -67,6 +71,11 @@ const routes: Routes = [
       {path: "unitOfMeasurement/:id", component: UnitOfMeasurementDetailsComponent},
       {path: "unitOfMeasurement/:id/edit", component: UnitOfMeasurementEditComponent},
       {path: "unitOfMeasurement/:id/delete", component: UnitOfMeasurementDeleteComponent},
+      {path: "role", component: RoleOverviewComponent},
+      {path: "role/create", component: RoleEditComponent},
+      {path: "role/:id", component: RoleDetailComponent},
+      {path: "role/:id/edit", component: RoleEditComponent},
+      {path: "role/:id/delete", component: RoleDeleteComponent},
       {path: "article", component: ArticleOverviewComponent},
       {path: "article/create", component: ArticleEditComponent},
       {path: "article/:id", component: ArticleDetailsComponent},

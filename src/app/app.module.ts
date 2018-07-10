@@ -79,6 +79,11 @@ import {PickupLocationDetailComponent} from "./childs/pickup-location/pickup-loc
 import {PickupLocationEditComponent} from "./childs/pickup-location/pickup-location-edit/pickup-location-edit.component";
 import {PickupLocationOverviewComponent} from "./childs/pickup-location/pickup-location-overview/pickup-location-overview.component";
 import {PickupLocationTableComponent} from "./childs/pickup-location/pickup-location-table/pickup-location-table.component";
+import {RoleDeleteComponent} from "./childs/role/role-delete/role-delete.component";
+import {RoleDetailComponent} from "./childs/role/role-detail/role-detail.component";
+import {RoleEditComponent} from "./childs/role/role-edit/role-edit.component";
+import {RoleOverviewComponent} from "./childs/role/role-overview/role-overview.component";
+import {RoleTableComponent} from "./childs/role/role-table/role-table.component";
 import {UnitOfMeasurementDeleteComponent} from "./childs/unit-of-measurement/unit-of-measurement-delete/unit-of-measurement-delete.component";
 import {UnitOfMeasurementDetailsComponent} from "./childs/unit-of-measurement/unit-of-measurement-details/unit-of-measurement-details.component";
 import {UnitOfMeasurementDtoRestService} from "./childs/unit-of-measurement/unit-of-measurement-dto-rest.service";
@@ -168,6 +173,11 @@ import {TableSupportModule} from "./table-support/table-support.module";
     StatusDetailComponent,
     StatusEditComponent,
     PublicArticleGridComponent,
+    RoleDeleteComponent,
+    RoleDetailComponent,
+    RoleEditComponent,
+    RoleOverviewComponent,
+    RoleTableComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,8 +10,6 @@ import {UnitOfMeasurementDtoRestService} from "../unit-of-measurement-dto-rest.s
   styleUrls: ["./unit-of-measurement-details.component.scss"]
 })
 export class UnitOfMeasurementDetailsComponent implements OnInit {
-  public displayedColumns = ["description", "name", "prename", "street", "number", "addition", "zipcode", "city"];
-
   private _unitOfMeasurement: UnitOfMeasurementDto = UnitOfMeasurementDto.createEmpty();
   private subscription: Subscription;
 
