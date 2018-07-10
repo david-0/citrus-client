@@ -9,7 +9,7 @@
     <div>
       <div>Benutzer mit dieser Role</div>
       <div>
-        <p class="opening-hour-line" *ngFor="let user of role.users">
+        <p class="user-line" *ngFor="let user of role.users">
           {{user.prename}} {{user.name}}, {{user.email}}
         </p>
       </div>
