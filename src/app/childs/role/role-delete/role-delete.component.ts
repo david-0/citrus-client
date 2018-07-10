@@ -1,19 +1,38 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {RoleDto} from "citrus-common/lib/dto/role-dto";
-import {BaseDeleteComponent} from "../../../base/base-delete.component";
-import {RoleDtoRestService} from "../../user/role-dto-rest.service";
+import {RoleWithUsersDtoRestService} from "../role-with-users-dto-rest.service";
 
 @Component({
   selector: "app-role-delete",
   templateUrl: "./role-delete.component.html",
   styleUrls: ["./role-delete.component.scss"]
 })
-export class RoleDeleteComponent extends BaseDeleteComponent<RoleDto> {
+export class RoleDeleteComponent implements OnInit {
 
-  constructor(route: ActivatedRoute,
-              rest: RoleDtoRestService) {
-    super(route, rest, "Role");
+  public dtoName = "Role";
+  public message: string;
+
+  constructor(private route: ActivatedRoute,
+              public rest: RoleWithUsersDtoRestService) {
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.rest.get(+params["id"]).subscribe(role => {
+        if (role.users.length > 0) {
+          this.message = `Die Role wurde nicht gelöscht, da sie noch verwendet wird.`;
+        } else {
+          this.rest.del(+params["id"]).subscribe(t => {
+              this.message = `Die ${this.dtoName} wurde gelöscht!`;
+            },
+            err => {
+              this.message = `Die ${this.dtoName} konnte nicht gelöscht werden (Error: ${err.error}).`;
+            });
+        }
+      }, error => {
+        this.message = `Die ${this.dtoName} konnte nicht gelöscht werden (Error: ${err.error}).`;
+      });
+    });
   }
 }
 
