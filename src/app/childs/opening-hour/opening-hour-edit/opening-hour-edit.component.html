@@ -1,27 +1,25 @@
 <form #f="ngForm" (ngSubmit)="submit()">
   <app-table-header titleText="Öffnungszeiten bearbeiten" showBack="true" showCancelAndSave="true"
                     [form]="f"></app-table-header>
-  <div class="main-container">
-    <mat-card class="mat-card-padding">
-      <mat-form-field class="full-width" color="accent">
-        <input matInput [matDatepicker]="dp" placeholder="Datum" [(ngModel)]="dateForPicker" name="date">
-        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-        <mat-datepicker #dp></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field class="full-width" color="accent">
-        <input matInput placeholder="Von" #from="ngModel" [(ngModel)]="fromTime"
-               maxlength="5" name="from" pattern="[0-2][0-9]:[0-5][0-9]">
-        <mat-hint *ngIf="from.invalid && (from.dirty || from.touched)" [ngStyle]="{'color': 'red'}" align="start">
-          ungültiges Format: HH:mm
-        </mat-hint>
-      </mat-form-field>
-      <mat-form-field class="full-width" color="accent">
-        <input matInput placeholder="Bis" #to="ngModel" [(ngModel)]="toTime"
-               maxlength="5" name="to" pattern="[0-2][0-9]:[0-5][0-9]">
-        <mat-hint *ngIf="to.invalid && (to.dirty || to.touched)" [ngStyle]="{'color': 'red'}" align="start">ungültiges
-          Format: HH:mm
-        </mat-hint>
-      </mat-form-field>
-    </mat-card>
-  </div>
+  <mat-card class="mat-card-padding">
+    <mat-form-field class="full-width" color="accent">
+      <input matInput [matDatepicker]="dp" placeholder="Datum" [(ngModel)]="dateForPicker" name="date">
+      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+      <mat-datepicker #dp></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="full-width" color="accent">
+      <input matInput placeholder="Von" #from="ngModel" [(ngModel)]="fromTime"
+             maxlength="5" name="from" pattern="[0-2][0-9]:[0-5][0-9]">
+      <mat-hint *ngIf="from.invalid && (from.dirty || from.touched)" [ngStyle]="{'color': 'red'}" align="start">
+        ungültiges Format: HH:mm
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field class="full-width" color="accent">
+      <input matInput placeholder="Bis" #to="ngModel" [(ngModel)]="toTime"
+             maxlength="5" name="to" pattern="[0-2][0-9]:[0-5][0-9]">
+      <mat-hint *ngIf="to.invalid && (to.dirty || to.touched)" [ngStyle]="{'color': 'red'}" align="start">ungültiges
+        Format: HH:mm
+      </mat-hint>
+    </mat-form-field>
+  </mat-card>
 </form>
