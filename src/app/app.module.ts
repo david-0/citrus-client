@@ -92,7 +92,7 @@ import {UnitOfMeasurementOverviewComponent} from "./childs/unit-of-measurement/u
 import {UnitOfMeasurementSettingsService} from "./childs/unit-of-measurement/unit-of-measurement-settings.service";
 import {UnitOfMeasurementTableComponent} from "./childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component";
 import {RoleDtoRestService} from "./childs/user/role-dto-rest.service";
-import {UserInfoWithRolesDtoRestService} from "./childs/user/user-info--with-roles-dto-rest.service";
+import {UserInfoWithRolesDtoRestService} from "./childs/user/user-info-with-roles-dto-rest.service";
 import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-delete.component";
 import {UserInfoDetailsComponent} from "./childs/user/user-info-details/user-info-details.component";
 import {UserInfoDtoRestService} from "./childs/user/user-info-dto-rest.service";

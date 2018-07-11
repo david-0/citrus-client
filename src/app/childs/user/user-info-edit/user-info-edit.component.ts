@@ -5,7 +5,7 @@ import {RoleDto} from "citrus-common/lib/dto/role-dto";
 import "rxjs/add/operator/zip";
 import {Observable} from "rxjs/Rx";
 import {RoleDtoRestService} from "../role-dto-rest.service";
-import {UserInfoWithRolesDtoRestService} from "../user-info--with-roles-dto-rest.service";
+import {UserInfoWithRolesDtoRestService} from "../user-info-with-roles-dto-rest.service";
 
 @Component({
   selector: "app-user-info-edit",

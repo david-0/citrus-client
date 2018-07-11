@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {UserInfoDto} from "citrus-common";
 import {Subscription} from "rxjs/Subscription";
 import {isUndefined} from "util";
-import {UserInfoWithRolesDtoRestService} from "../user-info--with-roles-dto-rest.service";
+import {UserInfoWithRolesDtoRestService} from "../user-info-with-roles-dto-rest.service";
 
 @Component({
   selector: "app-user-info-details",
