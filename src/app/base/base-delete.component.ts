@@ -7,7 +7,7 @@ export class BaseDeleteComponent<T extends DtoId> implements OnInit {
 
   public message: string;
 
-  constructor(private route: ActivatedRoute,
+  constructor(protected route: ActivatedRoute,
               public rest: GenericRestService<T>,
               public dtoName: string) {
   }
