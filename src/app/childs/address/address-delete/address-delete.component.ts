@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {AddressDto} from "citrus-common";
-import {BaseDeleteComponent} from "../../../base/base-delete.component";
+import {DeleteExecutor} from "../../../base/delete-executor";
 import {AddressDtoRestService} from "../address-dto-rest.service";
 
 @Component({
@@ -9,10 +9,16 @@ import {AddressDtoRestService} from "../address-dto-rest.service";
   templateUrl: "./address-delete.component.html",
   styleUrls: ["./address-delete.component.scss"]
 })
-export class AddressDeleteComponent extends BaseDeleteComponent<AddressDto> {
+export class AddressDeleteComponent implements OnInit {
 
-  constructor(route: ActivatedRoute,
-              rest: AddressDtoRestService) {
-    super(route, rest, "Die Adresse");
+  public deleteExecutor: DeleteExecutor<AddressDto>;
+
+  constructor(private route: ActivatedRoute,
+              private rest: AddressDtoRestService) {
+  }
+
+  ngOnInit() {
+    this.deleteExecutor = new DeleteExecutor<AddressDto>(this.route, this.rest, "Die Adresse");
+    this.deleteExecutor.initDelete();
   }
 }

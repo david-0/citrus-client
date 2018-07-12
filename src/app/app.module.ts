@@ -108,6 +108,7 @@ import {PublicArticleListComponent} from "./dashboard/public-article-list/public
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
+import {ErrorOutputComponent} from "./table-support/error-output/error-output.component";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {StatusDetailComponent} from "./table-support/status-detail/status-detail.component";
 import {StatusEditComponent} from "./table-support/status-edit/status-edit.component";
@@ -178,6 +179,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     RoleEditComponent,
     RoleOverviewComponent,
     RoleTableComponent,
+    ErrorOutputComponent,
   ],
   imports: [
     BrowserModule,

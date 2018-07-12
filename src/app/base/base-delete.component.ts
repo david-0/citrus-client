@@ -14,15 +14,16 @@ export class BaseDeleteComponent<T extends DtoId> implements OnInit {
   }
 
   ngOnInit() {
+    const errorMessages: string[] = []
     this.route.params.subscribe(params => {
       if (this.checks.length > 0) {
         this.rest.get(+params["id"]).subscribe(item => {
           this.checks.forEach(check => {
             if (check.checkCallback(item)) {
-              this.message = check.errorMessage;
+              errorMessages.push(check.errorMessage);
             }
           });
-          if (!this.message) {
+          if (errorMessages.length === 0) {
             this.deleteItem(params);
           }
         }, error => this.showError(error));
@@ -45,7 +46,7 @@ export class BaseDeleteComponent<T extends DtoId> implements OnInit {
     this.message = `${this.dtoName} konnte nicht gelöscht werden (Error: ${err.error.error}).`;
   }
 
-  protected registerCheckEmpty(checkCallback: (item: T) => boolean, errorMessage: string) {
+  protected registerCheck(checkCallback: (item: T) => boolean, errorMessage: string) {
     this.checks.push({checkCallback, errorMessage});
   }
 

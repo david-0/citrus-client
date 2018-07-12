@@ -14,7 +14,7 @@ export class RoleDeleteComponent extends BaseDeleteComponent<RoleDto> {
   constructor(route: ActivatedRoute,
               rest: RoleWithUsersDtoRestService) {
     super(route, rest, "Role");
-    this.registerCheckEmpty(role => role.users.length > 0,
+    this.registerCheck(role => role.users.length > 0,
       "Die Role wurde nicht gelöscht, da sie noch verwendet wird.");
   }
 }

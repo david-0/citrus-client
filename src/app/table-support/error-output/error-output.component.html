@@ -1,0 +1,8 @@
+<mat-card>
+  <mat-card-content>
+    {{messages.message}}
+    <ul *ngIf="messages.details.length > 0">
+      <li *ngFor="let detail of messages.details">{{detail}}</li>
+    </ul>
+  </mat-card-content>
+</mat-card>
