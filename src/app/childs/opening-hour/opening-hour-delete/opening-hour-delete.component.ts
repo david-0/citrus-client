@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {OpeningHourDto} from "citrus-common/lib/dto/opening-hour-dto";
-import {BaseDeleteComponent} from "../../../base/base-delete.component";
+import {DeleteExecutor} from "../../../base/delete-executor";
 import {OpeningHourDtoRestService} from "../opening-hour-dto-rest.service";
 
 @Component({
@@ -9,10 +9,16 @@ import {OpeningHourDtoRestService} from "../opening-hour-dto-rest.service";
   templateUrl: "./opening-hour-delete.component.html",
   styleUrls: ["./opening-hour-delete.component.scss"]
 })
-export class OpeningHourDeleteComponent extends BaseDeleteComponent<OpeningHourDto> {
+export class OpeningHourDeleteComponent implements OnInit {
 
-  constructor(route: ActivatedRoute,
-              rest: OpeningHourDtoRestService) {
-    super(route, rest, "Die Öffnungszeit");
+  public deleteExecutor: DeleteExecutor<OpeningHourDto>;
+
+  constructor(private route: ActivatedRoute,
+              private rest: OpeningHourDtoRestService) {
+  }
+
+  ngOnInit() {
+    this.deleteExecutor = new DeleteExecutor<OpeningHourDto>(this.route, this.rest, "Die Öffnungszeit");
+    this.deleteExecutor.initDelete();
   }
 }

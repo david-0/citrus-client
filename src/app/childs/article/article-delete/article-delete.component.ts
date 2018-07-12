@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ArticleDto} from "citrus-common";
-import {BaseDeleteComponent} from "../../../base/base-delete.component";
+import {DeleteExecutor} from "../../../base/delete-executor";
 import {ArticleDtoRestService} from "../article-dto-rest.service";
 
 @Component({
@@ -9,11 +9,16 @@ import {ArticleDtoRestService} from "../article-dto-rest.service";
   templateUrl: "./article-delete.component.html",
   styleUrls: ["./article-delete.component.scss"]
 })
-export class ArticleDeleteComponent extends BaseDeleteComponent<ArticleDto> {
+export class ArticleDeleteComponent implements OnInit {
 
-  constructor(route: ActivatedRoute,
-              rest: ArticleDtoRestService) {
-    super(route, rest, "Der Artikel");
+  public deleteExecutor: DeleteExecutor<ArticleDto>;
+
+  constructor(private route: ActivatedRoute,
+              private rest: ArticleDtoRestService) {
   }
 
+  ngOnInit() {
+    this.deleteExecutor = new DeleteExecutor<ArticleDto>(this.route, this.rest, "Der Artikel");
+    this.deleteExecutor.initDelete();
+  }
 }

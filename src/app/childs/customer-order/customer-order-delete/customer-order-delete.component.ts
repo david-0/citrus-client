@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {CustomerOrderDto} from "citrus-common/lib/dto/customer-order-dto";
-import {BaseDeleteComponent} from "../../../base/base-delete.component";
+import {DeleteExecutor} from "../../../base/delete-executor";
 import {CustomerOrderDtoRestService} from "../customer-order-dto-rest.service";
 
 @Component({
@@ -9,11 +9,16 @@ import {CustomerOrderDtoRestService} from "../customer-order-dto-rest.service";
   templateUrl: "./customer-order-delete.component.html",
   styleUrls: ["./customer-order-delete.component.scss"]
 })
-export class CustomerOrderDeleteComponent extends BaseDeleteComponent<CustomerOrderDto> {
+export class CustomerOrderDeleteComponent implements OnInit {
 
-  constructor(route: ActivatedRoute,
-              rest: CustomerOrderDtoRestService) {
-    super(route, rest, "Die Kundenbestellung");
+  public deleteExecutor: DeleteExecutor<CustomerOrderDto>;
+
+  constructor(private route: ActivatedRoute,
+              private rest: CustomerOrderDtoRestService) {
   }
 
+  ngOnInit() {
+    this.deleteExecutor = new DeleteExecutor<CustomerOrderDto>(this.route, this.rest, "Die Kundenbestellung");
+    this.deleteExecutor.initDelete();
+  }
 }

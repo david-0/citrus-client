@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
-import {BaseDeleteComponent} from "../../../base/base-delete.component";
+import {DeleteExecutor} from "../../../base/delete-executor";
 import {PickupLocationDtoRestService} from "../pickup-location-dto-rest.service";
 
 @Component({
@@ -9,10 +9,16 @@ import {PickupLocationDtoRestService} from "../pickup-location-dto-rest.service"
   templateUrl: "./pickup-location-delete.component.html",
   styleUrls: ["./pickup-location-delete.component.scss"]
 })
-export class PickupLocationDeleteComponent extends BaseDeleteComponent<PickupLocationDto> {
+export class PickupLocationDeleteComponent implements OnInit {
 
-  constructor(route: ActivatedRoute,
-              rest: PickupLocationDtoRestService) {
-    super(route, rest, "Die Abholstation");
+  public deleteExecutor: DeleteExecutor<PickupLocationDto>;
+
+  constructor(private route: ActivatedRoute,
+              private rest: PickupLocationDtoRestService) {
+  }
+
+  ngOnInit() {
+    this.deleteExecutor = new DeleteExecutor<PickupLocationDto>(this.route, this.rest, "Die Abholstation");
+    this.deleteExecutor.initDelete();
   }
 }
