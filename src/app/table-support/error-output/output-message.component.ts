@@ -2,11 +2,11 @@ import {Component, Input, OnInit} from "@angular/core";
 import {OutputMessage} from "../../base/output-message";
 
 @Component({
-  selector: "app-error-output",
-  templateUrl: "./error-output.component.html",
-  styleUrls: ["./error-output.component.scss"]
+  selector: "app-output-message",
+  templateUrl: "./output-message.component.html",
+  styleUrls: ["./output-message.component.scss"]
 })
-export class ErrorOutputComponent implements OnInit {
+export class OutputMessageComponent implements OnInit {
 
   @Input() messages: OutputMessage;
 
