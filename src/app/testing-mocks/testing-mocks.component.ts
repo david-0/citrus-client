@@ -37,7 +37,7 @@ export class UnitOfMeasurementDtoRestServiceSpy {
         id: item.id,
         shortcut: item.shortcut,
         description: item.description,
-        articleIds: item.articleIds,
+        articles: item.articles,
       });
     });
   }
