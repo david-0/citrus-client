@@ -52,10 +52,10 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent},
   {path: "checkout", canActivate: [AuthGuard], component: CheckoutComponent},
-  {path: "changeMyPassword", canActivate: [AuthGuard], component: ChangeMyPasswordComponent},
+  {path: "changeMyPassword", component: ChangeMyPasswordComponent},
   {
     path: "administration", canActivate: [AuthGuard, AuthGuardAdmin], component: AdministrationComponent, children: [
-      {path: "address", component: AddressOverviewComponent},
+      {path: "address", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressOverviewComponent},
       {path: "address/create", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressEditComponent},
       {path: "address/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressDetailsComponent},
       {path: "address/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressEditComponent},
@@ -67,7 +67,6 @@ const routes: Routes = [
       {path: "user/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoDeleteComponent},
       {
         path: "user/:id/passwordChange",
-        canActivate: [AuthGuardAdmin],
         canActivate: [AuthGuard, AuthGuardAdmin],
         component: UserInfoPasswordChangeComponent
       },
@@ -141,6 +140,7 @@ const routes: Routes = [
           },
           {
             path: "customerOrderItem/:id/delete",
+            canActivate: [AuthGuard, AuthGuardAdmin],
             component: CustomerOrderItemDeleteComponent,
             outlet: "customerOrderItem"
           },
