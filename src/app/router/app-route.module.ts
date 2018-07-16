@@ -52,45 +52,93 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent},
   {path: "checkout", canActivate: [AuthGuard], component: CheckoutComponent},
-  {path: "changeMyPassword", component: ChangeMyPasswordComponent},
+  {path: "changeMyPassword", canActivate: [AuthGuard], component: ChangeMyPasswordComponent},
   {
     path: "administration", canActivate: [AuthGuard, AuthGuardAdmin], component: AdministrationComponent, children: [
       {path: "address", component: AddressOverviewComponent},
-      {path: "address/create", component: AddressEditComponent},
-      {path: "address/:id", component: AddressDetailsComponent},
-      {path: "address/:id/edit", component: AddressEditComponent},
-      {path: "address/:id/delete", component: AddressDeleteComponent},
-      {path: "user", component: UserInfoOverviewComponent},
-      {path: "user/create", component: UserInfoEditComponent},
-      {path: "user/:id", component: UserInfoDetailsComponent},
-      {path: "user/:id/edit", component: UserInfoEditComponent},
-      {path: "user/:id/delete", component: UserInfoDeleteComponent},
-      {path: "user/:id/passwordChange", canActivate: [AuthGuardAdmin], component: UserInfoPasswordChangeComponent},
-      {path: "unitOfMeasurement", component: UnitOfMeasurementOverviewComponent},
-      {path: "unitOfMeasurement/create", component: UnitOfMeasurementEditComponent},
-      {path: "unitOfMeasurement/:id", component: UnitOfMeasurementDetailsComponent},
-      {path: "unitOfMeasurement/:id/edit", component: UnitOfMeasurementEditComponent},
-      {path: "unitOfMeasurement/:id/delete", component: UnitOfMeasurementDeleteComponent},
-      {path: "role", component: RoleOverviewComponent},
-      {path: "role/create", component: RoleEditComponent},
-      {path: "role/:id", component: RoleDetailComponent},
-      {path: "role/:id/edit", component: RoleEditComponent},
-      {path: "role/:id/delete", component: RoleDeleteComponent},
-      {path: "article", component: ArticleOverviewComponent},
-      {path: "article/create", component: ArticleEditComponent},
-      {path: "article/:id", component: ArticleDetailsComponent},
-      {path: "article/:id/edit", component: ArticleEditComponent},
-      {path: "article/:id/delete", component: ArticleDeleteComponent},
-
-      {path: "customerOrder", component: CustomerOrderOverviewComponent},
-      {path: "customerOrder/create", component: CustomerOrderEditComponent},
-      {path: "customerOrder/:id", component: CustomerOrderDetailComponent},
+      {path: "address/create", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressEditComponent},
+      {path: "address/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressDetailsComponent},
+      {path: "address/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressEditComponent},
+      {path: "address/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressDeleteComponent},
+      {path: "user", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoOverviewComponent},
+      {path: "user/create", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoEditComponent},
+      {path: "user/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoDetailsComponent},
+      {path: "user/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoEditComponent},
+      {path: "user/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoDeleteComponent},
       {
-        path: "customerOrder/:id/edit", component: CustomerOrderEditComponent, children: [
-          {path: "customerOrderItem", component: CustomerOrderItemOverviewComponent, outlet: "customerOrderItem"},
-          {path: "customerOrderItem/create", component: CustomerOrderItemEditComponent, outlet: "customerOrderItem"},
-          {path: "customerOrderItem/:id", component: CustomerOrderItemDetailComponent, outlet: "customerOrderItem"},
-          {path: "customerOrderItem/:id/edit", component: CustomerOrderItemEditComponent, outlet: "customerOrderItem"},
+        path: "user/:id/passwordChange",
+        canActivate: [AuthGuardAdmin],
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: UserInfoPasswordChangeComponent
+      },
+      {
+        path: "unitOfMeasurement",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: UnitOfMeasurementOverviewComponent
+      },
+      {
+        path: "unitOfMeasurement/create",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: UnitOfMeasurementEditComponent
+      },
+      {
+        path: "unitOfMeasurement/:id",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: UnitOfMeasurementDetailsComponent
+      },
+      {
+        path: "unitOfMeasurement/:id/edit",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: UnitOfMeasurementEditComponent
+      },
+      {
+        path: "unitOfMeasurement/:id/delete",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: UnitOfMeasurementDeleteComponent
+      },
+      {path: "role", canActivate: [AuthGuard, AuthGuardAdmin], component: RoleOverviewComponent},
+      {path: "role/create", canActivate: [AuthGuard, AuthGuardAdmin], component: RoleEditComponent},
+      {path: "role/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: RoleDetailComponent},
+      {path: "role/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: RoleEditComponent},
+      {path: "role/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: RoleDeleteComponent},
+      {path: "article", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleOverviewComponent},
+      {path: "article/create", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleEditComponent},
+      {path: "article/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleDetailsComponent},
+      {path: "article/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleEditComponent},
+      {path: "article/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleDeleteComponent},
+
+      {path: "customerOrder", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderOverviewComponent},
+      {path: "customerOrder/create", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderEditComponent},
+      {path: "customerOrder/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderDetailComponent},
+      {
+        path: "customerOrder/:id/edit",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: CustomerOrderEditComponent,
+        children: [
+          {
+            path: "customerOrderItem",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: CustomerOrderItemOverviewComponent,
+            outlet: "customerOrderItem"
+          },
+          {
+            path: "customerOrderItem/create",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: CustomerOrderItemEditComponent,
+            outlet: "customerOrderItem"
+          },
+          {
+            path: "customerOrderItem/:id",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: CustomerOrderItemDetailComponent,
+            outlet: "customerOrderItem"
+          },
+          {
+            path: "customerOrderItem/:id/edit",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: CustomerOrderItemEditComponent,
+            outlet: "customerOrderItem"
+          },
           {
             path: "customerOrderItem/:id/delete",
             component: CustomerOrderItemDeleteComponent,
@@ -98,21 +146,57 @@ const routes: Routes = [
           },
         ]
       },
-      {path: "customerOrder/:id/delete", component: CustomerOrderDeleteComponent},
-
-      {path: "pickupLocation", component: PickupLocationOverviewComponent},
-      {path: "pickupLocation/create", component: PickupLocationEditComponent},
-      {path: "pickupLocation/:id", component: PickupLocationDetailComponent},
       {
-        path: "pickupLocation/:id/edit", component: PickupLocationEditComponent, children: [
-          {path: "opening-hour", component: OpeningHourOverviewComponent, outlet: "opening-hour"},
-          {path: "opening-hour/create", component: OpeningHourEditComponent, outlet: "opening-hour"},
-          {path: "opening-hour/:id", component: OpeningHourDetailsComponent, outlet: "opening-hour"},
-          {path: "opening-hour/:id/edit", component: OpeningHourEditComponent, outlet: "opening-hour"},
-          {path: "opening-hour/:id/delete", component: OpeningHourDeleteComponent, outlet: "opening-hour"},
+        path: "customerOrder/:id/delete",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: CustomerOrderDeleteComponent
+      },
+
+      {path: "pickupLocation", canActivate: [AuthGuard, AuthGuardAdmin], component: PickupLocationOverviewComponent},
+      {path: "pickupLocation/create", canActivate: [AuthGuard, AuthGuardAdmin], component: PickupLocationEditComponent},
+      {path: "pickupLocation/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: PickupLocationDetailComponent},
+      {
+        path: "pickupLocation/:id/edit",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: PickupLocationEditComponent,
+        children: [
+          {
+            path: "opening-hour",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: OpeningHourOverviewComponent,
+            outlet: "opening-hour"
+          },
+          {
+            path: "opening-hour/create",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: OpeningHourEditComponent,
+            outlet: "opening-hour"
+          },
+          {
+            path: "opening-hour/:id",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: OpeningHourDetailsComponent,
+            outlet: "opening-hour"
+          },
+          {
+            path: "opening-hour/:id/edit",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: OpeningHourEditComponent,
+            outlet: "opening-hour"
+          },
+          {
+            path: "opening-hour/:id/delete",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: OpeningHourDeleteComponent,
+            outlet: "opening-hour"
+          },
         ]
       },
-      {path: "pickupLocation/:id/delete", component: PickupLocationDeleteComponent},
+      {
+        path: "pickupLocation/:id/delete",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: PickupLocationDeleteComponent
+      },
       {path: "", redirectTo: "address", pathMatch: "full"},
     ]
   },
