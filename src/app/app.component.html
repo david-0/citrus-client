@@ -14,15 +14,15 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
-        <a class="menu-entry"><span>Abmelden</span></a>
+        <span class="menu-entry">Abmelden</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item routerLink="/changeMyPassword">
         <mat-icon>security</mat-icon>
-        <a class="menu-entry" routerLink="/changeMyPassword"><span>Passwort ändern</span></a>
+        <span class="menu-entry">Passwort ändern</span>
       </button>
-      <button *ngIf="authService.isAdmin()" mat-menu-item >
+      <button mat-menu-item *ngIf="authService.isAdmin()" routerLink="/administration">
         <mat-icon>list</mat-icon>
-        <a class="menu-entry" routerLink="/administration"><span>Administration</span></a>
+        <span class="menu-entry">Administration</span>
       </button>
     </mat-menu>
   </mat-toolbar>
