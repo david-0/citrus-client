@@ -97,9 +97,20 @@ export class AuthenticationService {
     if (!this.loggedIn()) {
       return false;
     }
+    return this.hasRole("admin");
+  }
+
+  isSale(): boolean {
+    if (!this.loggedIn()) {
+      return false;
+    }
+    return this.hasRole("sale");
+  }
+
+  private hasRole(roleName: string) {
     let ret = false;
     this.roles.forEach(role => {
-      if (role === "admin") {
+      if (role === roleName) {
         ret = true;
       }
     });

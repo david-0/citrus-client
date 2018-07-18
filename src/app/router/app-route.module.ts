@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {AuthGuardAdmin} from "../authentication/auth-guard-admin.service";
+import {AuthGuardSale} from "../authentication/auth-guard-sale.service";
 import {AuthGuard} from "../authentication/auth-guard.service";
 import {ChangeMyPasswordComponent} from "../change-my-password/change-my-password.component";
 import {CheckoutComponent} from "../checkout/checkout/checkout.component";
@@ -45,6 +46,7 @@ import {UserInfoPasswordChangeComponent} from "../childs/user/user-info-password
 import {DashboardComponent} from "../dashboard/dashboard.component";
 import {LoginComponent} from "../login/login.component";
 import {LogoutComponent} from "../logout/logout.component";
+import {SaleOverviewComponent} from "../sales/sale-overview/sale-overview.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
@@ -53,6 +55,7 @@ const routes: Routes = [
   {path: "logout", component: LogoutComponent},
   {path: "checkout", canActivate: [AuthGuard], component: CheckoutComponent},
   {path: "changeMyPassword", component: ChangeMyPasswordComponent},
+  {path: "sale", canActivate: [AuthGuard, AuthGuardSale], component: SaleOverviewComponent},
   {
     path: "administration", canActivate: [AuthGuard, AuthGuardAdmin], component: AdministrationComponent, children: [
       {path: "address", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressOverviewComponent},
