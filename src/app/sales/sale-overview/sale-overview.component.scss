@@ -1,0 +1,29 @@
+.sales-layout {
+  display: flex;
+  flex-direction: row;
+  mat-card {
+    flex: 1 1 auto;
+  }
+}
+
+.grid-button {
+  font-size: 3em;
+  border-radius: 0.5em;
+  height: 1.5em;
+  width: 100%;
+  margin: 0.3em;
+}
+
+.number-grid {
+  background-color: lightgreen;
+}
+
+.input-grid {
+  background-color: lightblue;
+}
+.search-grid {
+  background-color: yellow;
+}
+.clear-grid {
+  background-color: lightsalmon;
+}

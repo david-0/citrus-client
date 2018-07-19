@@ -8,7 +8,7 @@ import {
   MatCheckboxModule,
   MatDatepickerModule,
   MatDividerModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatGridListModule,
   MatIconModule,
   MatIconRegistry,
   MatInputModule,
@@ -92,7 +92,6 @@ import {UnitOfMeasurementOverviewComponent} from "./childs/unit-of-measurement/u
 import {UnitOfMeasurementSettingsService} from "./childs/unit-of-measurement/unit-of-measurement-settings.service";
 import {UnitOfMeasurementTableComponent} from "./childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component";
 import {RoleDtoRestService} from "./childs/user/role-dto-rest.service";
-import {UserInfoWithRolesDtoRestService} from "./childs/user/user-info-with-roles-dto-rest.service";
 import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-delete.component";
 import {UserInfoDetailsComponent} from "./childs/user/user-info-details/user-info-details.component";
 import {UserInfoDtoRestService} from "./childs/user/user-info-dto-rest.service";
@@ -100,6 +99,7 @@ import {UserInfoEditComponent} from "./childs/user/user-info-edit/user-info-edit
 import {UserInfoOverviewComponent} from "./childs/user/user-info-overview/user-info-overview.component";
 import {UserInfoPasswordChangeComponent} from "./childs/user/user-info-password-change/user-info-password-change.component";
 import {UserDetailsSettingsService} from "./childs/user/user-info-settings.service";
+import {UserInfoWithRolesDtoRestService} from "./childs/user/user-info-with-roles-dto-rest.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {PublicArticleDetailComponent} from "./dashboard/public-article-detail/public-article-detail.component";
 import {PublicArticleDtoRestService} from "./dashboard/public-article-dto-rest.service";
@@ -108,12 +108,12 @@ import {PublicArticleListComponent} from "./dashboard/public-article-list/public
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
+import {SaleOverviewComponent} from "./sales/sale-overview/sale-overview.component";
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {StatusDetailComponent} from "./table-support/status-detail/status-detail.component";
 import {StatusEditComponent} from "./table-support/status-edit/status-edit.component";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { SaleOverviewComponent } from './sales/sale-overview/sale-overview.component';
 
 
 @NgModule({
@@ -215,6 +215,7 @@ import { SaleOverviewComponent } from './sales/sale-overview/sale-overview.compo
     MatTabsModule,
     MatRadioModule,
     MatDividerModule,
+    MatGridListModule,
   ],
   providers: [
     MatIconRegistry,

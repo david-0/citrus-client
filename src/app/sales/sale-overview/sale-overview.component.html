@@ -1,3 +1,50 @@
-<p>
-  sale-overview works!
-</p>
+<app-table-header titleText="Verkauf" showBack="true"></app-table-header>
+<div class="sales-layout">
+  <mat-card>
+    <mat-card-title>Bestellungnummer eingeben</mat-card-title>
+    <mat-grid-list cols="3" rowHeight="100px">
+      <mat-grid-tile [colspan]="3" class="input-grid">
+        <button mat-raised-button class="grid-button">{{bestellnummer}}</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('1')">
+        <button mat-raised-button class="grid-button">1</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('2')">
+        <button mat-raised-button class="grid-button">2</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('3')">
+        <button mat-raised-button class="grid-button">3</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('4')">
+        <button mat-raised-button class="grid-button">4</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('5')">
+        <button mat-raised-button class="grid-button">5</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('6')">
+        <button mat-raised-button class="grid-button">6</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('7')">
+        <button mat-raised-button class="grid-button">7</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('8')">
+        <button mat-raised-button class="grid-button">8</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('9')">
+        <button mat-raised-button class="grid-button">9</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('0')">
+        <button mat-raised-button class="grid-button">0</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" class="search-grid" (click)="search()">
+        <button mat-raised-button class="grid-button">Suchen</button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="3" class="clear-grid" (click)="clear()">
+        <button mat-raised-button class="grid-button">Eingaben löschen</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>Bestellungsdetails</mat-card-title>
+  </mat-card>
+</div>
