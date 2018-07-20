@@ -3,8 +3,12 @@
     <span><a class="title" routerLink="/">Citrus</a></span>
     <span class="fill-remaining-space"></span>
     <button *ngIf="authService.isSale()" mat-raised-button class="sale-button" routerLink="/sale">
-      <span class="button-space">Verkauf</span>
       <mat-icon>money</mat-icon>
+      <span class="button-space">Verkauf</span>
+    </button>
+    <button *ngIf="authService.isAdmin()" mat-raised-button class="sale-button" routerLink="/administration">
+      <mat-icon>list</mat-icon>
+      <span class="button-space">Administration</span>
     </button>
     <a *ngIf="!authService.loggedIn()" routerLink='login'><span>login</span></a>
     <button *ngIf="authService.loggedIn()" mat-raised-button [matMenuTriggerFor]="menu">
@@ -19,10 +23,6 @@
       <button mat-menu-item routerLink="/changeMyPassword">
         <mat-icon>security</mat-icon>
         <span class="menu-entry">Passwort ändern</span>
-      </button>
-      <button mat-menu-item *ngIf="authService.isAdmin()" routerLink="/administration">
-        <mat-icon>list</mat-icon>
-        <span class="menu-entry">Administration</span>
       </button>
     </mat-menu>
   </mat-toolbar>
