@@ -1,8 +1,7 @@
+
+import {throwError as observableThrowError, Observable} from 'rxjs';
 /* tslint:disable:import-blacklist */
 import {Response} from "@angular/http";
-// Does not work as expected with rxjs/Observable:
-//    Error: "TypeError: __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__.Observable.throw is not a function"
-import {Observable} from "rxjs";
 
 export function handleError(error: Response | any) {
   let errMsg: string;
@@ -14,5 +13,5 @@ export function handleError(error: Response | any) {
     errMsg = error.message ? error.message : error.toString();
   }
   console.error(errMsg);
-  return Observable.throw(errMsg);
+  return observableThrowError(errMsg);
 }

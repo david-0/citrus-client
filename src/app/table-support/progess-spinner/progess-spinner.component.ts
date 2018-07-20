@@ -1,9 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from "@angular/core";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
-import {Subscription} from "rxjs/Subscription";
-import "rxjs/add/observable/merge";
-import "rxjs/add/operator/mergeMap";
+import {BehaviorSubject, merge, Observable, Subscription} from "rxjs";
+import {mergeMap} from "rxjs/operators";
 
 @Component({
   selector: "app-progess-spinner",
@@ -42,12 +39,12 @@ export class ProgessSpinnerComponent implements OnInit, OnDestroy {
         this.delaySubject.next(false);
       }
     });
-    this.showSpinner = Observable.merge(this.delaySubject, this.minShowSubject).mergeMap(() => {
+    this.showSpinner = merge(this.delaySubject, this.minShowSubject).pipe(mergeMap(() => {
       return Observable.create(observer => {
         const value = this.delaySubject.getValue() || this.minShowSubject.getValue();
         observer.next(value);
       });
-    });
+    }));
   }
 
   private clearState() {

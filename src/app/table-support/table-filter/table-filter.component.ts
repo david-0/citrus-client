@@ -1,9 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
-import "rxjs/add/observable/fromEvent";
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/distinctUntilChanged";
-import "rxjs/add/operator/map";
-import {Observable} from "rxjs/Observable";
+import {fromEvent} from "rxjs";
+import {debounceTime, distinctUntilChanged} from "rxjs/operators";
 import {SettingsServiceInterface} from "../settings-service-interface";
 
 @Component({
@@ -22,12 +19,12 @@ export class TableFilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    Observable.fromEvent(this.filter.nativeElement, "keyup")
-      .debounceTime(150)
-      .distinctUntilChanged()
-      .subscribe(() => {
-        this.onChange.emit(this.filter.nativeElement.value);
-      });
+    fromEvent(this.filter.nativeElement, "keyup").pipe(
+      debounceTime(150),
+      distinctUntilChanged()
+    ).subscribe(() => {
+      this.onChange.emit(this.filter.nativeElement.value);
+    });
     const filter = this.settings != null ? this.settings.filterValue : "";
     this.filter.nativeElement.value = filter;
     this.onChange.emit(filter);

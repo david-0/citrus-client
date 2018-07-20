@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {OpeningHourDto} from "citrus-common/lib/dto/opening-hour-dto";
-import {BehaviorSubject} from "rxjs/Rx";
+import {BehaviorSubject} from "rxjs";
 import {BaseTableComponent} from "../../../base/base-table.component";
 
 @Component({

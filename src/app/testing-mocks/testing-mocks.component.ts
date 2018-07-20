@@ -3,7 +3,7 @@ import {Component, Injectable, Input} from "@angular/core";
 import {NgForm} from "@angular/forms";
 import {NavigationExtras} from "@angular/router/src/router";
 import {UnitOfMeasurementDto} from "citrus-common";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 
 @Component({
   selector: "app-table-header",

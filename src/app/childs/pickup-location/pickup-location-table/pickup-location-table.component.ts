@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator, MatSort} from "@angular/material";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
-import {Observable} from "rxjs/Rx";
+import {Observable} from "rxjs";
 import {BaseTableComponent} from "../../../base/base-table.component";
 import {PickupLocationDtoRestService} from "../pickup-location-dto-rest.service";
 import {PickupLocationSettingsService} from "../pickup-location-settings.service";

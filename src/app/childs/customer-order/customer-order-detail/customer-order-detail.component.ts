@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {CustomerOrderDto} from "citrus-common/lib/dto/customer-order-dto";
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from "rxjs";
 import {CustomerOrderWithItemsAndArticleDtoRestService} from "../customer-order-with-items-and-article-dto-rest.service";
 
 @Component({

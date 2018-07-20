@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {UserInfoDto} from "citrus-common";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {BehaviorSubject} from "rxjs";
 import {UserInfoDtoRestService} from "../user-info-dto-rest.service";
 import {UserDetailsSettingsService} from "../user-info-settings.service";
 

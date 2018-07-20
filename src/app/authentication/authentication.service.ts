@@ -1,6 +1,7 @@
-﻿import {HttpClient} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 import {JwtHelperService} from "../angular-jwt/jwthelper.service";
 import {AuthToken} from "./auth-token";
 import {EmailPassword} from "./email-password";
@@ -39,33 +40,40 @@ export class AuthenticationService {
   }
 
   private verifyPassword(data: EmailPassword, processCallback: (token: AuthToken) => void): Observable<boolean> {
-    return this.http.post<AuthToken>("http://localhost:3001/api/authenticate", data).map(authToken => {
-      // login successful if there's a jwt token in the response
-      if (!!authToken && !!authToken.token) {
-        processCallback(authToken);
-      }
-      return !!authToken;
-    });
+    return this.http.post<AuthToken>("http://localhost:3001/api/authenticate", data).pipe(
+      map(authToken => {
+        // login successful if there's a jwt token in the response
+        if (!!authToken && !!authToken.token) {
+          processCallback(authToken);
+        }
+        return !!authToken;
+      })
+    );
   }
 
   public changeMyPassword(password: string): Observable<boolean> {
-    return this.http.post<AuthToken>("http://localhost:3001/api/user/changemypassword", {password}).map(authToken => {
-      // changePassword successful if there's a jwt token in the response
-      if (!!authToken && !!authToken.token) {
-        this.updateToken(authToken);
-      }
-      return !!authToken;
-    });
+    return this.http.post<AuthToken>("http://localhost:3001/api/user/changemypassword", {password}).pipe(
+      map(authToken => {
+        // changePassword successful if there's a jwt token in the response
+        if (!!authToken && !!authToken.token) {
+          this.updateToken(authToken);
+        }
+        return !!authToken;
+      })
+    );
   }
 
   public changePassword(userId: number, password: string): Observable<boolean> {
-    return this.http.post<AuthToken>(`http://localhost:3001/api/user/${userId}/changepassword`, {password}).map(authToken => {
-      // changePassword successful if there's a jwt token in the response
-      if (!!authToken && !!authToken.token) {
-        this.updateToken(authToken);
-      }
-      return !!authToken;
-    });
+    return this.http.post<AuthToken>(`http://localhost:3001/api/user/${userId}/changepassword`, {password})
+      .pipe(
+        map(authToken => {
+          // changePassword successful if there's a jwt token in the response
+          if (!!authToken && !!authToken.token) {
+            this.updateToken(authToken);
+          }
+          return !!authToken;
+        })
+      );
   }
 
   private decodeToken(token: string) {

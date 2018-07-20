@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {UnitOfMeasurementDto} from "citrus-common";
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from "rxjs";
 import {UnitOfMeasurementDtoRestService} from "../unit-of-measurement-dto-rest.service";
 
 @Component({

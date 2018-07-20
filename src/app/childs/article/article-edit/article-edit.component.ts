@@ -1,9 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ArticleDto, UnitOfMeasurementDto} from "citrus-common";
-import {EArticleStatus} from "citrus-common/lib/entity/e-article-status";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
+import {BehaviorSubject, combineLatest, Observable} from "rxjs";
 import {UnitOfMeasurementDtoRestService} from "../../unit-of-measurement/unit-of-measurement-dto-rest.service";
 import {ArticleDtoRestService} from "../article-dto-rest.service";
 
@@ -35,11 +33,8 @@ export class ArticleEditComponent implements OnInit {
       } else {
         const unitObservable: Observable<UnitOfMeasurementDto[]> = this.unitRest.getAll();
         const articleObservable = this.rest.get(+params["id"]);
-        Observable.combineLatest(articleObservable, unitObservable, (a, units) => {
-          return this.ensureUnitInArtile(a, units);
-        }).subscribe(
-          t => {
-            this.article = t;
+        combineLatest(articleObservable, unitObservable).subscribe(result => {
+            this.article = this.ensureUnitInArtile(result[0], result[1]);
             this.articleID = this.article.id;
           },
           err => {

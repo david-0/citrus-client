@@ -2,8 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AddressDto} from "citrus-common";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
+import {BehaviorSubject, combineLatest, Observable} from "rxjs";
 import {AddressDtoRestService} from "../../address/address-dto-rest.service";
 import {PickupLocationWithOpeninghHoursDtoRestService} from "../pickup-location-with-openingh-hours-dto-rest.service";
 
@@ -33,11 +32,9 @@ export class PickupLocationEditComponent implements OnInit {
       } else {
         const addressObservable: Observable<AddressDto[]> = this.addressRest.getAll();
         const pickupLocationObservable = this.rest.get(+params["id"]);
-        Observable.combineLatest(pickupLocationObservable, addressObservable, (p, addresses) => {
-          return this.ensureAddressInPickupLocation(p, addresses);
-        }).subscribe(
-          t => {
-            this.pickupLocation = t;
+        combineLatest(pickupLocationObservable, addressObservable).subscribe(
+          result => {
+            this.pickupLocation = this.ensureAddressInPickupLocation(result[0], result[1]);
             this.pickupLocationID = this.pickupLocation.id;
           },
           err => {

@@ -3,8 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserInfoDto} from "citrus-common";
 import {CustomerOrderDto} from "citrus-common/lib/dto/customer-order-dto";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
+import {BehaviorSubject, combineLatest} from "rxjs";
 import {PickupLocationDtoRestService} from "../../pickup-location/pickup-location-dto-rest.service";
 import {UserInfoDtoRestService} from "../../user/user-info-dto-rest.service";
 import {CustomerOrderWithItemsAndArticleDtoRestService} from "../customer-order-with-items-and-article-dto-rest.service";
@@ -37,19 +36,12 @@ export class CustomerOrderEditComponent implements OnInit {
         this.userInfoRest.getAll().subscribe(userInfos => this.userInfoSubject.next(userInfos));
         this.pickupLocationRest.getAll().subscribe(locations => this.pickupLocationSubject.next(locations));
       } else {
-        Observable.combineLatest(
-          this.customerOrderRest.get(+params["id"]),
+        combineLatest(this.customerOrderRest.get(+params["id"]),
           this.userInfoRest.getAll(),
-          this.pickupLocationRest.getAll(),
-          (customerOrder, userInfos, locations) => {
-            this.userInfoSubject.next(userInfos);
-            this.pickupLocationSubject.next(locations);
-            this.ensureUserInfoInCustomerOrder(customerOrder, userInfos);
-            this.ensurePickupLocationInCustomerOrder(customerOrder, locations);
-            return customerOrder;
-          }).subscribe(
-          t => {
-            this.customerOrder = t;
+          this.pickupLocationRest.getAll()
+        ).subscribe(
+          result => {
+            this.customerOrder = this.resultProcessor(result);
             this.customerOrderID = this.customerOrder.id;
           },
           err => {
@@ -57,6 +49,17 @@ export class CustomerOrderEditComponent implements OnInit {
           });
       }
     });
+  }
+
+  private resultProcessor(result: any[]): CustomerOrderDto {
+    const customerOrder: CustomerOrderDto = result[0];
+    const userInfos: UserInfoDto[] = result[1];
+    const locations: PickupLocationDto[] = result[2];
+    this.userInfoSubject.next(userInfos);
+    this.pickupLocationSubject.next(locations);
+    this.ensureUserInfoInCustomerOrder(customerOrder, userInfos);
+    this.ensurePickupLocationInCustomerOrder(customerOrder, locations);
+    return customerOrder;
   }
 
   private ensureUserInfoInCustomerOrder(customerOrder: CustomerOrderDto, userInfos: UserInfoDto[]): void {

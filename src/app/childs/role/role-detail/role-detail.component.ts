@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {RoleDto} from "citrus-common/lib/dto/role-dto";
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from "rxjs";
 import {RoleWithUsersDtoRestService} from "../role-with-users-dto-rest.service";
 
 @Component({

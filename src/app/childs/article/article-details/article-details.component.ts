@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ArticleDto} from "citrus-common";
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from "rxjs";
 import {ArticleDtoRestService} from "../article-dto-rest.service";
 
 @Component({

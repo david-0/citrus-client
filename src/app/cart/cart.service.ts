@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {ArticleDto} from "citrus-common";
-import {BehaviorSubject, Observable} from "rxjs/Rx";
+import {BehaviorSubject, Observable} from "rxjs";
 import {CartEntry} from "./cart-entry";
 
 @Injectable({

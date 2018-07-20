@@ -33,7 +33,6 @@
     "ng2-validators": "^2.2.0",
     "npm-check-updates": "^2.14.2",
     "rxjs": "^6.2.2",
-    "rxjs-compat": "^6.2.2",
     "socket.io-client": "^2.1.1",
     "zone.js": "^0.8.26"
   },

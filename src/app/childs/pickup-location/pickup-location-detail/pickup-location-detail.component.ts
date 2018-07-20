@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from "rxjs";
 import {PickupLocationWithOpeninghHoursDtoRestService} from "../pickup-location-with-openingh-hours-dto-rest.service";
 
 @Component({

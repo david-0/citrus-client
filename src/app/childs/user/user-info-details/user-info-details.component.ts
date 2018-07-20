@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {UserInfoDto} from "citrus-common";
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from "rxjs";
 import {isUndefined} from "util";
 import {UserInfoWithRolesDtoRestService} from "../user-info-with-roles-dto-rest.service";
 

@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ArticleDto} from "citrus-common";
 import {CustomerOrderDto} from "citrus-common/lib/dto/customer-order-dto";
 import {CustomerOrderItemDto} from "citrus-common/lib/dto/customer-order-item-dto";
-import {BehaviorSubject} from "rxjs/Rx";
+import {BehaviorSubject} from "rxjs";
 import {ArticleDtoRestService} from "../../article/article-dto-rest.service";
 import {CustomerOrderWithItemsAndArticleDtoRestService} from "../../customer-order/customer-order-with-items-and-article-dto-rest.service";
 import {CustomerOrderItemDtoRestService} from "../customer-order-item-dto-rest.service";

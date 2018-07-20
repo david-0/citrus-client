@@ -1,9 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AddressDto, UserInfoDto} from "citrus-common";
-import "rxjs/add/observable/combineLatest";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
+import {BehaviorSubject, combineLatest, Observable} from "rxjs";
 import {UserInfoDtoRestService} from "../../user/user-info-dto-rest.service";
 import {AddressDtoRestService} from "../address-dto-rest.service";
 
@@ -36,11 +34,8 @@ export class AddressEditComponent implements OnInit {
       } else {
         const userObservable: Observable<UserInfoDto[]> = this.userInfoRest.getAll();
         const addressObservable = this.rest.get(+params["id"]);
-        Observable.combineLatest(addressObservable, userObservable, (a, users) => {
-          return this.ensureUserInAddress(a, users);
-        }).subscribe(
-          t => {
-            this.address = t;
+        combineLatest(addressObservable, userObservable).subscribe(result => {
+            this.address = this.ensureUserInAddress(result[0], result[1]);
             this.addressID = this.address.id;
           },
           err => {

@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
-import {BehaviorSubject} from "rxjs/Rx";
+import {BehaviorSubject} from "rxjs";
 import {PickupLocationWithOpeninghHoursDtoRestService} from "../pickup-location-with-openingh-hours-dto-rest.service";
 
 @Component({

@@ -1,6 +1,6 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {DtoId} from "citrus-common/lib/dto-old/dto-id";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 
 export class GenericRestService<T extends DtoId> {
   private headers = new HttpHeaders({"Content-Type": "application/json"});

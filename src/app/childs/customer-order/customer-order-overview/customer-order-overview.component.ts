@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {CustomerOrderDto} from "citrus-common/lib/dto/customer-order-dto";
-import {BehaviorSubject} from "rxjs/Rx";
+import {BehaviorSubject} from "rxjs";
 import {CustomerOrderDtoRestService} from "../customer-order-dto-rest.service";
 
 @Component({
