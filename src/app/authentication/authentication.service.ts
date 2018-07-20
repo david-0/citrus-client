@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {JwtHelperService} from "../angular-jwt/jwthelper.service";
+import {RestUrlPrefixService} from "../table-support/rest-url-prefix.service";
 import {AuthToken} from "./auth-token";
 import {EmailPassword} from "./email-password";
 
@@ -13,7 +14,7 @@ export class AuthenticationService {
   private email: string;
   private roles: string[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private restUrlPrefixService: RestUrlPrefixService) {
     const token = localStorage.getItem(AuthenticationService.accessToken);
     if (token) {
       this.decodeToken(token);
@@ -40,7 +41,7 @@ export class AuthenticationService {
   }
 
   private verifyPassword(data: EmailPassword, processCallback: (token: AuthToken) => void): Observable<boolean> {
-    return this.http.post<AuthToken>("http://localhost:3001/api/authenticate", data).pipe(
+    return this.http.post<AuthToken>(this.restUrlPrefixService.getApiRestPrefix() + "/authenticate", data).pipe(
       map(authToken => {
         // login successful if there's a jwt token in the response
         if (!!authToken && !!authToken.token) {
