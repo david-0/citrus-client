@@ -5,7 +5,7 @@ import {CustomerOrderDto} from "citrus-common/lib/dto/customer-order-dto";
 import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
 import {BehaviorSubject, combineLatest} from "rxjs";
 import {PickupLocationDtoRestService} from "../../pickup-location/pickup-location-dto-rest.service";
-import {UserInfoDtoRestService} from "../../user/user-info-dto-rest.service";
+import {UserDtoRestService} from "../../user/user-dto-rest.service";
 import {CustomerOrderWithItemsAndArticleDtoRestService} from "../customer-order-with-items-and-article-dto-rest.service";
 
 @Component({
@@ -24,7 +24,7 @@ export class CustomerOrderEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private customerOrderRest: CustomerOrderWithItemsAndArticleDtoRestService,
-              public userInfoRest: UserInfoDtoRestService,
+              public userInfoRest: UserDtoRestService,
               public pickupLocationRest: PickupLocationDtoRestService) {
   }
 

@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {AddressDto} from "citrus-common";
 import {DeleteExecutor} from "../../../base/delete-executor";
-import {AddressWithAllDtoRestService} from "../address-with-all-dto-rest.service";
+import {AddressWithUserDtoRestService} from "../address-with-user-dto-rest.service";
 
 @Component({
   selector: "app-address-delete",
@@ -14,13 +14,11 @@ export class AddressDeleteComponent implements OnInit {
   public deleteExecutor: DeleteExecutor<AddressDto>;
 
   constructor(private route: ActivatedRoute,
-              private rest: AddressWithAllDtoRestService) {
+              private rest: AddressWithUserDtoRestService) {
   }
 
   ngOnInit() {
     this.deleteExecutor = new DeleteExecutor<AddressDto>(this.route, this.rest, "Die Adresse");
-    this.deleteExecutor.registerCheck(address => address.pickupLocations.length > 0,
-      address => `weil sie noch ${address.pickupLocations.length} Abholstation(en) verwendet wird.`);
     this.deleteExecutor.initDelete();
   }
 }

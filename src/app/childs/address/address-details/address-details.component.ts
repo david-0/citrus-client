@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {AddressDto} from "citrus-common";
 import {Subscription} from "rxjs";
 import {AddressDtoRestService} from "../address-dto-rest.service";
+import {AddressWithUserDtoRestService} from "../address-with-user-dto-rest.service";
 
 @Component({
   selector: "app-address-details-component",
@@ -13,7 +14,7 @@ export class AddressDetailsComponent implements OnInit, OnDestroy {
   private _address: AddressDto = AddressDto.createEmpty();
   private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private rest: AddressDtoRestService) {
+  constructor(private route: ActivatedRoute, private rest: AddressWithUserDtoRestService) {
   }
 
   public get address(): AddressDto {

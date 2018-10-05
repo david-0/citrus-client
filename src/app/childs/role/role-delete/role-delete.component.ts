@@ -18,7 +18,7 @@ export class RoleDeleteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.deleteExecutor = new DeleteExecutor<RoleDto>(this.route, this.rest, "Der Benutzer");
+    this.deleteExecutor = new DeleteExecutor<RoleDto>(this.route, this.rest, "Die Role");
     this.deleteExecutor.registerCheck(role => role.users.length > 0,
       role => `weil sie noch von ${role.users.length} Benutzer(n) verwendet wird`);
     this.deleteExecutor.initDelete();

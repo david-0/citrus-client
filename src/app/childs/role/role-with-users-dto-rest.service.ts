@@ -10,6 +10,6 @@ import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service"
 export class RoleWithUsersDtoRestService extends GenericRestService<RoleDto> {
 
   constructor(http: HttpClient, private restUrlPrefix: RestUrlPrefixService) {
-    super(http, restUrlPrefix.getApiRestPrefix() + "/roleWithUserInfos");
+    super(http, restUrlPrefix.getApiRestPrefix() + "/role/withUsers");
   }
 }

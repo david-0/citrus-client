@@ -4,6 +4,7 @@ import {AddressDto} from "citrus-common";
 import {BaseTableComponent} from "../../../base/base-table.component";
 import {AddressDtoRestService} from "../address-dto-rest.service";
 import {AddressSettingsService} from "../address-settings.service";
+import {AddressWithUserDtoRestService} from "../address-with-user-dto-rest.service";
 
 @Component({
   selector: "app-address-table",
@@ -17,7 +18,7 @@ export class AddressTableComponent extends BaseTableComponent<AddressDto>{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(rest: AddressDtoRestService, settings: AddressSettingsService) {
+  constructor(rest: AddressWithUserDtoRestService, settings: AddressSettingsService) {
     super(rest, settings);
   }
 }

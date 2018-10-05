@@ -1,9 +1,10 @@
+import {HttpErrorResponse} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AddressDto, UserInfoDto} from "citrus-common";
 import {BehaviorSubject, combineLatest, Observable} from "rxjs";
-import {UserInfoDtoRestService} from "../../user/user-info-dto-rest.service";
-import {AddressDtoRestService} from "../address-dto-rest.service";
+import {UserDtoRestService} from "../../user/user-dto-rest.service";
+import {AddressWithUserDtoRestService} from "../address-with-user-dto-rest.service";
 
 @Component({
   selector: "app-address-edit",
@@ -19,21 +20,21 @@ export class AddressEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private rest: AddressDtoRestService,
-              public userInfoRest: UserInfoDtoRestService) {
+              private addressRestWithUsers: AddressWithUserDtoRestService,
+              public userRest: UserDtoRestService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
         this.addressID = this.address.id;
-        const userObservable: Observable<UserInfoDto[]> = this.userInfoRest.getAll();
+        const userObservable: Observable<UserInfoDto[]> = this.userRest.getAll();
         userObservable.subscribe(users => {
           this.userInfoSubject.next(users);
         });
       } else {
-        const userObservable: Observable<UserInfoDto[]> = this.userInfoRest.getAll();
-        const addressObservable = this.rest.get(+params["id"]);
+        const userObservable: Observable<UserInfoDto[]> = this.userRest.getAll();
+        const addressObservable = this.addressRestWithUsers.get(+params["id"]);
         combineLatest(addressObservable, userObservable).subscribe(result => {
             this.address = this.ensureUserInAddress(result[0], result[1]);
             this.addressID = this.address.id;
@@ -63,16 +64,16 @@ export class AddressEditComponent implements OnInit {
   public submit() {
     this.address.userId = this.address.user.id;
     if (this.addressID == null) {
-      this.rest.add(new AddressDto(this.address))
+      this.addressRestWithUsers.add(new AddressDto(this.address))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
-          (err) => console.error(`could not save address: ${this.address.id} with Error: ${err}`)
+          (err: HttpErrorResponse) => console.error(`could not save address: ${this.address.id} with Error: ${err.message}`)
         );
     } else {
-      this.rest.update(AddressDto.createWithId(this.addressID, this.address))
+      this.addressRestWithUsers.update(AddressDto.createWithId(this.addressID, this.address))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
-          (err) => console.error(`could not update address: ${this.address.id} with Error: ${err}`));
+          (err: HttpErrorResponse) => console.error(`could not update address: ${this.address.id} with Error: ${err.message}`));
     }
   }
 }

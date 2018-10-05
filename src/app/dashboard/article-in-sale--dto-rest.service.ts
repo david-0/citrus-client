@@ -5,8 +5,8 @@ import {GenericRestService} from "../table-support/generic-rest.service";
 import {RestUrlPrefixService} from "../table-support/rest-url-prefix.service";
 
 @Injectable()
-export class PublicArticleDtoRestService extends GenericRestService<ArticleDto> {
+export class ArticleInSaleDtoRestService extends GenericRestService<ArticleDto> {
   constructor(http: HttpClient, private restUrlPrefix: RestUrlPrefixService) {
-    super(http, restUrlPrefix.getPublicRestPrefix() + "/articleInSale");
+    super(http, restUrlPrefix.getApiRestPrefix() + "/article/inSale");
   }
 }

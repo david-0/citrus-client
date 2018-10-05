@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {ArticleDto} from "citrus-common";
 import {BaseTableComponent} from "../../base/base-table.component";
 import {CartService} from "../../cart/cart.service";
-import {PublicArticleDtoRestService} from "../public-article-dto-rest.service";
+import {ArticleInSaleDtoRestService} from "../article-in-sale--dto-rest.service";
 
 @Component({
   selector: "app-public-article-list",
@@ -13,7 +13,7 @@ export class PublicArticleListComponent extends BaseTableComponent<ArticleDto> {
 
   public displayedColumns = ["number", "description", "price", "available", "cart"];
 
-  constructor(rest: PublicArticleDtoRestService, private cartService: CartService) {
+  constructor(rest: ArticleInSaleDtoRestService, private cartService: CartService) {
     super(rest, null);
   }
 

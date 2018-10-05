@@ -94,7 +94,7 @@ import {UnitOfMeasurementTableComponent} from "./childs/unit-of-measurement/unit
 import {RoleDtoRestService} from "./childs/user/role-dto-rest.service";
 import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-delete.component";
 import {UserInfoDetailsComponent} from "./childs/user/user-info-details/user-info-details.component";
-import {UserInfoDtoRestService} from "./childs/user/user-info-dto-rest.service";
+import {UserDtoRestService} from "./childs/user/user-dto-rest.service";
 import {UserInfoEditComponent} from "./childs/user/user-info-edit/user-info-edit.component";
 import {UserInfoOverviewComponent} from "./childs/user/user-info-overview/user-info-overview.component";
 import {UserInfoPasswordChangeComponent} from "./childs/user/user-info-password-change/user-info-password-change.component";
@@ -102,7 +102,7 @@ import {UserDetailsSettingsService} from "./childs/user/user-info-settings.servi
 import {UserInfoWithRolesDtoRestService} from "./childs/user/user-info-with-roles-dto-rest.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {PublicArticleDetailComponent} from "./dashboard/public-article-detail/public-article-detail.component";
-import {PublicArticleDtoRestService} from "./dashboard/public-article-dto-rest.service";
+import {ArticleInSaleDtoRestService} from "./dashboard/article-in-sale--dto-rest.service";
 import {PublicArticleGridComponent} from "./dashboard/public-article-grid/public-article-grid.component";
 import {PublicArticleListComponent} from "./dashboard/public-article-list/public-article-list.component";
 import {LoginComponent} from "./login/login.component";
@@ -223,11 +223,11 @@ import {TableSupportModule} from "./table-support/table-support.module";
     AddressDtoRestService,
     AddressSettingsService,
     UserDetailsSettingsService,
-    UserInfoDtoRestService,
+    UserDtoRestService,
     UnitOfMeasurementDtoRestService,
     UnitOfMeasurementSettingsService,
     ArticleDtoRestService,
-    PublicArticleDtoRestService,
+    ArticleInSaleDtoRestService,
     ArticleSettingsService,
     UserInfoWithRolesDtoRestService,
     RoleDtoRestService,

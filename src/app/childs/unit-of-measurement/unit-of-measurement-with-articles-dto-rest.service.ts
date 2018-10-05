@@ -9,6 +9,6 @@ import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service"
 })
 export class UnitOfMeasurementWithArticlesDtoRestService extends GenericRestService<UnitOfMeasurementDto> {
   constructor(http: HttpClient, private restUrlPrefix: RestUrlPrefixService) {
-    super(http, restUrlPrefix.getApiRestPrefix() + "/unitOfMeasurementWithArticles");
+    super(http, restUrlPrefix.getApiRestPrefix() + "/unitOfMeasurement/withArticles");
   }
 }

@@ -11,7 +11,7 @@ import {EmailPassword} from "./email-password";
 export class AuthenticationService {
   private static readonly accessToken = "access_token";
   private jwtHelper: JwtHelperService = new JwtHelperService();
-  private email: string;
+  private id: string;
   private roles: string[];
 
   constructor(private http: HttpClient, private restUrlPrefixService: RestUrlPrefixService) {
@@ -25,7 +25,7 @@ export class AuthenticationService {
   public login(email: string, password: string): Observable<boolean> {
     return this.verifyPassword(new EmailPassword(email, password), (authToken: AuthToken) => {
       this.updateToken(authToken);
-      console.log(`login succeeded. email: ${this.email}`);
+      console.log(`login succeeded. UserId: ${this.id}`);
     });
   }
 
@@ -41,7 +41,8 @@ export class AuthenticationService {
   }
 
   private verifyPassword(data: EmailPassword, processCallback: (token: AuthToken) => void): Observable<boolean> {
-    return this.http.post<AuthToken>(this.restUrlPrefixService.getApiRestPrefix() + "/authenticate", data).pipe(
+    return this.http.post<AuthToken>(
+      this.restUrlPrefixService.getApiRestPrefix() + "/authenticate", data).pipe(
       map(authToken => {
         // login successful if there's a jwt token in the response
         if (!!authToken && !!authToken.token) {
@@ -79,7 +80,7 @@ export class AuthenticationService {
 
   private decodeToken(token: string) {
     const decodedToken = this.jwtHelper.decodeToken(this.getAccessToken());
-    this.email = decodedToken.email;
+    this.id = decodedToken.id;
     if (decodedToken.roles) {
       this.roles = decodedToken.roles;
     }
@@ -98,8 +99,8 @@ export class AuthenticationService {
     return localStorage.getItem(AuthenticationService.accessToken);
   }
 
-  getLoggedInUsername(): string {
-    return this.loggedIn() ? this.email : null;
+  getLoggedInUserId(): string {
+    return this.loggedIn() ? this.id : null;
   }
 
   isAdmin(): boolean {
