@@ -57,8 +57,7 @@ export class AddressEditComponent implements OnInit {
   }
 
   private isUserWithSameId(address: AddressDto, user: UserInfoDto): boolean {
-    return address.userId === user.id ||
-      (address.user != null && address.user.id === user.id);
+    return address.user != null && address.user.id === user.id;
   }
 
   public submit() {
