@@ -55,12 +55,10 @@ export class ArticleEditComponent implements OnInit {
   }
 
   private isUnitWithSameId(article: ArticleDto, unit: UnitOfMeasurementDto): boolean {
-    return article.unitOfMeasurementId === unit.id ||
-      (article.unitOfMeasurement != null && article.unitOfMeasurement.id === unit.id);
+    return article.unitOfMeasurement != null && article.unitOfMeasurement.id === unit.id;
   }
 
   public submit() {
-    this.article.unitOfMeasurementId = this.article.unitOfMeasurement.id;
     if (this.articleID == null) {
       this.rest.add(new ArticleDto(this.article))
         .subscribe(

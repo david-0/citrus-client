@@ -8,7 +8,8 @@ import {
   MatCheckboxModule,
   MatDatepickerModule,
   MatDividerModule,
-  MatFormFieldModule, MatGridListModule,
+  MatFormFieldModule,
+  MatGridListModule,
   MatIconModule,
   MatIconRegistry,
   MatInputModule,
@@ -68,17 +69,17 @@ import {CustomerOrderDetailComponent} from "./childs/customer-order/customer-ord
 import {CustomerOrderEditComponent} from "./childs/customer-order/customer-order-edit/customer-order-edit.component";
 import {CustomerOrderOverviewComponent} from "./childs/customer-order/customer-order-overview/customer-order-overview.component";
 import {CustomerOrderTableComponent} from "./childs/customer-order/customer-order-table/customer-order-table.component";
+import {LocationDeleteComponent} from "./childs/location/location-delete/location-delete.component";
+import {LocationDetailOnlyComponent} from "./childs/location/location-detail-only/location-detail-only.component";
+import {LocationDetailComponent} from "./childs/location/location-detail/location-detail.component";
+import {LocationEditComponent} from "./childs/location/location-edit/location-edit.component";
+import {LocationOverviewComponent} from "./childs/location/location-overview/location-overview.component";
+import {LocationTableComponent} from "./childs/location/location-table/location-table.component";
 import {OpeningHourDeleteComponent} from "./childs/opening-hour/opening-hour-delete/opening-hour-delete.component";
 import {OpeningHourDetailsComponent} from "./childs/opening-hour/opening-hour-details/opening-hour-details.component";
 import {OpeningHourEditComponent} from "./childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
 import {OpeningHourOverviewComponent} from "./childs/opening-hour/opening-hour-overview/opening-hour-overview.component";
 import {OpeningHourTableComponent} from "./childs/opening-hour/opening-hour-table/opening-hour-table.component";
-import {PickupLocationDeleteComponent} from "./childs/pickup-location/pickup-location-delete/pickup-location-delete.component";
-import {PickupLocationDetailOnlyComponent} from "./childs/pickup-location/pickup-location-detail-only/pickup-location-detail-only.component";
-import {PickupLocationDetailComponent} from "./childs/pickup-location/pickup-location-detail/pickup-location-detail.component";
-import {PickupLocationEditComponent} from "./childs/pickup-location/pickup-location-edit/pickup-location-edit.component";
-import {PickupLocationOverviewComponent} from "./childs/pickup-location/pickup-location-overview/pickup-location-overview.component";
-import {PickupLocationTableComponent} from "./childs/pickup-location/pickup-location-table/pickup-location-table.component";
 import {RoleDeleteComponent} from "./childs/role/role-delete/role-delete.component";
 import {RoleDetailComponent} from "./childs/role/role-detail/role-detail.component";
 import {RoleEditComponent} from "./childs/role/role-edit/role-edit.component";
@@ -92,17 +93,17 @@ import {UnitOfMeasurementOverviewComponent} from "./childs/unit-of-measurement/u
 import {UnitOfMeasurementSettingsService} from "./childs/unit-of-measurement/unit-of-measurement-settings.service";
 import {UnitOfMeasurementTableComponent} from "./childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component";
 import {RoleDtoRestService} from "./childs/user/role-dto-rest.service";
-import {UserInfoDeleteComponent} from "./childs/user/user-info-delete/user-info-delete.component";
-import {UserInfoDetailsComponent} from "./childs/user/user-info-details/user-info-details.component";
+import {UserInfoDeleteComponent} from "./childs/user/user-delete/user-info-delete.component";
+import {UserInfoDetailsComponent} from "./childs/user/user-details/user-info-details.component";
 import {UserDtoRestService} from "./childs/user/user-dto-rest.service";
-import {UserInfoEditComponent} from "./childs/user/user-info-edit/user-info-edit.component";
-import {UserInfoOverviewComponent} from "./childs/user/user-info-overview/user-info-overview.component";
-import {UserInfoPasswordChangeComponent} from "./childs/user/user-info-password-change/user-info-password-change.component";
+import {UserEditComponent} from "./childs/user/user-edit/user-edit.component";
 import {UserDetailsSettingsService} from "./childs/user/user-info-settings.service";
-import {UserInfoWithRolesDtoRestService} from "./childs/user/user-info-with-roles-dto-rest.service";
+import {UserOverviewComponent} from "./childs/user/user-overview/user-overview.component";
+import {UserPasswordChangeComponent} from "./childs/user/user-password-change/user-password-change.component";
+import {UserWithRolesDtoRestService} from "./childs/user/user-with-roles-dto-rest.service";
+import {ArticleInSaleDtoRestService} from "./dashboard/article-in-sale--dto-rest.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {PublicArticleDetailComponent} from "./dashboard/public-article-detail/public-article-detail.component";
-import {ArticleInSaleDtoRestService} from "./dashboard/article-in-sale--dto-rest.service";
 import {PublicArticleGridComponent} from "./dashboard/public-article-grid/public-article-grid.component";
 import {PublicArticleListComponent} from "./dashboard/public-article-list/public-article-list.component";
 import {LoginComponent} from "./login/login.component";
@@ -111,8 +112,6 @@ import {AppRouteModule} from "./router/app-route.module";
 import {SaleOverviewComponent} from "./sales/sale-overview/sale-overview.component";
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
-import {StatusDetailComponent} from "./table-support/status-detail/status-detail.component";
-import {StatusEditComponent} from "./table-support/status-edit/status-edit.component";
 import {TableSupportModule} from "./table-support/table-support.module";
 
 
@@ -128,14 +127,14 @@ import {TableSupportModule} from "./table-support/table-support.module";
     AddressDeleteComponent,
     UserInfoDeleteComponent,
     UserInfoDetailsComponent,
-    UserInfoEditComponent,
-    UserInfoOverviewComponent,
+    UserEditComponent,
+    UserOverviewComponent,
     ArticleDeleteComponent,
     ArticleDetailsComponent,
     ArticleEditComponent,
     ArticleOverviewComponent,
     LoginComponent,
-    UserInfoPasswordChangeComponent,
+    UserPasswordChangeComponent,
     LogoutComponent,
     PasswordChangeComponent,
     ChangeMyPasswordComponent,
@@ -149,17 +148,17 @@ import {TableSupportModule} from "./table-support/table-support.module";
     ShoppingCartComponent,
     PublicArticleListComponent,
     CheckoutComponent,
-    PickupLocationOverviewComponent,
-    PickupLocationTableComponent,
-    PickupLocationEditComponent,
-    PickupLocationDeleteComponent,
-    PickupLocationDetailComponent,
+    LocationOverviewComponent,
+    LocationTableComponent,
+    LocationEditComponent,
+    LocationDeleteComponent,
+    LocationDetailComponent,
     OpeningHourTableComponent,
     OpeningHourOverviewComponent,
     OpeningHourEditComponent,
     OpeningHourDeleteComponent,
     OpeningHourDetailsComponent,
-    PickupLocationDetailOnlyComponent,
+    LocationDetailOnlyComponent,
     CheckoutDetailComponent,
     CustomerOrderDeleteComponent,
     CustomerOrderDetailComponent,
@@ -172,8 +171,6 @@ import {TableSupportModule} from "./table-support/table-support.module";
     CustomerOrderItemDetailComponent,
     CustomerOrderItemEditComponent,
     CustomerOrderItemOverviewComponent,
-    StatusDetailComponent,
-    StatusEditComponent,
     PublicArticleGridComponent,
     RoleDeleteComponent,
     RoleDetailComponent,
@@ -229,7 +226,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     ArticleDtoRestService,
     ArticleInSaleDtoRestService,
     ArticleSettingsService,
-    UserInfoWithRolesDtoRestService,
+    UserWithRolesDtoRestService,
     RoleDtoRestService,
     CartService,
     AuthGuard,

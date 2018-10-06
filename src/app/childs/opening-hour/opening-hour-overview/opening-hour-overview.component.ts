@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OpeningHourDto} from "citrus-common/lib/dto/opening-hour-dto";
 import {BehaviorSubject} from "rxjs";
-import {PickupLocationWithOpeninghHoursDtoRestService} from "../../pickup-location/pickup-location-with-openingh-hours-dto-rest.service";
+import {LocationWithOpeninghHoursDtoRestService} from "../../location/location-with-openingh-hours-dto-rest.service";
 
 @Component({
   selector: "app-opening-hour-overview",
@@ -17,7 +17,7 @@ export class OpeningHourOverviewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private rest: PickupLocationWithOpeninghHoursDtoRestService) {
+              private rest: LocationWithOpeninghHoursDtoRestService) {
   }
 
   ngOnInit() {

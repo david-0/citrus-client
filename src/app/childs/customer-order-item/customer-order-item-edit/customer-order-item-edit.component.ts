@@ -18,7 +18,7 @@ export class CustomerOrderItemEditComponent implements OnInit {
   private _customerOrder: CustomerOrderDto = CustomerOrderDto.createEmpty();
   private _customerOrderItem: CustomerOrderItemDto = CustomerOrderItemDto.createEmpty(this._customerOrder);
   public _customerOrderItemId: number;
-  public _articleSubeject = new BehaviorSubject<ArticleDto[]>([]);
+  public _articleSubject = new BehaviorSubject<ArticleDto[]>([]);
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -53,40 +53,39 @@ export class CustomerOrderItemEditComponent implements OnInit {
         this._customerOrderItem = this._customerOrder.customerOrderItems.filter(o => o.id === +customerOrderItemParams["id"])[0];
       }
       this._customerOrderItemId = this._customerOrderItem.id;
-      this.updateAllArticles();
+//      this.updateAllArticles();
     });
   }
 
-  private updateAllArticles() {
-    this.articleRest.getAll().subscribe(articles => {
-      this.ensureArticleInCustomerOrderItem(this._customerOrderItem, articles);
-      this._articleSubeject.next(articles);
-    });
-  }
-
-  private ensureArticleInCustomerOrderItem(customerOrderItem: CustomerOrderItemDto, articles: ArticleDto[]): void {
-    for (const article of articles) {
-      if (this.isArticleWithSameId(customerOrderItem, article)) {
-        customerOrderItem.article = article;
-      }
-    }
-  }
-
-  private isArticleWithSameId(customerOrderItem: CustomerOrderItemDto, article: ArticleDto): boolean {
-    return (customerOrderItem.articleId === article.id) ||
-      (customerOrderItem.article != null && customerOrderItem.article.id === article.id);
-  }
-
-  public submit() {
-    this.customerOrderItem.articleId = this.customerOrderItem.article.id;
-    this.customerOrderItem.copiedPrice = this.customerOrderItem.article.price;
-    const copiedItem = CustomerOrderItemDto.createWithId(this._customerOrderItemId, this.customerOrderItem);
-    if (this._customerOrderItemId == null) {
-      this.createNewItem(copiedItem);
-    } else {
-      this.updateItem(copiedItem);
-    }
-  }
+  // private updateAllArticles() {
+  //   this.articleRest.getAll().subscribe(articles => {
+  //     this.ensureArticleInCustomerOrderItem(this._customerOrderItem, articles);
+  //     this._articleSubject.next(articles);
+  //   });
+  // }
+  //
+  // private ensureArticleInCustomerOrderItem(customerOrderItem: CustomerOrderItemDto, articles: ArticleDto[]): void {
+  //   for (const article of articles) {
+  //     if (this.isArticleWithSameId(customerOrderItem, article)) {
+  //       customerOrderItem.article = article;
+  //     }
+  //   }
+  // }
+  //
+  // private isArticleWithSameId(customerOrderItem: CustomerOrderItemDto, article: ArticleDto): boolean {
+  //   return customerOrderItem.article != null && customerOrderItem.article.id === article.id;
+  // }
+  //
+  // public submit() {
+  //   this.customerOrderItem.articleId = this.customerOrderItem.article.id;
+  //   this.customerOrderItem.copiedPrice = this.customerOrderItem.article.price;
+  //   const copiedItem = CustomerOrderItemDto.createWithId(this._customerOrderItemId, this.customerOrderItem);
+  //   if (this._customerOrderItemId == null) {
+  //     this.createNewItem(copiedItem);
+  //   } else {
+  //     this.updateItem(copiedItem);
+  //   }
+  // }
 
   private createNewItem(copy) {
     this.customerOrderItemRest.add(new CustomerOrderItemDto(copy)).subscribe(

@@ -2,11 +2,11 @@ import {Component, OnInit} from "@angular/core";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material";
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from "@angular/material-moment-adapter";
 import {ActivatedRoute, Router} from "@angular/router";
+import {LocationDto} from "citrus-common";
 import {OpeningHourDto} from "citrus-common/lib/dto/opening-hour-dto";
-import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
 import * as moment from "moment";
 import {Moment} from "moment";
-import {PickupLocationWithOpeninghHoursDtoRestService} from "../../pickup-location/pickup-location-with-openingh-hours-dto-rest.service";
+import {LocationWithOpeninghHoursDtoRestService} from "../../location/location-with-openingh-hours-dto-rest.service";
 import {OpeningHourDtoRestService} from "../opening-hour-dto-rest.service";
 
 @Component({
@@ -21,8 +21,8 @@ import {OpeningHourDtoRestService} from "../opening-hour-dto-rest.service";
 })
 export class OpeningHourEditComponent implements OnInit {
 
-  private _pickupLocation: PickupLocationDto = PickupLocationDto.createEmpty();
-  private _openingHour: OpeningHourDto = OpeningHourDto.createEmpty(this._pickupLocation);
+  private _Location: LocationDto = LocationDto.createEmpty();
+  private _openingHour: OpeningHourDto = OpeningHourDto.createEmpty(this._Location);
 
   public _openingHourId: number;
   public dateForPicker: Moment;
@@ -31,7 +31,7 @@ export class OpeningHourEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private rest: PickupLocationWithOpeninghHoursDtoRestService,
+              private rest: LocationWithOpeninghHoursDtoRestService,
               private openingHourRest: OpeningHourDtoRestService) {
   }
 
@@ -40,15 +40,15 @@ export class OpeningHourEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.parent.params.subscribe(pickupLocationParams => {
-      const promise = this.rest.get(+pickupLocationParams["id"]);
+    this.route.parent.params.subscribe(locationParams => {
+      const promise = this.rest.get(+locationParams["id"]);
       promise.subscribe((pickupLocation) => {
-        this._pickupLocation = pickupLocation;
+        this._Location = pickupLocation;
         this.route.params.subscribe(openingHourParams => {
           if (openingHourParams["id"] == null) {
-            this._openingHour = OpeningHourDto.createEmpty(this._pickupLocation);
+            this._openingHour = OpeningHourDto.createEmpty(this._Location);
           } else {
-            this._openingHour = this._pickupLocation.openingHours.filter(o => o.id === +openingHourParams["id"])[0];
+            this._openingHour = this._Location.openingHours.filter(o => o.id === +openingHourParams["id"])[0];
           }
           this._openingHourId = this._openingHour.id;
           this.dateForPicker = moment(this._openingHour.fromDate);
@@ -65,7 +65,7 @@ export class OpeningHourEditComponent implements OnInit {
     if (this._openingHourId == null) {
       this.openingHourRest.add(new OpeningHourDto(copy)).subscribe(
         (result) => {
-          this._pickupLocation.openingHours.push(copy);
+          this._Location.openingHours.push(copy);
           this.router.navigate([".."], {relativeTo: this.route});
         },
         (err) => console.error(`could not save openingHour: ${copy.id} with Error: ${err}`)
@@ -73,8 +73,8 @@ export class OpeningHourEditComponent implements OnInit {
     } else {
       this.openingHourRest.update(copy).subscribe(
         (result) => {
-          const position = this._pickupLocation.openingHours.findIndex(o => o.id === this._openingHourId);
-          this._pickupLocation.openingHours[position] = copy;
+          const position = this._Location.openingHours.findIndex(o => o.id === this._openingHourId);
+          this._Location.openingHours[position] = copy;
           this.router.navigate([".."], {relativeTo: this.route});
         },
         (err) => console.error(`could not update pickupLocation: ${copy.id} with Error: ${err}`));

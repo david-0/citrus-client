@@ -10,7 +10,7 @@ import {CustomerOrderDtoRestService} from "../customer-order-dto-rest.service";
 })
 export class CustomerOrderOverviewComponent implements OnInit {
 
-  public displayedColumns = ["id", "date", "totalPrice", "pickupLocation", "user"];
+  public displayedColumns = ["id", "date", "totalPrice", "location", "user"];
   public dataObservable = new BehaviorSubject<CustomerOrderDto[]>([]);
 
   constructor(private rest: CustomerOrderDtoRestService) {

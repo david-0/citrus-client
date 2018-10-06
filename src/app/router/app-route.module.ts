@@ -26,10 +26,10 @@ import {OpeningHourDeleteComponent} from "../childs/opening-hour/opening-hour-de
 import {OpeningHourDetailsComponent} from "../childs/opening-hour/opening-hour-details/opening-hour-details.component";
 import {OpeningHourEditComponent} from "../childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
 import {OpeningHourOverviewComponent} from "../childs/opening-hour/opening-hour-overview/opening-hour-overview.component";
-import {PickupLocationDeleteComponent} from "../childs/pickup-location/pickup-location-delete/pickup-location-delete.component";
-import {PickupLocationDetailComponent} from "../childs/pickup-location/pickup-location-detail/pickup-location-detail.component";
-import {PickupLocationEditComponent} from "../childs/pickup-location/pickup-location-edit/pickup-location-edit.component";
-import {PickupLocationOverviewComponent} from "../childs/pickup-location/pickup-location-overview/pickup-location-overview.component";
+import {LocationDeleteComponent} from "../childs/location/location-delete/location-delete.component";
+import {LocationDetailComponent} from "../childs/location/location-detail/location-detail.component";
+import {LocationEditComponent} from "../childs/location/location-edit/location-edit.component";
+import {LocationOverviewComponent} from "../childs/location/location-overview/location-overview.component";
 import {RoleDeleteComponent} from "../childs/role/role-delete/role-delete.component";
 import {RoleDetailComponent} from "../childs/role/role-detail/role-detail.component";
 import {RoleEditComponent} from "../childs/role/role-edit/role-edit.component";
@@ -38,11 +38,11 @@ import {UnitOfMeasurementDeleteComponent} from "../childs/unit-of-measurement/un
 import {UnitOfMeasurementDetailsComponent} from "../childs/unit-of-measurement/unit-of-measurement-details/unit-of-measurement-details.component";
 import {UnitOfMeasurementEditComponent} from "../childs/unit-of-measurement/unit-of-measurement-edit/unit-of-measurement-edit.component";
 import {UnitOfMeasurementOverviewComponent} from "../childs/unit-of-measurement/unit-of-measurement-overview/unit-of-measurement-overview.component";
-import {UserInfoDeleteComponent} from "../childs/user/user-info-delete/user-info-delete.component";
-import {UserInfoDetailsComponent} from "../childs/user/user-info-details/user-info-details.component";
-import {UserInfoEditComponent} from "../childs/user/user-info-edit/user-info-edit.component";
-import {UserInfoOverviewComponent} from "../childs/user/user-info-overview/user-info-overview.component";
-import {UserInfoPasswordChangeComponent} from "../childs/user/user-info-password-change/user-info-password-change.component";
+import {UserInfoDeleteComponent} from "../childs/user/user-delete/user-info-delete.component";
+import {UserInfoDetailsComponent} from "../childs/user/user-details/user-info-details.component";
+import {UserEditComponent} from "../childs/user/user-edit/user-edit.component";
+import {UserOverviewComponent} from "../childs/user/user-overview/user-overview.component";
+import {UserPasswordChangeComponent} from "../childs/user/user-password-change/user-password-change.component";
 import {DashboardComponent} from "../dashboard/dashboard.component";
 import {LoginComponent} from "../login/login.component";
 import {LogoutComponent} from "../logout/logout.component";
@@ -63,15 +63,15 @@ const routes: Routes = [
       {path: "address/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressDetailsComponent},
       {path: "address/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressEditComponent},
       {path: "address/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressDeleteComponent},
-      {path: "user", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoOverviewComponent},
-      {path: "user/create", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoEditComponent},
+      {path: "user", canActivate: [AuthGuard, AuthGuardAdmin], component: UserOverviewComponent},
+      {path: "user/create", canActivate: [AuthGuard, AuthGuardAdmin], component: UserEditComponent},
       {path: "user/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoDetailsComponent},
-      {path: "user/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoEditComponent},
+      {path: "user/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: UserEditComponent},
       {path: "user/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoDeleteComponent},
       {
         path: "user/:id/passwordChange",
         canActivate: [AuthGuard, AuthGuardAdmin],
-        component: UserInfoPasswordChangeComponent
+        component: UserPasswordChangeComponent
       },
       {
         path: "unitOfMeasurement",
@@ -155,13 +155,13 @@ const routes: Routes = [
         component: CustomerOrderDeleteComponent
       },
 
-      {path: "pickupLocation", canActivate: [AuthGuard, AuthGuardAdmin], component: PickupLocationOverviewComponent},
-      {path: "pickupLocation/create", canActivate: [AuthGuard, AuthGuardAdmin], component: PickupLocationEditComponent},
-      {path: "pickupLocation/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: PickupLocationDetailComponent},
+      {path: "location", canActivate: [AuthGuard, AuthGuardAdmin], component: LocationOverviewComponent},
+      {path: "location/create", canActivate: [AuthGuard, AuthGuardAdmin], component: LocationEditComponent},
+      {path: "location/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: LocationDetailComponent},
       {
-        path: "pickupLocation/:id/edit",
+        path: "location/:id/edit",
         canActivate: [AuthGuard, AuthGuardAdmin],
-        component: PickupLocationEditComponent,
+        component: LocationEditComponent,
         children: [
           {
             path: "opening-hour",
@@ -196,9 +196,9 @@ const routes: Routes = [
         ]
       },
       {
-        path: "pickupLocation/:id/delete",
+        path: "location/:id/delete",
         canActivate: [AuthGuard, AuthGuardAdmin],
-        component: PickupLocationDeleteComponent
+        component: LocationDeleteComponent
       },
       {path: "", redirectTo: "address", pathMatch: "full"},
     ]

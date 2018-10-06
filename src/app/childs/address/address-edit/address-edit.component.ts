@@ -1,7 +1,7 @@
 import {HttpErrorResponse} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AddressDto, UserInfoDto} from "citrus-common";
+import {AddressDto, UserDto} from "citrus-common";
 import {BehaviorSubject, combineLatest, Observable} from "rxjs";
 import {UserDtoRestService} from "../../user/user-dto-rest.service";
 import {AddressWithUserDtoRestService} from "../address-with-user-dto-rest.service";
@@ -16,7 +16,7 @@ export class AddressEditComponent implements OnInit {
   public address: AddressDto = AddressDto.createEmpty();
   public addressID: number;
 
-  public userInfoSubject: BehaviorSubject<UserInfoDto[]> = new BehaviorSubject([]);
+  public userInfoSubject: BehaviorSubject<UserDto[]> = new BehaviorSubject([]);
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -28,12 +28,12 @@ export class AddressEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
         this.addressID = this.address.id;
-        const userObservable: Observable<UserInfoDto[]> = this.userRest.getAll();
+        const userObservable: Observable<UserDto[]> = this.userRest.getAll();
         userObservable.subscribe(users => {
           this.userInfoSubject.next(users);
         });
       } else {
-        const userObservable: Observable<UserInfoDto[]> = this.userRest.getAll();
+        const userObservable: Observable<UserDto[]> = this.userRest.getAll();
         const addressObservable = this.addressRestWithUsers.get(+params["id"]);
         combineLatest(addressObservable, userObservable).subscribe(result => {
             this.address = this.ensureUserInAddress(result[0], result[1]);
@@ -46,7 +46,7 @@ export class AddressEditComponent implements OnInit {
     });
   }
 
-  private ensureUserInAddress(address: AddressDto, users: UserInfoDto[]): AddressDto {
+  private ensureUserInAddress(address: AddressDto, users: UserDto[]): AddressDto {
     this.userInfoSubject.next(users);
     for (const user of users) {
       if (this.isUserWithSameId(address, user)) {
@@ -56,12 +56,11 @@ export class AddressEditComponent implements OnInit {
     return address;
   }
 
-  private isUserWithSameId(address: AddressDto, user: UserInfoDto): boolean {
+  private isUserWithSameId(address: AddressDto, user: UserDto): boolean {
     return address.user != null && address.user.id === user.id;
   }
 
   public submit() {
-    this.address.userId = this.address.user.id;
     if (this.addressID == null) {
       this.addressRestWithUsers.add(new AddressDto(this.address))
         .subscribe(

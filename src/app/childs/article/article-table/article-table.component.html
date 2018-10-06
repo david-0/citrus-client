@@ -13,28 +13,13 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Beschreibung</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
   </ng-container>
-
   <ng-container matColumnDef="price">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.price}}</mat-cell>
   </ng-container>
-  <ng-container matColumnDef="stock">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Lagerbestand</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.stock}} {{row.unitOfMeasurement?.shortcut}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="reservedInOpenOrders">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>reserviert in Bestellungen</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.reservedInOpenOrders}} {{row.unitOfMeasurement?.shortcut}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="available">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Verfügbar</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.stock - row.reservedInOpenOrders}} {{row.unitOfMeasurement?.shortcut}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="status">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Artikelstatus</mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      <app-status-detail [status]="row.status"></app-status-detail>
-    </mat-cell>
+  <ng-container matColumnDef="inSale">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Im Verkauf</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.inSale && 'Ja' || 'Nein'}}</mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="table-row--highligthed" routerLink={{row.id}}

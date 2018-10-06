@@ -15,22 +15,8 @@
       <div>{{article.price | currency: "CHF "}}</div>
     </div>
     <div>
-      <div>Lagerbestand</div>
-      <div>{{article.stock}} {{article.unitOfMeasurement?.shortcut}}</div>
-    </div>
-    <div>
-      <div>Reserviert in Bestellungen</div>
-      <div>{{article.reservedInOpenOrders}} {{article.unitOfMeasurement?.shortcut}}</div>
-    </div>
-    <div>
-      <div>effektiv Verfügbar</div>
-      <div>{{article.stock - article.reservedInOpenOrders}} {{article.unitOfMeasurement?.shortcut}}</div>
-    </div>
-    <div>
-      <div>Status</div>
-      <div>
-        <app-status-detail [status]="article.status"></app-status-detail>
-      </div>
+      <div>Im Verkauf</div>
+      <div>{{article.inSale && 'Ja' || 'Nein'}}</div>
     </div>
   </mat-card-content>
 </mat-card>

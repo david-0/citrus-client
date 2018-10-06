@@ -19,17 +19,13 @@ export class ArticleDeleteComponent implements OnInit {
 
   ngOnInit() {
     this.deleteExecutor = new DeleteExecutor<ArticleDto>(this.route, this.rest, "Der Artikel");
-    this.deleteExecutor.registerCheck(article => this.getCustomerOrderIds(article).length > 0,
-      article => `weil er noch in ${this.getVendorOrderIds(article).length} Bestellung(en) verwendet wird`);
+    this.deleteExecutor.registerCheck(article => this.getArticleStocks(article).length > 0,
+      article => `weil er noch in ${this.getArticleStocks(article).length} Lagerartikel(n) verwendet wird`);
     this.deleteExecutor.initDelete();
   }
 
-  private getCustomerOrderIds(article: ArticleDto): number[] {
-    return this.uniq(article.customerOrderItems.map(item => item.customerOrderId));
-  }
-
-  private getVendorOrderIds(article: ArticleDto): number[] {
-    return this.uniq(article.customerOrderItems.map(item => item.customerOrderId));
+  private getArticleStocks(article: ArticleDto): number[] {
+    return this.uniq(article.articleStocks.map(item => item.id));
   }
 
   private uniq(a: number[]): number[] {

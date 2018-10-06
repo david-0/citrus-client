@@ -1,6 +1,6 @@
 import {OnInit} from "@angular/core";
 import {MatTableDataSource} from "@angular/material";
-import {DtoId} from "citrus-common/lib/dto-old/dto-id";
+import {DtoId} from "citrus-common/lib/dto/dto-id";
 import {GenericRestService} from "../table-support/generic-rest.service";
 import {SettingsServiceInterface} from "../table-support/settings-service-interface";
 

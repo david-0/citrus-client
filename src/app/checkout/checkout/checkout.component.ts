@@ -2,12 +2,12 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {LocationDto} from "citrus-common";
 import {CartDto} from "citrus-common/lib/dto/cart-dto";
 import {CartEntryDto} from "citrus-common/lib/dto/cart-entry-dto";
-import {PickupLocationDto} from "citrus-common/lib/dto/pickup-location-dto";
 import {CartEntry} from "../../cart/cart-entry";
 import {CartService} from "../../cart/cart.service";
-import {PickupLocationWithOpeninghHoursDtoRestService} from "../../childs/pickup-location/pickup-location-with-openingh-hours-dto-rest.service";
+import {LocationWithOpeninghHoursDtoRestService} from "../../childs/location/location-with-openingh-hours-dto-rest.service";
 import {CartRestService} from "../cart-rest.service";
 
 @Component({
@@ -19,8 +19,8 @@ export class CheckoutComponent implements OnInit {
   firstFormGroup: FormGroup;
   firstCtrl: FormControl;
   secondFormGroup: FormGroup;
-  selectedLocation: PickupLocationDto;
-  locations: PickupLocationDto[];
+  selectedLocation: LocationDto;
+  locations: LocationDto[];
   state = "emptyCart";
   orderNumber: number;
   currentCartEntries = [];
@@ -31,7 +31,7 @@ export class CheckoutComponent implements OnInit {
               public cartService: CartService,
               private cartRestService: CartRestService,
               private _formBuilder: FormBuilder,
-              private pickupLocationRest: PickupLocationWithOpeninghHoursDtoRestService) {
+              private pickupLocationRest: LocationWithOpeninghHoursDtoRestService) {
   }
 
   ngOnInit() {

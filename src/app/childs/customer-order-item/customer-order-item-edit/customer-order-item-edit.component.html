@@ -10,7 +10,7 @@
       </mat-form-field>
       <mat-form-field class="full-width" color="accent">
         <mat-select placeholder="Artikel" name="article" [(ngModel)]="customerOrderItem.article">
-          <mat-option *ngFor="let article of _articleSubeject | async" [value]="article">
+          <mat-option *ngFor="let article of _articleSubject | async" [value]="article">
             {{article.description}} ({{article.price | currency: "CHF "}} pro {{article.unitOfMeasurement.shortcut}})
           </mat-option>
         </mat-select>

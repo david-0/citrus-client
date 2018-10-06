@@ -1,9 +1,8 @@
 import {ActivatedRoute, Params} from "@angular/router";
-import {DtoId} from "citrus-common/lib/dto/dto-id";
 import {GenericRestService} from "../table-support/generic-rest.service";
 import {OutputMessage} from "./output-message";
 
-export class DeleteExecutor<T extends DtoId> implements OutputMessage {
+export class DeleteExecutor<T> implements OutputMessage {
   private checks: { checkCallback: (item: T) => boolean, messageCallback: (item: T) => string }[] = [];
   private defaultErrorMessage: string;
 
@@ -56,5 +55,4 @@ export class DeleteExecutor<T extends DtoId> implements OutputMessage {
     this.message = this.defaultErrorMessage;
     this.details.push(`Error: ${err.error.error}.`);
   }
-
 }
