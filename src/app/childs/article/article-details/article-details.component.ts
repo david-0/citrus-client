@@ -34,5 +34,4 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
-
 }
