@@ -69,8 +69,7 @@ export class ArticleEditComponent implements OnInit {
       this.rest.update(ArticleDto.createWithId(this.articleID, this.article))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
-          (err) => console.error(`could not update address: ${this.article.id} with Error: ${err}`));
+          (err) => console.error(`could not update article: ${this.article.id} with Error: ${err}`));
     }
   }
-
 }
