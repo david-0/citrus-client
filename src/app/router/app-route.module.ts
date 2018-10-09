@@ -10,6 +10,10 @@ import {AddressDetailsComponent} from "../childs/address/address-details/address
 import {AddressEditComponent} from "../childs/address/address-edit/address-edit.component";
 import {AddressOverviewComponent} from "../childs/address/address-overview/address-overview.component";
 import {AdministrationComponent} from "../childs/administration/administration.component";
+import {ArticleStockDeleteComponent} from "../childs/article-stock/article-stock-delete/article-stock-delete.component";
+import {ArticleStockDetailComponent} from "../childs/article-stock/article-stock-detail/article-stock-detail.component";
+import {ArticleStockEditComponent} from "../childs/article-stock/article-stock-edit/article-stock-edit.component";
+import {ArticleStockOverviewComponent} from "../childs/article-stock/article-stock-overview/article-stock-overview.component";
 import {ArticleDeleteComponent} from "../childs/article/article-delete/article-delete.component";
 import {ArticleDetailsComponent} from "../childs/article/article-details/article-details.component";
 import {ArticleEditComponent} from "../childs/article/article-edit/article-edit.component";
@@ -108,6 +112,12 @@ const routes: Routes = [
       {path: "article/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleDetailsComponent},
       {path: "article/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleEditComponent},
       {path: "article/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleDeleteComponent},
+
+      {path: "articleStock", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockOverviewComponent},
+      {path: "articleStock/create", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockEditComponent},
+      {path: "articleStock/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockDetailComponent},
+      {path: "articleStock/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockEditComponent},
+      {path: "articleStock/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockDeleteComponent},
 
       {path: "customerOrder", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderOverviewComponent},
       {path: "customerOrder/create", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderEditComponent},

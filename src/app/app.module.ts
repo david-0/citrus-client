@@ -113,6 +113,11 @@ import {SaleOverviewComponent} from "./sales/sale-overview/sale-overview.compone
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
+import { ArticleStockDeleteComponent } from './childs/article-stock/article-stock-delete/article-stock-delete.component';
+import { ArticleStockDetailComponent } from './childs/article-stock/article-stock-detail/article-stock-detail.component';
+import { ArticleStockEditComponent } from './childs/article-stock/article-stock-edit/article-stock-edit.component';
+import { ArticleStockOverviewComponent } from './childs/article-stock/article-stock-overview/article-stock-overview.component';
+import { ArticleStockTableComponent } from './childs/article-stock/article-stock-table/article-stock-table.component';
 
 
 @NgModule({
@@ -179,6 +184,11 @@ import {TableSupportModule} from "./table-support/table-support.module";
     RoleTableComponent,
     OutputMessageComponent,
     SaleOverviewComponent,
+    ArticleStockDeleteComponent,
+    ArticleStockDetailComponent,
+    ArticleStockEditComponent,
+    ArticleStockOverviewComponent,
+    ArticleStockTableComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,24 @@
+<form #f="ngForm" (ngSubmit)="submit()">
+  <app-table-header titleText="Lagerbestand bearbeiten" showBack="true" showCancelAndSave="true"
+                    [form]="f"></app-table-header>
+  <mat-card class="mat-card-padding">
+    <mat-form-field class="full-width" color="accent">
+      <mat-select placeholder="Artikel" #article name="article"
+                  [(ngModel)]="articleStock.article">
+        <mat-option *ngFor="let article of articleSubject | async" [value]="article">
+          {{article.number}} {{article.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" color="accent">
+      <mat-select placeholder="Standort" #location name="location"
+                  [(ngModel)]="articleStock.location">
+        <mat-option *ngFor="let location of locationSubject | async" [value]="location">
+          {{location.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>Anzahl an Lager: {{articleStock.quantity}}</p>
+    <p>Anzahl reserviert in Aufträgen: {{articleStock.reservedQuantity}}</p>
+  </mat-card>
+</form>
