@@ -10,6 +10,6 @@ import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service"
 
 export class OpeningHourDtoRestService extends GenericRestService<OpeningHourDto> {
   constructor(http: HttpClient, private restUrlPrefix: RestUrlPrefixService) {
-    super(http, restUrlPrefix.getApiRestPrefix() + "/customerOrderItem");
+    super(http, restUrlPrefix.getApiRestPrefix() + "/openingHour");
   }
 }

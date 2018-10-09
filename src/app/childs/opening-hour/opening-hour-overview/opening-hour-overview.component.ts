@@ -24,12 +24,10 @@ export class OpeningHourOverviewComponent implements OnInit {
     this.route.parent.params.subscribe(params => {
       if (params["id"] !== null) {
         this.id = +params["id"];
-        this.rest.get(+params["id"]).subscribe(pickupLocation => {
-          this.dataObservable.next(pickupLocation.openingHours);
+        this.rest.get(+params["id"]).subscribe(location => {
+          this.dataObservable.next(location.openingHours);
         });
       }
     });
-
   }
-
 }

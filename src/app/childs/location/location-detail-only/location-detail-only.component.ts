@@ -11,7 +11,7 @@ export class LocationDetailOnlyComponent implements OnInit {
   constructor() {
   }
 
-  @Input() pickupLocation: LocationDto;
+  @Input() location: LocationDto;
 
   ngOnInit() {
   }

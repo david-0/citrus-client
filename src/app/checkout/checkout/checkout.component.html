@@ -25,7 +25,7 @@
           <mat-card-title>Details</mat-card-title>
           <mat-card-content>
             <app-location-detail-only *ngIf="selectedLocation"
-                                      [pickupLocation]="selectedLocation"></app-location-detail-only>
+                                      [location]="selectedLocation"></app-location-detail-only>
           </mat-card-content>
         </mat-card>
       </div>
@@ -45,7 +45,7 @@
       <mat-card-title>Abholstation</mat-card-title>
       <mat-card-content>
         <app-location-detail-only *ngIf="selectedLocation"
-                                  [pickupLocation]="selectedLocation"></app-location-detail-only>
+                                  [location]="selectedLocation"></app-location-detail-only>
       </mat-card-content>
     </mat-card>
     <mat-toolbar class="footer">

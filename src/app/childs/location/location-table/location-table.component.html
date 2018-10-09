@@ -1,5 +1,5 @@
 <app-table-filter (onChange)="applyFilter($event)" [settings]="this.settings"
-                  placeholder="Filter Abholstationen"></app-table-filter>
+                  placeholder="Filter Standort"></app-table-filter>
 <mat-table #table [dataSource]="datasource" matSort>
   <ng-container matColumnDef="id" hidden>
     <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
@@ -11,18 +11,16 @@
   </ng-container>
   <ng-container matColumnDef="address">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Addresse</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="small-font start"> {{row.address.prename}} {{row.address.name}}<br/>{{row.address.street}}
-      {{row.address.number}}<br/>{{row.address.zipcode}}
-      {{row.address.city}}
-    </mat-cell>
+    <mat-cell *matCellDef="let row" class="small-font start"> {{row.street}} {{row.number}}<br/>
+      {{row.zipcode}} {{row.city}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="openingHours">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Öffnungszeiten</mat-header-cell>
     <mat-cell *matCellDef="let row" class="small-font start">
-        <div class="opening-hour-line" *ngFor="let openingHour of row.openingHours">
-          {{openingHour.fromDate | date: "EEEE dd.MM.y"}}, geöffnet von: {{openingHour.fromDate | date: "HH:mm"}}
-          bis: {{openingHour.toDate | date: "HH:mm"}}
-        </div>
+      <div class="opening-hour-line" *ngFor="let openingHour of row.openingHours">
+        {{openingHour.fromDate | date: "EEEE dd.MM.y"}}, geöffnet von: {{openingHour.fromDate | date: "HH:mm"}}
+        bis: {{openingHour.toDate | date: "HH:mm"}}
+      </div>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

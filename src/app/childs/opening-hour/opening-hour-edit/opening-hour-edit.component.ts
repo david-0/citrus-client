@@ -42,8 +42,8 @@ export class OpeningHourEditComponent implements OnInit {
   ngOnInit() {
     this.route.parent.params.subscribe(locationParams => {
       const promise = this.rest.get(+locationParams["id"]);
-      promise.subscribe((pickupLocation) => {
-        this._Location = pickupLocation;
+      promise.subscribe((location) => {
+        this._Location = location;
         this.route.params.subscribe(openingHourParams => {
           if (openingHourParams["id"] == null) {
             this._openingHour = OpeningHourDto.createEmpty(this._Location);
