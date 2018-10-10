@@ -1,0 +1,24 @@
+<app-table-header titleText="Einbuchung details" label="diese Einbuchung" showBack="true"
+                  showDelete="true" showEdit="true"></app-table-header>
+<mat-card class="mat-card-padding">
+  <mat-card-content class="common_table">
+    <div>
+      <div>Lagerbestand</div>
+      <div>{{articleCheckIn.articleStock.article.number}} {{articleCheckIn.articleStock.article.description}}
+        {{articleCheckIn.articleStock.location.description}}
+      </div>
+    </div>
+    <div>
+      <div>Datum</div>
+      <div>{{articleCheckIn.date | date: "dd.MM.yyyy"}}</div>
+    </div>
+    <div>
+      <div>Menge</div>
+      <div>{{articleCheckIn.quantity}} {{articleCheckIn.articleStock.article.unitOfMeasurement.shortcut}}</div>
+    </div>
+    <div>
+      <div>Kommentar</div>
+      <div>{{articleCheckIn.comment}}</div>
+    </div>
+  </mat-card-content>
+</mat-card>

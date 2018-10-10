@@ -10,6 +10,10 @@ import {AddressDetailsComponent} from "../childs/address/address-details/address
 import {AddressEditComponent} from "../childs/address/address-edit/address-edit.component";
 import {AddressOverviewComponent} from "../childs/address/address-overview/address-overview.component";
 import {AdministrationComponent} from "../childs/administration/administration.component";
+import {ArticleCheckinDeleteComponent} from "../childs/article-checkin/article-checkin-delete/article-checkin-delete.component";
+import {ArticleCheckinDetailComponent} from "../childs/article-checkin/article-checkin-detail/article-checkin-detail.component";
+import {ArticleCheckinEditComponent} from "../childs/article-checkin/article-checkin-edit/article-checkin-edit.component";
+import {ArticleCheckinOverviewComponent} from "../childs/article-checkin/article-checkin-overview/article-checkin-overview.component";
 import {ArticleStockDeleteComponent} from "../childs/article-stock/article-stock-delete/article-stock-delete.component";
 import {ArticleStockDetailComponent} from "../childs/article-stock/article-stock-detail/article-stock-detail.component";
 import {ArticleStockEditComponent} from "../childs/article-stock/article-stock-edit/article-stock-edit.component";
@@ -118,6 +122,12 @@ const routes: Routes = [
       {path: "articleStock/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockDetailComponent},
       {path: "articleStock/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockEditComponent},
       {path: "articleStock/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockDeleteComponent},
+
+      {path: "articleCheckIn", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckinOverviewComponent},
+      {path: "articleCheckIn/create", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckinEditComponent},
+      {path: "articleCheckIn/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckinDetailComponent},
+      {path: "articleCheckIn/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckinEditComponent},
+      {path: "articleCheckIn/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckinDeleteComponent},
 
       {path: "customerOrder", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderOverviewComponent},
       {path: "customerOrder/create", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderEditComponent},

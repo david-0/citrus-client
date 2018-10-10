@@ -58,7 +58,7 @@ export class CustomerOrderItemEditComponent implements OnInit {
   }
 
   // private updateAllArticles() {
-  //   this.articleRest.getAll().subscribe(articles => {
+  //   this.userRest.getAll().subscribe(articles => {
   //     this.ensureArticleInCustomerOrderItem(this._customerOrderItem, articles);
   //     this._articleSubject.next(articles);
   //   });

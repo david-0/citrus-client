@@ -51,6 +51,12 @@ import {AddressOverviewComponent} from "./childs/address/address-overview/addres
 import {AddressSettingsService} from "./childs/address/address-settings.service";
 import {AddressTableComponent} from "./childs/address/address-table/address-table.component";
 import {AdministrationComponent} from "./childs/administration/administration.component";
+import {ArticleCheckinDeleteComponent} from "./childs/article-checkin/article-checkin-delete/article-checkin-delete.component";
+import {ArticleStockDeleteComponent} from "./childs/article-stock/article-stock-delete/article-stock-delete.component";
+import {ArticleStockDetailComponent} from "./childs/article-stock/article-stock-detail/article-stock-detail.component";
+import {ArticleStockEditComponent} from "./childs/article-stock/article-stock-edit/article-stock-edit.component";
+import {ArticleStockOverviewComponent} from "./childs/article-stock/article-stock-overview/article-stock-overview.component";
+import {ArticleStockTableComponent} from "./childs/article-stock/article-stock-table/article-stock-table.component";
 import {ArticleDeleteComponent} from "./childs/article/article-delete/article-delete.component";
 import {ArticleDetailsComponent} from "./childs/article/article-details/article-details.component";
 import {ArticleDtoRestService} from "./childs/article/article-dto-rest.service";
@@ -113,11 +119,10 @@ import {SaleOverviewComponent} from "./sales/sale-overview/sale-overview.compone
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { ArticleStockDeleteComponent } from './childs/article-stock/article-stock-delete/article-stock-delete.component';
-import { ArticleStockDetailComponent } from './childs/article-stock/article-stock-detail/article-stock-detail.component';
-import { ArticleStockEditComponent } from './childs/article-stock/article-stock-edit/article-stock-edit.component';
-import { ArticleStockOverviewComponent } from './childs/article-stock/article-stock-overview/article-stock-overview.component';
-import { ArticleStockTableComponent } from './childs/article-stock/article-stock-table/article-stock-table.component';
+import { ArticleCheckinDetailComponent } from './childs/article-checkin/article-checkin-detail/article-checkin-detail.component';
+import { ArticleCheckinOverviewComponent } from './childs/article-checkin/article-checkin-overview/article-checkin-overview.component';
+import { ArticleCheckinTableComponent } from './childs/article-checkin/article-checkin-table/article-checkin-table.component';
+import { ArticleCheckinEditComponent } from './childs/article-checkin/article-checkin-edit/article-checkin-edit.component';
 
 
 @NgModule({
@@ -189,6 +194,11 @@ import { ArticleStockTableComponent } from './childs/article-stock/article-stock
     ArticleStockEditComponent,
     ArticleStockOverviewComponent,
     ArticleStockTableComponent,
+    ArticleCheckinDeleteComponent,
+    ArticleCheckinDetailComponent,
+    ArticleCheckinOverviewComponent,
+    ArticleCheckinTableComponent,
+    ArticleCheckinEditComponent,
   ],
   imports: [
     BrowserModule,
