@@ -14,6 +14,10 @@ import {ArticleCheckinDeleteComponent} from "../childs/article-checkin/article-c
 import {ArticleCheckinDetailComponent} from "../childs/article-checkin/article-checkin-detail/article-checkin-detail.component";
 import {ArticleCheckinEditComponent} from "../childs/article-checkin/article-checkin-edit/article-checkin-edit.component";
 import {ArticleCheckinOverviewComponent} from "../childs/article-checkin/article-checkin-overview/article-checkin-overview.component";
+import {ArticleCheckoutDeleteComponent} from "../childs/article-checkout/article-checkout-delete/article-checkout-delete.component";
+import {ArticleCheckoutDetailComponent} from "../childs/article-checkout/article-checkout-detail/article-checkout-detail.component";
+import {ArticleCheckoutEditComponent} from "../childs/article-checkout/article-checkout-edit/article-checkout-edit.component";
+import {ArticleCheckoutOverviewComponent} from "../childs/article-checkout/article-checkout-overview/article-checkout-overview.component";
 import {ArticleStockDeleteComponent} from "../childs/article-stock/article-stock-delete/article-stock-delete.component";
 import {ArticleStockDetailComponent} from "../childs/article-stock/article-stock-detail/article-stock-detail.component";
 import {ArticleStockEditComponent} from "../childs/article-stock/article-stock-edit/article-stock-edit.component";
@@ -30,14 +34,14 @@ import {CustomerOrderDeleteComponent} from "../childs/customer-order/customer-or
 import {CustomerOrderDetailComponent} from "../childs/customer-order/customer-order-detail/customer-order-detail.component";
 import {CustomerOrderEditComponent} from "../childs/customer-order/customer-order-edit/customer-order-edit.component";
 import {CustomerOrderOverviewComponent} from "../childs/customer-order/customer-order-overview/customer-order-overview.component";
-import {OpeningHourDeleteComponent} from "../childs/opening-hour/opening-hour-delete/opening-hour-delete.component";
-import {OpeningHourDetailsComponent} from "../childs/opening-hour/opening-hour-details/opening-hour-details.component";
-import {OpeningHourEditComponent} from "../childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
-import {OpeningHourOverviewComponent} from "../childs/opening-hour/opening-hour-overview/opening-hour-overview.component";
 import {LocationDeleteComponent} from "../childs/location/location-delete/location-delete.component";
 import {LocationDetailComponent} from "../childs/location/location-detail/location-detail.component";
 import {LocationEditComponent} from "../childs/location/location-edit/location-edit.component";
 import {LocationOverviewComponent} from "../childs/location/location-overview/location-overview.component";
+import {OpeningHourDeleteComponent} from "../childs/opening-hour/opening-hour-delete/opening-hour-delete.component";
+import {OpeningHourDetailsComponent} from "../childs/opening-hour/opening-hour-details/opening-hour-details.component";
+import {OpeningHourEditComponent} from "../childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
+import {OpeningHourOverviewComponent} from "../childs/opening-hour/opening-hour-overview/opening-hour-overview.component";
 import {RoleDeleteComponent} from "../childs/role/role-delete/role-delete.component";
 import {RoleDetailComponent} from "../childs/role/role-detail/role-detail.component";
 import {RoleEditComponent} from "../childs/role/role-edit/role-edit.component";
@@ -121,13 +125,47 @@ const routes: Routes = [
       {path: "articleStock/create", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockEditComponent},
       {path: "articleStock/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockDetailComponent},
       {path: "articleStock/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockEditComponent},
-      {path: "articleStock/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleStockDeleteComponent},
+      {
+        path: "articleStock/:id/delete",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: ArticleStockDeleteComponent
+      },
 
       {path: "articleCheckIn", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckinOverviewComponent},
       {path: "articleCheckIn/create", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckinEditComponent},
       {path: "articleCheckIn/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckinDetailComponent},
-      {path: "articleCheckIn/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckinEditComponent},
-      {path: "articleCheckIn/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckinDeleteComponent},
+      {
+        path: "articleCheckIn/:id/edit",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: ArticleCheckinEditComponent
+      },
+      {
+        path: "articleCheckIn/:id/delete",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: ArticleCheckinDeleteComponent
+      },
+      
+      {path: "articleCheckOut", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckoutOverviewComponent},
+      {
+        path: "articleCheckOut/create",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: ArticleCheckoutEditComponent
+      },
+      {
+        path: "articleCheckOut/:id",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: ArticleCheckoutDetailComponent
+      },
+      {
+        path: "articleCheckOut/:id/edit",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: ArticleCheckoutEditComponent
+      },
+      {
+        path: "articleCheckOut/:id/delete",
+        canActivate: [AuthGuard, AuthGuardAdmin],
+        component: ArticleCheckoutDeleteComponent
+      },
 
       {path: "customerOrder", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderOverviewComponent},
       {path: "customerOrder/create", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderEditComponent},

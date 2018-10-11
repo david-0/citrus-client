@@ -1,0 +1,24 @@
+<app-table-header titleText="Ausbuchung details" label="diese Ausbuchung" showBack="true"
+                  showDelete="true" showEdit="true"></app-table-header>
+<mat-card class="mat-card-padding">
+  <mat-card-content class="common_table">
+    <div>
+      <div>Lagerbestand</div>
+      <div>{{articleCheckOut.articleStock.article.number}} {{articleCheckOut.articleStock.article.description}}<br/>
+        {{articleCheckOut.articleStock.location.description}}
+      </div>
+    </div>
+    <div>
+      <div>Datum</div>
+      <div>{{articleCheckOut.date | date: "dd.MM.yyyy"}}</div>
+    </div>
+    <div>
+      <div>Menge</div>
+      <div>{{articleCheckOut.quantity}} {{articleCheckOut.articleStock.article.unitOfMeasurement.shortcut}}</div>
+    </div>
+    <div>
+      <div>Kommentar</div>
+      <div>{{articleCheckOut.comment}}</div>
+    </div>
+  </mat-card-content>
+</mat-card>

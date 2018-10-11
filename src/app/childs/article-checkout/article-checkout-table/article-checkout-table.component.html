@@ -1,5 +1,5 @@
 <app-table-filter (onChange)="applyFilter($event)" [settings]="this.settings"
-                  placeholder="Filter Einbuchungen"></app-table-filter>
+                  placeholder="Filter Ausbuchungen"></app-table-filter>
 <mat-table #table [dataSource]="datasource" matSort>
   <ng-container matColumnDef="id" hidden>
     <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
