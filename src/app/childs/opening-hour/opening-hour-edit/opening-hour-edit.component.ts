@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material";
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from "@angular/material-moment-adapter";
 import {ActivatedRoute, Router} from "@angular/router";
-import {LocationDto} from "citrus-common";
 import {OpeningHourDto} from "citrus-common/lib/dto/opening-hour-dto";
 import * as moment from "moment";
 import {Moment} from "moment";
@@ -21,8 +20,7 @@ import {OpeningHourDtoRestService} from "../opening-hour-dto-rest.service";
 })
 export class OpeningHourEditComponent implements OnInit {
 
-  private _Location: LocationDto = LocationDto.createEmpty();
-  private _openingHour: OpeningHourDto = OpeningHourDto.createEmpty(this._Location);
+  private _openingHour: OpeningHourDto = OpeningHourDto.createEmpty();
 
   public _openingHourId: number;
   public dateForPicker: Moment;
@@ -43,12 +41,11 @@ export class OpeningHourEditComponent implements OnInit {
     this.route.parent.params.subscribe(locationParams => {
       const promise = this.rest.get(+locationParams["id"]);
       promise.subscribe((location) => {
-        this._Location = location;
         this.route.params.subscribe(openingHourParams => {
           if (openingHourParams["id"] == null) {
-            this._openingHour = OpeningHourDto.createEmpty(this._Location);
+            this._openingHour.location  = location;
           } else {
-            this._openingHour = this._Location.openingHours.filter(o => o.id === +openingHourParams["id"])[0];
+            this._openingHour = location.openingHours.filter(o => o.id === +openingHourParams["id"])[0];
           }
           this._openingHourId = this._openingHour.id;
           this.dateForPicker = moment(this._openingHour.fromDate);
@@ -65,7 +62,6 @@ export class OpeningHourEditComponent implements OnInit {
     if (this._openingHourId == null) {
       this.openingHourRest.add(new OpeningHourDto(copy)).subscribe(
         (result) => {
-          this._Location.openingHours.push(copy);
           this.router.navigate([".."], {relativeTo: this.route});
         },
         (err) => console.error(`could not save openingHour: ${copy.id} with Error: ${err}`)
@@ -73,8 +69,6 @@ export class OpeningHourEditComponent implements OnInit {
     } else {
       this.openingHourRest.update(copy).subscribe(
         (result) => {
-          const position = this._Location.openingHours.findIndex(o => o.id === this._openingHourId);
-          this._Location.openingHours[position] = copy;
           this.router.navigate([".."], {relativeTo: this.route});
         },
         (err) => console.error(`could not update pickupLocation: ${copy.id} with Error: ${err}`));

@@ -1,10 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ArticleDto} from "citrus-common";
-import {CustomerOrderDto} from "citrus-common/lib/dto/customer-order-dto";
+import {ArticleDto, CustomerOrderDto} from "citrus-common";
 import {CustomerOrderItemDto} from "citrus-common/lib/dto/customer-order-item-dto";
 import {BehaviorSubject} from "rxjs";
-import {ArticleDtoRestService} from "../../article/article-dto-rest.service";
 import {CustomerOrderWithItemsAndArticleDtoRestService} from "../../customer-order/customer-order-with-items-and-article-dto-rest.service";
 import {CustomerOrderItemDtoRestService} from "../customer-order-item-dto-rest.service";
 
@@ -15,16 +13,14 @@ import {CustomerOrderItemDtoRestService} from "../customer-order-item-dto-rest.s
 })
 export class CustomerOrderItemEditComponent implements OnInit {
 
-  private _customerOrder: CustomerOrderDto = CustomerOrderDto.createEmpty();
-  private _customerOrderItem: CustomerOrderItemDto = CustomerOrderItemDto.createEmpty(this._customerOrder);
+  private _customerOrderItem: CustomerOrderItemDto = CustomerOrderItemDto.createEmpty();
   public _customerOrderItemId: number;
   public _articleSubject = new BehaviorSubject<ArticleDto[]>([]);
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private customerOrderRest: CustomerOrderWithItemsAndArticleDtoRestService,
-              private customerOrderItemRest: CustomerOrderItemDtoRestService,
-              private articleRest: ArticleDtoRestService) {
+              private customerOrderItemRest: CustomerOrderItemDtoRestService) {
   }
 
   public get customerOrderItem(): CustomerOrderItemDto {
@@ -40,17 +36,16 @@ export class CustomerOrderItemEditComponent implements OnInit {
   private updateCustomerOrder(customerOrderParams) {
     const promise = this.customerOrderRest.get(+customerOrderParams["id"]);
     promise.subscribe((customerOrder) => {
-      this._customerOrder = customerOrder;
-      this.updateCustomerOrderItem();
+      this.updateCustomerOrderItem(customerOrder);
     });
   }
 
-  private updateCustomerOrderItem() {
+  private updateCustomerOrderItem(customerOrder: CustomerOrderDto) {
     this.route.params.subscribe(customerOrderItemParams => {
       if (customerOrderItemParams["id"] == null) {
-        this._customerOrderItem = CustomerOrderItemDto.createEmpty(this._customerOrder);
+        this._customerOrderItem = CustomerOrderItemDto.createEmpty();
       } else {
-        this._customerOrderItem = this._customerOrder.customerOrderItems.filter(o => o.id === +customerOrderItemParams["id"])[0];
+        this._customerOrderItem = customerOrder.customerOrderItems.filter(o => o.id === +customerOrderItemParams["id"])[0];
       }
       this._customerOrderItemId = this._customerOrderItem.id;
 //      this.updateAllArticles();
@@ -86,24 +81,24 @@ export class CustomerOrderItemEditComponent implements OnInit {
   //     this.updateItem(copiedItem);
   //   }
   // }
-
-  private createNewItem(copy) {
-    this.customerOrderItemRest.add(new CustomerOrderItemDto(copy)).subscribe(
-      (result) => {
-        this._customerOrder.customerOrderItems.push(copy);
-        this.router.navigate([".."], {relativeTo: this.route});
-      },
-      (err) => console.error(`could not save customerOrderItem: ${copy.id} with Error: ${err}`)
-    );
-  }
-
-  private updateItem(copy) {
-    this.customerOrderItemRest.update(copy).subscribe(
-      (result) => {
-        const position = this._customerOrder.customerOrderItems.findIndex(o => o.id === this._customerOrderItemId);
-        this._customerOrder.customerOrderItems[position] = copy;
-        this.router.navigate([".."], {relativeTo: this.route});
-      },
-      (err) => console.error(`could not update customerOrderItem: ${copy.id} with Error: ${err}`));
-  }
+  //
+  // private createNewItem(copy) {
+  //   this.customerOrderItemRest.add(new CustomerOrderItemDto(copy)).subscribe(
+  //     (result) => {
+  //       this._customerOrder.customerOrderItems.push(copy);
+  //       this.router.navigate([".."], {relativeTo: this.route});
+  //     },
+  //     (err) => console.error(`could not save customerOrderItem: ${copy.id} with Error: ${err}`)
+  //   );
+  // }
+  //
+  // private updateItem(copy) {
+  //   this.customerOrderItemRest.update(copy).subscribe(
+  //     (result) => {
+  //       const position = this._customerOrder.customerOrderItems.findIndex(o => o.id === this._customerOrderItemId);
+  //       this._customerOrder.customerOrderItems[position] = copy;
+  //       this.router.navigate([".."], {relativeTo: this.route});
+  //     },
+  //     (err) => console.error(`could not update customerOrderItem: ${copy.id} with Error: ${err}`));
+  // }
 }

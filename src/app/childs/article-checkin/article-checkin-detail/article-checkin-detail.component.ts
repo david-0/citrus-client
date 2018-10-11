@@ -18,11 +18,7 @@ import {ArticleCheckInWithAllDtoRestService} from "../article-check-in-with-all-
 })
 export class ArticleCheckinDetailComponent implements OnInit, OnDestroy {
 
-  private _user: UserDto = UserDto.createEmpty();
-  private _article: ArticleDto = ArticleDto.createEmpty();
-  private _location: LocationDto = LocationDto.createEmpty();
-  private _articleStock: ArticleStockDto = ArticleStockDto.createEmpty(this._article, this._location);
-  private _articleCheckIn: ArticleCheckInDto = ArticleCheckInDto.createEmpty(this._articleStock, this._user);
+  private _articleCheckIn: ArticleCheckInDto = ArticleCheckInDto.createEmpty();
   private subscription: Subscription;
 
   constructor(private route: ActivatedRoute, private rest: ArticleCheckInWithAllDtoRestService) {
@@ -33,7 +29,6 @@ export class ArticleCheckinDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this._article.unitOfMeasurement = UnitOfMeasurementDto.createEmpty();
     this.route.params.subscribe(params => {
       const articleCheckInPromise = this.rest.get(+params["id"]);
       this.subscription = articleCheckInPromise.subscribe((articleCheckIn) => {
