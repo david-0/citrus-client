@@ -2,6 +2,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
@@ -26,7 +29,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from "@angular/material";
-import {MatMomentDateModule} from "@angular/material-moment-adapter";
+import {MAT_MOMENT_DATE_FORMATS, MatMomentDateModule, MomentDateAdapter} from "@angular/material-moment-adapter";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import "hammerjs";
@@ -52,6 +55,10 @@ import {AddressSettingsService} from "./childs/address/address-settings.service"
 import {AddressTableComponent} from "./childs/address/address-table/address-table.component";
 import {AdministrationComponent} from "./childs/administration/administration.component";
 import {ArticleCheckinDeleteComponent} from "./childs/article-checkin/article-checkin-delete/article-checkin-delete.component";
+import {ArticleCheckinDetailComponent} from "./childs/article-checkin/article-checkin-detail/article-checkin-detail.component";
+import {ArticleCheckinEditComponent} from "./childs/article-checkin/article-checkin-edit/article-checkin-edit.component";
+import {ArticleCheckinOverviewComponent} from "./childs/article-checkin/article-checkin-overview/article-checkin-overview.component";
+import {ArticleCheckinTableComponent} from "./childs/article-checkin/article-checkin-table/article-checkin-table.component";
 import {ArticleStockDeleteComponent} from "./childs/article-stock/article-stock-delete/article-stock-delete.component";
 import {ArticleStockDetailComponent} from "./childs/article-stock/article-stock-detail/article-stock-detail.component";
 import {ArticleStockEditComponent} from "./childs/article-stock/article-stock-edit/article-stock-edit.component";
@@ -119,10 +126,6 @@ import {SaleOverviewComponent} from "./sales/sale-overview/sale-overview.compone
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { ArticleCheckinDetailComponent } from './childs/article-checkin/article-checkin-detail/article-checkin-detail.component';
-import { ArticleCheckinOverviewComponent } from './childs/article-checkin/article-checkin-overview/article-checkin-overview.component';
-import { ArticleCheckinTableComponent } from './childs/article-checkin/article-checkin-table/article-checkin-table.component';
-import { ArticleCheckinEditComponent } from './childs/article-checkin/article-checkin-edit/article-checkin-edit.component';
 
 
 @NgModule({
@@ -257,6 +260,9 @@ import { ArticleCheckinEditComponent } from './childs/article-checkin/article-ch
       useClass: TokenInterceptor,
       multi: true
     },
+    {provide: MAT_DATE_LOCALE, useValue: "de_ch"},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
   ],
   bootstrap: [AppComponent]
 })

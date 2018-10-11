@@ -77,7 +77,7 @@ export class ArticleCheckinEditComponent implements OnInit {
     return articleCheckIn.articleStock != null && articleCheckIn.articleStock.id === articleStock.id;
   }
 
-  private isUserWithSameId(articleCheckIn: ArticleCheckInDto, user:  UserDto): boolean {
+  private isUserWithSameId(articleCheckIn: ArticleCheckInDto, user: UserDto): boolean {
     return articleCheckIn.user != null && articleCheckIn.user.id === user.id;
   }
 
