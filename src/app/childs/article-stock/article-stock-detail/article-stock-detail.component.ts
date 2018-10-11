@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {ArticleDto, ArticleStockDto, LocationDto, UnitOfMeasurementDto} from "citrus-common";
+import {ArticleStockDto, UnitOfMeasurementDto} from "citrus-common";
 import {Subscription} from "rxjs";
 import {ArticleStockWithDtoAllRestService} from "../article-stock-with-dto-all-rest.service";
 
@@ -11,9 +11,7 @@ import {ArticleStockWithDtoAllRestService} from "../article-stock-with-dto-all-r
 })
 export class ArticleStockDetailComponent implements OnInit, OnDestroy {
 
-  private _article: ArticleDto = ArticleDto.createEmpty();
-  private _location: LocationDto = LocationDto.createEmpty();
-  private _articleStock: ArticleStockDto = ArticleStockDto.createEmpty(this._article, this._location);
+  private _articleStock: ArticleStockDto = ArticleStockDto.createEmpty();
   private subscription: Subscription;
 
   constructor(private route: ActivatedRoute, private rest: ArticleStockWithDtoAllRestService) {
@@ -24,7 +22,6 @@ export class ArticleStockDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this._article.unitOfMeasurement = UnitOfMeasurementDto.createEmpty();
     this.route.params.subscribe(params => {
       const articleStockPromise = this.rest.get(+params["id"]);
       this.subscription = articleStockPromise.subscribe((articleStock) => {

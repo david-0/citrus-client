@@ -1,7 +1,7 @@
 import {HttpErrorResponse} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ArticleCheckInDto, ArticleDto, ArticleStockDto, LocationDto, UserDto} from "citrus-common";
+import {ArticleCheckInDto, ArticleStockDto, UserDto} from "citrus-common";
 import {BehaviorSubject, combineLatest, Observable} from "rxjs";
 import {ArticleStockWithDtoAllRestService} from "../../article-stock/article-stock-with-dto-all-rest.service";
 import {UserDtoRestService} from "../../user/user-dto-rest.service";
@@ -13,9 +13,7 @@ import {ArticleCheckInWithAllDtoRestService} from "../article-check-in-with-all-
   styleUrls: ["./article-checkin-edit.component.scss"]
 })
 export class ArticleCheckinEditComponent implements OnInit {
-  public articleCheckIn: ArticleCheckInDto = ArticleCheckInDto.createEmpty(
-    ArticleStockDto.createEmpty(ArticleDto.createEmpty(), LocationDto.createEmpty()),
-    UserDto.createEmpty());
+  public articleCheckIn: ArticleCheckInDto = ArticleCheckInDto.createEmpty();
   public articleCheckInId: number;
 
   public articleStockSubject: BehaviorSubject<ArticleStockDto[]> = new BehaviorSubject([]);

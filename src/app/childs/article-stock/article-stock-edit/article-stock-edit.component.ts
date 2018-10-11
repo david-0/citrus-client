@@ -13,7 +13,7 @@ import {ArticleStockWithDtoAllRestService} from "../article-stock-with-dto-all-r
   styleUrls: ["./article-stock-edit.component.scss"]
 })
 export class ArticleStockEditComponent implements OnInit {
-  public articleStock: ArticleStockDto = ArticleStockDto.createEmpty(ArticleDto.createEmpty(), LocationDto.createEmpty());
+  public articleStock: ArticleStockDto = ArticleStockDto.createEmpty();
   public articleStockID: number;
 
   public locationSubject: BehaviorSubject<LocationDto[]> = new BehaviorSubject([]);

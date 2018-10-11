@@ -1,13 +1,6 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {
-  ArticleCheckInDto,
-  ArticleDto,
-  ArticleStockDto,
-  LocationDto,
-  UnitOfMeasurementDto,
-  UserDto
-} from "citrus-common";
+import {ArticleCheckInDto} from "citrus-common";
 import {Subscription} from "rxjs";
 import {ArticleCheckInWithAllDtoRestService} from "../article-check-in-with-all-dto-rest.service";
 
