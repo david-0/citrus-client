@@ -5,9 +5,10 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
   </ng-container>
-  <ng-container matColumnDef="article">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Artikel</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.articleStock.article.number}} {{row.articleStock.article.description}}</mat-cell>
+  <ng-container matColumnDef="articleStock">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Lagerbestand</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.articleStock.article.number}} {{row.articleStock.article.description}},
+      {{row.articleStock.location.description}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="user">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Benutzer</mat-header-cell>

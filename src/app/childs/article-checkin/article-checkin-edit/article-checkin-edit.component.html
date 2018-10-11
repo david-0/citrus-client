@@ -6,7 +6,7 @@
       <mat-select placeholder="Lagerbestand" #articleStock name="articleStock"
                   [(ngModel)]="articleCheckIn.articleStock">
         <mat-option *ngFor="let articleStock of articleStockSubject | async" [value]="articleStock">
-          {{articleStock.article.number}} {{articleStock.article.description}} {{articleStock.location.description}}
+          {{articleStock.article.number}} {{articleStock.article.description}}, {{articleStock.location.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>
