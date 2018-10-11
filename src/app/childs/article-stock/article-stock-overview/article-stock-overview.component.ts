@@ -6,7 +6,7 @@ import {Component, OnInit} from "@angular/core";
   styleUrls: ["./article-stock-overview.component.scss"]
 })
 export class ArticleStockOverviewComponent implements OnInit {
-  public displayedColumns = ["article", "quantity", "reservedQuantity", "location"];
+  public displayedColumns = ["article", "location", "quantity", "reservedQuantity"];
 
   constructor() {
   }
