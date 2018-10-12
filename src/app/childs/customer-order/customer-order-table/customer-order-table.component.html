@@ -9,10 +9,6 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Datum</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.date | date: "dd.MM.y"}}</mat-cell>
   </ng-container>
-  <ng-container matColumnDef="pickupLocation">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Abholstation</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.location?.description}}</mat-cell>
-  </ng-container>
   <ng-container matColumnDef="totalPrice">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
     <mat-cell *matCellDef="let row" > {{row.totalPrice}}</mat-cell>
