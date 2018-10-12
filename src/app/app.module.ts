@@ -121,8 +121,7 @@ import {UserPasswordChangeComponent} from "./childs/user/user-password-change/us
 import {UserWithRolesDtoRestService} from "./childs/user/user-with-roles-dto-rest.service";
 import {ArticleInSaleDtoRestService} from "./dashboard/article-in-sale--dto-rest.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
-import {PublicArticleGridComponent} from "./dashboard/public-article-grid/public-article-grid.component";
-import {PublicArticleListComponent} from "./dashboard/public-article-list/public-article-list.component";
+import {PublicArticleStockGridComponent} from "./dashboard/public-article-stock-grid/public-article-stock-grid.component";
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
@@ -130,7 +129,6 @@ import {SaleOverviewComponent} from "./sales/sale-overview/sale-overview.compone
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { PublicArticleStockGridComponent } from './dashboard/public-article-stock-grid/public-article-stock-grid.component';
 
 
 @NgModule({
@@ -163,7 +161,6 @@ import { PublicArticleStockGridComponent } from './dashboard/public-article-stoc
     UnitOfMeasurementTableComponent,
     ArticleTableComponent,
     ShoppingCartComponent,
-    PublicArticleListComponent,
     CheckoutComponent,
     LocationOverviewComponent,
     LocationTableComponent,
@@ -188,7 +185,6 @@ import { PublicArticleStockGridComponent } from './dashboard/public-article-stoc
     CustomerOrderItemDetailComponent,
     CustomerOrderItemEditComponent,
     CustomerOrderItemOverviewComponent,
-    PublicArticleGridComponent,
     RoleDeleteComponent,
     RoleDetailComponent,
     RoleEditComponent,
