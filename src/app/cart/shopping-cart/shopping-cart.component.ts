@@ -32,7 +32,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public remove(cartEntry: CartEntry) {
-    this.cartService.removeArticle(cartEntry.articleStock);
+    this.cartService.removeArticleStock(cartEntry.articleStock);
   }
 
 }

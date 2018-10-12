@@ -40,20 +40,20 @@ export class CartService {
     this.saveCart();
   }
 
-  public removeArticle(articleStock: ArticleStockDto) {
+  public removeArticleStock(articleStock: ArticleStockDto) {
     const entries = this.cart.getValue();
-    const entriesWithoutArticle = entries.filter(e => e.articleStock.article.id !== articleStock.article.id);
+    const entriesWithoutArticle = entries.filter(e => e.articleStock.id !== articleStock.id);
     this.cart.next(entriesWithoutArticle);
     this.saveCart();
   }
 
   private updateCart(articleStock: ArticleStockDto, count: number) {
     const entries = this.cart.getValue();
-    const articleAlreadyInCart = entries.filter(e => e.articleStock.article.id === articleStock.article.id);
+    const articleAlreadyInCart = entries.filter(e => e.articleStock.id === articleStock.id);
     if (articleAlreadyInCart.length > 0) {
       const newCount = articleAlreadyInCart[0].count + count;
       if (newCount <= 0) {
-        this.cart.next(entries.filter(e => e.articleStock.article.id !== articleStock.article.id));
+        this.cart.next(entries.filter(e => e.articleStock.id !== articleStock.id));
       } else {
         const newPrice = articleStock.article.price;
         articleAlreadyInCart[0].price = newPrice;

@@ -2,11 +2,15 @@
   <ng-container matColumnDef="article">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Artikel</mat-header-cell>
     <mat-cell *matCellDef="let row" class="column-container cart-article-column">
-      <span class="cart-article-font">{{row.articleStock.article.description}}</span>
+      <div class="container cart-data-font">
+        <span class="cart-article-font">{{row.articleStock.article.description}}</span>
+        <span class="fill-remaining-space"></span>
+        <span>{{row.articleStock.location.description}}</span>
+      </div>
       <div class="container cart-data-font">
         <span>{{row.count}} {{row.articleStock.article.unitOfMeasurement.shortcut}}</span>
         <span class="fill-remaining-space"></span>
-        <span class="highlighted-font">{{row.price * row.count | currency: 'CHF '}}</span>
+        <span class="cart-article-font">{{row.price * row.count | currency: 'CHF '}}</span>
       </div>
     </mat-cell>
   </ng-container>
