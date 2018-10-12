@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {ArticleDto} from "citrus-common";
+import {ArticleDto, ArticleStockDto} from "citrus-common";
 import {BehaviorSubject, Observable} from "rxjs";
 import {CartEntry} from "./cart-entry";
 
@@ -35,34 +35,34 @@ export class CartService {
     this.saveCart();
   }
 
-  public addArticle(article: ArticleDto, count: number) {
-    this.updateCart(article, count);
+  public addArticleStock(articleStock: ArticleStockDto, count: number) {
+    this.updateCart(articleStock, count);
     this.saveCart();
   }
 
-  public removeArticle(article: ArticleDto) {
+  public removeArticle(articleStock: ArticleStockDto) {
     const entries = this.cart.getValue();
-    const entriesWithoutArticle = entries.filter(e => e.article.id !== article.id);
+    const entriesWithoutArticle = entries.filter(e => e.articleStock.article.id !== articleStock.article.id);
     this.cart.next(entriesWithoutArticle);
     this.saveCart();
   }
 
-  private updateCart(article: ArticleDto, count: number) {
+  private updateCart(articleStock: ArticleStockDto, count: number) {
     const entries = this.cart.getValue();
-    const articleAlreadyInCart = entries.filter(e => e.article.id === article.id);
+    const articleAlreadyInCart = entries.filter(e => e.articleStock.article.id === articleStock.article.id);
     if (articleAlreadyInCart.length > 0) {
       const newCount = articleAlreadyInCart[0].count + count;
       if (newCount <= 0) {
-        this.cart.next(entries.filter(e => e.article.id !== article.id));
+        this.cart.next(entries.filter(e => e.articleStock.article.id !== articleStock.article.id));
       } else {
-        const newPrice = article.price;
+        const newPrice = articleStock.article.price;
         articleAlreadyInCart[0].price = newPrice;
         articleAlreadyInCart[0].count = newCount;
         this.cart.next(entries);
       }
     } else {
       if (count > 0) {
-        const entry: CartEntry = {article: article, price: article.price, count};
+        const entry: CartEntry = {articleStock, price: articleStock.article.price, count};
         entries.push(entry);
         this.cart.next(entries);
       }

@@ -18,6 +18,6 @@ export class PublicArticleListComponent extends BaseTableComponent<ArticleDto> {
   }
 
   addToCart(article: ArticleDto) {
-    this.cartService.addArticle(article, 1);
+    this.cartService.addArticleStock(article, 1);
   }
 }

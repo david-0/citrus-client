@@ -2,9 +2,9 @@
   <ng-container matColumnDef="article">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Artikel</mat-header-cell>
     <mat-cell *matCellDef="let row" class="column-container cart-article-column">
-      <span class="cart-article-font">{{row.article.description}}</span>
+      <span class="cart-article-font">{{row.articleStock.article.description}}</span>
       <div class="container cart-data-font">
-        <span>{{row.count}} {{row.article.unitOfMeasurement.shortcut}}</span>
+        <span>{{row.count}} {{row.articleStock.article.unitOfMeasurement.shortcut}}</span>
         <span class="fill-remaining-space"></span>
         <span class="highlighted-font">{{row.price * row.count | currency: 'CHF '}}</span>
       </div>

@@ -1,7 +1,7 @@
-import {ArticleDto} from "citrus-common";
+import {ArticleStockDto} from "citrus-common";
 
 export class CartEntry {
-  public article: ArticleDto;
+  public articleStock: ArticleStockDto;
   public count: number;
   public price: number;
 }

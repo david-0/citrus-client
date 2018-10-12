@@ -1,14 +1,14 @@
 import {Component, OnInit} from "@angular/core";
-import {ArticleDto} from "citrus-common";
+import {ArticleDto, ArticleStockDto} from "citrus-common";
 import {CartService} from "../../cart/cart.service";
 import {ArticleInSaleDtoRestService} from "../article-in-sale--dto-rest.service";
 
 @Component({
-  selector: "app-public-article-grid",
-  templateUrl: "./public-article-grid.component.html",
-  styleUrls: ["./public-article-grid.component.scss"]
+  selector: "app-public-article-stock-grid",
+  templateUrl: "./public-article-stock-grid.component.html",
+  styleUrls: ["./public-article-stock-grid.component.scss"]
 })
-export class PublicArticleGridComponent implements OnInit {
+export class PublicArticleStockGridComponent implements OnInit {
 
   private _articles: ArticleDto[];
 
@@ -25,7 +25,7 @@ export class PublicArticleGridComponent implements OnInit {
     });
   }
 
-  addToCart(article: ArticleDto) {
-    this.cartService.addArticleStock(article, 1);
+  addToCart(articleStock: ArticleStockDto) {
+    this.cartService.addArticleStock(articleStock, 1);
   }
 }

@@ -130,6 +130,7 @@ import {SaleOverviewComponent} from "./sales/sale-overview/sale-overview.compone
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
+import { PublicArticleStockGridComponent } from './dashboard/public-article-stock-grid/public-article-stock-grid.component';
 
 
 @NgModule({
@@ -210,6 +211,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     ArticleCheckoutOverviewComponent,
     ArticleCheckoutTableComponent,
     ArticleCheckoutDetailComponent,
+    PublicArticleStockGridComponent,
   ],
   imports: [
     BrowserModule,

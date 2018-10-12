@@ -24,15 +24,15 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public increase(cartEntry: CartEntry) {
-    this.cartService.addArticle(cartEntry.article, 1);
+    this.cartService.addArticleStock(cartEntry.articleStock, 1);
   }
 
   public decrease(cartEntry: CartEntry) {
-    this.cartService.addArticle(cartEntry.article, -1);
+    this.cartService.addArticleStock(cartEntry.articleStock, -1);
   }
 
   public remove(cartEntry: CartEntry) {
-    this.cartService.removeArticle(cartEntry.article);
+    this.cartService.removeArticle(cartEntry.articleStock);
   }
 
 }
