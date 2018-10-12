@@ -121,7 +121,6 @@ import {UserPasswordChangeComponent} from "./childs/user/user-password-change/us
 import {UserWithRolesDtoRestService} from "./childs/user/user-with-roles-dto-rest.service";
 import {ArticleInSaleDtoRestService} from "./dashboard/article-in-sale--dto-rest.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
-import {PublicArticleDetailComponent} from "./dashboard/public-article-detail/public-article-detail.component";
 import {PublicArticleGridComponent} from "./dashboard/public-article-grid/public-article-grid.component";
 import {PublicArticleListComponent} from "./dashboard/public-article-list/public-article-list.component";
 import {LoginComponent} from "./login/login.component";
@@ -162,7 +161,6 @@ import {TableSupportModule} from "./table-support/table-support.module";
     UnitOfMeasurementOverviewComponent,
     UnitOfMeasurementTableComponent,
     ArticleTableComponent,
-    PublicArticleDetailComponent,
     ShoppingCartComponent,
     PublicArticleListComponent,
     CheckoutComponent,
