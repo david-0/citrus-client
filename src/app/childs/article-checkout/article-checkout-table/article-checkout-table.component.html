@@ -10,10 +10,6 @@
     <mat-cell *matCellDef="let row"> {{row.articleStock.article.number}} {{row.articleStock.article.description}},
       {{row.articleStock.location.description}}</mat-cell>
   </ng-container>
-  <ng-container matColumnDef="user">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Benutzer</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.user.prename}} {{row.user.name}}</mat-cell>
-  </ng-container>
   <ng-container matColumnDef="quantity">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Menge</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.quantity}} {{row.articleStock.article.unitOfMeasurement.shortcut}}</mat-cell>
@@ -24,7 +20,7 @@
   </ng-container>
   <ng-container matColumnDef="done">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Erledigt</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.done && 'Ja' || 'Nein'}}</mat-cell>
+    <mat-cell *matCellDef="let row">{{row.done && 'Ja' || 'Nein'}} ({{row.doneUser.prename}} {{row.doneUser.name}})</mat-cell>
   </ng-container>
   <ng-container matColumnDef="comment">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Kommentar</mat-header-cell>

@@ -1,10 +1,9 @@
 import {HttpErrorResponse} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ArticleCheckOutDto, ArticleStockDto, UserDto} from "citrus-common";
+import {ArticleCheckOutDto, ArticleStockDto} from "citrus-common";
 import {BehaviorSubject, combineLatest, Observable} from "rxjs";
 import {ArticleStockWithDtoAllRestService} from "../../article-stock/article-stock-with-dto-all-rest.service";
-import {UserDtoRestService} from "../../user/user-dto-rest.service";
 import {ArticleCheckoutWithAllDtoRestService} from "../article-checkout-with-all-dto-rest.service";
 
 @Component({
@@ -17,33 +16,26 @@ export class ArticleCheckoutEditComponent implements OnInit {
   public articleCheckOutId: number;
 
   public articleStockSubject: BehaviorSubject<ArticleStockDto[]> = new BehaviorSubject([]);
-  public userSubject: BehaviorSubject<UserDto[]> = new BehaviorSubject([]);
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private articleCheckOutRest: ArticleCheckoutWithAllDtoRestService,
-              public articleStockRest: ArticleStockWithDtoAllRestService,
-              public userRest: UserDtoRestService) {
+              public articleStockRest: ArticleStockWithDtoAllRestService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
         this.articleCheckOutId = this.articleCheckOut.id;
-        const articleStockObservable: Observable<ArticleStockDto[]> = this.articleStockRest.getAll();
-        const userObservable: Observable<UserDto[]> = this.userRest.getAll();
-        combineLatest(articleStockObservable, userObservable).subscribe(result => {
-          this.articleStockSubject.next(result[0]);
-          this.userSubject.next(result[1]);
+        this.articleStockRest.getAll().subscribe(result => {
+          this.articleStockSubject.next(result);
         }, (err: HttpErrorResponse) =>
           console.log(`Could not get artickeStocks and users. Error: ${err.message}`));
       } else {
         const articleStockObservable: Observable<ArticleStockDto[]> = this.articleStockRest.getAll();
-        const userObservable: Observable<UserDto[]> = this.userRest.getAll();
         const articleCheckOutObservable = this.articleCheckOutRest.get(+params["id"]);
-        combineLatest(articleCheckOutObservable, articleStockObservable, userObservable).subscribe(result => {
-            this.articleCheckOut = this.ensureUserInArticleCheckOut(result[0], result[1]);
-            this.articleCheckOut = this.ensureArticleInArticleStock(this.articleCheckOut, result[2]);
+        combineLatest(articleCheckOutObservable, articleStockObservable).subscribe(result => {
+            this.articleCheckOut = this.ensureArtcileStockInArticleCheckOut(result[0], result[1]);
             this.articleCheckOutId = this.articleCheckOut.id;
           },
           (err: HttpErrorResponse) => {
@@ -53,7 +45,7 @@ export class ArticleCheckoutEditComponent implements OnInit {
     });
   }
 
-  private ensureUserInArticleCheckOut(articleCheckOut: ArticleCheckOutDto, articleStocks: ArticleStockDto[]): ArticleCheckOutDto {
+  private ensureArtcileStockInArticleCheckOut(articleCheckOut: ArticleCheckOutDto, articleStocks: ArticleStockDto[]): ArticleCheckOutDto {
     this.articleStockSubject.next(articleStocks);
     for (const articleStock of articleStocks) {
       if (this.isArticleStockWithSameId(articleCheckOut, articleStock)) {
@@ -63,22 +55,8 @@ export class ArticleCheckoutEditComponent implements OnInit {
     return articleCheckOut;
   }
 
-  private ensureArticleInArticleStock(articleCheckOut: ArticleCheckOutDto, users: UserDto[]): ArticleCheckOutDto {
-    this.userSubject.next(users);
-    for (const user of users) {
-      if (this.isUserWithSameId(articleCheckOut, user)) {
-        articleCheckOut.user = user;
-      }
-    }
-    return articleCheckOut;
-  }
-
   private isArticleStockWithSameId(articleCheckOut: ArticleCheckOutDto, articleStock: ArticleStockDto): boolean {
     return articleCheckOut.articleStock != null && articleCheckOut.articleStock.id === articleStock.id;
-  }
-
-  private isUserWithSameId(articleCheckOut: ArticleCheckOutDto, user: UserDto): boolean {
-    return articleCheckOut.user != null && articleCheckOut.user.id === user.id;
   }
 
   public submit() {

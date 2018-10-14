@@ -17,33 +17,26 @@ export class ArticleCheckinEditComponent implements OnInit {
   public articleCheckInId: number;
 
   public articleStockSubject: BehaviorSubject<ArticleStockDto[]> = new BehaviorSubject([]);
-  public userSubject: BehaviorSubject<UserDto[]> = new BehaviorSubject([]);
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private articleCheckInRest: ArticleCheckInWithAllDtoRestService,
-              public articleStockRest: ArticleStockWithDtoAllRestService,
-              public userRest: UserDtoRestService) {
+              public articleStockRest: ArticleStockWithDtoAllRestService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
         this.articleCheckInId = this.articleCheckIn.id;
-        const articleStockObservable: Observable<ArticleStockDto[]> = this.articleStockRest.getAll();
-        const userObservable: Observable<UserDto[]> = this.userRest.getAll();
-        combineLatest(articleStockObservable, userObservable).subscribe(result => {
-          this.articleStockSubject.next(result[0]);
-          this.userSubject.next(result[1]);
+        this.articleStockRest.getAll().subscribe(result => {
+          this.articleStockSubject.next(result);
         }, (err: HttpErrorResponse) =>
           console.log(`Could not get artickeStocks and users. Error: ${err.message}`));
       } else {
         const articleStockObservable: Observable<ArticleStockDto[]> = this.articleStockRest.getAll();
-        const userObservable: Observable<UserDto[]> = this.userRest.getAll();
         const articleCheckInObservable = this.articleCheckInRest.get(+params["id"]);
-        combineLatest(articleCheckInObservable, articleStockObservable, userObservable).subscribe(result => {
+        combineLatest(articleCheckInObservable, articleStockObservable).subscribe(result => {
             this.articleCheckIn = this.ensureUserInArticleCheckIn(result[0], result[1]);
-            this.articleCheckIn = this.ensureArticleInArticleStock(this.articleCheckIn, result[2]);
             this.articleCheckInId = this.articleCheckIn.id;
           },
           (err: HttpErrorResponse) => {
@@ -63,22 +56,8 @@ export class ArticleCheckinEditComponent implements OnInit {
     return articleCheckIn;
   }
 
-  private ensureArticleInArticleStock(articleCheckIn: ArticleCheckInDto, users: UserDto[]): ArticleCheckInDto {
-    this.userSubject.next(users);
-    for (const user of users) {
-      if (this.isUserWithSameId(articleCheckIn, user)) {
-        articleCheckIn.user = user;
-      }
-    }
-    return articleCheckIn;
-  }
-
   private isArticleStockWithSameId(articleCheckIn: ArticleCheckInDto, articleStock: ArticleStockDto): boolean {
     return articleCheckIn.articleStock != null && articleCheckIn.articleStock.id === articleStock.id;
-  }
-
-  private isUserWithSameId(articleCheckIn: ArticleCheckInDto, user: UserDto): boolean {
-    return articleCheckIn.user != null && articleCheckIn.user.id === user.id;
   }
 
   public submit() {
