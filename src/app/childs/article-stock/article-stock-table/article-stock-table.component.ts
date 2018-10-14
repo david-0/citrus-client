@@ -2,7 +2,6 @@ import {Component, Input, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator, MatSort} from "@angular/material";
 import {ArticleStockDto} from "citrus-common";
 import {BaseTableComponent} from "../../../base/base-table.component";
-import {ArticleStockComputationService} from "../article-stock-computation.service";
 import {ArticleStockSettingsService} from "../article-stock-settings.service";
 import {ArticleStockWithDtoAllRestService} from "../article-stock-with-dto-all-rest.service";
 
@@ -19,14 +18,13 @@ export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockD
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(rest: ArticleStockWithDtoAllRestService,
-              settings: ArticleStockSettingsService,
-              private computationService: ArticleStockComputationService) {
+              settings: ArticleStockSettingsService ) {
     super(rest, settings);
   }
 
   ngOnInit() {
     const subscription = this.rest.getAll().subscribe((data: ArticleStockDto[]) => {
-      this.datasource.data = this.computationService.summarizeAllQuantities(data);
+      this.datasource.data = data;
     });
   }
 }

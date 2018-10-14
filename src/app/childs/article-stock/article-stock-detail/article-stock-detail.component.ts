@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ArticleStockDto} from "citrus-common";
 import {Subscription} from "rxjs";
-import {ArticleStockComputationService} from "../article-stock-computation.service";
 import {ArticleStockWithDtoAllRestService} from "../article-stock-with-dto-all-rest.service";
 
 @Component({
@@ -16,8 +15,7 @@ export class ArticleStockDetailComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(private route: ActivatedRoute,
-              private rest: ArticleStockWithDtoAllRestService,
-              private computationService: ArticleStockComputationService) {
+              private rest: ArticleStockWithDtoAllRestService) {
   }
 
   public get articleStock(): ArticleStockDto {
@@ -28,7 +26,7 @@ export class ArticleStockDetailComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       const articleStockPromise = this.rest.get(+params["id"]);
       this.subscription = articleStockPromise.subscribe((articleStock) => {
-        this._articleStock = this.computationService.summarizeQuantities(articleStock);
+        this._articleStock = articleStock;
       });
     });
   }
