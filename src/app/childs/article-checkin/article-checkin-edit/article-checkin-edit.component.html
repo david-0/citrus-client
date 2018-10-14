@@ -18,7 +18,7 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" color="accent">
-      <input matInput placeholder="Menge" #quantity [(ngModel)]="articleCheckIn.quantity"
+      <input matInput placeholder="Menge in {{articleCheckIn.articleStock.article.unitOfMeasurement.shortcut}}" #quantity [(ngModel)]="articleCheckIn.quantity"
              maxlength="256" name="quantity">
       <mat-hint align="end">{{quantity.value.length}}</mat-hint>
     </mat-form-field>

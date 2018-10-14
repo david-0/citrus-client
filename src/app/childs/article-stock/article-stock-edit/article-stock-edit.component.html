@@ -18,7 +18,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <p>Anzahl an Lager: {{articleStock.quantity}}</p>
-    <p>Anzahl reserviert: {{articleStock.reservedQuantity}}</p>
+    <p>Menge an Lager: {{articleStock.quantity}} {{articleStock.article.unitOfMeasurement.shortcut}} (Das ist ein berechneter Wert, keine Anpassung möglich!)</p>
+    <p>Menge reserviert: {{articleStock.reservedQuantity}} {{articleStock.article.unitOfMeasurement.shortcut}} (Das ist ein berechneter Wert, keine Anpassung möglich!)</p>
   </mat-card>
 </form>
