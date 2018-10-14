@@ -18,9 +18,9 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Menge</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.quantity}} {{row.articleStock.article.unitOfMeasurement.shortcut}}</mat-cell>
   </ng-container>
-  <ng-container matColumnDef="date">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Datum</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.date | date: "dd.MM.yyyy"}}</mat-cell>
+  <ng-container matColumnDef="plannedDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Datum geplant</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.plannedDate | date: "dd.MM.yyyy"}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="done">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Erledigt</mat-header-cell>

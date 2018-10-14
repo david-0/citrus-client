@@ -29,9 +29,9 @@
     </mat-form-field>
     <mat-checkbox class="full-width" name="done" [(ngModel)]="articleCheckIn.done">Erledigt</mat-checkbox>
     <mat-form-field class="full-width" color="accent">
-      <input matInput [matDatepicker]="date" [(ngModel)]="articleCheckIn.date" name="date" placeholder="Datum auswählen">
-      <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-      <mat-datepicker #date></mat-datepicker>
+      <input matInput [matDatepicker]="plannedDate" [(ngModel)]="articleCheckIn.plannedDate" name="plannedDate" placeholder="geplantes Datum auswählen">
+      <mat-datepicker-toggle matSuffix [for]="plannedDate"></mat-datepicker-toggle>
+      <mat-datepicker #plannedDate></mat-datepicker>
     </mat-form-field>
   </mat-card>
 </form>
