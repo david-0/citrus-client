@@ -6,7 +6,7 @@ import {Component, OnInit} from "@angular/core";
   styleUrls: ["./article-checkout-overview.component.scss"]
 })
 export class ArticleCheckoutOverviewComponent implements OnInit {
-  public displayedColumns = ["articleStock", "quantity", "date", "comment", "user"];
+  public displayedColumns = ["articleStock", "quantity", "date", "done", "comment", "user"];
 
   constructor() {
   }
