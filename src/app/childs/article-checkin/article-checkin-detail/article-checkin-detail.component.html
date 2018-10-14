@@ -17,6 +17,10 @@
       <div>{{articleCheckIn.quantity}} {{articleCheckIn.articleStock.article.unitOfMeasurement.shortcut}}</div>
     </div>
     <div>
+      <div>Erledigt</div>
+      <div>{{articleCheckIn.done && "Ja" || "Nein"}}</div>
+    </div>
+    <div>
       <div>Kommentar</div>
       <div>{{articleCheckIn.comment}}</div>
     </div>

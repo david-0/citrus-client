@@ -22,6 +22,10 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Datum</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.date | date: "dd.MM.yyyy"}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="done">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Erledigt</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.done && 'Ja' || 'Nein'}}</mat-cell>
+  </ng-container>
   <ng-container matColumnDef="comment">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Kommentar</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.comment}}</mat-cell>
