@@ -20,7 +20,10 @@
   </ng-container>
   <ng-container matColumnDef="done">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Erledigt</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.done && 'Ja' || 'Nein'}} ({{row.doneUser.prename}} {{row.doneUser.name}})</mat-cell>
+    <mat-cell *matCellDef="let row">
+      <span *ngIf="row.done">{{row.doneUser.prename}} {{row.doneUser.name}}<br/>{{row.doneDate | date: "dd.MM.yyyy HH:mm:ss"}}</span>
+      <span *ngIf="!row.done">Nein</span>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="comment">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Kommentar</mat-header-cell>

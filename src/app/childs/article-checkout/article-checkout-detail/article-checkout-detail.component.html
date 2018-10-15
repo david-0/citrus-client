@@ -18,7 +18,10 @@
     </div>
     <div>
       <div>Erledigt</div>
-      <div>{{articleCheckOut.done && "Ja" || "Nein"}} ({{articleCheckOut.doneUser.prename}} {{articleCheckOut.doneUser.name}})</div>
+      <div *ngIf="articleCheckOut.done">{{articleCheckOut.doneUser.prename}} {{articleCheckOut.doneUser.name}}<br/>
+        {{articleCheckOut.doneDate | date: "dd.MM.yyyy HH:mm:ss"}}
+      </div>
+      <div *ngIf="!articleCheckOut.done">Nein</div>
     </div>
     <div>
       <div>Kommentar</div>

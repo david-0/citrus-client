@@ -20,12 +20,12 @@
              maxlength="256" name="comment">
       <mat-hint align="end">{{comment.value.length}}</mat-hint>
     </mat-form-field>
-    <mat-checkbox class="full-width" name="done" [(ngModel)]="articleCheckOut.done">Erledigt</mat-checkbox>
     <mat-form-field class="full-width" color="accent">
       <input matInput [matDatepicker]="plannedDate" [(ngModel)]="articleCheckOut.plannedDate" name="plannedDate"
              placeholder="geplantes Datum auswählen">
       <mat-datepicker-toggle matSuffix [for]="plannedDate"></mat-datepicker-toggle>
       <mat-datepicker #plannedDate></mat-datepicker>
     </mat-form-field>
+    <mat-checkbox class="full-width" name="done" [(ngModel)]="articleCheckOut.done">Erledigt</mat-checkbox>
   </mat-card>
 </form>
