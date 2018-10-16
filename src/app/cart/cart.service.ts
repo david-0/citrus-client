@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {ArticleDto, ArticleStockDto} from "citrus-common";
+import {ArticleStockDto} from "citrus-common";
 import {BehaviorSubject, Observable} from "rxjs";
 import {CartEntry} from "./cart-entry";
 
@@ -31,8 +31,16 @@ export class CartService {
   }
 
   public clear() {
+    this.cart.getValue().forEach(e => e.count = 0);
     this.cart.next([]);
     this.saveCart();
+  }
+
+  public getArticleStock(articleStockId: number): CartEntry {
+    const entries = this.cart.getValue().filter(e => e.articleStock.id === articleStockId);
+    if (entries && entries.length > 0) {
+      return entries[0];
+    }
   }
 
   public addArticleStock(articleStock: ArticleStockDto, count: number) {
@@ -42,6 +50,9 @@ export class CartService {
 
   public removeArticleStock(articleStock: ArticleStockDto) {
     const entries = this.cart.getValue();
+    const entriesArticle = entries.filter(e => e.articleStock.id === articleStock.id);
+    entriesArticle.forEach(e => e.count = 0);
+
     const entriesWithoutArticle = entries.filter(e => e.articleStock.id !== articleStock.id);
     this.cart.next(entriesWithoutArticle);
     this.saveCart();
@@ -53,7 +64,7 @@ export class CartService {
     if (articleAlreadyInCart.length > 0) {
       const newCount = articleAlreadyInCart[0].count + count;
       if (newCount <= 0) {
-        this.cart.next(entries.filter(e => e.articleStock.id !== articleStock.id));
+        this.removeArticleStock(articleStock);
       } else {
         const newPrice = articleStock.article.price;
         articleAlreadyInCart[0].price = newPrice;
