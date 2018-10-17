@@ -67,8 +67,8 @@ export class CheckoutComponent implements OnInit {
   private orderCart(cartEntries: CartEntry[]) {
     const cartEntryDtos = cartEntries.map(entry => new CartEntryDto(entry.articleStock.id, entry.count, entry.price));
     const requestCartDto = new CartDto(cartEntryDtos, this.selectedLocation.id);
-    this.cartRestService.add(requestCartDto).subscribe(responseCartDto => {
-        this.orderNumber = responseCartDto.id;
+    this.cartRestService.add(requestCartDto).subscribe(order => {
+        this.orderNumber = order.id;
         this.state = "finished";
         this.cartService.clear();
       },
