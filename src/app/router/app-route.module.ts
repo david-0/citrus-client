@@ -167,48 +167,48 @@ const routes: Routes = [
         component: ArticleCheckoutDeleteComponent
       },
 
-      {path: "customerOrder", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderOverviewComponent},
-      {path: "customerOrder/create", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderEditComponent},
-      {path: "customerOrder/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderDetailComponent},
+      {path: "order", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderOverviewComponent},
+      {path: "order/create", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderEditComponent},
+      {path: "order/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderDetailComponent},
       {
-        path: "customerOrder/:id/edit",
+        path: "order/:id/edit",
         canActivate: [AuthGuard, AuthGuardAdmin],
         component: CustomerOrderEditComponent,
         children: [
           {
-            path: "customerOrderItem",
+            path: "orderItem",
             canActivate: [AuthGuard, AuthGuardAdmin],
             component: CustomerOrderItemOverviewComponent,
-            outlet: "customerOrderItem"
+            outlet: "orderItem"
           },
           {
-            path: "customerOrderItem/create",
+            path: "orderItem/create",
             canActivate: [AuthGuard, AuthGuardAdmin],
             component: CustomerOrderItemEditComponent,
-            outlet: "customerOrderItem"
+            outlet: "orderItem"
           },
           {
-            path: "customerOrderItem/:id",
+            path: "orderItem/:id",
             canActivate: [AuthGuard, AuthGuardAdmin],
             component: CustomerOrderItemDetailComponent,
-            outlet: "customerOrderItem"
+            outlet: "orderItem"
           },
           {
-            path: "customerOrderItem/:id/edit",
+            path: "orderItem/:id/edit",
             canActivate: [AuthGuard, AuthGuardAdmin],
             component: CustomerOrderItemEditComponent,
-            outlet: "customerOrderItem"
+            outlet: "orderItem"
           },
           {
-            path: "customerOrderItem/:id/delete",
+            path: "orderItem/:id/delete",
             canActivate: [AuthGuard, AuthGuardAdmin],
             component: CustomerOrderItemDeleteComponent,
-            outlet: "customerOrderItem"
+            outlet: "orderItem"
           },
         ]
       },
       {
-        path: "customerOrder/:id/delete",
+        path: "order/:id/delete",
         canActivate: [AuthGuard, AuthGuardAdmin],
         component: CustomerOrderDeleteComponent
       },

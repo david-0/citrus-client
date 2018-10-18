@@ -24,8 +24,8 @@ export class ArticleStockDeleteComponent implements OnInit {
       article => `weil er noch in ${this.getCheckIns(article).length} Einbuchung(en) verwendet wird`);
     this.deleteExecutor.registerCheck(articleStock => this.getCheckOuts(articleStock).length > 0,
       article => `weil er noch in ${this.getCheckOuts(article).length} Ausbuchung(en) verwendet wird`);
-    this.deleteExecutor.registerCheck(articleStock => this.getCustomerOrderItems(articleStock).length > 0,
-      article => `weil er noch in ${this.getCustomerOrderItems(article).length} Bestellung(en) verwendet wird`);
+    this.deleteExecutor.registerCheck(articleStock => this.getOrderItems(articleStock).length > 0,
+      article => `weil er noch in ${this.getOrderItems(article).length} Bestellung(en) verwendet wird`);
     this.deleteExecutor.initDelete();
   }
 
@@ -37,8 +37,8 @@ export class ArticleStockDeleteComponent implements OnInit {
     return this.uniq(articleStock.checkOuts.map(item => item.id));
   }
 
-  private getCustomerOrderItems(articleStock: ArticleStockDto): number[] {
-    return this.uniq(articleStock.customerOrderItems.map(item => item.customerOrder.id));
+  private getOrderItems(articleStock: ArticleStockDto): number[] {
+    return this.uniq(articleStock.customerOrderItems.map(item => item.id));
   }
 
   private uniq(a: number[]): number[] {

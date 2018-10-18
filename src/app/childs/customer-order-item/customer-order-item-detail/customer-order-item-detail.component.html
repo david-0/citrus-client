@@ -4,19 +4,19 @@
   <mat-card-content class="common_table">
     <div>
       <div>Artikel</div>
-      <div>{{customerOrderItem.articleStock.article.description}}</div>
+      <div>{{orderItem.articleStock.article.description}}</div>
     </div>
     <div>
       <div>Menge</div>
-      <div>{{customerOrderItem.quantity}} {{customerOrderItem.articleStock.article.unitOfMeasurement.shortcut}}</div>
+      <div>{{orderItem.quantity}} {{orderItem.articleStock.article.unitOfMeasurement.shortcut}}</div>
     </div>
     <div>
       <div>Preis pro Einheit</div>
-      <div>{{customerOrderItem.copiedPrice | currency: "CHF "}}</div>
+      <div>{{orderItem.copiedPrice | currency: "CHF "}}</div>
     </div>
     <div>
       <div>Preis</div>
-      <div>{{customerOrderItem.copiedPrice * customerOrderItem.quantity | currency: "CHF "}}</div>
+      <div>{{orderItem.copiedPrice * orderItem.quantity | currency: "CHF "}}</div>
     </div>
   </mat-card-content>
 </mat-card>

@@ -1,10 +1,7 @@
-import {HttpErrorResponse} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LocationDto} from "citrus-common";
-import {CartDto} from "citrus-common/lib/dto/cart-dto";
-import {CartEntryDto} from "citrus-common/lib/dto/cart-entry-dto";
 import {CartEntry} from "../../cart/cart-entry";
 import {CartService} from "../../cart/cart.service";
 import {LocationWithOpeninghHoursDtoRestService} from "../../childs/location/location-with-openingh-hours-dto-rest.service";
@@ -65,16 +62,16 @@ export class CheckoutComponent implements OnInit {
   }
 
   private orderCart(cartEntries: CartEntry[]) {
-    const cartEntryDtos = cartEntries.map(entry => new CartEntryDto(entry.articleStock.id, entry.count, entry.price));
-    const requestCartDto = new CartDto(cartEntryDtos, this.selectedLocation.id);
-    this.cartRestService.add(requestCartDto).subscribe(order => {
-        this.orderNumber = order.id;
-        this.state = "finished";
-        this.cartService.clear();
-      },
-      (err: HttpErrorResponse) => {
-        this.error = "Fehler: " + err.message;
-        this.state = "error";
-      });
+    // const cartEntryDtos = cartEntries.map(entry => new CartEntryDto(entry.articleStock.id, entry.count, entry.price));
+    // const requestCartDto = new CartDto(cartEntryDtos, this.selectedLocation.id);
+    // this.cartRestService.add(requestCartDto).subscribe(order => {
+    //     this.orderNumber = order.id;
+    //     this.state = "finished";
+    //     this.cartService.clear();
+    //   },
+    //   (err: HttpErrorResponse) => {
+    //     this.error = "Fehler: " + err.message;
+    //     this.state = "error";
+    //   });
   }
 }

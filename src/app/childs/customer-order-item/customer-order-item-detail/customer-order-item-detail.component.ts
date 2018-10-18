@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {CustomerOrderItemDto} from "citrus-common/lib/dto/customer-order-item-dto";
-import {CustomerOrderWithItemsAndArticleDtoRestService} from "../../customer-order/customer-order-with-items-and-article-dto-rest.service";
+import {OrderItemDto} from "citrus-common/lib/dto/order-item-dto";
+import {OrderWithItemsAndArticleDtoRestService} from "../../customer-order/order-with-items-and-article-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-item-detail",
@@ -9,21 +9,21 @@ import {CustomerOrderWithItemsAndArticleDtoRestService} from "../../customer-ord
   styleUrls: ["./customer-order-item-detail.component.scss"]
 })
 export class CustomerOrderItemDetailComponent implements OnInit{
-  private _customerOrderItem: CustomerOrderItemDto = CustomerOrderItemDto.createEmpty();
+  private _orderItem: OrderItemDto = OrderItemDto.createEmpty();
 
-  constructor(private route: ActivatedRoute, private rest: CustomerOrderWithItemsAndArticleDtoRestService) {
+  constructor(private route: ActivatedRoute, private rest: OrderWithItemsAndArticleDtoRestService) {
   }
 
-  public get customerOrderItem(): CustomerOrderItemDto {
-    return this._customerOrderItem;
+  public get orderItem(): OrderItemDto {
+    return this._orderItem;
   }
 
   ngOnInit() {
-    this.route.parent.params.subscribe(customerOrderParams => {
-      const promise = this.rest.get(+customerOrderParams["id"]);
-      promise.subscribe((customerOrder) => {
+    this.route.parent.params.subscribe(orderParams => {
+      const promise = this.rest.get(+orderParams["id"]);
+      promise.subscribe((order) => {
         this.route.params.subscribe(customerOrderItemParams => {
-          this._customerOrderItem = customerOrder.customerOrderItems.filter(o => o.id === +customerOrderItemParams["id"])[0];
+          this._orderItem = order.customerOrderItems.filter(o => o.id === +customerOrderItemParams["id"])[0];
         });
       });
     });

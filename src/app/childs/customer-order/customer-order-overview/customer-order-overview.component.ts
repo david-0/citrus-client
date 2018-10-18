@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {CustomerOrderDto} from "citrus-common/lib/dto/customer-order-dto";
+import {OrderDto} from "citrus-common/lib/dto/order-dto";
 import {BehaviorSubject} from "rxjs";
-import {CustomerOrderDtoRestService} from "../customer-order-dto-rest.service";
+import {OrderDtoRestService} from "../order-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-overview",
@@ -11,9 +11,9 @@ import {CustomerOrderDtoRestService} from "../customer-order-dto-rest.service";
 export class CustomerOrderOverviewComponent implements OnInit {
 
   public displayedColumns = ["id", "date", "totalPrice", "user"];
-  public dataObservable = new BehaviorSubject<CustomerOrderDto[]>([]);
+  public dataObservable = new BehaviorSubject<OrderDto[]>([]);
 
-  constructor(private rest: CustomerOrderDtoRestService) {
+  constructor(private rest: OrderDtoRestService) {
   }
 
   ngOnInit() {

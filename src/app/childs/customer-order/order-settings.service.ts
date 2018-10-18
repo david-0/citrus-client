@@ -4,7 +4,7 @@ import {SettingsServiceInterface} from "../../table-support/settings-service-int
 @Injectable({
   providedIn: "root"
 })
-export class CustomerOrderSettingsService implements SettingsServiceInterface {
+export class OrderSettingsService implements SettingsServiceInterface {
 
   public pageSize = 5;
   public pageIndex = 0;

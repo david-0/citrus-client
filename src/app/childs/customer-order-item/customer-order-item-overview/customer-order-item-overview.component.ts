@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CustomerOrderItemDto} from "citrus-common/lib/dto/customer-order-item-dto";
+import {OrderItemDto} from "citrus-common/lib/dto/order-item-dto";
 import {BehaviorSubject} from "rxjs";
-import {CustomerOrderWithItemsAndArticleDtoRestService} from "../../customer-order/customer-order-with-items-and-article-dto-rest.service";
+import {OrderWithItemsAndArticleDtoRestService} from "../../customer-order/order-with-items-and-article-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-item-overview",
@@ -13,19 +13,19 @@ export class CustomerOrderItemOverviewComponent implements OnInit {
 
   public id: number;
 
-  dataObservable = new BehaviorSubject<CustomerOrderItemDto[]>([]);
+  dataObservable = new BehaviorSubject<OrderItemDto[]>([]);
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private rest: CustomerOrderWithItemsAndArticleDtoRestService) {
+              private rest: OrderWithItemsAndArticleDtoRestService) {
   }
 
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
       if (params["id"] !== null) {
         this.id = +params["id"];
-        this.rest.get(+params["id"]).subscribe(customerOrder => {
-          this.dataObservable.next(customerOrder.customerOrderItems);
+        this.rest.get(+params["id"]).subscribe(order => {
+          this.dataObservable.next(order.customerOrderItems);
         });
       }
     });

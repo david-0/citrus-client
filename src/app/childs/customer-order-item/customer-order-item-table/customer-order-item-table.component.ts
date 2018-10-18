@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {CustomerOrderItemDto} from "citrus-common/lib/dto/customer-order-item-dto";
+import {OrderItemDto} from "citrus-common/lib/dto/order-item-dto";
 import {BehaviorSubject} from "rxjs";
 import {BaseTableComponent} from "../../../base/base-table.component";
 
@@ -8,9 +8,9 @@ import {BaseTableComponent} from "../../../base/base-table.component";
   templateUrl: "./customer-order-item-table.component.html",
   styleUrls: ["./customer-order-item-table.component.scss"]
 })
-export class CustomerOrderItemTableComponent extends BaseTableComponent<CustomerOrderItemDto> implements OnInit {
+export class CustomerOrderItemTableComponent extends BaseTableComponent<OrderItemDto> implements OnInit {
 
-  @Input() dataObservable: BehaviorSubject<CustomerOrderItemDto[]>;
+  @Input() dataObservable: BehaviorSubject<OrderItemDto[]>;
   public displayedColumns = ["article", "quantity", "copiedPrice", "totalPrice"];
 
   constructor() {

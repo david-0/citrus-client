@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {CustomerOrderDto} from "citrus-common/lib/dto/customer-order-dto";
+import {OrderDto} from "citrus-common/lib/dto/order-dto";
 import {Subscription} from "rxjs";
-import {CustomerOrderWithItemsAndArticleDtoRestService} from "../customer-order-with-items-and-article-dto-rest.service";
+import {OrderWithItemsAndArticleDtoRestService} from "../order-with-items-and-article-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-detail",
@@ -10,21 +10,21 @@ import {CustomerOrderWithItemsAndArticleDtoRestService} from "../customer-order-
   styleUrls: ["./customer-order-detail.component.scss"]
 })
 export class CustomerOrderDetailComponent implements OnInit , OnDestroy {
-  private _customerOrder: CustomerOrderDto = CustomerOrderDto.createEmpty();
+  private _order: OrderDto = OrderDto.createEmpty();
   private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private rest: CustomerOrderWithItemsAndArticleDtoRestService) {
+  constructor(private route: ActivatedRoute, private rest: OrderWithItemsAndArticleDtoRestService) {
   }
 
-  public get customerOrder(): CustomerOrderDto {
-    return this._customerOrder;
+  public get order(): OrderDto {
+    return this._order;
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       const promise = this.rest.get(+params["id"]);
-      this.subscription = promise.subscribe((customerOrder) => {
-        this._customerOrder = customerOrder;
+      this.subscription = promise.subscribe((order) => {
+        this._order = order;
       });
     });
   }

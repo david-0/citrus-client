@@ -4,12 +4,12 @@
   <div class="main-container">
     <mat-card class="mat-card-padding">
       <mat-form-field class="full-width" color="accent">
-        <input matInput placeholder=Menge #quantity [(ngModel)]="customerOrderItem.quantity"
+        <input matInput placeholder=Menge #quantity [(ngModel)]="orderItem.quantity"
                maxlength="256" name="date">
         <mat-hint align="end">{{quantity.value.length}}</mat-hint>
       </mat-form-field>
       <mat-form-field class="full-width" color="accent">
-        <mat-select placeholder="Artikel" name="article" [(ngModel)]="customerOrderItem.article">
+        <mat-select placeholder="Artikel" name="article" [(ngModel)]="orderItem.article">
           <mat-option *ngFor="let article of _articleSubject | async" [value]="article">
             {{article.description}} ({{article.price | currency: "CHF "}} pro {{article.unitOfMeasurement.shortcut}})
           </mat-option>
