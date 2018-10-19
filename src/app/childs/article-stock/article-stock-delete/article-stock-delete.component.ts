@@ -38,7 +38,7 @@ export class ArticleStockDeleteComponent implements OnInit {
   }
 
   private getOrderItems(articleStock: ArticleStockDto): number[] {
-    return this.uniq(articleStock.customerOrderItems.map(item => item.id));
+    return this.uniq(articleStock.orderItems.map(item => item.id));
   }
 
   private uniq(a: number[]): number[] {
