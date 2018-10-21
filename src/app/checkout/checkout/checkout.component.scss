@@ -7,11 +7,37 @@
   margin: 5px;
 }
 
-.step1-cards {
+.step-cards--background {
   display: flex;
+  flex-direction: row;
+  background-color: #eeeeee;
+  padding: 0.5em;
+  flex-wrap: wrap;
 }
 
-.step-cards--background {
-  background-color: #eeeeee;
+.flex {
+  flex: 1 1 30%;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.total--line {
   flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+
+.total {
+  font-size: 20pt;
+}
+
+.price {
+  font-size: 1.2em;
+  font-weight: bold;
 }

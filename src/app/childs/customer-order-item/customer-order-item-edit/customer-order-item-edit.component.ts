@@ -35,8 +35,8 @@ export class CustomerOrderItemEditComponent implements OnInit {
 
   private updateOrder(orderParams) {
     const promise = this.orderRest.get(+orderParams["id"]);
-    promise.subscribe((customerOrder) => {
-      this.updateCustomerOrderItem(customerOrder);
+    promise.subscribe((order) => {
+      this.updateCustomerOrderItem(order);
     });
   }
 

@@ -20,12 +20,12 @@ export class CustomerOrderItemDetailComponent implements OnInit{
 
   ngOnInit() {
     this.route.parent.params.subscribe(orderParams => {
-      const promise = this.rest.get(+orderParams["id"]);
-      promise.subscribe((order) => {
-        this.route.params.subscribe(customerOrderItemParams => {
-          this._orderItem = order.customerOrderItems.filter(o => o.id === +customerOrderItemParams["id"])[0];
-        });
-      });
+      // const promise = this.rest.get(+orderParams["id"]);
+      // promise.subscribe((order) => {
+      //   this.route.params.subscribe(orderItemParams => {
+      //     this._orderItem = order.orderItems.filter(o => o.id === +orderItemParams["id"])[0];
+      //   });
+      // });
     });
   }
 }

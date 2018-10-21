@@ -2,19 +2,29 @@
   <mat-card-title>Bestellungsdetails</mat-card-title>
   <mat-card class="common_table">
     <div class="bold">
-      <div>Beschreibung</div>
-      <div>Menge</div>
-      <div>Preis</div>
+      <div>Standort</div>
     </div>
-    <div *ngFor="let cartEntry of cartEntries">
-      <div>{{cartEntry.article.description}}</div>
-      <div>{{cartEntry.count}} {{cartEntry.article.unitOfMeasurement.shortcut}}</div>
-      <div>{{cartEntry.price * cartEntry.count | currency: 'CHF '}}</div>
+    <div *ngFor="let cartLocation of cart.cartLocations">
+      <div>
+        <div><p>{{cartLocation.location.description}}</p>
+          <div class="common_table">
+            <div class="bold">
+              <div>Beschreibung</div>
+              <div>Menge</div>
+              <div>Preis</div>
+            </div>
+            <div *ngFor="let cartItem of cartLocation.cartItems">
+              <div>{{cartItem.article.description}}</div>
+              <div>{{cartItem.quantity}} {{cartItem.article.unitOfMeasurement.shortcut}}</div>
+              <div>{{cartItem.price * cartItem.count | currency: 'CHF '}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="bold">
       <div>Total</div>
-      <div></div>
-      <div>{{total | currency: 'CHF '}}</div>
+      <div>{{cart.totalPrice | currency: 'CHF '}}</div>
     </div>
   </mat-card>
 </mat-card>

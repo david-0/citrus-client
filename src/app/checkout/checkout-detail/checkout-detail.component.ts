@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {CartEntry} from "../../cart/cart-entry";
+import {CartDto} from "citrus-common";
 
 @Component({
   selector: "app-checkout-detail",
@@ -8,13 +8,11 @@ import {CartEntry} from "../../cart/cart-entry";
 })
 export class CheckoutDetailComponent implements OnInit {
 
-  @Input() cartEntries: CartEntry[];
-  total = 0;
+  @Input() cart: CartDto;
 
   constructor() {
   }
 
   ngOnInit() {
-    this.cartEntries.forEach(entry => { this.total = this.total + (entry.price * entry.count); } );
   }
 }
