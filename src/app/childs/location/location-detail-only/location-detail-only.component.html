@@ -14,7 +14,7 @@
       <div>Öffnungszeiten</div>
       <div>
         <p class="opening-hour-line" *ngFor="let openingHour of location.openingHours">
-          {{openingHour.fromDate | date: "EEEE dd.MM.y"}}, geöffnet von: {{openingHour.fromDate | date: "HH:mm"}}
+          {{openingHour.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von: {{openingHour.fromDate | date: "HH:mm"}}
           bis: {{openingHour.toDate | date: "HH:mm"}}
         </p>
       </div>

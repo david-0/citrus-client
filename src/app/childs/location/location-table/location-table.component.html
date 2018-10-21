@@ -18,7 +18,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Öffnungszeiten</mat-header-cell>
     <mat-cell *matCellDef="let row" class="small-font start">
       <div class="opening-hour-line" *ngFor="let openingHour of row.openingHours">
-        {{openingHour.fromDate | date: "EEEE dd.MM.y"}}, geöffnet von: {{openingHour.fromDate | date: "HH:mm"}}
+        {{openingHour.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von: {{openingHour.fromDate | date: "HH:mm"}}
         bis: {{openingHour.toDate | date: "HH:mm"}}
       </div>
     </mat-cell>

@@ -1,4 +1,6 @@
+import {registerLocaleData} from "@angular/common";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import localeDeCH from "@angular/common/locales/de-CH";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
@@ -44,6 +46,7 @@ import {TokenInterceptor} from "./authentication/token-interceptor";
 import {CartService} from "./cart/cart.service";
 import {ShoppingCartComponent} from "./cart/shopping-cart/shopping-cart.component";
 import {ChangeMyPasswordComponent} from "./change-my-password/change-my-password.component";
+import {CartLocationDetailComponent} from "./checkout/cart-location-detail/cart-location-detail.component";
 import {CheckoutDetailComponent} from "./checkout/checkout-detail/checkout-detail.component";
 import {CheckoutComponent} from "./checkout/checkout/checkout.component";
 import {AddressDeleteComponent} from "./childs/address/address-delete/address-delete.component";
@@ -208,6 +211,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     ArticleCheckoutTableComponent,
     ArticleCheckoutDetailComponent,
     PublicArticleStockGridComponent,
+    CartLocationDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -273,4 +277,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor() {
+    registerLocaleData(localeDeCH);
+  }
 }
