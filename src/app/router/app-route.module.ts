@@ -65,7 +65,7 @@ const routes: Routes = [
   {path: "dashboard", component: DashboardComponent},
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent},
-  {path: "checkout", canActivate: [AuthGuard], component: CheckoutComponent},
+  {path: "checkout/:id", canActivate: [AuthGuard], component: CheckoutComponent},
   {path: "changeMyPassword", component: ChangeMyPasswordComponent},
   {path: "sale", canActivate: [AuthGuard, AuthGuardSale], component: SaleOverviewComponent},
   {

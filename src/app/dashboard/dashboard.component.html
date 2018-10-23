@@ -1,26 +1,7 @@
 <mat-sidenav-container class="sidenav-container" style="height: calc(100% - 64px);">
   <mat-sidenav position="end" #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
-               (closed)="events.push('close!')" class="sidebar sidebar-positions" [fixedInViewport]="false">
-    <div class="cart-header">
-      <mat-icon class="icon-margin">shopping_cart</mat-icon>
-      <span class="fill-remaining-space">Warenkorb</span>
-      <button *ngIf="(cartService.getCart() | async).length > 0" mat-button type="submit" class="button--responsive" (click)="clearCart()">
-        <mat-icon>delete</mat-icon>
-        <span class="size-xl">leeren</span>
-      </button>
-    </div>
+               (closed)="events.push('close!')" class="sidebar sidebar-positions shopping--cart" [fixedInViewport]="false">
     <app-shopping-cart></app-shopping-cart>
-    <span class="fill-remaining-space"></span>
-    <div *ngIf="(cartService.getCart() | async).length > 0"
-         class="cart-total-price">
-      <span class="space">Gesamter Preis: </span>
-      <span class="space highlighted-font">{{totalPrice | currency: 'CHF '}}</span>
-    </div>
-    <div class="cart-footer">
-      <button mat-button type="submit" class="cash-button" routerLink="/checkout">
-        <span class="size-xl">zur Kasse</span>
-      </button>
-    </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-public-article-stock-grid class="articles"></app-public-article-stock-grid>

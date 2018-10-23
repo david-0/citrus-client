@@ -12,27 +12,27 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>geplante Abholung</ng-template>
-      <div class="locationLine" *ngFor="let cartLocation of preparedCart.cartLocations">
-        <mat-card class="step-cards--background">
-          <app-cart-location-detail class="flex" [cartLocation]="cartLocation"></app-cart-location-detail>
-          <mat-card class="flex">
-            <mat-card-title>Abholung geplant am:</mat-card-title>
-            <mat-radio-group class="radio-group" formControlName="firstCtrl">
-              <mat-radio-button class="radio-button"
-                                *ngFor="let openingHour of cartLocation.location.openingHours"
-                                [value]="openingHour">
-                {{openingHour.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von: {{openingHour.fromDate |
-                date:
-                "HH:mm"}}
-                bis: {{openingHour.toDate | date: "HH:mm"}}
-              </mat-radio-button>
-              <mat-radio-button class="radio-button" [value]='null'>
-                Unbestimmt
-              </mat-radio-button>
-            </mat-radio-group>
-          </mat-card>
-        </mat-card>
-      </div>
+      <!--<div class="locationLine" *ngFor="let cartLocation of preparedCart.cartLocations">-->
+        <!--<mat-card class="step-cards&#45;&#45;background">-->
+          <!--<app-cart-location-detail class="flex" [cartLocation]="cartLocation"></app-cart-location-detail>-->
+          <!--<mat-card class="flex">-->
+            <!--<mat-card-title>Abholung geplant am:</mat-card-title>-->
+            <!--<mat-radio-group class="radio-group" formControlName="firstCtrl">-->
+              <!--<mat-radio-button class="radio-button"-->
+                                <!--*ngFor="let openingHour of cartLocation.location.openingHours"-->
+                                <!--[value]="openingHour">-->
+                <!--{{openingHour.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von: {{openingHour.fromDate |-->
+                <!--date:-->
+                <!--"HH:mm"}}-->
+                <!--bis: {{openingHour.toDate | date: "HH:mm"}}-->
+              <!--</mat-radio-button>-->
+              <!--<mat-radio-button class="radio-button" [value]='null'>-->
+                <!--Unbestimmt-->
+              <!--</mat-radio-button>-->
+            <!--</mat-radio-group>-->
+          <!--</mat-card>-->
+        <!--</mat-card>-->
+      <!--</div>-->
       <mat-toolbar class="footer">
         <button mat-raised-button matStepperNext (click)="back()">Abbrechen</button>
         <span class="fill-remaining-space"></span>
@@ -50,11 +50,11 @@
         </mat-card>
       </mat-card>
     </div>
-    <div class="locationLine" *ngFor="let cartLocation of preparedCart.cartLocations">
-      <mat-card class="step-cards--background">
-        <app-cart-location-detail class="flex" [cartLocation]="cartLocation"></app-cart-location-detail>
-      </mat-card>
-    </div>
+    <!--<div class="locationLine" *ngFor="let cartLocation of preparedCart.cartLocations">-->
+      <!--<mat-card class="step-cards&#45;&#45;background">-->
+        <!--<app-cart-location-detail class="flex" [cartLocation]="cartLocation"></app-cart-location-detail>-->
+      <!--</mat-card>-->
+    <!--</div>-->
     <mat-toolbar class="footer">
       <button mat-raised-button matStepperNext (click)="back()">Abbrechen</button>
       <button mat-raised-button matStepperPrevious>Zurück</button>

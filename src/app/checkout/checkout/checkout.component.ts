@@ -1,10 +1,9 @@
 import {HttpErrorResponse} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CartDto, LocationDto, OpeningHourDto} from "citrus-common";
 import {CartItemDto} from "citrus-common/lib/dto/cart-item-dto";
-import {CartLocationDto} from "citrus-common/lib/dto/cart-location-dto";
 import {CartEntry} from "../../cart/cart-entry";
 import {CartService} from "../../cart/cart.service";
 import {LocationWithOpeninghHoursDtoRestService} from "../../childs/location/location-with-openingh-hours-dto-rest.service";
@@ -23,7 +22,7 @@ export class CheckoutComponent implements OnInit {
   locations: LocationDto[];
   state = "emptyCart";
   orderNumber: number;
-  preparedCart = new CartDto([], 0);
+  preparedCart = new CartDto(LocationDto.createEmpty(), 0);
   error: string;
 
   constructor(private router: Router,
@@ -47,10 +46,10 @@ export class CheckoutComponent implements OnInit {
     });
     this.locationRest.getAll().subscribe(locations => {
       this.locations = locations;
-      this.cartService.getCart().subscribe(cart => {
+      this.cartService.getCarts().subscribe(cart => {
         if (cart.length > 0) {
           this.state = "ongoing";
-          this.preparedCart = this.prepareOrder(cart);
+          // this.preparedCart = this.prepareOrder(cart);
         }
       });
     });
@@ -64,29 +63,29 @@ export class CheckoutComponent implements OnInit {
     this.state = "saving";
     this.orderCart(this.preparedCart);
   }
-
-  private prepareOrder(cartEntires: CartEntry[]): CartDto {
-    let totalPrice = 0;
-    const locationMap = new Map<LocationDto, CartEntry[]>();
-    cartEntires.forEach(e => {
-      const location = this.getLocationWithOpeningHours(e.articleStock.location.id);
-      if (!locationMap.has(location)) {
-        locationMap.set(location, []);
-      }
-      locationMap.get(location).push(e);
-    });
-    const cartLocations: CartLocationDto[] = [];
-    locationMap.forEach((entriesAtSameLocation: CartEntry[], location: LocationDto) => {
-      const cartLocation = new CartLocationDto(location);
-      entriesAtSameLocation.forEach(e => {
-        const cartItem = new CartItemDto(e.articleStock.article, e.count, e.price);
-        totalPrice += +e.count * +e.price;
-        cartLocation.cartItems.push(cartItem);
-      });
-      cartLocations.push(cartLocation);
-    });
-    return new CartDto(cartLocations, totalPrice);
-  }
+  //
+  // private prepareOrder(cartEntires: CartEntry[]): CartDto {
+  //   let totalPrice = 0;
+  //   const locationMap = new Map<LocationDto, CartEntry[]>();
+  //   cartEntires.forEach(e => {
+  //     const location = this.getLocationWithOpeningHours(e.articleStock.location.id);
+  //     if (!locationMap.has(location)) {
+  //       locationMap.set(location, []);
+  //     }
+  //     locationMap.get(location).push(e);
+  //   });
+  //   const cartLocations: CartLocationDto[] = [];
+  //   locationMap.forEach((entriesAtSameLocation: CartEntry[], location: LocationDto) => {
+  //     const cartLocation = new CartLocationDto(location);
+  //     entriesAtSameLocation.forEach(e => {
+  //       const cartItem = new CartItemDto(e.articleStock.article, e.count, e.price);
+  //       totalPrice += +e.count * +e.price;
+  //       cartLocation.cartItems.push(cartItem);
+  //     });
+  //     cartLocations.push(cartLocation);
+  //   });
+  //   return new CartDto(cartLocations, totalPrice);
+  // }
 
   public async getOpeningHours(locationId: number): Promise<OpeningHourDto[]> {
     return new Promise<OpeningHourDto[]>((resolve, reject) => {

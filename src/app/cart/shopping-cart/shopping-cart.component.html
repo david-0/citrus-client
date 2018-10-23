@@ -1,34 +1,47 @@
-<mat-table #table [dataSource]="datasource" matSort>
-  <ng-container matColumnDef="article">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Artikel</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="column-container cart-article-column">
-      <div class="container cart-data-font">
-        <span class="cart-article-font">{{row.articleStock.article.description}}</span>
-        <span class="fill-remaining-space"></span>
-        <span>{{row.articleStock.location.description}}</span>
+<div class="cart-header">
+  <mat-icon class="icon-margin">shopping_cart</mat-icon>
+  <span class="fill-remaining-space">Warenkorb</span>
+  <button *ngIf="(cartService.getCarts() | async).length > 0" mat-button type="submit" class="button--responsive"
+          (click)="cartService.clear()">
+    <mat-icon>delete</mat-icon>
+    <span class="size-xl">leeren</span>
+  </button>
+</div>
+<div *ngFor="let cart of (cartService.getCarts() | async)">
+  <div>
+    <div class="title--line cart-data-font">
+      <div class="title">{{cart.location.description}}</div>
+      <div class="fill-remaining-space"></div>
+      <div class="title--price">{{cart.totalPrice | currency: 'CHF '}}</div>
+      <button mat-button type="submit" class="cash-button" routerLink="/checkout/{{cart.location.id}}">
+        <span class="size-xl">zur Kasse</span>
+      </button>
+    </div>
+    <div *ngFor="let item of cart.cartItems" class="cart--item">
+      <div class="cart--item--text">
+        <div class="container cart-data-font">
+          <span class="cart-article-font">{{item.article.description}}</span>
+        </div>
+        <div class="container cart-data-font">
+          <span>{{item.quantity}} {{item.article.unitOfMeasurement.shortcut}}</span>
+          <span class="fill-remaining-space"></span>
+          <span class="cart-article-font">{{item.price * item.quantity | currency: 'CHF '}}</span>
+        </div>
       </div>
-      <div class="container cart-data-font">
-        <span>{{row.count}} {{row.articleStock.article.unitOfMeasurement.shortcut}}</span>
-        <span class="fill-remaining-space"></span>
-        <span class="cart-article-font">{{row.price * row.count | currency: 'CHF '}}</span>
+      <div class="container cart-data-font center-buttons">
+        <button mat-button type="submit" class="button--responsive cart-color-green"
+                (click)="decrease(cart, item)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
+        <button mat-button type="submit" class="button--responsive cart-color-green"
+                (click)="increase(cart, item)">
+          <mat-icon>add_circle</mat-icon>
+        </button>
+        <button mat-button type="submit" class="button--responsive cart-color-red"
+                (click)="remove(cart, item)">
+          <mat-icon>remove_shopping_cart</mat-icon>
+        </button>
       </div>
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="cart">
-    <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-    <mat-cell *matCellDef="let row" class="center-buttons">
-      <button mat-button type="submit" class="button--responsive cart-color-green" (click)="decrease(row)">
-        <mat-icon>remove_circle</mat-icon>
-      </button>
-      <button mat-button type="submit" class="button--responsive cart-color-green" (click)="increase(row)">
-        <mat-icon>add_circle</mat-icon>
-      </button>
-      <button mat-button type="submit" class="button--responsive cart-color-red" (click)="remove(row)">
-        <mat-icon>remove_shopping_cart</mat-icon>
-      </button>
-    </mat-cell>
-  </ng-container>
-  <mat-row class="table-row--highligthed" *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
-
-
+    </div>
+  </div>
+</div>

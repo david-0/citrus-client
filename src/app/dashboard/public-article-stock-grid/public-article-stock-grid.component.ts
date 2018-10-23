@@ -1,5 +1,4 @@
 import {Component, OnInit} from "@angular/core";
-import {ArticleDto, ArticleStockDto} from "citrus-common";
 import {CartService} from "../../cart/cart.service";
 import {ArticleInSaleDtoRestService} from "../article-in-sale--dto-rest.service";
 import {ArticleStockWrapper} from "../ArticleStockWrapper";
@@ -29,9 +28,9 @@ export class PublicArticleStockGridComponent implements OnInit {
         .map(a => new ArticleWrapper(a));
       this._articlesWrappers.forEach(a => {
         a.articleStockWrappers.forEach(s => {
-          const cartEntry = this.cartService.getArticleStock(s.articleStock.id);
-          if (cartEntry) {
-            s.cartEntry = cartEntry;
+          const cartItem = this.cartService.getOrderItem(s.articleStock.location.id, s.articleStock.article.id);
+          if (cartItem) {
+            s.cartItem = cartItem;
           }
         });
       });
@@ -39,7 +38,8 @@ export class PublicArticleStockGridComponent implements OnInit {
   }
 
   addToCart(articleStockWrapper: ArticleStockWrapper) {
-    this.cartService.addArticleStock(articleStockWrapper.articleStock, 1);
-    articleStockWrapper.cartEntry = this.cartService.getArticleStock(articleStockWrapper.articleStock.id);
+    this.cartService.addArticle(articleStockWrapper.articleStock.location, articleStockWrapper.articleStock.article, 1);
+    articleStockWrapper.cartItem = this.cartService.getOrderItem(
+      articleStockWrapper.articleStock.location.id, articleStockWrapper.articleStock.article.id);
   }
 }

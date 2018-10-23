@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {MatTableDataSource} from "@angular/material";
-import {CartEntry} from "../cart-entry";
+import {CartDto, CartItemDto} from "citrus-common";
 import {CartService} from "../cart.service";
 
 @Component({
@@ -10,29 +9,21 @@ import {CartService} from "../cart.service";
 })
 export class ShoppingCartComponent implements OnInit {
 
-  datasource = new MatTableDataSource<CartEntry>();
-  public displayedColumns = ["article", "cart"];
-
-  constructor(private cartService: CartService) {
-    this.datasource.data = [];
-    const subscription = this.cartService.getCart().subscribe(data => {
-      this.datasource.data = data;
-    });
+  constructor(public cartService: CartService) {
   }
 
   ngOnInit() {
   }
 
-  public increase(cartEntry: CartEntry) {
-    this.cartService.addArticleStock(cartEntry.articleStock, 1);
+  public increase(cart: CartDto, cartItem: CartItemDto) {
+    this.cartService.addArticle(cart.location, cartItem.article, 1);
   }
 
-  public decrease(cartEntry: CartEntry) {
-    this.cartService.addArticleStock(cartEntry.articleStock, -1);
+  public decrease(cart: CartDto, cartItem: CartItemDto) {
+    this.cartService.addArticle(cart.location, cartItem.article, -1);
   }
 
-  public remove(cartEntry: CartEntry) {
-    this.cartService.removeArticleStock(cartEntry.articleStock);
+  public remove(cart: CartDto, cartItem: CartItemDto) {
+    this.cartService.removeArticle(cart.location, cartItem.article);
   }
-
 }

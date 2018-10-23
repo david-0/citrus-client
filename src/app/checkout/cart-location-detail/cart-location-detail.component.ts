@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {CartLocationDto} from "citrus-common/lib/dto/cart-location-dto";
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: "app-cart-location-detail",
@@ -8,8 +7,7 @@ import {CartLocationDto} from "citrus-common/lib/dto/cart-location-dto";
 })
 export class CartLocationDetailComponent implements OnInit {
 
-
-  @Input() cartLocation: CartLocationDto;
+  // @Input() cartLocation: CartLocationDto;
 
   constructor() {
   }

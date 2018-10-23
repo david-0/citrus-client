@@ -1,8 +1,8 @@
-import {ArticleStockDto} from "citrus-common";
+import {ArticleStockDto, CartItemDto} from "citrus-common";
 import {CartEntry} from "../cart/cart-entry";
 
 export class ArticleStockWrapper {
-  public cartEntry: CartEntry;
+  public cartItem: CartItemDto;
 
   constructor(public articleStock: ArticleStockDto) {
   }
