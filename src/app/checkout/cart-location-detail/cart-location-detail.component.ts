@@ -1,4 +1,5 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
+import {CartDto} from "citrus-common";
 
 @Component({
   selector: "app-cart-location-detail",
@@ -7,7 +8,7 @@ import {Component, OnInit} from "@angular/core";
 })
 export class CartLocationDetailComponent implements OnInit {
 
-  // @Input() cartLocation: CartLocationDto;
+  @Input() cart: CartDto;
 
   constructor() {
   }

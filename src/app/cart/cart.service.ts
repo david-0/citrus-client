@@ -29,6 +29,18 @@ export class CartService {
     return this.cart;
   }
 
+  public getCartAtLocation(locationId: number): CartDto {
+    if (this.hasCart(locationId)) {
+      return this.getCart(locationId);
+    }
+  }
+
+  public clearCart(locationId: number) {
+    if (this.hasCart(locationId)) {
+      return this.removeCart(locationId);
+    }
+  }
+
   public clear() {
     this.cart.getValue().forEach(cart => cart.cartItems.forEach(i => i.quantity = 0));
     this.cart.next([]);
@@ -97,11 +109,13 @@ export class CartService {
     const carts = this.cart.getValue();
     carts.push(cart);
     this.cart.next(carts);
+    this.saveCarts();
   }
 
   private removeCart(locationId: number) {
     const carts = this.cart.getValue();
     this.cart.next(carts.filter(c => c.location.id !== locationId));
+    this.saveCarts();
   }
 
   private hasCartItem(cart: CartDto, articleId: number): boolean {

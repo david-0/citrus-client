@@ -1,12 +1,12 @@
 <mat-card class="mat-card-padding vertical">
-  <mat-card-title>Standort: <b>{{cartLocation.location.description}}</b></mat-card-title>
+  <mat-card-title>Standort: <b>{{cart.location.description}}</b></mat-card-title>
   <mat-card-content class="common_table">
     <div class="bold">
       <div>Beschreibung</div>
       <div>Menge</div>
       <div>Preis</div>
     </div>
-    <div *ngFor="let cartItem of cartLocation.cartItems">
+    <div *ngFor="let cartItem of cart.cartItems">
       <div>{{cartItem.article.description}}</div>
       <div>{{cartItem.quantity}} {{cartItem.article.unitOfMeasurement.shortcut}}</div>
       <div>{{cartItem.price * cartItem.quantity | currency: 'CHF '}}</div>
