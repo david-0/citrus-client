@@ -1,6 +1,11 @@
 <div class="noPadding toolbar-content">
   <mat-toolbar color="primary">
-    <span><a class="title" routerLink="/">Citrus</a></span>
+    <span>
+      <a class="title" routerLink="/">
+        <mat-icon>home</mat-icon>
+        <span class="button-space">Citrus</span>
+      </a>
+    </span>
     <span class="fill-remaining-space"></span>
     <button *ngIf="authService.isSale()" mat-raised-button class="sale-button" routerLink="/sale">
       <mat-icon>money</mat-icon>
