@@ -5,21 +5,21 @@ import {AuthenticationService} from "./authentication.service";
 @Injectable({
   providedIn: "root",
 })
-export class AuthGuardSale implements CanActivate, CanActivateChild {
+export class AuthGuardStore implements CanActivate, CanActivateChild {
 
   constructor(private authenticationService: AuthenticationService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.checkSale();
+    return this.checkAdmin();
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     return this.canActivate(route, state);
   }
 
-  checkSale(): boolean {
-    if (this.authenticationService.isSale()) {
+  checkAdmin(): boolean {
+    if (this.authenticationService.isStore()) {
       return true;
     }
     return false;

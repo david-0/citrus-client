@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {AuthGuardAdmin} from "../authentication/auth-guard-admin.service";
 import {AuthGuardSale} from "../authentication/auth-guard-sale.service";
+import {AuthGuardStore} from "../authentication/auth-guard-store.service";
 import {AuthGuard} from "../authentication/auth-guard.service";
 import {ChangeMyPasswordComponent} from "../change-my-password/change-my-password.component";
 import {CheckoutComponent} from "../checkout/checkout/checkout.component";
@@ -59,6 +60,9 @@ import {DashboardComponent} from "../dashboard/dashboard.component";
 import {LoginComponent} from "../login/login.component";
 import {LogoutComponent} from "../logout/logout.component";
 import {SaleOverviewComponent} from "../sales/sale-overview/sale-overview.component";
+import {StoreCheckInComponent} from "../store/store-check-in/store-check-in.component";
+import {StoreCheckOutComponent} from "../store/store-check-out/store-check-out.component";
+import {StoreEstimateComponent} from "../store/store-estimate/store-estimate.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
@@ -68,6 +72,9 @@ const routes: Routes = [
   {path: "checkout/:id", canActivate: [AuthGuard], component: CheckoutComponent},
   {path: "changeMyPassword", component: ChangeMyPasswordComponent},
   {path: "sale", canActivate: [AuthGuard, AuthGuardSale], component: SaleOverviewComponent},
+  {path: "store/checkIn", canActivate: [AuthGuard, AuthGuardStore], component: StoreCheckInComponent},
+  {path: "store/checkOut", canActivate: [AuthGuard, AuthGuardStore], component: StoreCheckOutComponent},
+  {path: "store/estimate", canActivate: [AuthGuard, AuthGuardStore], component: StoreEstimateComponent},
   {
     path: "administration", canActivate: [AuthGuard, AuthGuardAdmin], component: AdministrationComponent, children: [
       {path: "address", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressOverviewComponent},
@@ -144,7 +151,7 @@ const routes: Routes = [
         canActivate: [AuthGuard, AuthGuardAdmin],
         component: ArticleCheckinDeleteComponent
       },
-      
+
       {path: "articleCheckOut", canActivate: [AuthGuard, AuthGuardAdmin], component: ArticleCheckoutOverviewComponent},
       {
         path: "articleCheckOut/create",

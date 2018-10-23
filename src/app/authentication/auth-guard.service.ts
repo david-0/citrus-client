@@ -2,7 +2,9 @@ import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot} from "@angular/router";
 import {AuthenticationService} from "./authentication.service";
 
-@Injectable()
+@Injectable({
+  providedIn: "root",
+})
 export class AuthGuard implements CanActivate, CanActivateChild {
 
   constructor(private authenticationService: AuthenticationService, private router: Router) {
@@ -22,7 +24,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       return true;
     }
     // Navigate to the login page
-    this.router.navigate(["/login"], { queryParams: { returnUrl: url }});
+    this.router.navigate(["/login"], {queryParams: {returnUrl: url}});
     return false;
   }
 }

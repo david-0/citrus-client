@@ -131,6 +131,9 @@ import {SaleOverviewComponent} from "./sales/sale-overview/sale-overview.compone
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
+import { StoreCheckInComponent } from './store/store-check-in/store-check-in.component';
+import { StoreCheckOutComponent } from './store/store-check-out/store-check-out.component';
+import { StoreEstimateComponent } from './store/store-estimate/store-estimate.component';
 
 
 @NgModule({
@@ -210,6 +213,9 @@ import {TableSupportModule} from "./table-support/table-support.module";
     ArticleCheckoutDetailComponent,
     PublicArticleStockGridComponent,
     CartLocationDetailComponent,
+    StoreCheckInComponent,
+    StoreCheckOutComponent,
+    StoreEstimateComponent,
   ],
   imports: [
     BrowserModule,
@@ -260,8 +266,6 @@ import {TableSupportModule} from "./table-support/table-support.module";
     UserWithRolesDtoRestService,
     RoleDtoRestService,
     CartService,
-    AuthGuard,
-    AuthGuardAdmin,
     AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
