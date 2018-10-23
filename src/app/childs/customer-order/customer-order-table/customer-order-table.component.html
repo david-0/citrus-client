@@ -9,13 +9,36 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Datum</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.date | date: "dd.MM.y"}}</mat-cell>
   </ng-container>
-  <ng-container matColumnDef="totalPrice">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
-    <mat-cell *matCellDef="let row" > {{row.totalPrice}}</mat-cell>
-  </ng-container>
   <ng-container matColumnDef="user">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Benutzer</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.user?.name}} {{row.user?.prename}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="location">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Standort</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.location.description}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="totalPrice">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.totalPrice}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="plannedCheckout">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Geplante Abholung</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <span *ngIf="row.plannedCheckout">
+        {{row.plannedCheckout.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von:
+        {{row.plannedCheckout.fromDate | date: "HH:mm"}}
+        bis: {{row.plannedCheckout.toDate | date: "HH:mm"}}
+      </span>
+      <span *ngIf="!row.plannedCheckout">Unbekannt</span>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="checkedOut">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Abgeholt?</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <span *ngIf="row.checkedOut">{{row.checkingOutUser.prename}} {{row.checkingOutUser.name}}<br/>
+        {{row.checkedOutDate | date: "dd.MM.yyyy HH:mm:ss"}}</span>
+      <span *ngIf="!row.checkedOut">Nein</span>
+    </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="table-row--highligthed" routerLink={{row.id}}

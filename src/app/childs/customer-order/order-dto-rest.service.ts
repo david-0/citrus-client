@@ -9,6 +9,6 @@ import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service"
 })
 export class OrderDtoRestService extends GenericRestService<OrderDto> {
   constructor(http: HttpClient, private restUrlPrefix: RestUrlPrefixService) {
-    super(http, restUrlPrefix.getApiRestPrefix() + "/order");
+    super(http, restUrlPrefix.getApiRestPrefix() + "/order/withAll");
   }
 }
