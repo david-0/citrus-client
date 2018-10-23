@@ -11,5 +11,10 @@
       <div>{{cartItem.quantity}} {{cartItem.article.unitOfMeasurement.shortcut}}</div>
       <div>{{cartItem.price * cartItem.quantity | currency: 'CHF '}}</div>
     </div>
+    <div class="bold">
+      <div>Total</div>
+      <div></div>
+      <div>{{cart.totalPrice | currency: 'CHF '}}</div>
+    </div>
   </mat-card-content>
 </mat-card>
