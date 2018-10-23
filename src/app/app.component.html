@@ -11,6 +11,24 @@
       <mat-icon>money</mat-icon>
       <span class="button-space">Verkauf</span>
     </button>
+    <button *ngIf="authService.isStore()" mat-raised-button class="sale-button" [matMenuTriggerFor]="menuStore">
+      <span class="button-space">Lager</span>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menuStore="matMenu" >
+      <button mat-menu-item routerLink="/store/checkIn">
+        <mat-icon>input</mat-icon>
+        <span class="menu-entry">Einbuchen</span>
+      </button>
+      <button mat-menu-item routerLink="/store/checkOut">
+        <img class="mat-icon material-icons" src="assets/images/baseline-output-24px.svg"/>
+        <span class="menu-entry">Ausbuchen</span>
+      </button>
+      <button mat-menu-item routerLink="/store/estimate">
+        <mat-icon>help_outline</mat-icon>
+        <span class="menu-entry">Lagerbestand schätzen</span>
+      </button>
+    </mat-menu>
     <button *ngIf="authService.isAdmin()" mat-raised-button class="sale-button" routerLink="/administration">
       <mat-icon>list</mat-icon>
       <span class="button-space">Administration</span>

@@ -117,6 +117,13 @@ export class AuthenticationService {
     return this.hasRole("sale");
   }
 
+  isStore(): boolean {
+    if (!this.loggedIn()) {
+      return false;
+    }
+    return this.hasRole("store");
+  }
+
   private hasRole(roleName: string) {
     let ret = false;
     this.roles.forEach(role => {
