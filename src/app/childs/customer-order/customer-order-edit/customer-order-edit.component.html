@@ -15,13 +15,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="full-width" color="accent">
-        <mat-select placeholder="Abholstation" name="pickupLocation" [(ngModel)]="order.pickupLocation">
-          <mat-option *ngFor="let pickupLocation of locationSubject | async" [value]="pickupLocation">
-            {{pickupLocation.description}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
     </mat-card>
   </div>
   <router-outlet name="customerOrderItem"></router-outlet>

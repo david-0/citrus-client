@@ -13,23 +13,28 @@
       <div>{{customerOrder.user?.prename}} {{customerOrder.user?.name}}</div>
     </div>
     <div>
-      <div>Artikel</div>
-      <div>
-        <p class="customer-order-item-line" *ngFor="let item of customerOrder.customerOrderItems">
-          {{item.quantity}} {{item.article?.unitOfMeasurement?.shortcut}} {{item.article?.description}} für
-          {{item.copiedPrice * item.quantity | currency: "CHF "}}</p>
-      </div>
+      <div>Standort</div>
+      <div>{{customerOrder.location?.description}}</div>
     </div>
     <div>
       <div>Total</div>
       <div>{{customerOrder.totalPrice | currency: "CHF "}}</div>
     </div>
     <div>
-      <div>Abholstation</div>
-      <div>{{customerOrder.pickupLocation?.description}}<br/>
-        {{customerOrder.pickupLocation?.address.prename}} {{customerOrder.pickupLocation?.address.name}}<br/>
-        {{customerOrder.pickupLocation?.address.street}} {{customerOrder.pickupLocation?.address.number}}<br/>
-        {{customerOrder.pickupLocation?.address.zipcode}} {{customerOrder.pickupLocation?.address.city}}
+      <div>geplante Abholung</div>
+      <div *ngIf="customerOrder.plannedCheckout">
+        {{customerOrder.plannedCheckout.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von:
+        {{customerOrder.plannedCheckout.fromDate | date: "HH:mm"}}
+        bis: {{customerOrder.plannedCheckout.toDate | date: "HH:mm"}}
+      </div>
+      <div *ngIf="!customerOrder.plannedCheckout">Unbekannt</div>
+    </div>
+    <div>
+      <div>Artikel</div>
+      <div>
+        <p class="customer-order-item-line" *ngFor="let item of customerOrder.orderItems">
+          {{item.quantity}} {{item.article?.unitOfMeasurement?.shortcut}} {{item.article?.description}} für
+          {{item.copiedPrice * item.quantity | currency: "CHF "}}</p>
       </div>
     </div>
   </mat-card-content>

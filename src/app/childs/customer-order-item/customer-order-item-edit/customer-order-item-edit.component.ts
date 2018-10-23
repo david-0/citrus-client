@@ -71,16 +71,17 @@ export class CustomerOrderItemEditComponent implements OnInit {
   //   return orderItem.article != null && orderItem.article.id === article.id;
   // }
   //
-  // public submit() {
-  //   this.orderItem.articleId = this.orderItem.article.id;
-  //   this.orderItem.copiedPrice = this.orderItem.article.price;
-  //   const copiedItem = CustomerOrderItemDto.createWithId(this._customerOrderItemId, this.orderItem);
-  //   if (this._customerOrderItemId == null) {
-  //     this.createNewItem(copiedItem);
-  //   } else {
-  //     this.updateItem(copiedItem);
-  //   }
-  // }
+  public submit() {
+    //   this.orderItem.articleId = this.orderItem.article.id;
+    //   this.orderItem.copiedPrice = this.orderItem.article.price;
+    //   const copiedItem = CustomerOrderItemDto.createWithId(this._customerOrderItemId, this.orderItem);
+    //   if (this._customerOrderItemId == null) {
+    //     this.createNewItem(copiedItem);
+    //   } else {
+    //     this.updateItem(copiedItem);
+    //   }
+  }
+
   //
   // private createNewItem(copy) {
   //   this.customerOrderItemRest.add(new CustomerOrderItemDto(copy)).subscribe(
