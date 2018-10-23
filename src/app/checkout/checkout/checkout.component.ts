@@ -59,14 +59,13 @@ export class CheckoutComponent implements OnInit {
   public finished() {
     this.state = "saving";
     this.orderCart(this.selectedCart);
-    this.cartService.clearCart(this.selectedCart.location.id);
   }
 
   private orderCart(cart: CartDto) {
     this.cartRestService.add(cart).subscribe(order => {
         this.orderNumber = order.id;
         this.state = "finished";
-        this.cartService.clear();
+        this.cartService.clearCart(this.selectedCart.location.id);
       },
       (err: HttpErrorResponse) => {
         this.error = "Fehler: " + err.message;
