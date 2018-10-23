@@ -21,7 +21,6 @@ export class CheckoutComponent implements OnInit {
   error: string;
   selectedCart: CartDto = new CartDto(LocationDto.createEmpty(), 0);
 
-
   constructor(private router: Router,
               private route: ActivatedRoute,
               public cartService: CartService,

@@ -41,14 +41,14 @@
   <mat-step>
     <ng-template matStepLabel>Abschliessen</ng-template>
     <div class="locationLine">
-      <mat-card class="step-cards--background">
+      <mat-card class="step-cards--background step-cards--column">
         <mat-card class="total--line">
           <div class="total">Zusammenfassung</div>
           <div class="price">Total: {{selectedCart.totalPrice | currency: 'CHF '}}</div>
         </mat-card>
       </mat-card>
     </div>
-    <mat-card class="step-cards--background">
+    <mat-card class="step-cards--background step-cards--column">
       <app-cart-location-detail class="flex" [cart]="selectedCart"></app-cart-location-detail>
     </mat-card>
     <mat-toolbar class="footer">
@@ -60,7 +60,7 @@
   </mat-step>
 </mat-horizontal-stepper>
 <div *ngIf="state==='saving'">
-  <mat-card class="step-cards--background">
+  <mat-card class="step-cards--background step-cards--column">
     <mat-card-title>Bestellung wird verarbeitet</mat-card-title>
     <mat-card-content>
       <p>Bitte warten ...</p>
@@ -72,7 +72,7 @@
   </mat-card>
 </div>
 <div *ngIf="state==='finished'">
-  <mat-card class="step-cards--background">
+  <mat-card class="step-cards--background step-cards--column">
     <mat-card-title>Bestellung abgeschlossen</mat-card-title>
     <mat-card-content>
       <p>Die Bestellnummer lautet: {{orderNumber}}.</p>
@@ -86,7 +86,7 @@
   </mat-card>
 </div>
 <div *ngIf="state==='error'">
-  <mat-card class="step-cards--background">
+  <mat-card class="step-cards--background step-cards--column">
     <mat-card-title>Bestellung fehlgeschlagen</mat-card-title>
     <mat-card-content>
       <p>Während der bearbeitung der Bestellung ist ein Fehler aufgetreten.</p>

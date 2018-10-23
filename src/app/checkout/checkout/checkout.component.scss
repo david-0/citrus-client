@@ -9,10 +9,13 @@
 
 .step-cards--background {
   display: flex;
-  flex-direction: row;
   background-color: #eeeeee;
   padding: 0.5em;
   flex-wrap: wrap;
+}
+
+.step-cards--column {
+  flex-direction: column;
 }
 
 .flex {
