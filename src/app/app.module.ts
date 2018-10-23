@@ -47,7 +47,6 @@ import {CartService} from "./cart/cart.service";
 import {ShoppingCartComponent} from "./cart/shopping-cart/shopping-cart.component";
 import {ChangeMyPasswordComponent} from "./change-my-password/change-my-password.component";
 import {CartLocationDetailComponent} from "./checkout/cart-location-detail/cart-location-detail.component";
-import {CheckoutDetailComponent} from "./checkout/checkout-detail/checkout-detail.component";
 import {CheckoutComponent} from "./checkout/checkout/checkout.component";
 import {AddressDeleteComponent} from "./childs/address/address-delete/address-delete.component";
 import {AddressDetailsComponent} from "./childs/address/address-details/address-details.component";
@@ -176,7 +175,6 @@ import {TableSupportModule} from "./table-support/table-support.module";
     OpeningHourDeleteComponent,
     OpeningHourDetailsComponent,
     LocationDetailOnlyComponent,
-    CheckoutDetailComponent,
     CustomerOrderDeleteComponent,
     CustomerOrderDetailComponent,
     CustomerOrderDetailOnlyComponent,
