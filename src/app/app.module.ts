@@ -43,6 +43,7 @@ import {AuthGuard} from "./authentication/auth-guard.service";
 import {AuthenticationService} from "./authentication/authentication.service";
 import {PasswordChangeComponent} from "./authentication/password-change/password-change.component";
 import {TokenInterceptor} from "./authentication/token-interceptor";
+import {WINDOW_PROVIDERS} from "./base/window-provider";
 import {CartService} from "./cart/cart.service";
 import {ShoppingCartComponent} from "./cart/shopping-cart/shopping-cart.component";
 import {ChangeMyPasswordComponent} from "./change-my-password/change-my-password.component";
@@ -275,6 +276,7 @@ import { StoreEstimateComponent } from './store/store-estimate/store-estimate.co
     {provide: MAT_DATE_LOCALE, useValue: "de_ch"},
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    WINDOW_PROVIDERS,
   ],
   bootstrap: [AppComponent]
 })
