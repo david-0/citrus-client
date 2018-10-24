@@ -1,3 +1,34 @@
-<p>
-  store-check-in works!
-</p>
+<form #f="ngForm" (ngSubmit)="submit()">
+  <app-table-header titleText="Einbuchung bearbeiten" showBack="true" showCancelAndSave="true"
+                    [form]="f"></app-table-header>
+  <mat-card class="mat-card-padding">
+    <mat-form-field class="full-width" color="accent">
+      <mat-select placeholder="Lagerbestand" #articleStock name="articleStock"
+                  [(ngModel)]="articleCheckIn.articleStock" required>
+        <mat-option *ngFor="let articleStock of articleStocks" [value]="articleStock">
+          {{articleStock.article.number}} {{articleStock.article.description}}, {{articleStock.location.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" color="accent">
+      <input matInput placeholder="Menge in {{articleCheckIn.articleStock.article.unitOfMeasurement.shortcut}}"
+             #quantity [(ngModel)]="articleCheckIn.quantity"
+             maxlength="256" name="quantity" required pattern="[1-9][0-9]*">
+      <mat-error>{{quantity.validationMessage}}</mat-error>
+      <mat-hint align="end">{{quantity.value.length}}</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="full-width" color="accent">
+      <input matInput placeholder="Kommentar" #comment [(ngModel)]="articleCheckIn.comment"
+             maxlength="256" name="comment">
+      <mat-hint align="end">{{comment.value.length}}</mat-hint>
+    </mat-form-field>
+  </mat-card>
+  <mat-toolbar class="footer">
+    <button mat-raised-button routerLink="../..">Zurück</button>
+    <span class="fill-remaining-space"></span>
+    <button mat-raised-button disabled="{{!(quantity.checkValidity() && articleStock.selected)}}" type="submit">
+      Speichern
+    </button>
+  </mat-toolbar>
+</form>
+
