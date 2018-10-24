@@ -55,5 +55,8 @@ export class StoreEstimateComponent implements OnInit {
           (err: HttpErrorResponse) => console.error(`could not save articleCheckOut: ${articleCheckOut.id} with Error: ${err.message}`)
         );
     }
+    if (this.choosenArticleStock.quantity === +this.choosenQuantity) {
+      this.router.navigate(["../.."], {relativeTo: this.route});
+    }
   }
 }
