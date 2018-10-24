@@ -1,9 +1,11 @@
 .sales-layout {
+  flex: 1 1 auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   mat-card {
     flex: 1 1 auto;
   }
+  max-width: 50em;
 }
 
 .grid-button {
@@ -26,4 +28,13 @@
 }
 .clear-grid {
   background-color: lightsalmon;
+}
+
+.title--note {
+  padding: 1em;
+}
+
+.tableview {
+  display: flex;
+  justify-content: center;
 }
