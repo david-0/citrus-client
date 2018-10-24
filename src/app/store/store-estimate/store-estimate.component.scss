@@ -1,5 +1,15 @@
 @import "../../styles/edit";
 
 .title--note {
-  padding: 1em 1em 0;
+  padding: 1em;
+}
+
+.fullView {
+  display: flex;
+  justify-content: center;
+}
+
+.smallerView {
+  flex: 1 1 auto;
+  max-width: 35em;
 }
