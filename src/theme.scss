@@ -4,7 +4,7 @@
 
 // define 3 theme color
 // mat-palette accepts $palette-name, main, lighter and darker variants
-$my-theme-primary: mat-palette($mat-yellow, 500, 500, 500);  // default, ligher, darker
+$my-theme-primary: mat-palette($mat-yellow, 500, 500, 500); // default, ligher, darker
 $my-theme-accent: mat-palette($mat-orange);
 $my-theme-warn: mat-palette($mat-deep-orange, A100);
 
@@ -33,6 +33,7 @@ $my-theme: mat-light-theme(
 @import "app/childs/role/role-table/role-table.component.scss-theme";
 @import "app/store/store-check-in/store-check-in.component.scss-theme";
 @import "app/store/store-check-out/store-check-out.component.scss-theme";
+@import "app/store/store-estimate/store-estimate.component.scss-theme";
 
 @mixin my-component-theme($theme) {
   @include app-table-header-theme($theme);
@@ -51,12 +52,13 @@ $my-theme: mat-light-theme(
   @include app-opening-hour-table-theme($theme);
   @include app-customer-order-item-table-theme($theme);
   @include app-role-table-theme($theme);
-  @include app-store-check-in-theme($theme)
-  @include app-store-check-out-theme($theme)
+  @include app-store-check-in-theme($theme);
+  @include app-store-check-out-theme($theme);
+  @include app-store-estimate-theme($theme);
 }
+
 @include angular-material-theme($my-theme);
 @include my-component-theme($my-theme);
-
 
 //   Themes: Einstieg mit Blog, details in youtube
 //  https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1
