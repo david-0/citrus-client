@@ -31,8 +31,8 @@
     </div>
     <div>
       <div>Abgeholt</div>
-      <div *ngIf="customerOrder.checkedOut">{{customerOrder.checkingOutUser.prename}} {{customerOrder.checkingOutUser.name}}<br/>
-        {{customerOrder.checkedOutDate | date: "dd.MM.yyyy HH:mm:ss"}}
+      <div *ngIf="customerOrder.checkedOut">{{customerOrder.checkedOutDate | date: "dd.MM.yyyy HH:mm:ss"}} (Verkäufer:
+        {{customerOrder.checkingOutUser.prename}} {{customerOrder.checkingOutUser.name}})
       </div>
       <div *ngIf="!customerOrder.checkedOut">Nein</div>
     </div>
