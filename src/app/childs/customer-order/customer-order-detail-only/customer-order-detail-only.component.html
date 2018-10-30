@@ -9,7 +9,7 @@
       <div>{{customerOrder.date | date: "HH:mm dd.MM.y"}}</div>
     </div>
     <div>
-      <div>Benutzer</div>
+      <div>Besteller</div>
       <div>{{customerOrder.user?.prename}} {{customerOrder.user?.name}}</div>
     </div>
     <div>
@@ -28,6 +28,13 @@
         bis: {{customerOrder.plannedCheckout.toDate | date: "HH:mm"}}
       </div>
       <div *ngIf="!customerOrder.plannedCheckout">Unbekannt</div>
+    </div>
+    <div>
+      <div>Abgeholt</div>
+      <div *ngIf="customerOrder.checkedOut">{{customerOrder.checkingOutUser.prename}} {{customerOrder.checkingOutUser.name}}<br/>
+        {{customerOrder.checkedOutDate | date: "dd.MM.yyyy HH:mm:ss"}}
+      </div>
+      <div *ngIf="!customerOrder.checkedOut">Nein</div>
     </div>
     <div>
       <div>Artikel</div>
