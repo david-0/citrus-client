@@ -61,6 +61,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   private orderCart(cart: CartDto) {
+    cart.openingHourOfPlannedCheckout = this.firstFormGroup.get("firstCtrl").value;
     this.cartRestService.add(cart).subscribe(order => {
         this.orderNumber = order.id;
         this.state = "finished";
