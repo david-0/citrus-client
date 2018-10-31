@@ -24,9 +24,9 @@ export class CustomerOrderItemOverviewComponent implements OnInit {
     this.route.parent.params.subscribe(params => {
       if (params["id"] !== null) {
         this.id = +params["id"];
-        // this.rest.get(+params["id"]).subscribe(order => {
-        //   this.dataObservable.next(order.customerOrderItems);
-        // });
+        this.rest.get(+params["id"]).subscribe(order => {
+          this.dataObservable.next(order.orderItems);
+        });
       }
     });
 

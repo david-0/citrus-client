@@ -26,7 +26,7 @@ export class CustomerOrderEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigate([this.router.routerState.snapshot.url, {outlets: {"customerOrderItem": ["orderItem"]}}]);
+    this.router.navigate([this.router.routerState.snapshot.url, {outlets: {"orderItem": ["orderItem"]}}]);
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
         this.orderId = this.order.id;
