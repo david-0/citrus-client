@@ -13,12 +13,12 @@
       <div>{{customerOrder.user?.prename}} {{customerOrder.user?.name}}</div>
     </div>
     <div>
-      <div>Standort</div>
-      <div>{{customerOrder.location?.description}}</div>
-    </div>
-    <div>
       <div>Total</div>
       <div>{{customerOrder.totalPrice | currency: "CHF "}}</div>
+    </div>
+    <div>
+      <div>Standort</div>
+      <div>{{customerOrder.location?.description}}</div>
     </div>
     <div>
       <div>geplante Abholung</div>

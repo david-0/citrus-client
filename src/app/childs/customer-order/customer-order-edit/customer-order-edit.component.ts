@@ -1,10 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {LocationDto, UserDto} from "citrus-common";
+import {LocationDto, OpeningHourDto, UserDto} from "citrus-common";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
 import {BehaviorSubject, combineLatest} from "rxjs";
-import {LocationDtoRestService} from "../../location/location-dto-rest.service";
-import {UserDtoRestService} from "../../user/user-dto-rest.service";
+import {LocationWithOpeninghHoursDtoRestService} from "../../location/location-with-openingh-hours-dto-rest.service";
 import {OrderWithItemsAndArticleDtoRestService} from "../order-with-items-and-article-dto-rest.service";
 
 @Component({
@@ -23,8 +22,7 @@ export class CustomerOrderEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private orderRest: OrderWithItemsAndArticleDtoRestService,
-              public userRest: UserDtoRestService,
-              public locationRest: LocationDtoRestService) {
+              public locationRest: LocationWithOpeninghHoursDtoRestService) {
   }
 
   ngOnInit() {
@@ -32,15 +30,14 @@ export class CustomerOrderEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
         this.orderId = this.order.id;
-        this.userRest.getAll().subscribe(users => this.userSubject.next(users));
         this.locationRest.getAll().subscribe(locations => this.locationSubject.next(locations));
       } else {
         combineLatest(this.orderRest.get(+params["id"]),
-          this.userRest.getAll(),
           this.locationRest.getAll()
         ).subscribe(
           result => {
             this.order = this.resultProcessor(result);
+            this.locationChange();
             this.orderId = this.order.id;
           },
           err => {
@@ -50,39 +47,40 @@ export class CustomerOrderEditComponent implements OnInit {
     });
   }
 
+  public locationChange() {
+    this.ensureOpeningHourInOrder(this.order, this.order.location.openingHours);
+  }
+
   private resultProcessor(result: any[]): OrderDto {
     const customerOrder: OrderDto = result[0];
-    const users: UserDto[] = result[1];
-    const locations: LocationDto[] = result[2];
-    this.userSubject.next(users);
+    const locations: LocationDto[] = result[1];
     this.locationSubject.next(locations);
-    this.ensureUserInfoInCustomerOrder(customerOrder, users);
-    // this.ensureLocationInCustomerOrder(order, locations);
+    this.ensureLocationInOrder(customerOrder, locations);
     return customerOrder;
   }
 
-  private ensureUserInfoInCustomerOrder(customerOrder: OrderDto, users: UserDto[]): void {
-    for (const user of users) {
-      if (this.isUserWithSameId(customerOrder, user)) {
-        customerOrder.user = user;
+  private ensureLocationInOrder(order: OrderDto, locations: LocationDto[]): void {
+    for (const location of locations) {
+      if (this.isLocationWithSameId(order, location)) {
+        order.location = location;
       }
     }
   }
 
-  private isUserWithSameId(customerOrder: OrderDto, user: UserDto): boolean {
-    return customerOrder.user != null && customerOrder.user.id === user.id;
+  private ensureOpeningHourInOrder(order: OrderDto, openingHours: OpeningHourDto[]): void {
+    for (const openingHour of openingHours) {
+      if (this.isOpeningHourWithSameId(order, openingHour)) {
+        order.plannedCheckout = openingHour;
+      }
+    }
   }
 
-  // private ensureLocationInCustomerOrder(order: CustomerOrderDto, locations: LocationDto[]): void {
-  //   for (const location of locations) {
-  //     if (this.isLocationWithSameId(order, location)) {
-  //       order.location = location;
-  //     }
-  //   }
-  // }
+  private isLocationWithSameId(order: OrderDto, location: LocationDto): boolean {
+    return order.location != null && order.location.id === location.id;
+  }
 
-  private isLocationWithSameId(customerOrder: OrderDto, location: LocationDto): boolean {
-    return customerOrder.user != null && customerOrder.user.id === location.id;
+  private isOpeningHourWithSameId(order: OrderDto, openingHour: OpeningHourDto): boolean {
+    return order.plannedCheckout != null && order.plannedCheckout.id === openingHour.id;
   }
 
   public submit() {
