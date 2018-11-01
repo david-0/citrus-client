@@ -25,16 +25,13 @@
               "HH:mm"}}
               bis: {{openingHour.toDate | date: "HH:mm"}}
             </mat-radio-button>
-            <mat-radio-button class="radio-button" [value]='null'>
-              Unbestimmt
-            </mat-radio-button>
           </mat-radio-group>
         </mat-card>
       </mat-card>
       <mat-toolbar class="footer">
         <button mat-raised-button matStepperNext (click)="back()">Abbrechen</button>
         <span class="fill-remaining-space"></span>
-        <button mat-raised-button matStepperNext>Weiter</button>
+        <button mat-raised-button matStepperNext [disabled]="!selectedCart.openingHourOfPlannedCheckout">Weiter</button>
       </mat-toolbar>
     </form>
   </mat-step>

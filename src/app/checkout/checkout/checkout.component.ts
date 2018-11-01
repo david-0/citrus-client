@@ -2,7 +2,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CartDto, LocationDto} from "citrus-common";
+import {CartDto, LocationDto, OpeningHourDto} from "citrus-common";
 import {CartService} from "../../cart/cart.service";
 import {LocationWithOpeninghHoursDtoRestService} from "../../childs/location/location-with-openingh-hours-dto-rest.service";
 import {CartRestService} from "../cart-rest.service";
@@ -43,12 +43,14 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: new FormControl([null]),
+      firstCtrl: new FormControl([this.selectedCart.openingHourOfPlannedCheckout]),
+    });
+    this.firstFormGroup.get("firstCtrl").valueChanges.subscribe(value => {
+      this.selectedCart.openingHourOfPlannedCheckout = value;
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: [""]
     });
-    this.firstFormGroup.get("firstCtrl").setValue(null); // unbestimmt
   }
 
   back() {
@@ -61,7 +63,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   private orderCart(cart: CartDto) {
-    cart.openingHourOfPlannedCheckout = this.firstFormGroup.get("firstCtrl").value;
     this.cartRestService.add(cart).subscribe(order => {
         this.orderNumber = order.id;
         this.state = "finished";
