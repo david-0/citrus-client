@@ -4,7 +4,7 @@ import {ArticleDto, OrderDto} from "citrus-common";
 import {OrderItemDto} from "citrus-common/lib/dto/order-item-dto";
 import {BehaviorSubject} from "rxjs";
 import {ArticleWithAllDtoRestService} from "../../article/article-with-all-dto-rest.service";
-import {OrderWithItemsAndArticleDtoRestService} from "../../customer-order/order-with-items-and-article-dto-rest.service";
+import {OrderDtoRestService} from "../../customer-order/order-dto-rest.service";
 import {OrderItemDtoRestService} from "../order-item-dto-rest.service";
 
 @Component({
@@ -20,7 +20,7 @@ export class CustomerOrderItemEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private orderRest: OrderWithItemsAndArticleDtoRestService,
+              private orderRest: OrderDtoRestService,
               private orderItemRest: OrderItemDtoRestService,
               private articleRest: ArticleWithAllDtoRestService) {
   }

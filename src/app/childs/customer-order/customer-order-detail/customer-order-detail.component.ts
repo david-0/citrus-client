@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
 import {Subscription} from "rxjs";
-import {OrderWithItemsAndArticleDtoRestService} from "../order-with-items-and-article-dto-rest.service";
+import {OrderDtoRestService} from "../order-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-detail",
@@ -13,7 +13,7 @@ export class CustomerOrderDetailComponent implements OnInit , OnDestroy {
   private _order: OrderDto = OrderDto.createEmpty();
   private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private rest: OrderWithItemsAndArticleDtoRestService) {
+  constructor(private route: ActivatedRoute, private rest: OrderDtoRestService) {
   }
 
   public get order(): OrderDto {

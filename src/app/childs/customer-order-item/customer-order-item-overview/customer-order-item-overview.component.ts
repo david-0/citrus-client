@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OrderItemDto} from "citrus-common/lib/dto/order-item-dto";
 import {BehaviorSubject} from "rxjs";
-import {OrderWithItemsAndArticleDtoRestService} from "../../customer-order/order-with-items-and-article-dto-rest.service";
+import {OrderDtoRestService} from "../../customer-order/order-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-item-overview",
@@ -17,7 +17,7 @@ export class CustomerOrderItemOverviewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private rest: OrderWithItemsAndArticleDtoRestService) {
+              private rest: OrderDtoRestService) {
   }
 
   ngOnInit() {
