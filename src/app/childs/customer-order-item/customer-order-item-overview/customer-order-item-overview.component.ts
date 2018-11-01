@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OrderItemDto} from "citrus-common/lib/dto/order-item-dto";
 import {BehaviorSubject} from "rxjs";
-import {OrderDtoRestService} from "../../customer-order/order-dto-rest.service";
+import {OrderDtoRestService} from "../../order/order-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-item-overview",

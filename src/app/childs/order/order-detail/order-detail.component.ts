@@ -6,10 +6,10 @@ import {OrderDtoRestService} from "../order-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-detail",
-  templateUrl: "./customer-order-detail.component.html",
-  styleUrls: ["./customer-order-detail.component.scss"]
+  templateUrl: "./order-detail.component.html",
+  styleUrls: ["./order-detail.component.scss"]
 })
-export class CustomerOrderDetailComponent implements OnInit , OnDestroy {
+export class OrderDetailComponent implements OnInit , OnDestroy {
   private _order: OrderDto = OrderDto.createEmpty();
   private subscription: Subscription;
 

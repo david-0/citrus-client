@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {OrderItemDto} from "citrus-common/lib/dto/order-item-dto";
-import {OrderDtoRestService} from "../../customer-order/order-dto-rest.service";
+import {OrderDtoRestService} from "../../order/order-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-item-detail",

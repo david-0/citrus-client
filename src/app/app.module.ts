@@ -84,12 +84,12 @@ import {CustomerOrderItemDetailComponent} from "./childs/customer-order-item/cus
 import {CustomerOrderItemEditComponent} from "./childs/customer-order-item/customer-order-item-edit/customer-order-item-edit.component";
 import {CustomerOrderItemOverviewComponent} from "./childs/customer-order-item/customer-order-item-overview/customer-order-item-overview.component";
 import {CustomerOrderItemTableComponent} from "./childs/customer-order-item/customer-order-item-table/customer-order-item-table.component";
-import {CustomerOrderDeleteComponent} from "./childs/customer-order/customer-order-delete/customer-order-delete.component";
-import {CustomerOrderDetailOnlyComponent} from "./childs/customer-order/customer-order-detail-only/customer-order-detail-only.component";
-import {CustomerOrderDetailComponent} from "./childs/customer-order/customer-order-detail/customer-order-detail.component";
-import {CustomerOrderEditComponent} from "./childs/customer-order/customer-order-edit/customer-order-edit.component";
-import {CustomerOrderOverviewComponent} from "./childs/customer-order/customer-order-overview/customer-order-overview.component";
-import {CustomerOrderTableComponent} from "./childs/customer-order/customer-order-table/customer-order-table.component";
+import {OrderDeleteComponent} from "./childs/order/order-delete/order-delete.component";
+import {OrderDetailOnlyComponent} from "./childs/order/order-detail-only/order-detail-only.component";
+import {OrderDetailComponent} from "./childs/order/order-detail/order-detail.component";
+import {OrderEditComponent} from "./childs/order/order-edit/order-edit.component";
+import {CustomerOrderOverviewComponent} from "./childs/order/order-overview/customer-order-overview.component";
+import {OrderTableComponent} from "./childs/order/order-table/order-table.component";
 import {LocationDeleteComponent} from "./childs/location/location-delete/location-delete.component";
 import {LocationDetailOnlyComponent} from "./childs/location/location-detail-only/location-detail-only.component";
 import {LocationDetailComponent} from "./childs/location/location-detail/location-detail.component";
@@ -179,12 +179,12 @@ import { StoreEstimateComponent } from './store/store-estimate/store-estimate.co
     OpeningHourDeleteComponent,
     OpeningHourDetailsComponent,
     LocationDetailOnlyComponent,
-    CustomerOrderDeleteComponent,
-    CustomerOrderDetailComponent,
-    CustomerOrderDetailOnlyComponent,
-    CustomerOrderEditComponent,
+    OrderDeleteComponent,
+    OrderDetailComponent,
+    OrderDetailOnlyComponent,
+    OrderEditComponent,
     CustomerOrderOverviewComponent,
-    CustomerOrderTableComponent,
+    OrderTableComponent,
     CustomerOrderItemTableComponent,
     CustomerOrderItemDeleteComponent,
     CustomerOrderItemDetailComponent,

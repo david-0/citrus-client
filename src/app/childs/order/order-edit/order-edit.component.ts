@@ -8,10 +8,10 @@ import {OrderDtoRestService} from "../order-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-edit",
-  templateUrl: "./customer-order-edit.component.html",
-  styleUrls: ["./customer-order-edit.component.scss"]
+  templateUrl: "./order-edit.component.html",
+  styleUrls: ["./order-edit.component.scss"]
 })
-export class CustomerOrderEditComponent implements OnInit {
+export class OrderEditComponent implements OnInit {
 
   public order = OrderDto.createEmpty();
   public orderId: number;

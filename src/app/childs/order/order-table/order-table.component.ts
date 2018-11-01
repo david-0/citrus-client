@@ -7,11 +7,11 @@ import {OrderDtoRestService} from "../order-dto-rest.service";
 import {OrderSettingsService} from "../order-settings.service";
 
 @Component({
-  selector: "app-customer-order-table",
-  templateUrl: "./customer-order-table.component.html",
-  styleUrls: ["./customer-order-table.component.scss"]
+  selector: "app-order-table",
+  templateUrl: "./order-table.component.html",
+  styleUrls: ["./order-table.component.scss"]
 })
-export class CustomerOrderTableComponent extends BaseTableComponent<OrderDto> implements OnInit {
+export class OrderTableComponent extends BaseTableComponent<OrderDto> implements OnInit {
 
   @Input() displayedColumns: string[];
   @Input() dataObservable: Observable<OrderDto[]>;

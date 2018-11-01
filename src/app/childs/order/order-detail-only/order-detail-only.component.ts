@@ -3,10 +3,10 @@ import {OrderDto} from "citrus-common/lib/dto/order-dto";
 
 @Component({
   selector: "app-customer-order-detail-only",
-  templateUrl: "./customer-order-detail-only.component.html",
-  styleUrls: ["./customer-order-detail-only.component.scss"]
+  templateUrl: "./order-detail-only.component.html",
+  styleUrls: ["./order-detail-only.component.scss"]
 })
-export class CustomerOrderDetailOnlyComponent implements OnInit {
+export class OrderDetailOnlyComponent implements OnInit {
 
   @Input() customerOrder: OrderDto;
 

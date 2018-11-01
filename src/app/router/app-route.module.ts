@@ -31,10 +31,10 @@ import {CustomerOrderItemDeleteComponent} from "../childs/customer-order-item/cu
 import {CustomerOrderItemDetailComponent} from "../childs/customer-order-item/customer-order-item-detail/customer-order-item-detail.component";
 import {CustomerOrderItemEditComponent} from "../childs/customer-order-item/customer-order-item-edit/customer-order-item-edit.component";
 import {CustomerOrderItemOverviewComponent} from "../childs/customer-order-item/customer-order-item-overview/customer-order-item-overview.component";
-import {CustomerOrderDeleteComponent} from "../childs/customer-order/customer-order-delete/customer-order-delete.component";
-import {CustomerOrderDetailComponent} from "../childs/customer-order/customer-order-detail/customer-order-detail.component";
-import {CustomerOrderEditComponent} from "../childs/customer-order/customer-order-edit/customer-order-edit.component";
-import {CustomerOrderOverviewComponent} from "../childs/customer-order/customer-order-overview/customer-order-overview.component";
+import {OrderDeleteComponent} from "../childs/order/order-delete/order-delete.component";
+import {OrderDetailComponent} from "../childs/order/order-detail/order-detail.component";
+import {OrderEditComponent} from "../childs/order/order-edit/order-edit.component";
+import {CustomerOrderOverviewComponent} from "../childs/order/order-overview/customer-order-overview.component";
 import {LocationDeleteComponent} from "../childs/location/location-delete/location-delete.component";
 import {LocationDetailComponent} from "../childs/location/location-detail/location-detail.component";
 import {LocationEditComponent} from "../childs/location/location-edit/location-edit.component";
@@ -175,12 +175,12 @@ const routes: Routes = [
       },
 
       {path: "order", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderOverviewComponent},
-      {path: "order/create", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderEditComponent},
-      {path: "order/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderDetailComponent},
+      {path: "order/create", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderEditComponent},
+      {path: "order/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderDetailComponent},
       {
         path: "order/:id/edit",
         canActivate: [AuthGuard, AuthGuardAdmin],
-        component: CustomerOrderEditComponent,
+        component: OrderEditComponent,
         children: [
           {
             path: "orderItem",
@@ -217,7 +217,7 @@ const routes: Routes = [
       {
         path: "order/:id/delete",
         canActivate: [AuthGuard, AuthGuardAdmin],
-        component: CustomerOrderDeleteComponent
+        component: OrderDeleteComponent
       },
 
       {path: "location", canActivate: [AuthGuard, AuthGuardAdmin], component: LocationOverviewComponent},
