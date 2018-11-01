@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {ArticleDto, CartDto, CartItemDto, LocationDto} from "citrus-common";
+import {ArticleDto, CartDto, CartItemDto, LocationDto, OpeningHourDto} from "citrus-common";
 import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
@@ -33,6 +33,11 @@ export class CartService {
     if (this.hasCart(locationId)) {
       return this.getCart(locationId);
     }
+  }
+
+  public updatePlannedCheckout(locationId: number, plannedCheckout: OpeningHourDto) {
+    this.getCartAtLocation(locationId).openingHourOfPlannedCheckout = plannedCheckout;
+    this.saveCarts();
   }
 
   public clearCart(locationId: number) {

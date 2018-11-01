@@ -2,7 +2,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CartDto, LocationDto, OpeningHourDto} from "citrus-common";
+import {CartDto, LocationDto} from "citrus-common";
 import {CartService} from "../../cart/cart.service";
 import {LocationWithOpeninghHoursDtoRestService} from "../../childs/location/location-with-openingh-hours-dto-rest.service";
 import {CartRestService} from "../cart-rest.service";
@@ -37,20 +37,34 @@ export class CheckoutComponent implements OnInit {
           this.state = "ongoing";
           this.locationRest.get(this.selectedCart.location.id).subscribe(location => {
             this.selectedCart.location = location;
+            const openingHour = this.getValidOpeningHour();
+            this.cartService.updatePlannedCheckout(this.selectedCart.location.id, openingHour);
+            this.firstFormGroup.get("firstCtrl").setValue(openingHour);
           });
         }
       }
     });
 
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: new FormControl([this.selectedCart.openingHourOfPlannedCheckout]),
+      firstCtrl: new FormControl([null]),
     });
     this.firstFormGroup.get("firstCtrl").valueChanges.subscribe(value => {
-      this.selectedCart.openingHourOfPlannedCheckout = value;
+      this.cartService.updatePlannedCheckout(this.selectedCart.location.id, value);
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: [""]
     });
+  }
+
+  private getValidOpeningHour() {
+    if (this.selectedCart.openingHourOfPlannedCheckout) {
+      for (const openingHour of this.selectedCart.location.openingHours) {
+        if (this.selectedCart.openingHourOfPlannedCheckout.id === openingHour.id) {
+          return openingHour;
+        }
+      }
+    }
+    this.selectedCart.openingHourOfPlannedCheckout = null;
   }
 
   back() {
