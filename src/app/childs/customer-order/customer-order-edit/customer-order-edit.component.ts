@@ -16,7 +16,6 @@ export class CustomerOrderEditComponent implements OnInit {
   public order = OrderDto.createEmpty();
   public orderId: number;
 
-  public userSubject: BehaviorSubject<UserDto[]> = new BehaviorSubject([]);
   public locationSubject: BehaviorSubject<LocationDto[]> = new BehaviorSubject([]);
 
   constructor(private route: ActivatedRoute,
