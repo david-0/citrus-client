@@ -6,10 +6,10 @@ import {OrderItemDtoRestService} from "../order-item-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-item-delete",
-  templateUrl: "./customer-order-item-delete.component.html",
-  styleUrls: ["./customer-order-item-delete.component.scss"]
+  templateUrl: "./order-item-delete.component.html",
+  styleUrls: ["./order-item-delete.component.scss"]
 })
-export class CustomerOrderItemDeleteComponent implements OnInit {
+export class OrderItemDeleteComponent implements OnInit {
 
   public deleteExecutor: DeleteExecutor<OrderItemDto>;
 

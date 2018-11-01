@@ -5,7 +5,7 @@ import {Subscription} from "rxjs";
 import {OrderDtoRestService} from "../order-dto-rest.service";
 
 @Component({
-  selector: "app-customer-order-detail",
+  selector: "app-order-detail",
   templateUrl: "./order-detail.component.html",
   styleUrls: ["./order-detail.component.scss"]
 })

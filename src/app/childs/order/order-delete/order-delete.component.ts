@@ -5,7 +5,7 @@ import {DeleteExecutor} from "../../../base/delete-executor";
 import {OrderDtoRestService} from "../order-dto-rest.service";
 
 @Component({
-  selector: "app-customer-order-delete",
+  selector: "app-order-delete",
   templateUrl: "./order-delete.component.html",
   styleUrls: ["./order-delete.component.scss"]
 })

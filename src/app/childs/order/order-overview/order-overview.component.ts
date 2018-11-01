@@ -4,11 +4,11 @@ import {BehaviorSubject} from "rxjs";
 import {OrderDtoRestService} from "../order-dto-rest.service";
 
 @Component({
-  selector: "app-customer-order-overview",
-  templateUrl: "./customer-order-overview.component.html",
-  styleUrls: ["./customer-order-overview.component.scss"]
+  selector: "app-order-overview",
+  templateUrl: "./order-overview.component.html",
+  styleUrls: ["./order-overview.component.scss"]
 })
-export class CustomerOrderOverviewComponent implements OnInit {
+export class OrderOverviewComponent implements OnInit {
 
   public displayedColumns = ["id", "date", "user", "location", "totalPrice", "plannedCheckout", "checkedOut"];
   public dataObservable = new BehaviorSubject<OrderDto[]>([]);

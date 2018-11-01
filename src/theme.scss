@@ -29,7 +29,7 @@ $my-theme: mat-light-theme(
 @import "app/childs/location/location-table/location-table.component.scss-theme";
 @import "app/childs/order/order-table/order-table.component.scss-theme";
 @import "app/childs/opening-hour/opening-hour-table/opening-hour-table.component.scss-theme";
-@import "app/childs/customer-order-item/customer-order-item-table/customer-order-item-table.component.scss-theme";
+@import "app/childs/order-item/order-item-table/order-item-table.component.scss-theme";
 @import "app/childs/role/role-table/role-table.component.scss-theme";
 @import "app/store/store-check-in/store-check-in.component.scss-theme";
 @import "app/store/store-check-out/store-check-out.component.scss-theme";
@@ -50,7 +50,7 @@ $my-theme: mat-light-theme(
   @include app-location-table-theme($theme);
   @include app-order-table-theme($theme);
   @include app-opening-hour-table-theme($theme);
-  @include app-customer-order-item-table-theme($theme);
+  @include app-order-item-table-theme($theme);
   @include app-role-table-theme($theme);
   @include app-store-check-in-theme($theme);
   @include app-store-check-out-theme($theme);

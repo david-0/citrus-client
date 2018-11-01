@@ -7,7 +7,7 @@ import {LocationWithOpeninghHoursDtoRestService} from "../../location/location-w
 import {OrderDtoRestService} from "../order-dto-rest.service";
 
 @Component({
-  selector: "app-customer-order-edit",
+  selector: "app-order-edit",
   templateUrl: "./order-edit.component.html",
   styleUrls: ["./order-edit.component.scss"]
 })
@@ -40,7 +40,7 @@ export class OrderEditComponent implements OnInit {
             this.orderId = this.order.id;
           },
           err => {
-            console.log(`Could not get customerOrder with id ${params["id"]} with error: ${err}`);
+            console.log(`Could not get order with id ${params["id"]} with error: ${err}`);
           });
       }
     });
@@ -51,11 +51,11 @@ export class OrderEditComponent implements OnInit {
   }
 
   private resultProcessor(result: any[]): OrderDto {
-    const customerOrder: OrderDto = result[0];
+    const order: OrderDto = result[0];
     const locations: LocationDto[] = result[1];
     this.locationSubject.next(locations);
-    this.ensureLocationInOrder(customerOrder, locations);
-    return customerOrder;
+    this.ensureLocationInOrder(order, locations);
+    return order;
   }
 
   private ensureLocationInOrder(order: OrderDto, locations: LocationDto[]): void {
@@ -87,13 +87,13 @@ export class OrderEditComponent implements OnInit {
       this.orderRest.add(new OrderDto(this.order))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
-          (err) => console.error(`could not save customerOrder: ${this.order.id} with Error: ${err}`)
+          (err) => console.error(`could not save order: ${this.order.id} with Error: ${err}`)
         );
     } else {
       this.orderRest.update(OrderDto.createWithId(this.orderId, this.order))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
-          (err) => console.error(`could not update customerOrder: ${this.order.id} with Error: ${err}`));
+          (err) => console.error(`could not update order: ${this.order.id} with Error: ${err}`));
     }
   }
 }

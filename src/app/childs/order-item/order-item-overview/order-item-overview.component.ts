@@ -6,10 +6,10 @@ import {OrderDtoRestService} from "../../order/order-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-item-overview",
-  templateUrl: "./customer-order-item-overview.component.html",
-  styleUrls: ["./customer-order-item-overview.component.scss"]
+  templateUrl: "./order-item-overview.component.html",
+  styleUrls: ["./order-item-overview.component.scss"]
 })
-export class CustomerOrderItemOverviewComponent implements OnInit {
+export class OrderItemOverviewComponent implements OnInit {
 
   public id: number;
 

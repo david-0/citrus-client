@@ -27,14 +27,14 @@ import {ArticleDeleteComponent} from "../childs/article/article-delete/article-d
 import {ArticleDetailsComponent} from "../childs/article/article-details/article-details.component";
 import {ArticleEditComponent} from "../childs/article/article-edit/article-edit.component";
 import {ArticleOverviewComponent} from "../childs/article/article-overview/article-overview.component";
-import {CustomerOrderItemDeleteComponent} from "../childs/customer-order-item/customer-order-item-delete/customer-order-item-delete.component";
-import {CustomerOrderItemDetailComponent} from "../childs/customer-order-item/customer-order-item-detail/customer-order-item-detail.component";
-import {CustomerOrderItemEditComponent} from "../childs/customer-order-item/customer-order-item-edit/customer-order-item-edit.component";
-import {CustomerOrderItemOverviewComponent} from "../childs/customer-order-item/customer-order-item-overview/customer-order-item-overview.component";
+import {OrderItemDeleteComponent} from "../childs/order-item/order-item-delete/order-item-delete.component";
+import {OrderItemDetailComponent} from "../childs/order-item/order-item-detail/order-item-detail.component";
+import {OrderItemEditComponent} from "../childs/order-item/order-item-edit/order-item-edit.component";
+import {OrderItemOverviewComponent} from "../childs/order-item/order-item-overview/order-item-overview.component";
 import {OrderDeleteComponent} from "../childs/order/order-delete/order-delete.component";
 import {OrderDetailComponent} from "../childs/order/order-detail/order-detail.component";
 import {OrderEditComponent} from "../childs/order/order-edit/order-edit.component";
-import {CustomerOrderOverviewComponent} from "../childs/order/order-overview/customer-order-overview.component";
+import {OrderOverviewComponent} from "../childs/order/order-overview/order-overview.component";
 import {LocationDeleteComponent} from "../childs/location/location-delete/location-delete.component";
 import {LocationDetailComponent} from "../childs/location/location-detail/location-detail.component";
 import {LocationEditComponent} from "../childs/location/location-edit/location-edit.component";
@@ -174,7 +174,7 @@ const routes: Routes = [
         component: ArticleCheckoutDeleteComponent
       },
 
-      {path: "order", canActivate: [AuthGuard, AuthGuardAdmin], component: CustomerOrderOverviewComponent},
+      {path: "order", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderOverviewComponent},
       {path: "order/create", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderEditComponent},
       {path: "order/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderDetailComponent},
       {
@@ -185,31 +185,31 @@ const routes: Routes = [
           {
             path: "orderItem",
             canActivate: [AuthGuard, AuthGuardAdmin],
-            component: CustomerOrderItemOverviewComponent,
+            component: OrderItemOverviewComponent,
             outlet: "orderItem"
           },
           {
             path: "orderItem/create",
             canActivate: [AuthGuard, AuthGuardAdmin],
-            component: CustomerOrderItemEditComponent,
+            component: OrderItemEditComponent,
             outlet: "orderItem"
           },
           {
             path: "orderItem/:id",
             canActivate: [AuthGuard, AuthGuardAdmin],
-            component: CustomerOrderItemDetailComponent,
+            component: OrderItemDetailComponent,
             outlet: "orderItem"
           },
           {
             path: "orderItem/:id/edit",
             canActivate: [AuthGuard, AuthGuardAdmin],
-            component: CustomerOrderItemEditComponent,
+            component: OrderItemEditComponent,
             outlet: "orderItem"
           },
           {
             path: "orderItem/:id/delete",
             canActivate: [AuthGuard, AuthGuardAdmin],
-            component: CustomerOrderItemDeleteComponent,
+            component: OrderItemDeleteComponent,
             outlet: "orderItem"
           },
         ]

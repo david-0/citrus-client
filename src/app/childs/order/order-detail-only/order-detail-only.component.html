@@ -2,44 +2,44 @@
   <mat-card-content class="common_table">
     <div>
       <div>Bestellnummer</div>
-      <div>{{customerOrder.id}}</div>
+      <div>{{order.id}}</div>
     </div>
     <div>
       <div>Bestelldatum</div>
-      <div>{{customerOrder.date | date: "HH:mm dd.MM.y"}}</div>
+      <div>{{order.date | date: "HH:mm dd.MM.y"}}</div>
     </div>
     <div>
       <div>Besteller</div>
-      <div>{{customerOrder.user?.prename}} {{customerOrder.user?.name}}</div>
+      <div>{{order.user?.prename}} {{order.user?.name}}</div>
     </div>
     <div>
       <div>Total</div>
-      <div>{{customerOrder.totalPrice | currency: "CHF "}}</div>
+      <div>{{order.totalPrice | currency: "CHF "}}</div>
     </div>
     <div>
       <div>Standort</div>
-      <div>{{customerOrder.location?.description}}</div>
+      <div>{{order.location?.description}}</div>
     </div>
     <div>
       <div>geplante Abholung</div>
-      <div *ngIf="customerOrder.plannedCheckout">
-        {{customerOrder.plannedCheckout.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von:
-        {{customerOrder.plannedCheckout.fromDate | date: "HH:mm"}}
-        bis: {{customerOrder.plannedCheckout.toDate | date: "HH:mm"}}
+      <div *ngIf="order.plannedCheckout">
+        {{order.plannedCheckout.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von:
+        {{order.plannedCheckout.fromDate | date: "HH:mm"}}
+        bis: {{order.plannedCheckout.toDate | date: "HH:mm"}}
       </div>
-      <div *ngIf="!customerOrder.plannedCheckout">Unbekannt</div>
+      <div *ngIf="!order.plannedCheckout">Unbekannt</div>
     </div>
     <div>
       <div>Abgeholt</div>
-      <div *ngIf="customerOrder.checkedOut">{{customerOrder.checkedOutDate | date: "dd.MM.yyyy HH:mm:ss"}} (Verkäufer:
-        {{customerOrder.checkingOutUser.prename}} {{customerOrder.checkingOutUser.name}})
+      <div *ngIf="order.checkedOut">{{order.checkedOutDate | date: "dd.MM.yyyy HH:mm:ss"}} (Verkäufer:
+        {{order.checkingOutUser.prename}} {{order.checkingOutUser.name}})
       </div>
-      <div *ngIf="!customerOrder.checkedOut">Nein</div>
+      <div *ngIf="!order.checkedOut">Nein</div>
     </div>
     <div>
       <div>Artikel</div>
       <div>
-        <p class="customer-order-item-line" *ngFor="let item of customerOrder.orderItems">
+        <p class="order-item-line" *ngFor="let item of order.orderItems">
           {{item.quantity}} {{item.article?.unitOfMeasurement?.shortcut}} {{item.article?.description}} für
           {{item.copiedPrice * item.quantity | currency: "CHF "}}</p>
       </div>

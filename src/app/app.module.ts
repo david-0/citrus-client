@@ -79,16 +79,16 @@ import {ArticleEditComponent} from "./childs/article/article-edit/article-edit.c
 import {ArticleOverviewComponent} from "./childs/article/article-overview/article-overview.component";
 import {ArticleSettingsService} from "./childs/article/article-settings.service";
 import {ArticleTableComponent} from "./childs/article/article-table/article-table.component";
-import {CustomerOrderItemDeleteComponent} from "./childs/customer-order-item/customer-order-item-delete/customer-order-item-delete.component";
-import {CustomerOrderItemDetailComponent} from "./childs/customer-order-item/customer-order-item-detail/customer-order-item-detail.component";
-import {CustomerOrderItemEditComponent} from "./childs/customer-order-item/customer-order-item-edit/customer-order-item-edit.component";
-import {CustomerOrderItemOverviewComponent} from "./childs/customer-order-item/customer-order-item-overview/customer-order-item-overview.component";
-import {CustomerOrderItemTableComponent} from "./childs/customer-order-item/customer-order-item-table/customer-order-item-table.component";
+import {OrderItemDeleteComponent} from "./childs/order-item/order-item-delete/order-item-delete.component";
+import {OrderItemDetailComponent} from "./childs/order-item/order-item-detail/order-item-detail.component";
+import {OrderItemEditComponent} from "./childs/order-item/order-item-edit/order-item-edit.component";
+import {OrderItemOverviewComponent} from "./childs/order-item/order-item-overview/order-item-overview.component";
+import {OrderItemTableComponent} from "./childs/order-item/order-item-table/order-item-table.component";
 import {OrderDeleteComponent} from "./childs/order/order-delete/order-delete.component";
 import {OrderDetailOnlyComponent} from "./childs/order/order-detail-only/order-detail-only.component";
 import {OrderDetailComponent} from "./childs/order/order-detail/order-detail.component";
 import {OrderEditComponent} from "./childs/order/order-edit/order-edit.component";
-import {CustomerOrderOverviewComponent} from "./childs/order/order-overview/customer-order-overview.component";
+import {OrderOverviewComponent} from "./childs/order/order-overview/order-overview.component";
 import {OrderTableComponent} from "./childs/order/order-table/order-table.component";
 import {LocationDeleteComponent} from "./childs/location/location-delete/location-delete.component";
 import {LocationDetailOnlyComponent} from "./childs/location/location-detail-only/location-detail-only.component";
@@ -183,13 +183,13 @@ import { StoreEstimateComponent } from './store/store-estimate/store-estimate.co
     OrderDetailComponent,
     OrderDetailOnlyComponent,
     OrderEditComponent,
-    CustomerOrderOverviewComponent,
+    OrderOverviewComponent,
     OrderTableComponent,
-    CustomerOrderItemTableComponent,
-    CustomerOrderItemDeleteComponent,
-    CustomerOrderItemDetailComponent,
-    CustomerOrderItemEditComponent,
-    CustomerOrderItemOverviewComponent,
+    OrderItemTableComponent,
+    OrderItemDeleteComponent,
+    OrderItemDetailComponent,
+    OrderItemEditComponent,
+    OrderItemOverviewComponent,
     RoleDeleteComponent,
     RoleDetailComponent,
     RoleEditComponent,

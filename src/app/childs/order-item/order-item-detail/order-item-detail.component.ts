@@ -5,10 +5,10 @@ import {OrderDtoRestService} from "../../order/order-dto-rest.service";
 
 @Component({
   selector: "app-customer-order-item-detail",
-  templateUrl: "./customer-order-item-detail.component.html",
-  styleUrls: ["./customer-order-item-detail.component.scss"]
+  templateUrl: "./order-item-detail.component.html",
+  styleUrls: ["./order-item-detail.component.scss"]
 })
-export class CustomerOrderItemDetailComponent implements OnInit{
+export class OrderItemDetailComponent implements OnInit{
   private _orderItem: OrderItemDto = OrderItemDto.createEmpty();
 
   constructor(private route: ActivatedRoute, private rest: OrderDtoRestService) {
