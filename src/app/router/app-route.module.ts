@@ -27,14 +27,6 @@ import {ArticleDeleteComponent} from "../childs/article/article-delete/article-d
 import {ArticleDetailsComponent} from "../childs/article/article-details/article-details.component";
 import {ArticleEditComponent} from "../childs/article/article-edit/article-edit.component";
 import {ArticleOverviewComponent} from "../childs/article/article-overview/article-overview.component";
-import {OrderItemDeleteComponent} from "../childs/order-item/order-item-delete/order-item-delete.component";
-import {OrderItemDetailComponent} from "../childs/order-item/order-item-detail/order-item-detail.component";
-import {OrderItemEditComponent} from "../childs/order-item/order-item-edit/order-item-edit.component";
-import {OrderItemOverviewComponent} from "../childs/order-item/order-item-overview/order-item-overview.component";
-import {OrderDeleteComponent} from "../childs/order/order-delete/order-delete.component";
-import {OrderDetailComponent} from "../childs/order/order-detail/order-detail.component";
-import {OrderEditComponent} from "../childs/order/order-edit/order-edit.component";
-import {OrderOverviewComponent} from "../childs/order/order-overview/order-overview.component";
 import {LocationDeleteComponent} from "../childs/location/location-delete/location-delete.component";
 import {LocationDetailComponent} from "../childs/location/location-detail/location-detail.component";
 import {LocationEditComponent} from "../childs/location/location-edit/location-edit.component";
@@ -43,6 +35,14 @@ import {OpeningHourDeleteComponent} from "../childs/opening-hour/opening-hour-de
 import {OpeningHourDetailsComponent} from "../childs/opening-hour/opening-hour-details/opening-hour-details.component";
 import {OpeningHourEditComponent} from "../childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
 import {OpeningHourOverviewComponent} from "../childs/opening-hour/opening-hour-overview/opening-hour-overview.component";
+import {OrderItemDeleteComponent} from "../childs/order-item/order-item-delete/order-item-delete.component";
+import {OrderItemDetailComponent} from "../childs/order-item/order-item-detail/order-item-detail.component";
+import {OrderItemEditComponent} from "../childs/order-item/order-item-edit/order-item-edit.component";
+import {OrderItemOverviewComponent} from "../childs/order-item/order-item-overview/order-item-overview.component";
+import {OrderDeleteComponent} from "../childs/order/order-delete/order-delete.component";
+import {OrderDetailComponent} from "../childs/order/order-detail/order-detail.component";
+import {OrderEditComponent} from "../childs/order/order-edit/order-edit.component";
+import {OrderOverviewComponent} from "../childs/order/order-overview/order-overview.component";
 import {RoleDeleteComponent} from "../childs/role/role-delete/role-delete.component";
 import {RoleDetailComponent} from "../childs/role/role-detail/role-detail.component";
 import {RoleEditComponent} from "../childs/role/role-edit/role-edit.component";
@@ -59,6 +59,7 @@ import {UserPasswordChangeComponent} from "../childs/user/user-password-change/u
 import {DashboardComponent} from "../dashboard/dashboard.component";
 import {LoginComponent} from "../login/login.component";
 import {LogoutComponent} from "../logout/logout.component";
+import {SaleOrderComponent} from "../sales/sale-order/sale-order.component";
 import {SaleOverviewComponent} from "../sales/sale-overview/sale-overview.component";
 import {StoreCheckInComponent} from "../store/store-check-in/store-check-in.component";
 import {StoreCheckOutComponent} from "../store/store-check-out/store-check-out.component";
@@ -72,6 +73,7 @@ const routes: Routes = [
   {path: "checkout/:id", canActivate: [AuthGuard], component: CheckoutComponent},
   {path: "changeMyPassword", component: ChangeMyPasswordComponent},
   {path: "sale", canActivate: [AuthGuard, AuthGuardSale], component: SaleOverviewComponent},
+  {path: "sale/:id", canActivate: [AuthGuard, AuthGuardSale], component: SaleOrderComponent},
   {path: "store/checkIn", canActivate: [AuthGuard, AuthGuardStore], component: StoreCheckInComponent},
   {path: "store/checkOut", canActivate: [AuthGuard, AuthGuardStore], component: StoreCheckOutComponent},
   {path: "store/estimate", canActivate: [AuthGuard, AuthGuardStore], component: StoreEstimateComponent},

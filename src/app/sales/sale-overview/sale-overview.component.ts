@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute, Router} from "@angular/router";
 
 export interface Tile {
   color: string;
@@ -15,7 +16,8 @@ export interface Tile {
 export class SaleOverviewComponent implements OnInit {
   public bestellnummer = "";
 
-  constructor() {
+  constructor(private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class SaleOverviewComponent implements OnInit {
   }
 
   public search() {
-
+    this.router.navigate([this.bestellnummer], {relativeTo: this.route});
   }
 
   public clear() {

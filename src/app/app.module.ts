@@ -135,6 +135,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
 import { StoreCheckInComponent } from './store/store-check-in/store-check-in.component';
 import { StoreCheckOutComponent } from './store/store-check-out/store-check-out.component';
 import { StoreEstimateComponent } from './store/store-estimate/store-estimate.component';
+import { SaleOrderComponent } from './sales/sale-order/sale-order.component';
 
 
 @NgModule({
@@ -217,6 +218,7 @@ import { StoreEstimateComponent } from './store/store-estimate/store-estimate.co
     StoreCheckInComponent,
     StoreCheckOutComponent,
     StoreEstimateComponent,
+    SaleOrderComponent,
   ],
   imports: [
     BrowserModule,
