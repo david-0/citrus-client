@@ -4,7 +4,7 @@ import {OrderItemDto} from "citrus-common/lib/dto/order-item-dto";
 import {OrderDtoRestService} from "../../order/order-dto-rest.service";
 
 @Component({
-  selector: "app-customer-order-item-detail",
+  selector: "app-order-item-detail",
   templateUrl: "./order-item-detail.component.html",
   styleUrls: ["./order-item-detail.component.scss"]
 })

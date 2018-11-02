@@ -8,7 +8,7 @@ import {OrderDtoRestService} from "../../order/order-dto-rest.service";
 import {OrderItemDtoRestService} from "../order-item-dto-rest.service";
 
 @Component({
-  selector: "app-customer-order-item-edit",
+  selector: "app-order-item-edit",
   templateUrl: "./order-item-edit.component.html",
   styleUrls: ["./order-item-edit.component.scss"]
 })
@@ -42,12 +42,12 @@ export class OrderItemEditComponent implements OnInit {
     });
   }
 
-  private updateOrderItem(customerOrder: OrderDto) {
+  private updateOrderItem(order: OrderDto) {
     this.route.params.subscribe(orderItemParams => {
       if (orderItemParams["id"] == null) {
         this._orderItem = OrderItemDto.createEmpty();
       } else {
-        this._orderItem = customerOrder.orderItems.filter(o => o.id === +orderItemParams["id"])[0];
+        this._orderItem = order.orderItems.filter(o => o.id === +orderItemParams["id"])[0];
       }
       this._orderItemId = this._orderItem.id;
       this.updateAllArticles();
@@ -56,12 +56,12 @@ export class OrderItemEditComponent implements OnInit {
 
   private updateAllArticles() {
     this.articleRest.getAll().subscribe(articles => {
-      this.ensureArticleInCustomerOrderItem(this._orderItem, articles);
+      this.ensureArticleInOrderItem(this._orderItem, articles);
       this._articleSubject.next(articles);
     });
   }
 
-  private ensureArticleInCustomerOrderItem(orderItem: OrderItemDto, articles: ArticleDto[]): void {
+  private ensureArticleInOrderItem(orderItem: OrderItemDto, articles: ArticleDto[]): void {
     for (const article of articles) {
       if (this.isArticleWithSameId(orderItem, article)) {
         orderItem.article = article;
@@ -88,7 +88,7 @@ export class OrderItemEditComponent implements OnInit {
   private createNewItem(copy) {
     this.orderItemRest.add(new OrderItemDto(copy)).subscribe(
       (result) => {
-//        this._customerOrder.customerOrderItems.push(copy);
+//        this._orderItem.orderItems.push(copy);
         this.router.navigate([".."], {relativeTo: this.route});
       },
       (err) => console.error(`could not save orderItem: ${copy.id} with Error: ${err}`)
@@ -98,8 +98,8 @@ export class OrderItemEditComponent implements OnInit {
   private updateItem(copy) {
     this.orderItemRest.update(copy).subscribe(
       (result) => {
-        // const position = this._customerOrder.customerOrderItems.findIndex(o => o.id === this._orderItemId);
-        // this._customerOrder.customerOrderItems[position] = copy;
+        // const position = this._orderItem.orderItems.findIndex(o => o.id === this._orderItemId);
+        // this._orderItem.orderItems[position] = copy;
         this.router.navigate([".."], {relativeTo: this.route});
       },
       (err) => console.error(`could not update orderItem: ${copy.id} with Error: ${err}`));

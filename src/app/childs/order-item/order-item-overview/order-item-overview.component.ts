@@ -5,7 +5,7 @@ import {BehaviorSubject} from "rxjs";
 import {OrderDtoRestService} from "../../order/order-dto-rest.service";
 
 @Component({
-  selector: "app-customer-order-item-overview",
+  selector: "app-order-item-overview",
   templateUrl: "./order-item-overview.component.html",
   styleUrls: ["./order-item-overview.component.scss"]
 })
