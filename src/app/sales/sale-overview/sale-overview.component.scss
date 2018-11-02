@@ -23,9 +23,11 @@
 .input-grid {
   background-color: lightblue;
 }
+
 .search-grid {
   background-color: yellow;
 }
+
 .clear-grid {
   background-color: lightsalmon;
 }
@@ -37,4 +39,8 @@
 .fullView {
   display: flex;
   justify-content: center;
+}
+
+.space {
+  margin-right: 1em;
 }

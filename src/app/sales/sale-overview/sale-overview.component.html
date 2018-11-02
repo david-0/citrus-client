@@ -8,42 +8,46 @@
           <mat-grid-list cols="3" rowHeight="65px">
             <mat-grid-tile [colspan]="3" class="input-grid">
               <button mat-raised-button class="grid-button">{{bestellnummer}}</button>
+              <button mat-button *ngIf="bestellnummer" matSuffix mat-icon-button class="space">
+                <mat-icon *ngIf="numberValid">done</mat-icon>
+                <mat-icon *ngIf="!numberValid">block</mat-icon>
+              </button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('1')">
-              <button mat-raised-button class="grid-button">1</button>
+            <mat-grid-tile [colspan]="1" (click)="enter('1')">
+              <button mat-raised-button class="grid-button number-grid">1</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('2')">
-              <button mat-raised-button class="grid-button">2</button>
+            <mat-grid-tile [colspan]="1" (click)="enter('2')">
+              <button mat-raised-button class="grid-button number-grid">2</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('3')">
-              <button mat-raised-button class="grid-button">3</button>
+            <mat-grid-tile [colspan]="1" (click)="enter('3')">
+              <button mat-raised-button class="grid-button number-grid">3</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('4')">
-              <button mat-raised-button class="grid-button">4</button>
+            <mat-grid-tile [colspan]="1" (click)="enter('4')">
+              <button mat-raised-button class="grid-button number-grid">4</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('5')">
-              <button mat-raised-button class="grid-button">5</button>
+            <mat-grid-tile [colspan]="1" (click)="enter('5')">
+              <button mat-raised-button class="grid-button number-grid">5</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('6')">
-              <button mat-raised-button class="grid-button">6</button>
+            <mat-grid-tile [colspan]="1" (click)="enter('6')">
+              <button mat-raised-button class="grid-button number-grid">6</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('7')">
-              <button mat-raised-button class="grid-button">7</button>
+            <mat-grid-tile [colspan]="1" (click)="enter('7')">
+              <button mat-raised-button class="grid-button number-grid">7</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('8')">
-              <button mat-raised-button class="grid-button">8</button>
+            <mat-grid-tile [colspan]="1" (click)="enter('8')">
+              <button mat-raised-button class="grid-button number-grid">8</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('9')">
-              <button mat-raised-button class="grid-button">9</button>
+            <mat-grid-tile [colspan]="1" (click)="enter('9')">
+              <button mat-raised-button class="grid-button number-grid">9</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" class="number-grid" (click)="enter('0')">
-              <button mat-raised-button class="grid-button">0</button>
+            <mat-grid-tile [colspan]="1" (click)="enter('0')">
+              <button mat-raised-button class="grid-button number-grid">0</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" class="search-grid" (click)="search()">
-              <button mat-raised-button class="grid-button">Anzeigen</button>
+            <mat-grid-tile [colspan]="2" (click)="search()">
+              <button [disabled]="!numberValid" mat-raised-button class="grid-button search-grid">Anzeigen</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="3" class="clear-grid" (click)="clear()">
-              <button mat-raised-button class="grid-button">Eingaben löschen</button>
+            <mat-grid-tile [colspan]="3" (click)="clear()">
+              <button [disabled]="!bestellnummer" mat-raised-button class="grid-button clear-grid">Eingaben löschen</button>
             </mat-grid-tile>
           </mat-grid-list>
         </mat-card>

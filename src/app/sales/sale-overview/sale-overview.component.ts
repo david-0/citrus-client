@@ -1,5 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
+import {OrderDto} from "citrus-common";
+import {OrderDtoRestService} from "../../childs/order/order-dto-rest.service";
 
 export interface Tile {
   color: string;
@@ -15,16 +17,31 @@ export interface Tile {
 })
 export class SaleOverviewComponent implements OnInit {
   public bestellnummer = "";
+  public numberValid = false;
+  private orders: OrderDto[] = [];
 
   constructor(private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private rest: OrderDtoRestService) {
   }
 
   ngOnInit() {
+    this.rest.getAll().subscribe(orders => {
+      this.orders = orders;
+    });
   }
 
   public enter(digit: string) {
     this.bestellnummer = this.bestellnummer + digit;
+    this.validateBestellnummer();
+  }
+
+  public validateBestellnummer() {
+    if (this.orders.filter(o => o.id === +this.bestellnummer).length > 0) {
+      this.numberValid = true;
+    } else {
+      this.numberValid = false;
+    }
   }
 
   public search() {
@@ -33,5 +50,6 @@ export class SaleOverviewComponent implements OnInit {
 
   public clear() {
     this.bestellnummer = "";
+    this.numberValid = false;
   }
 }
