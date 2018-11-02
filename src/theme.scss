@@ -34,6 +34,7 @@ $my-theme: mat-light-theme(
 @import "app/store/store-check-in/store-check-in.component.scss-theme";
 @import "app/store/store-check-out/store-check-out.component.scss-theme";
 @import "app/store/store-estimate/store-estimate.component.scss-theme";
+@import "app/sales/sale-header/sale-header.component.scss-theme";
 
 @mixin my-component-theme($theme) {
   @include app-table-header-theme($theme);
@@ -55,6 +56,7 @@ $my-theme: mat-light-theme(
   @include app-store-check-in-theme($theme);
   @include app-store-check-out-theme($theme);
   @include app-store-estimate-theme($theme);
+  @include app-sale-header-theme($theme);
 }
 
 @include angular-material-theme($my-theme);

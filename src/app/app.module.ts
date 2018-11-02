@@ -38,8 +38,6 @@ import "hammerjs";
 import {ValidatorsModule} from "ng2-validators";
 
 import {AppComponent} from "./app.component";
-import {AuthGuardAdmin} from "./authentication/auth-guard-admin.service";
-import {AuthGuard} from "./authentication/auth-guard.service";
 import {AuthenticationService} from "./authentication/authentication.service";
 import {PasswordChangeComponent} from "./authentication/password-change/password-change.component";
 import {TokenInterceptor} from "./authentication/token-interceptor";
@@ -79,17 +77,6 @@ import {ArticleEditComponent} from "./childs/article/article-edit/article-edit.c
 import {ArticleOverviewComponent} from "./childs/article/article-overview/article-overview.component";
 import {ArticleSettingsService} from "./childs/article/article-settings.service";
 import {ArticleTableComponent} from "./childs/article/article-table/article-table.component";
-import {OrderItemDeleteComponent} from "./childs/order-item/order-item-delete/order-item-delete.component";
-import {OrderItemDetailComponent} from "./childs/order-item/order-item-detail/order-item-detail.component";
-import {OrderItemEditComponent} from "./childs/order-item/order-item-edit/order-item-edit.component";
-import {OrderItemOverviewComponent} from "./childs/order-item/order-item-overview/order-item-overview.component";
-import {OrderItemTableComponent} from "./childs/order-item/order-item-table/order-item-table.component";
-import {OrderDeleteComponent} from "./childs/order/order-delete/order-delete.component";
-import {OrderDetailOnlyComponent} from "./childs/order/order-detail-only/order-detail-only.component";
-import {OrderDetailComponent} from "./childs/order/order-detail/order-detail.component";
-import {OrderEditComponent} from "./childs/order/order-edit/order-edit.component";
-import {OrderOverviewComponent} from "./childs/order/order-overview/order-overview.component";
-import {OrderTableComponent} from "./childs/order/order-table/order-table.component";
 import {LocationDeleteComponent} from "./childs/location/location-delete/location-delete.component";
 import {LocationDetailOnlyComponent} from "./childs/location/location-detail-only/location-detail-only.component";
 import {LocationDetailComponent} from "./childs/location/location-detail/location-detail.component";
@@ -101,6 +88,17 @@ import {OpeningHourDetailsComponent} from "./childs/opening-hour/opening-hour-de
 import {OpeningHourEditComponent} from "./childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
 import {OpeningHourOverviewComponent} from "./childs/opening-hour/opening-hour-overview/opening-hour-overview.component";
 import {OpeningHourTableComponent} from "./childs/opening-hour/opening-hour-table/opening-hour-table.component";
+import {OrderItemDeleteComponent} from "./childs/order-item/order-item-delete/order-item-delete.component";
+import {OrderItemDetailComponent} from "./childs/order-item/order-item-detail/order-item-detail.component";
+import {OrderItemEditComponent} from "./childs/order-item/order-item-edit/order-item-edit.component";
+import {OrderItemOverviewComponent} from "./childs/order-item/order-item-overview/order-item-overview.component";
+import {OrderItemTableComponent} from "./childs/order-item/order-item-table/order-item-table.component";
+import {OrderDeleteComponent} from "./childs/order/order-delete/order-delete.component";
+import {OrderDetailOnlyComponent} from "./childs/order/order-detail-only/order-detail-only.component";
+import {OrderDetailComponent} from "./childs/order/order-detail/order-detail.component";
+import {OrderEditComponent} from "./childs/order/order-edit/order-edit.component";
+import {OrderOverviewComponent} from "./childs/order/order-overview/order-overview.component";
+import {OrderTableComponent} from "./childs/order/order-table/order-table.component";
 import {RoleDeleteComponent} from "./childs/role/role-delete/role-delete.component";
 import {RoleDetailComponent} from "./childs/role/role-detail/role-detail.component";
 import {RoleEditComponent} from "./childs/role/role-edit/role-edit.component";
@@ -128,14 +126,16 @@ import {PublicArticleStockGridComponent} from "./dashboard/public-article-stock-
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
+import {SaleHeaderComponent} from "./sales/sale-header/sale-header.component";
+import {SaleLocationComponent} from "./sales/sale-location/sale-location.component";
+import {SaleOrderComponent} from "./sales/sale-order/sale-order.component";
 import {SaleOverviewComponent} from "./sales/sale-overview/sale-overview.component";
+import {StoreCheckInComponent} from "./store/store-check-in/store-check-in.component";
+import {StoreCheckOutComponent} from "./store/store-check-out/store-check-out.component";
+import {StoreEstimateComponent} from "./store/store-estimate/store-estimate.component";
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { StoreCheckInComponent } from './store/store-check-in/store-check-in.component';
-import { StoreCheckOutComponent } from './store/store-check-out/store-check-out.component';
-import { StoreEstimateComponent } from './store/store-estimate/store-estimate.component';
-import { SaleOrderComponent } from './sales/sale-order/sale-order.component';
 
 
 @NgModule({
@@ -219,6 +219,8 @@ import { SaleOrderComponent } from './sales/sale-order/sale-order.component';
     StoreCheckOutComponent,
     StoreEstimateComponent,
     SaleOrderComponent,
+    SaleLocationComponent,
+    SaleHeaderComponent,
   ],
   imports: [
     BrowserModule,

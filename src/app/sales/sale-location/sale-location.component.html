@@ -1,0 +1,6 @@
+<mat-form-field class="padding" color="accent">
+  <mat-select placeholder="Verkaufsstandort" #saleLocation name="location" [(ngModel)]="currentLocation"
+              (valueChange)="updateLocation()">
+    <mat-option *ngFor="let location of locations" [value]="location">{{location.description}}</mat-option>
+  </mat-select>
+</mat-form-field>

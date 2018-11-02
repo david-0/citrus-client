@@ -1,4 +1,4 @@
-<app-table-header titleText="Verkauf - Bestellung auswählen" showBack="true"></app-table-header>
+<app-sale-header titleText="Verkauf - Bestellung auswählen" showBack="true"></app-sale-header>
 <div class="fullView">
   <div class="sales-layout">
     <mat-tab-group>
@@ -43,11 +43,15 @@
             <mat-grid-tile [colspan]="1" (click)="enter('0')">
               <button mat-raised-button class="grid-button number-grid">0</button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" (click)="search()">
-              <button [disabled]="!numberValid" mat-raised-button class="grid-button search-grid">Anzeigen</button>
+            <mat-grid-tile [colspan]="2">
+              <button [disabled]="!numberValid" mat-raised-button class="grid-button search-grid" (click)="search()">
+                Anzeigen
+              </button>
             </mat-grid-tile>
-            <mat-grid-tile [colspan]="3" (click)="clear()">
-              <button [disabled]="!bestellnummer" mat-raised-button class="grid-button clear-grid">Eingaben löschen</button>
+            <mat-grid-tile [colspan]="3">
+              <button [disabled]="!bestellnummer" mat-raised-button class="grid-button clear-grid" (click)="clear()">
+                Eingaben löschen
+              </button>
             </mat-grid-tile>
           </mat-grid-list>
         </mat-card>
