@@ -1,7 +1,6 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
-import {Subscription} from "rxjs";
 import {OrderDtoRestService} from "../order-dto-rest.service";
 
 @Component({
@@ -9,9 +8,8 @@ import {OrderDtoRestService} from "../order-dto-rest.service";
   templateUrl: "./order-detail.component.html",
   styleUrls: ["./order-detail.component.scss"]
 })
-export class OrderDetailComponent implements OnInit , OnDestroy {
+export class OrderDetailComponent implements OnInit {
   private _order: OrderDto = OrderDto.createEmpty();
-  private subscription: Subscription;
 
   constructor(private route: ActivatedRoute, private rest: OrderDtoRestService) {
   }
@@ -22,16 +20,9 @@ export class OrderDetailComponent implements OnInit , OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const promise = this.rest.get(+params["id"]);
-      this.subscription = promise.subscribe((order) => {
+      this.rest.get(+params["id"]).subscribe((order) => {
         this._order = order;
       });
     });
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }
