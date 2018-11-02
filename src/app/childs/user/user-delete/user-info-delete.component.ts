@@ -19,8 +19,8 @@ export class UserInfoDeleteComponent implements OnInit {
 
   ngOnInit() {
     this.deleteExecutor = new DeleteExecutor<UserDto>(this.route, this.rest, "Der Benutzer");
-    this.deleteExecutor.registerCheck(userInfo => userInfo.customerOrders.length > 0,
-      userInfo => `weil er noch ${userInfo.customerOrders.length} Bestellung(en) hat`);
+    this.deleteExecutor.registerCheck(userInfo => userInfo.orders.length > 0,
+      userInfo => `weil er noch ${userInfo.orders.length} Bestellung(en) hat`);
     this.deleteExecutor.registerCheck(userInfo => userInfo.addresses.length > 0,
       userInfo => `weil er noch ${userInfo.addresses.length} Addresse(n) hat`);
     this.deleteExecutor.initDelete();
