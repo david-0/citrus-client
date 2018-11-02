@@ -3,7 +3,7 @@ import {MatPaginator, MatSort} from "@angular/material";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
 import {Observable} from "rxjs";
 import {BaseTableComponent} from "../../../base/base-table.component";
-import {OrderDtoRestService} from "../order-dto-rest.service";
+import {OrderDtoWithAllRestService} from "../order-dto-with-all-rest.service";
 import {OrderSettingsService} from "../order-settings.service";
 
 @Component({
@@ -19,7 +19,7 @@ export class OrderTableComponent extends BaseTableComponent<OrderDto> implements
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(rest: OrderDtoRestService, settings: OrderSettingsService) {
+  constructor(rest: OrderDtoWithAllRestService, settings: OrderSettingsService) {
     super(rest, settings);
   }
 

@@ -7,7 +7,7 @@ import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service"
 @Injectable({
   providedIn: "root"
 })
-export class OrderDtoRestService extends GenericRestService<OrderDto> {
+export class OrderDtoWithAllRestService extends GenericRestService<OrderDto> {
   constructor(http: HttpClient, private restUrlPrefix: RestUrlPrefixService) {
     super(http, restUrlPrefix.getApiRestPrefix() + "/order/withAll");
   }

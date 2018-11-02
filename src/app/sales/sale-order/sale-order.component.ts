@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {OrderDto} from "citrus-common";
-import {OrderDtoRestService} from "../../childs/order/order-dto-rest.service";
+import {OrderDtoWithAllRestService} from "../../childs/order/order-dto-with-all-rest.service";
 
 @Component({
   selector: "app-sale-order",
@@ -12,7 +12,7 @@ export class SaleOrderComponent implements OnInit {
 
   private _order: OrderDto = OrderDto.createEmpty();
 
-  constructor(private route: ActivatedRoute, private rest: OrderDtoRestService) {
+  constructor(private route: ActivatedRoute, private rest: OrderDtoWithAllRestService) {
   }
 
   public get order(): OrderDto {

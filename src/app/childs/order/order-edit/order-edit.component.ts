@@ -4,7 +4,7 @@ import {LocationDto, OpeningHourDto} from "citrus-common";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
 import {BehaviorSubject, combineLatest} from "rxjs";
 import {LocationWithOpeninghHoursDtoRestService} from "../../location/location-with-openingh-hours-dto-rest.service";
-import {OrderDtoRestService} from "../order-dto-rest.service";
+import {OrderDtoWithAllRestService} from "../order-dto-with-all-rest.service";
 
 @Component({
   selector: "app-order-edit",
@@ -20,7 +20,7 @@ export class OrderEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private orderRest: OrderDtoRestService,
+              private orderRest: OrderDtoWithAllRestService,
               public locationRest: LocationWithOpeninghHoursDtoRestService) {
   }
 

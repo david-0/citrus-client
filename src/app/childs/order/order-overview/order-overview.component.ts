@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
 import {BehaviorSubject} from "rxjs";
-import {OrderDtoRestService} from "../order-dto-rest.service";
+import {OrderDtoWithAllRestService} from "../order-dto-with-all-rest.service";
 
 @Component({
   selector: "app-order-overview",
@@ -13,7 +13,7 @@ export class OrderOverviewComponent implements OnInit {
   public displayedColumns = ["id", "date", "user", "location", "totalPrice", "plannedCheckout", "checkedOut"];
   public dataObservable = new BehaviorSubject<OrderDto[]>([]);
 
-  constructor(private rest: OrderDtoRestService) {
+  constructor(private rest: OrderDtoWithAllRestService) {
   }
 
   ngOnInit() {
