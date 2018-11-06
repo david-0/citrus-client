@@ -3,9 +3,9 @@ import {DtoId} from "citrus-common/lib/dto/dto-id";
 import {Observable} from "rxjs";
 
 export class GenericRestService<T extends DtoId> {
-  private headers = new HttpHeaders({"Content-Type": "application/json"});
+  protected headers = new HttpHeaders({"Content-Type": "application/json"});
 
-  constructor(private http: HttpClient, private restUrl: string) {
+  constructor(protected http: HttpClient, protected restUrl: string) {
   }
 
   add(item: T): Observable<T> {
