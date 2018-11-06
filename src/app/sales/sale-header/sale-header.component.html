@@ -4,5 +4,11 @@
   </button>
   <h3 class="h3--no-margins toolbar--title">{{titleText}}</h3>
   <span class="fill-remaining-space"></span>
+  <div *ngIf="selectedLocation" class="toolbar--text">
+    <span class="toolbar--text2">{{orderCount}} offene Bestellung</span>
+    <span class="toolbar--text2" *ngIf="orderCount!==1">en</span>
+    <span class="toolbar--text2">&nbsp;am Standort</span>
+  </div>
+  <span *ngIf="!selectedLocation" class="toolbar--text">keinen Standort ausgewählt</span>
   <app-sale-location></app-sale-location>
 </div>

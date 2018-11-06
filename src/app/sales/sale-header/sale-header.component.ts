@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
+import {LocationDto} from "citrus-common";
 
 @Component({
   selector: "app-sale-header",
@@ -9,6 +10,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class SaleHeaderComponent implements OnInit {
   @Input() titleText: string;
   @Input() showBack: boolean;
+  @Input() orderCount: number;
+  @Input() selectedLocation: LocationDto;
 
   constructor(private router: Router, private route: ActivatedRoute) {
   }

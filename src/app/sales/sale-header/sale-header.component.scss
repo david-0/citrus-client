@@ -27,9 +27,20 @@ button.button--responsive {
 .toolbar--title {
   box-sizing: border-box;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   font-size: 18px;
   font-weight: 600;
+  line-height: 47px;
+  text-decoration: none;
+  transition: all .3s;
+  padding: 0 0 0 0.5em;
+  position: relative;
+}
+
+.toolbar--text {
+  box-sizing: border-box;
+  display: flex;
+  align-items: baseline;
   line-height: 47px;
   text-decoration: none;
   transition: all .3s;

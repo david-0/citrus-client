@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {OrderDto} from "citrus-common";
+import {LocationDto, OrderDto} from "citrus-common";
 import {OrderDtoRestService} from "../../childs/order/order-dto-rest.service";
 import {SaleLocationService} from "../sale-location.service";
 
@@ -20,6 +20,8 @@ export class SaleOverviewComponent implements OnInit {
   public bestellnummer = "";
   public numberValid = false;
   private orders: OrderDto[] = [];
+  private selectedLocation: LocationDto;
+  private orderCount = 0;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -29,11 +31,14 @@ export class SaleOverviewComponent implements OnInit {
 
   ngOnInit() {
     this.saleLocationService.getSaleLocation().subscribe(location => {
+      this.selectedLocation = location;
       if (location) {
         this.rest.getByLocation(location.id).subscribe(orders => {
           this.orders = orders;
+          this.orderCount = orders.length;
         });
       }
+      this.orderCount = 0;
     });
   }
 
