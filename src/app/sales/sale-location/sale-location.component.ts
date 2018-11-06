@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {FormControl} from "@angular/forms";
 import {LocationDto} from "citrus-common";
 import {LocationDtoRestService} from "../../childs/location/location-dto-rest.service";
 import {SaleLocationService} from "../sale-location.service";
@@ -11,27 +12,25 @@ import {SaleLocationService} from "../sale-location.service";
 export class SaleLocationComponent implements OnInit {
 
   private _locations: LocationDto[] = [];
-  public currentLocation: LocationDto = null;
+  public saleLocation: FormControl;
 
-  constructor(private rest: LocationDtoRestService, private saleLocation: SaleLocationService) {
+  constructor(private rest: LocationDtoRestService, private saleLocationService: SaleLocationService) {
   }
 
   ngOnInit() {
+    this.saleLocation = new FormControl();
+    this.saleLocation.valueChanges.subscribe(value => {
+      this.saleLocationService.setSaleLocation(value);
+    });
     this.rest.getAll().subscribe(locations => {
       this._locations = locations;
-      this.currentLocation = this.checkValidLocation(this.saleLocation.getSaleLocation());
-      if (this.currentLocation === null) {
-        this.saleLocation.clearSaleLocation();
-      }
+      const checkedLocation = this.checkValidLocation(this.saleLocationService.getSaleLocation().getValue());
+      this.saleLocation.setValue(checkedLocation);
     });
   }
 
   public get locations() {
     return this._locations;
-  }
-
-  public updateLocation() {
-    this.saleLocation.setSaleLocation(this.currentLocation);
   }
 
   private checkValidLocation(currentLocation: LocationDto): LocationDto {

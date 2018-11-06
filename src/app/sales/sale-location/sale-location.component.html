@@ -1,6 +1,5 @@
 <mat-form-field class="padding" color="accent">
-  <mat-select placeholder="Verkaufsstandort" #saleLocation name="location" [(ngModel)]="currentLocation"
-              (valueChange)="updateLocation()">
+  <mat-select [formControl]="saleLocation" placeholder="Verkaufsstandort" name="location">
     <mat-option *ngFor="let location of locations" [value]="location">{{location.description}}</mat-option>
   </mat-select>
 </mat-form-field>

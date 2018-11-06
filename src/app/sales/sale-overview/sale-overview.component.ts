@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OrderDto} from "citrus-common";
 import {OrderDtoRestService} from "../../childs/order/order-dto-rest.service";
+import {SaleLocationService} from "../sale-location.service";
 
 export interface Tile {
   color: string;
@@ -22,12 +23,17 @@ export class SaleOverviewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private rest: OrderDtoRestService) {
+              private rest: OrderDtoRestService,
+              private saleLocationService: SaleLocationService) {
   }
 
   ngOnInit() {
-    this.rest.getAll().subscribe(orders => {
-      this.orders = orders;
+    this.saleLocationService.getSaleLocation().subscribe(location => {
+      if (location) {
+        this.rest.getByLocation(location.id).subscribe(orders => {
+          this.orders = orders;
+        });
+      }
     });
   }
 
