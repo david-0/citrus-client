@@ -11,7 +11,7 @@ import {SaleLocationService} from "../sale-location.service";
 })
 export class SaleOrderComponent implements OnInit {
 
-  private _order: OrderDto = OrderDto.createEmpty();
+  private _order: OrderDto;
   public saleLocationOk = true;
 
   constructor(private route: ActivatedRoute,
@@ -37,8 +37,8 @@ export class SaleOrderComponent implements OnInit {
   }
 
   private checkSaleLocation() {
-    if (this.saleLocationService.getSaleLocation().getValue() &&
-      this.saleLocationService.getSaleLocation().getValue().id !== this._order.location.id) {
+    const saleLocation = this.saleLocationService.getSaleLocation().getValue();
+    if (saleLocation && this._order && saleLocation.id !== this._order.location.id) {
       this.saleLocationOk = false;
     } else {
       this.saleLocationOk = true;

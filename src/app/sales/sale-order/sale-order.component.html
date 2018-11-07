@@ -1,5 +1,5 @@
 <app-sale-header titleText="Verkauf - Bestellung" showBack="true"></app-sale-header>
-<mat-card>
+<mat-card *ngIf="order">
   <mat-card-title>Bestellungnummer: {{order.id}}</mat-card-title>
   <mat-card-content>
     <div>Kunde: {{order.user.prename}} {{order.user.name}} ({{order.user.email}}, {{order.user.phone}})</div>
