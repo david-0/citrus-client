@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {LocationDto, OrderDto} from "citrus-common";
 import {BehaviorSubject} from "rxjs";
 import {OrderDtoRestService} from "../../childs/order/order-dto-rest.service";
-import {OrderDtoWithAllRestService} from "../../childs/order/order-dto-with-all-rest.service";
 import {SaleLocationService} from "../sale-location.service";
 
 export interface Tile {
@@ -23,7 +22,7 @@ export class SaleOverviewComponent implements OnInit {
   public numberValid = false;
   private selectedLocation: LocationDto;
   private orderCount = 0;
-  public displayedColumns = ["id", "date", "user", "location", "totalPrice", "plannedCheckout", "checkedOut"];
+  public displayedColumns = ["id", "date", "user", "totalPrice", "plannedCheckout", "checkedOut"];
   public orderSubject = new BehaviorSubject<OrderDto[]>([]);
 
 
@@ -40,6 +39,7 @@ export class SaleOverviewComponent implements OnInit {
         this.rest.getByLocation(location.id).subscribe(orders => {
           this.orderSubject.next(orders);
           this.orderCount = orders.length;
+          this.validateBestellnummer();
         });
       }
       this.orderCount = 0;
