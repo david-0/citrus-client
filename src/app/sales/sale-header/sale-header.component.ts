@@ -10,6 +10,7 @@ import {LocationDto} from "citrus-common";
 export class SaleHeaderComponent implements OnInit {
   @Input() titleText: string;
   @Input() showBack: boolean;
+  @Input() showLocationLabel: boolean;
   @Input() orderCount: number;
   @Input() selectedLocation: LocationDto;
 

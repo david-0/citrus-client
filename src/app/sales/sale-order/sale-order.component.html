@@ -1,4 +1,12 @@
-<app-table-header titleText="Verkauf - Bestellung" showBack="true"></app-table-header>
+<app-sale-header titleText="Verkauf - Bestellung" showBack="true"></app-sale-header>
 <mat-card>
-  <mat-card-title>Bestellung: {{order.id}}</mat-card-title>
+  <mat-card-title>Bestellungnummer: {{order.id}}</mat-card-title>
+  <mat-card-content>
+    <div>Kunde: {{order.user.prename}} {{order.user.name}} ({{order.user.email}}, {{order.user.phone}})</div>
+    <div>Standort: {{order.location.description}}</div>
+    <div class="error" *ngIf="!saleLocationOk">Achtung: Der Verkaufsstandort
+      ({{saleLocationService.getSaleLocation().getValue().description}}) stimmt nicht mit dem Bestellstandort
+      ({{order.location.description}}) überein!
+    </div>
+  </mat-card-content>
 </mat-card>

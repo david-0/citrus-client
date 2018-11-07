@@ -20,8 +20,8 @@ export interface Tile {
 export class SaleOverviewComponent implements OnInit {
   public bestellnummer = "";
   public numberValid = false;
-  private selectedLocation: LocationDto;
-  private orderCount = 0;
+  public selectedLocation: LocationDto;
+  public orderCount = 0;
   public displayedColumns = ["id", "date", "user", "totalPrice", "plannedCheckout", "checkedOut"];
   public orderSubject = new BehaviorSubject<OrderDto[]>([]);
 
