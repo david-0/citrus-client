@@ -1,7 +1,10 @@
 @import "../../styles/detail";
 @import "../../styles/div-table";
+@import "../../styles/edit";
+
 
 .error {
+  font-size:  1em;
   color: red;
   font-weight: 600;
 }
@@ -15,3 +18,16 @@
   flex-direction: column;
 }
 
+.fullView {
+  display: flex;
+  justify-content: center;
+}
+
+.smallerView {
+  flex: 1 1 auto;
+  max-width: 35em;
+}
+
+.total--price--label {
+  font-weight: 600;
+}

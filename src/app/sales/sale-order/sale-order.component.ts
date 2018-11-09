@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {OrderDto} from "citrus-common";
 import {OrderDtoWithAllRestService} from "../../childs/order/order-dto-with-all-rest.service";
 import {SaleLocationService} from "../sale-location.service";
@@ -15,6 +15,7 @@ export class SaleOrderComponent implements OnInit {
   public saleLocationOk = true;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private rest: OrderDtoWithAllRestService,
               public saleLocationService: SaleLocationService) {
   }
@@ -43,5 +44,13 @@ export class SaleOrderComponent implements OnInit {
     } else {
       this.saleLocationOk = true;
     }
+  }
+
+  public checkout() {
+    this._order.checkedOut = true;
+    this.rest.update(this._order)
+      .subscribe(
+        (result) => this.router.navigate([".."], {relativeTo: this.route}),
+        (err) => console.error(`could not update order: ${this.order.id} with Error: ${err}`));
   }
 }
