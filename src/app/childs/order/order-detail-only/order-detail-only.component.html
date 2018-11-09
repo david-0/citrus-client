@@ -22,12 +22,11 @@
     </div>
     <div>
       <div>geplante Abholung</div>
-      <div *ngIf="order.plannedCheckout">
+      <div>
         {{order.plannedCheckout.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von:
         {{order.plannedCheckout.fromDate | date: "HH:mm"}}
         bis: {{order.plannedCheckout.toDate | date: "HH:mm"}}
       </div>
-      <div *ngIf="!order.plannedCheckout">Unbekannt</div>
     </div>
     <div>
       <div>Abgeholt</div>

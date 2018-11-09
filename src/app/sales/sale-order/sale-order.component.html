@@ -1,12 +1,43 @@
 <app-sale-header titleText="Verkauf - Bestellung" showBack="true"></app-sale-header>
-<mat-card *ngIf="order">
+<mat-card *ngIf="order" class="container">
   <mat-card-title>Bestellnummer: {{order.id}}</mat-card-title>
-  <mat-card-content>
-    <div>Kunde: {{order.user.prename}} {{order.user.name}} ({{order.user.email}}, {{order.user.phone}})</div>
-    <div>Standort: {{order.location.description}}</div>
-    <div class="error" *ngIf="!saleLocationOk">Achtung: Der Verkaufsstandort
-      ({{saleLocationService.getSaleLocation().getValue().description}}) stimmt nicht mit dem Bestellstandort
-      ({{order.location.description}}) überein!
+  <mat-card-content class="common_table">
+    <div>
+      <div>Bestelldatum</div>
+      <div>{{order.date | date: "HH:mm dd.MM.y"}}</div>
+    </div>
+    <div>
+      <div>Kunde</div>
+      <div>{{order.user.prename}} {{order.user.name}} ({{order.user.email}}, {{order.user.phone}})</div>
+    </div>
+    <div>
+      <div>Standort</div>
+      <div *ngIf="saleLocationOk">{{order.location?.description}}</div>
+      <div class="error" *ngIf="!saleLocationOk">Achtung: Der Verkaufsstandort
+        ({{saleLocationService.getSaleLocation().getValue().description}}) stimmt nicht mit dem Bestellstandort
+        ({{order.location.description}}) überein!
+      </div>
+    </div>
+    <div>
+      <div>geplante Abholung</div>
+      <div>
+        {{order.plannedCheckout.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von:
+        {{order.plannedCheckout.fromDate | date: "HH:mm"}}
+        bis: {{order.plannedCheckout.toDate | date: "HH:mm"}}
+      </div>
+    </div>
+    <div>
+      <div>bestellte Artikel</div>
+      <div>
+        <p class="order-item-line" *ngFor="let item of order.orderItems">
+          {{item.quantity}} {{item.article?.unitOfMeasurement?.shortcut}} {{item.article?.description}} für
+          {{item.copiedPrice * item.quantity | currency: "CHF "}}</p>
+      </div>
+    </div>
+    <div>
+      <div>Total</div>
+      <div>{{order.totalPrice | currency: "CHF "}}</div>
     </div>
   </mat-card-content>
+
 </mat-card>
