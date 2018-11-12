@@ -23,15 +23,15 @@
     <div>
       <div>geplante Abholung</div>
       <div>
-        {{order.plannedCheckout.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von:
-        {{order.plannedCheckout.fromDate | date: "HH:mm"}}
-        bis: {{order.plannedCheckout.toDate | date: "HH:mm"}}
+        {{order.plannedCheckout?.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von:
+        {{order.plannedCheckout?.fromDate | date: "HH:mm"}}
+        bis: {{order.plannedCheckout?.toDate | date: "HH:mm"}}
       </div>
     </div>
     <div>
       <div>Abgeholt</div>
       <div *ngIf="order.checkedOut">{{order.checkedOutDate | date: "dd.MM.yyyy HH:mm:ss"}} (Verkäufer:
-        {{order.checkingOutUser.prename}} {{order.checkingOutUser.name}})
+        {{order.checkingOutUser?.prename}} {{order.checkingOutUser?.name}})
       </div>
       <div *ngIf="!order.checkedOut">Nein</div>
     </div>
