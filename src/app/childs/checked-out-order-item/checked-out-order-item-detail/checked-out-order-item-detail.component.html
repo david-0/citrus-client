@@ -1,0 +1,22 @@
+<app-table-header titleText="Bestellungseintrag" label="diesen Bestellungseintrag" showBack="true"
+                  showDelete="true" showEdit="true"></app-table-header>
+<mat-card class="mat-card-padding">
+  <mat-card-content class="common_table">
+    <div>
+      <div>Artikel</div>
+      <div>{{checkedOutOrderItem.article.description}}</div>
+    </div>
+    <div>
+      <div>Menge</div>
+      <div>{{checkedOutOrderItem.quantity}} {{checkedOutOrderItem.article.unitOfMeasurement.shortcut}}</div>
+    </div>
+    <div>
+      <div>Preis pro Einheit</div>
+      <div>{{checkedOutOrderItem.copiedPrice | currency: "CHF "}}</div>
+    </div>
+    <div>
+      <div>Preis</div>
+      <div>{{checkedOutOrderItem.copiedPrice * checkedOutOrderItem.quantity | currency: "CHF "}}</div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {MatTabChangeEvent} from "@angular/material";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LocationDto, OpeningHourDto} from "citrus-common";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
@@ -25,7 +26,8 @@ export class OrderEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigate([this.router.routerState.snapshot.url, {outlets: {"orderItem": ["orderItem"]}}]);
+    const url = this.removeNamedOutletPart(this.router.routerState.snapshot.url);
+    this.router.navigate([url, {outlets: {"details": ["orderItem"]}}]);
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
         this.orderId = this.order.id;
@@ -95,5 +97,23 @@ export class OrderEditComponent implements OnInit {
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not update order: ${this.order.id} with Error: ${err}`));
     }
+  }
+
+  public tabChange(event: MatTabChangeEvent) {
+    const url = this.removeNamedOutletPart(this.router.routerState.snapshot.url);
+    if (event.index === 0) {
+      this.router.navigate([url, {outlets: {"details": ["orderItem"]}}]);
+
+    } else if (event.index === 1) {
+      this.router.navigate([url, {outlets: {"details": ["checkedOutOrderItem"]}}]);
+    }
+  }
+
+  private removeNamedOutletPart(url: string): string {
+    const braketPos = url.indexOf("(");
+    if (braketPos >= 0) {
+      return url.substring(0, braketPos);
+    }
+    return url;
   }
 }

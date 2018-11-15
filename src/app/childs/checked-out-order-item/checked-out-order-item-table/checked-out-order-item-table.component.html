@@ -1,0 +1,25 @@
+<mat-table #table [dataSource]="datasource" matSort>
+  <ng-container matColumnDef="id" hidden>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="article">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Artikel</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.article.description}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="quantity">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Menge</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.quantity}} {{row.article.unitOfMeasurement.shortcut}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="copiedPrice">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Preis pro Einheit</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.copiedPrice | currency: "CHF "}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="totalPrice">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>gesamter Preis</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.copiedPrice * row.quantity | currency: "CHF "}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row class="table-row--highligthed" routerLink={{row.id}}
+           *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

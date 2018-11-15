@@ -47,6 +47,7 @@ import {ShoppingCartComponent} from "./cart/shopping-cart/shopping-cart.componen
 import {ChangeMyPasswordComponent} from "./change-my-password/change-my-password.component";
 import {CartLocationDetailComponent} from "./checkout/cart-location-detail/cart-location-detail.component";
 import {CheckoutComponent} from "./checkout/checkout/checkout.component";
+
 import {AddressDeleteComponent} from "./childs/address/address-delete/address-delete.component";
 import {AddressDetailsComponent} from "./childs/address/address-details/address-details.component";
 import {AddressDtoRestService} from "./childs/address/address-dto-rest.service";
@@ -77,6 +78,11 @@ import {ArticleEditComponent} from "./childs/article/article-edit/article-edit.c
 import {ArticleOverviewComponent} from "./childs/article/article-overview/article-overview.component";
 import {ArticleSettingsService} from "./childs/article/article-settings.service";
 import {ArticleTableComponent} from "./childs/article/article-table/article-table.component";
+import {CheckedOutOrderItemDeleteComponent} from "./childs/checked-out-order-item/checked-out-order-item-delete/checked-out-order-item-delete.component";
+import {CheckedOutOrderItemDetailComponent} from "./childs/checked-out-order-item/checked-out-order-item-detail/checked-out-order-item-detail.component";
+import {CheckedOutOrderItemEditComponent} from "./childs/checked-out-order-item/checked-out-order-item-edit/checked-out-order-item-edit.component";
+import {CheckedOutOrderItemOverviewComponent} from "./childs/checked-out-order-item/checked-out-order-item-overview/checked-out-order-item-overview.component";
+import {CheckedOutOrderItemTableComponent} from "./childs/checked-out-order-item/checked-out-order-item-table/checked-out-order-item-table.component";
 import {LocationDeleteComponent} from "./childs/location/location-delete/location-delete.component";
 import {LocationDetailOnlyComponent} from "./childs/location/location-detail-only/location-detail-only.component";
 import {LocationDetailComponent} from "./childs/location/location-detail/location-detail.component";
@@ -136,7 +142,6 @@ import {StoreEstimateComponent} from "./store/store-estimate/store-estimate.comp
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
-
 
 @NgModule({
   declarations: [
@@ -221,6 +226,11 @@ import {TableSupportModule} from "./table-support/table-support.module";
     SaleOrderComponent,
     SaleLocationComponent,
     SaleHeaderComponent,
+    CheckedOutOrderItemOverviewComponent,
+    CheckedOutOrderItemDeleteComponent,
+    CheckedOutOrderItemDetailComponent,
+    CheckedOutOrderItemEditComponent,
+    CheckedOutOrderItemTableComponent,
   ],
   imports: [
     BrowserModule,

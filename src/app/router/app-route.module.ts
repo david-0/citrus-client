@@ -27,6 +27,10 @@ import {ArticleDeleteComponent} from "../childs/article/article-delete/article-d
 import {ArticleDetailsComponent} from "../childs/article/article-details/article-details.component";
 import {ArticleEditComponent} from "../childs/article/article-edit/article-edit.component";
 import {ArticleOverviewComponent} from "../childs/article/article-overview/article-overview.component";
+import {CheckedOutOrderItemDeleteComponent} from "../childs/checked-out-order-item/checked-out-order-item-delete/checked-out-order-item-delete.component";
+import {CheckedOutOrderItemDetailComponent} from "../childs/checked-out-order-item/checked-out-order-item-detail/checked-out-order-item-detail.component";
+import {CheckedOutOrderItemEditComponent} from "../childs/checked-out-order-item/checked-out-order-item-edit/checked-out-order-item-edit.component";
+import {CheckedOutOrderItemOverviewComponent} from "../childs/checked-out-order-item/checked-out-order-item-overview/checked-out-order-item-overview.component";
 import {LocationDeleteComponent} from "../childs/location/location-delete/location-delete.component";
 import {LocationDetailComponent} from "../childs/location/location-detail/location-detail.component";
 import {LocationEditComponent} from "../childs/location/location-edit/location-edit.component";
@@ -35,7 +39,6 @@ import {OpeningHourDeleteComponent} from "../childs/opening-hour/opening-hour-de
 import {OpeningHourDetailsComponent} from "../childs/opening-hour/opening-hour-details/opening-hour-details.component";
 import {OpeningHourEditComponent} from "../childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
 import {OpeningHourOverviewComponent} from "../childs/opening-hour/opening-hour-overview/opening-hour-overview.component";
-import {OrderItemDeleteComponent} from "../childs/order-item/order-item-delete/order-item-delete.component";
 import {OrderItemDetailComponent} from "../childs/order-item/order-item-detail/order-item-detail.component";
 import {OrderItemEditComponent} from "../childs/order-item/order-item-edit/order-item-edit.component";
 import {OrderItemOverviewComponent} from "../childs/order-item/order-item-overview/order-item-overview.component";
@@ -188,31 +191,61 @@ const routes: Routes = [
             path: "orderItem",
             canActivate: [AuthGuard, AuthGuardAdmin],
             component: OrderItemOverviewComponent,
-            outlet: "orderItem"
+            outlet: "details"
           },
           {
             path: "orderItem/create",
             canActivate: [AuthGuard, AuthGuardAdmin],
             component: OrderItemEditComponent,
-            outlet: "orderItem"
+            outlet: "details"
           },
           {
             path: "orderItem/:id",
             canActivate: [AuthGuard, AuthGuardAdmin],
             component: OrderItemDetailComponent,
-            outlet: "orderItem"
+            outlet: "details"
           },
           {
             path: "orderItem/:id/edit",
             canActivate: [AuthGuard, AuthGuardAdmin],
             component: OrderItemEditComponent,
-            outlet: "orderItem"
+            outlet: "details"
           },
           {
             path: "orderItem/:id/delete",
             canActivate: [AuthGuard, AuthGuardAdmin],
-            component: OrderItemDeleteComponent,
-            outlet: "orderItem"
+            component: CheckedOutOrderItemDeleteComponent,
+            outlet: "details"
+          },
+          {
+            path: "checkedOutOrderItem",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: CheckedOutOrderItemOverviewComponent,
+            outlet: "details"
+          },
+          {
+            path: "checkedOutOrderItem/create",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: CheckedOutOrderItemEditComponent,
+            outlet: "details"
+          },
+          {
+            path: "checkedOutOrderItem/:id",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: CheckedOutOrderItemDetailComponent,
+            outlet: "details"
+          },
+          {
+            path: "checkedOutOrderItem/:id/edit",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: CheckedOutOrderItemEditComponent,
+            outlet: "details"
+          },
+          {
+            path: "checkedOutOrderItem/:id/delete",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: CheckedOutOrderItemDeleteComponent,
+            outlet: "details"
           },
         ]
       },
