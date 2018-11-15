@@ -29,8 +29,5 @@ export class OrderItemOverviewComponent implements OnInit {
         });
       }
     });
-
   }
-
-
 }
