@@ -46,6 +46,7 @@ export class OrderItemEditComponent implements OnInit {
     this.route.params.subscribe(orderItemParams => {
       if (orderItemParams["id"] == null) {
         this._orderItem = OrderItemDto.createEmpty();
+        this._orderItem.order = order;
       } else {
         this._orderItem = order.orderItems.filter(o => o.id === +orderItemParams["id"])[0];
       }
