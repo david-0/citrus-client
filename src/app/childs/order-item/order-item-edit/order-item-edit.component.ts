@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ArticleDto, OrderDto} from "citrus-common";
+import {ArticleDto, LocationDto, OrderDto} from "citrus-common";
 import {OrderItemDto} from "citrus-common/lib/dto/order-item-dto";
 import {BehaviorSubject} from "rxjs";
-import {ArticleWithAllDtoRestService} from "../../article/article-with-all-dto-rest.service";
+import {ArticleStockWithDtoAllRestService} from "../../article-stock/article-stock-with-dto-all-rest.service";
 import {OrderDtoWithAllRestService} from "../../order/order-dto-with-all-rest.service";
 import {OrderItemDtoRestService} from "../order-item-dto-rest.service";
 
@@ -22,7 +22,7 @@ export class OrderItemEditComponent implements OnInit {
               private router: Router,
               private orderRest: OrderDtoWithAllRestService,
               private orderItemRest: OrderItemDtoRestService,
-              private articleRest: ArticleWithAllDtoRestService) {
+              private articleStockRest: ArticleStockWithDtoAllRestService) {
   }
 
   public get orderItem(): OrderItemDto {
@@ -51,14 +51,16 @@ export class OrderItemEditComponent implements OnInit {
         this._orderItem = order.orderItems.filter(o => o.id === +orderItemParams["id"])[0];
       }
       this._orderItemId = this._orderItem.id;
-      this.updateAllArticles();
+      this.updateAllArticlesOfLocation(order.location);
     });
   }
 
-  private updateAllArticles() {
-    this.articleRest.getAll().subscribe(articles => {
-      this.ensureArticleInOrderItem(this._orderItem, articles);
-      this._articleSubject.next(articles);
+  private updateAllArticlesOfLocation(location: LocationDto) {
+    this.articleStockRest.getAll().subscribe(articleStocks => {
+      this._articleSubject.next(articleStocks
+        .filter(a => a.location.id === location.id)
+        .map(a => a.article));
+      this.ensureArticleInOrderItem(this._orderItem, this._articleSubject.getValue());
     });
   }
 
@@ -75,14 +77,14 @@ export class OrderItemEditComponent implements OnInit {
   }
 
   public submit() {
-      this.orderItem.article = this.orderItem.article;
-      this.orderItem.copiedPrice = this.orderItem.article.price;
-      const copiedItem = OrderItemDto.createWithId(this._orderItemId, this.orderItem);
-      if (this._orderItemId == null) {
-        this.createNewItem(copiedItem);
-      } else {
-        this.updateItem(copiedItem);
-      }
+    this.orderItem.article = this.orderItem.article;
+    this.orderItem.copiedPrice = this.orderItem.article.price;
+    const copiedItem = OrderItemDto.createWithId(this._orderItemId, this.orderItem);
+    if (this._orderItemId == null) {
+      this.createNewItem(copiedItem);
+    } else {
+      this.updateItem(copiedItem);
+    }
   }
 
 

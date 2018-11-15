@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ArticleDto, CheckedOutOrderItemDto, OrderDto} from "citrus-common";
+import {ArticleDto, CheckedOutOrderItemDto, LocationDto, OrderDto} from "citrus-common";
 import {OrderItemDto} from "citrus-common/lib/dto/order-item-dto";
 import {BehaviorSubject} from "rxjs";
-import {ArticleWithAllDtoRestService} from "../../article/article-with-all-dto-rest.service";
+import {ArticleStockWithDtoAllRestService} from "../../article-stock/article-stock-with-dto-all-rest.service";
 import {OrderDtoWithAllRestService} from "../../order/order-dto-with-all-rest.service";
 import {CheckedOutOrderItemDtoRestService} from "../checked-out-order-item-dto-rest.service";
 
@@ -22,7 +22,7 @@ export class CheckedOutOrderItemEditComponent implements OnInit {
               private router: Router,
               private orderRest: OrderDtoWithAllRestService,
               private checkedOutOrderItemRest: CheckedOutOrderItemDtoRestService,
-              private articleRest: ArticleWithAllDtoRestService) {
+              private articleStockRest: ArticleStockWithDtoAllRestService) {
   }
 
   public get checkedOutOrderItem(): CheckedOutOrderItemDto {
@@ -51,14 +51,16 @@ export class CheckedOutOrderItemEditComponent implements OnInit {
         this._checkedOutOrderItem = order.checkedOutOrderItems.filter(o => o.id === +checkedOutOrderItemParams["id"])[0];
       }
       this._checkedOutOrderItemId = this._checkedOutOrderItem.id;
-      this.updateAllArticles();
+      this.updateAllArticlesOfLocation(order.location);
     });
   }
 
-  private updateAllArticles() {
-    this.articleRest.getAll().subscribe(articles => {
-      this.ensureArticleInOrderItem(this._checkedOutOrderItem, articles);
-      this._articleSubject.next(articles);
+  private updateAllArticlesOfLocation(location: LocationDto) {
+    this.articleStockRest.getAll().subscribe(articleStocks => {
+      this._articleSubject.next(articleStocks
+        .filter(a => a.location.id === location.id)
+        .map(a => a.article));
+      this.ensureArticleInOrderItem(this._checkedOutOrderItem, this._articleSubject.getValue());
     });
   }
 
