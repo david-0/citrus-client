@@ -13,8 +13,8 @@ export class OrderDtoRestService extends GenericRestService<OrderDto> {
     super(http, restUrlPrefix.getApiRestPrefix() + "/order");
   }
 
-  getByLocation(locationId: number): Observable<OrderDto[]> {
-    const url = `${this.restUrl}/byLocation/${locationId}`;
+  getOpenByLocation(locationId: number): Observable<OrderDto[]> {
+    const url = `${this.restUrl}/openByLocation/${locationId}`;
     return this.http.get<OrderDto[]>(url, {headers: this.headers});
   }
 }

@@ -36,7 +36,7 @@ export class SaleOverviewComponent implements OnInit {
     this.saleLocationService.getSaleLocation().subscribe(location => {
       this.selectedLocation = location;
       if (location) {
-        this.rest.getByLocation(location.id).subscribe(orders => {
+        this.rest.getOpenByLocation(location.id).subscribe(orders => {
           this.orderSubject.next(orders);
           this.orderCount = orders.length;
           this.validateBestellnummer();
