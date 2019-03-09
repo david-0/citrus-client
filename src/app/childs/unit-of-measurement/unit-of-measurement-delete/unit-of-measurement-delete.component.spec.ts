@@ -2,9 +2,13 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {MatCardModule} from "@angular/material";
 import {ActivatedRoute, Params} from "@angular/router";
 import {ReplaySubject} from "rxjs";
-import {UnitOfMeasurementDtoRestServiceSpy} from "../../../testing-mocks/testing-mocks.component";
+import {
+  UnitOfMeasurementDtoRestServiceSpy,
+  UnitOfMeasurementWithArticlesDtoRestServiceSpy
+} from "../../../testing-mocks/testing-mocks.component";
 import {TestingMocksModule} from "../../../testing-mocks/testing-mocks.module";
 import {UnitOfMeasurementDtoRestService} from "../unit-of-measurement-dto-rest.service";
+import {UnitOfMeasurementWithArticlesDtoRestService} from "../unit-of-measurement-with-articles-dto-rest.service";
 
 import {UnitOfMeasurementDeleteComponent} from "./unit-of-measurement-delete.component";
 
@@ -24,7 +28,7 @@ describe("UnitOfMeasurementDeleteComponent", () => {
       declarations: [UnitOfMeasurementDeleteComponent],
       providers: [
         {provide: ActivatedRoute, useValue: activatedRouteSpy},
-        {provide: UnitOfMeasurementDtoRestService, useClass: UnitOfMeasurementDtoRestServiceSpy},
+        {provide: UnitOfMeasurementWithArticlesDtoRestService, useClass: UnitOfMeasurementWithArticlesDtoRestServiceSpy},
       ]
     })
       .compileComponents();

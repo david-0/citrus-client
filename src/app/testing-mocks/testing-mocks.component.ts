@@ -4,6 +4,7 @@ import {NgForm} from "@angular/forms";
 import {NavigationExtras} from "@angular/router/src/router";
 import {UnitOfMeasurementDto} from "citrus-common";
 import {Observable} from "rxjs";
+import {OutputMessage} from "../base/output-message";
 
 @Component({
   selector: "app-table-header",
@@ -20,6 +21,15 @@ export class MockTableHeaderComponent {
   @Input() showPasswordChange: boolean;
   @Input() label: string;
   @Input() form: NgForm;
+}
+
+@Component({
+  selector: "app-output-message",
+  template: "",
+})
+export class MockOutputMessageComponent {
+
+  @Input() messages: OutputMessage;
 }
 
 @Injectable()
@@ -61,13 +71,13 @@ export class UnitOfMeasurementDtoRestServiceSpy {
           id: 1,
           shortcut: "kg",
           description: "Kilogramm",
-          articleIds: [],
+          articles: [],
         },
         {
           id: 2,
           shortcut: "g",
           description: "Gramm",
-          articleIds: [],
+          articles: [],
         }]);
     });
   }
@@ -78,7 +88,81 @@ export class UnitOfMeasurementDtoRestServiceSpy {
         id: id,
         shortcut: "kg",
         description: "Kilogramm",
-        articleIds: [],
+        articles: [],
+      });
+    });
+  }
+
+}
+
+@Injectable()
+export class UnitOfMeasurementWithArticlesDtoRestServiceSpy {
+  add(item: UnitOfMeasurementDto): Observable<UnitOfMeasurementDto> {
+    return Observable.create(observer => {
+      observer.next({
+        id: item.id,
+        shortcut: item.shortcut,
+        description: item.description,
+        articles: item.articles,
+      });
+    });
+  }
+
+  update(item: UnitOfMeasurementDto): Observable<boolean> {
+    return Observable.create(observer => {
+      observer.next(true);
+    });
+  }
+
+  del(id: number): Observable<boolean> {
+    return Observable.create(observer => {
+      observer.next(true);
+    });
+  }
+
+  getAll(): Observable<UnitOfMeasurementDto[]> {
+    return Observable.create(observer => {
+      observer.next([
+        {
+          id: 1,
+          shortcut: "kg",
+          description: "Kilogramm",
+          articles: [{
+            number: 1,
+            description: "Orangen",
+            pictureId: "picId",
+            price: 1.35,
+            inSale: true
+          }],
+        },
+        {
+          id: 2,
+          shortcut: "g",
+          description: "Gramm",
+          articles: [{
+            number: 1,
+            description: "Zitronenpulver",
+            pictureId: "picId",
+            price: 0.10,
+            inSale: true
+          }],
+        }]);
+    });
+  }
+
+  get(id: number): Observable<UnitOfMeasurementDto> {
+    return Observable.create(observer => {
+      observer.next({
+        id: id,
+        shortcut: "kg",
+        description: "Kilogramm",
+        articles: [{
+          number: 1,
+          description: "Orangen",
+          pictureId: "picId",
+          price: 1.35,
+          inSale: true
+        }],
       });
     });
   }
