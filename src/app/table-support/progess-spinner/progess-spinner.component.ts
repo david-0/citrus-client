@@ -11,7 +11,7 @@ export class ProgessSpinnerComponent implements OnInit, OnDestroy {
   @Input() public loading: BehaviorSubject<boolean>;
   @Input() public delayInMs: number;
   @Input() public minShowInMs: number;
-  public showSpinner: Observable<boolean>;
+  public showSpinner: Observable<{}>;
   private delaySubject = new BehaviorSubject<boolean>(false);
   private minShowSubject = new BehaviorSubject<boolean>(false);
   private delayTimeout: any;
