@@ -54,7 +54,7 @@ export class AuthenticationService {
   }
 
   public changeMyPassword(password: string): Observable<boolean> {
-    return this.http.post<AuthToken>("http://localhost:3001/api/user/changemypassword", {password}).pipe(
+    return this.http.post<AuthToken>(this.restUrlPrefixService.getApiRestPrefix() + "/user/changemypassword", {password}).pipe(
       map(authToken => {
         // changePassword successful if there's a jwt token in the response
         if (!!authToken && !!authToken.token) {
@@ -66,7 +66,7 @@ export class AuthenticationService {
   }
 
   public changePassword(userId: number, password: string): Observable<boolean> {
-    return this.http.post<AuthToken>(`http://localhost:3001/api/user/${userId}/changepassword`, {password})
+    return this.http.post<AuthToken>(this.restUrlPrefixService.getApiRestPrefix() + `/user/${userId}/changepassword`, {password})
       .pipe(
         map(authToken => {
           // changePassword successful if there's a jwt token in the response

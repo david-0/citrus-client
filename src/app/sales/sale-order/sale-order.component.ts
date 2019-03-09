@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {OrderDto} from "citrus-common";
+import {CheckedOutOrderItemDto, OrderDto} from "citrus-common";
 import {OrderDtoWithAllRestService} from "../../childs/order/order-dto-with-all-rest.service";
 import {SaleLocationService} from "../sale-location.service";
 
@@ -48,6 +48,14 @@ export class SaleOrderComponent implements OnInit {
 
   public checkout() {
     this._order.checkedOut = true;
+    this._order.orderItems.forEach(item => {
+      const checkedOutItem = CheckedOutOrderItemDto.createEmpty();
+      checkedOutItem.article = item.article;
+      checkedOutItem.copiedPrice = item.copiedPrice;
+      checkedOutItem.quantity = item.quantity;
+      checkedOutItem.order = undefined;
+      this._order.checkedOutOrderItems.push(checkedOutItem);
+    });
     this.rest.update(this._order)
       .subscribe(
         (result) => this.router.navigate([".."], {relativeTo: this.route}),
