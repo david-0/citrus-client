@@ -1,8 +1,8 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
+import {JwtHelperService} from "@auth0/angular-jwt";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-import {JwtHelperService} from "../angular-jwt/jwthelper.service";
 import {RestUrlPrefixService} from "../table-support/rest-url-prefix.service";
 import {AuthToken} from "./auth-token";
 import {EmailPassword} from "./email-password";
@@ -22,6 +22,10 @@ export class AuthenticationService {
     }
   }
 
+  public static getAccessToken(): string {
+    return localStorage.getItem(AuthenticationService.accessToken);
+  }
+
   public login(email: string, password: string): Observable<boolean> {
     return this.verifyPassword(new EmailPassword(email, password), (authToken: AuthToken) => {
       this.updateToken(authToken);
@@ -29,32 +33,31 @@ export class AuthenticationService {
     });
   }
 
-  private updateToken(authToken: AuthToken) {
-    // store jwt token in local storage to keep user logged in between page refreshs
-    localStorage.setItem(AuthenticationService.accessToken, authToken.token);
-    this.decodeToken(authToken.token);
-  }
-
   public verify(email: string, password: string): Observable<boolean> {
     return this.verifyPassword(new EmailPassword(email, password), () => {
     });
   }
 
-  private verifyPassword(data: EmailPassword, processCallback: (token: AuthToken) => void): Observable<boolean> {
-    return this.http.post<AuthToken>(
-      this.restUrlPrefixService.getApiRestPrefix() + "/authenticate", data).pipe(
+  public changeMyPassword(currentPassword: string, password: string): Observable<boolean> {
+    return this.http.post<AuthToken>(this.restUrlPrefixService.getApiRestPrefix() + "/user/changemypassword", {
+      currentPassword,
+      password
+    }).pipe(
       map(authToken => {
-        // login successful if there's a jwt token in the response
+        // changePassword successful if there's a jwt token in the response
         if (!!authToken && !!authToken.token) {
-          processCallback(authToken);
+          this.updateToken(authToken);
         }
         return !!authToken;
       })
     );
   }
 
-  public changeMyPassword(password: string): Observable<boolean> {
-    return this.http.post<AuthToken>(this.restUrlPrefixService.getApiRestPrefix() + "/user/changemypassword", {password}).pipe(
+  public resetPasswordWithToken(token: string, password: string): Observable<boolean> {
+    return this.http.post<AuthToken>(this.restUrlPrefixService.getApiRestPrefix() + "/user/resetPasswordWithToken", {
+      token,
+      password
+    }).pipe(
       map(authToken => {
         // changePassword successful if there's a jwt token in the response
         if (!!authToken && !!authToken.token) {
@@ -78,12 +81,8 @@ export class AuthenticationService {
       );
   }
 
-  private decodeToken(token: string) {
-    const decodedToken = this.jwtHelper.decodeToken(this.getAccessToken());
-    this.id = decodedToken.id;
-    if (decodedToken.roles) {
-      this.roles = decodedToken.roles;
-    }
+  public sendResetEmail(email: string): Observable<void> {
+    return this.http.post<void>(this.restUrlPrefixService.getApiRestPrefix() + `/user/createTokenByEmail`, {email}).pipe();
   }
 
   logout(): void {
@@ -91,12 +90,8 @@ export class AuthenticationService {
   }
 
   loggedIn(): boolean {
-    const isLoggedIn = !this.jwtHelper.isTokenExpired(this.getAccessToken());
+    const isLoggedIn = !this.jwtHelper.isTokenExpired(AuthenticationService.getAccessToken());
     return isLoggedIn;
-  }
-
-  public getAccessToken(): string {
-    return localStorage.getItem(AuthenticationService.accessToken);
   }
 
   getLoggedInUserId(): string {
@@ -122,6 +117,33 @@ export class AuthenticationService {
       return false;
     }
     return this.hasRole("store");
+  }
+
+  private updateToken(authToken: AuthToken) {
+    // store jwt token in local storage to keep user logged in between page refreshs
+    localStorage.setItem(AuthenticationService.accessToken, authToken.token);
+    this.decodeToken(authToken.token);
+  }
+
+  private verifyPassword(data: EmailPassword, processCallback: (token: AuthToken) => void): Observable<boolean> {
+    return this.http.post<AuthToken>(
+      this.restUrlPrefixService.getApiRestPrefix() + "/authenticate", data).pipe(
+      map(authToken => {
+        // login successful if there's a jwt token in the response
+        if (!!authToken && !!authToken.token) {
+          processCallback(authToken);
+        }
+        return !!authToken;
+      })
+    );
+  }
+
+  private decodeToken(token: string) {
+    const decodedToken = this.jwtHelper.decodeToken(AuthenticationService.getAccessToken());
+    this.id = decodedToken.id;
+    if (decodedToken.roles) {
+      this.roles = decodedToken.roles;
+    }
   }
 
   private hasRole(roleName: string) {

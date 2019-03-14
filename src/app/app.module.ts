@@ -1,5 +1,5 @@
 import {registerLocaleData} from "@angular/common";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import localeDeCH from "@angular/common/locales/de-CH";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -34,13 +34,13 @@ import {
 import {MAT_MOMENT_DATE_FORMATS, MatMomentDateModule, MomentDateAdapter} from "@angular/material-moment-adapter";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {JwtModule} from "@auth0/angular-jwt";
 import "hammerjs";
 import {ValidatorsModule} from "ng2-validators";
 
 import {AppComponent} from "./app.component";
 import {AuthenticationService} from "./authentication/authentication.service";
 import {PasswordChangeComponent} from "./authentication/password-change/password-change.component";
-import {TokenInterceptor} from "./authentication/token-interceptor";
 import {WINDOW_PROVIDERS} from "./base/window-provider";
 import {CartService} from "./cart/cart.service";
 import {ShoppingCartComponent} from "./cart/shopping-cart/shopping-cart.component";
@@ -140,6 +140,7 @@ import {StoreCheckInComponent} from "./store/store-check-in/store-check-in.compo
 import {StoreCheckOutComponent} from "./store/store-check-out/store-check-out.component";
 import {StoreEstimateComponent} from "./store/store-estimate/store-estimate.component";
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
+import {MySpinnerModule} from "./table-support/my-spinner/my-spinner.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
 
@@ -265,6 +266,13 @@ import {TableSupportModule} from "./table-support/table-support.module";
     MatRadioModule,
     MatDividerModule,
     MatGridListModule,
+    MySpinnerModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: AuthenticationService.getAccessToken,
+        whitelistedDomains: ["localhost:3001", "88.99.118.38:3002", "88.99.118.38"]
+      }
+    }),
   ],
   providers: [
     MatIconRegistry,
@@ -282,11 +290,6 @@ import {TableSupportModule} from "./table-support/table-support.module";
     RoleDtoRestService,
     CartService,
     AuthenticationService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    },
     {provide: MAT_DATE_LOCALE, useValue: "de_ch"},
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},

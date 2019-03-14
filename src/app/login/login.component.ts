@@ -1,6 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, isDevMode, OnInit} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {first} from "rxjs/operators";
 import {AuthenticationService} from "../authentication/authentication.service";
 
 @Component({
@@ -13,6 +14,8 @@ export class LoginComponent implements OnInit {
   hide = true;
   loginForm: FormGroup;
   returnUrl: string;
+  public busy: boolean;
+  public message: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) {
   }
@@ -35,13 +38,28 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    this.authService.login(this.email.value, this.password.value).subscribe( successfully => {
-      if (successfully) {
-        this.router.navigate([this.returnUrl]);
-      } else {
-        console.error("Login failed");
-      }
-    });
+    this.busy = true;
+    this.authService.login(this.email.value, this.password.value)
+      .pipe(first())
+      .subscribe(result => {
+        this.busy = false;
+        if (result === true) {
+          this.router.navigate([this.returnUrl]);
+        } else {
+          this.message = "email or password is incorrect";
+        }
+      }, (error: Response) => {
+        this.busy = false;
+        if (error.status === 404) {
+          this.message = `Anmeldeserver nicht erreichbar! (${error.url})`;
+        } else {
+          if (isDevMode()) {
+            this.message = "Anmeldung nicht erfolgreich (Benuter/Password falsch)! " + JSON.stringify(error);
+          } else {
+            this.message = "Anmeldung nicht erfolgreich (Benuter/Password falsch)!";
+          }
+        }
+      });
   }
 
   getErrorMessage(control: FormControl) {

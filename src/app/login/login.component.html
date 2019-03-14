@@ -19,12 +19,14 @@
         </mat-error>
         <mat-hint align="end">{{password.value.length}}</mat-hint>
       </mat-form-field>
+      <p>{{message}}</p>
       <div class="full-width container">
-        <div class="full-width"></div>
+        <a routerLink="../resetMail" >Passwort vergesen?</a>
+        <span class="fill-remaining-space"></span>
         <button type="submit" [disabled]="loginForm.invalid" mat-raised-button>Login</button>
-        <div class="full-width"></div>
       </div>
     </mat-card>
     <div class="full-width"></div>
   </div>
 </form>
+<app-my-spinner [isRunning]="busy" [delay]="150"></app-my-spinner>
