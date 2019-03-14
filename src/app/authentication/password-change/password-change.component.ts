@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -10,14 +10,18 @@ export class PasswordChangeComponent implements OnInit {
 
   hide = true;
   passwordChangeForm: FormGroup;
+  @Input() showCurrentPassword = false;
   @Output() onChange = new EventEmitter<string>();
+  @Output() onChangeWithCurrent = new EventEmitter<{ currentPassword: string, newPassword: string }>();
 
   constructor() {
   }
 
   ngOnInit() {
     this.passwordChangeForm = new FormGroup({
-      password: new FormControl("password",
+      currentPassword: new FormControl("currentPassword",
+        [Validators.required]),
+      newPassword: new FormControl("newPassword",
         [Validators.required, Validators.minLength(7)]),
       confirmPassword: new FormControl("confirmPassword",
         [Validators.required, Validators.minLength(7)])
@@ -25,19 +29,27 @@ export class PasswordChangeComponent implements OnInit {
   }
 
   private passwordMatchValidator = function (fg: FormGroup) {
-    return fg.get("password").value === fg.get("confirmPassword").value ? null : {"mismatch": true};
+    return fg.get("newPassword").value === fg.get("confirmPassword").value ? null : {"mismatch": true};
   };
+
+  get currentPassword() {
+    return this.passwordChangeForm.get("currentPassword");
+  }
 
   get confirmPassword() {
     return this.passwordChangeForm.get("confirmPassword");
   }
 
-  get password() {
-    return this.passwordChangeForm.get("password");
+  get newPassword() {
+    return this.passwordChangeForm.get("newPassword");
   }
 
   submit() {
-    this.onChange.emit(this.password.value);
+    if (this.showCurrentPassword) {
+      this.onChangeWithCurrent.emit({currentPassword: this.currentPassword.value, newPassword: this.newPassword.value});
+    } else {
+      this.onChange.emit(this.newPassword.value);
+    }
   }
 
   getErrorMessage(control: FormControl) {

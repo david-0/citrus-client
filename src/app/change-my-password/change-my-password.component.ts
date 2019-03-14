@@ -17,17 +17,17 @@ export class ChangeMyPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-/*    this.route.params.subscribe(params => {
-      if (params["id"] == null) {
-        console.error(`Internal server error, no id param`);
-      } else {
-        this.userInfoId = +params["id"];
-      }
-    });*/
+    /*    this.route.params.subscribe(params => {
+          if (params["id"] == null) {
+            console.error(`Internal server error, no id param`);
+          } else {
+            this.userInfoId = +params["id"];
+          }
+        });*/
   }
 
-  changeMyPassword(password: string) {
-    this.authService.changeMyPassword(password).subscribe(successfully => {
+  changeMyPassword(event: any) {
+    this.authService.changeMyPassword(event.currentPassword, event.newPassword).subscribe(successfully => {
       if (successfully) {
         this.router.navigate([`/administration`]);
       } else {
