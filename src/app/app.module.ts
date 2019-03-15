@@ -270,7 +270,14 @@ import {TableSupportModule} from "./table-support/table-support.module";
     JwtModule.forRoot({
       config: {
         tokenGetter: AuthenticationService.getAccessToken,
-        whitelistedDomains: ["localhost:3001", "88.99.118.38:3002", "88.99.118.38", "88.99.118.38:444", "88.99.118.38:81"]
+        whitelistedDomains: [
+          "localhost:3001",
+          "88.99.118.38",
+          "88.99.118.38:81",
+          "88.99.118.38:444",
+          "88.99.118.38:3001",
+          "88.99.118.38:3002",
+        ]
       }
     }),
   ],
