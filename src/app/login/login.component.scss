@@ -9,10 +9,15 @@
 .mat-card-padding {
   display: flex;
   flex-direction: column;
+  min-width: 250px;
 }
 
 .full-width {
   flex: 1 1 100%;
+}
+
+.min-width {
+  min-width: 250px;
 }
 
 .container {
