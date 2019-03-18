@@ -10,7 +10,7 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
-  MatCheckboxModule,
+  MatCheckboxModule, MatChipsModule,
   MatDatepickerModule,
   MatDividerModule,
   MatFormFieldModule,
@@ -138,6 +138,7 @@ import {OutputMessageComponent} from "./table-support/error-output/output-messag
 import {MySpinnerModule} from "./table-support/my-spinner/my-spinner.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
+import { PublicArticleStockGrid2Component } from './dashboard/public-article-stock-grid2/public-article-stock-grid2.component';
 
 @NgModule({
   declarations: [
@@ -222,6 +223,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     SaleOrderComponent,
     SaleLocationComponent,
     SaleHeaderComponent,
+    PublicArticleStockGrid2Component,
   ],
   imports: [
     BrowserModule,
@@ -257,6 +259,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     MatDividerModule,
     MatGridListModule,
     MySpinnerModule,
+    MatChipsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: AuthenticationService.getAccessToken,

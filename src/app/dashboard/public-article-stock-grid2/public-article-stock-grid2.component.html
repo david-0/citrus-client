@@ -1,0 +1,22 @@
+<div class="main-container">
+  <mat-card *ngFor="let articleWrapper of articlesWrappers" class="card-dimensions">
+    <mat-card-title class="title">{{articleWrapper.article.description}}</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content class="content-format">
+      <img src="/assets/images/citrus.png" class="article-image">
+      <div class="price-row">
+        <span class="price-format">{{articleWrapper.article.price | currency: "CHF "}}</span>
+        <span class="unit-format">pro {{articleWrapper.article.unitOfMeasurement.shortcut}}</span>
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="location">Standorte</div>
+      <mat-chip-list>
+        <mat-chip class="cart-color-green" *ngFor="let stockWrapper of articleWrapper.articleStockWrappers">
+          {{stockWrapper.articleStock.location.description}}
+        </mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+  </mat-card>
+</div>
