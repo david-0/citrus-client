@@ -1,54 +1,65 @@
-<div class="noPadding toolbar-content">
-  <mat-toolbar color="primary">
+<mat-drawer-container class="sidenav-container" autosize>
+  <mat-drawer #drawer class="sidebar sidebar-positions shopping--cart" mode="side" position="end">
+    <app-shopping-cart></app-shopping-cart>
+  </mat-drawer>
+  <div class="noPadding toolbar-content">
+    <mat-toolbar color="primary">
     <span>
       <a class="title" routerLink="/">
         <mat-icon>home</mat-icon>
         <span class="button-space">Citrus</span>
       </a>
     </span>
-    <span class="fill-remaining-space"></span>
-    <button *ngIf="authService.isSale()" mat-raised-button class="sale-button" routerLink="/sale">
-      <mat-icon>money</mat-icon>
-      <span class="button-space">Verkauf</span>
-    </button>
-    <button *ngIf="authService.isStore()" mat-raised-button class="sale-button" [matMenuTriggerFor]="menuStore">
-      <span class="button-space">Lager</span>
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menuStore="matMenu" >
-      <button mat-menu-item routerLink="/store/checkIn">
-        <mat-icon>input</mat-icon>
-        <span class="menu-entry">Einbuchen</span>
+      <span class="fill-remaining-space"></span>
+      <button *ngIf="authService.isSale()" mat-raised-button class="sale-button" routerLink="/sale">
+        <mat-icon>money</mat-icon>
+        <span class="button-space">Verkauf</span>
       </button>
-      <button mat-menu-item routerLink="/store/checkOut">
-        <img class="mat-icon material-icons" src="assets/images/baseline-output-24px.svg"/>
-        <span class="menu-entry">Ausbuchen</span>
+      <button *ngIf="authService.isStore()" mat-raised-button class="sale-button" [matMenuTriggerFor]="menuStore">
+        <span class="button-space">Lager</span>
+        <mat-icon>more_vert</mat-icon>
       </button>
-      <button mat-menu-item routerLink="/store/estimate">
-        <mat-icon>help_outline</mat-icon>
-        <span class="menu-entry">Lagerbestand schätzen</span>
+      <mat-menu #menuStore="matMenu">
+        <button mat-menu-item routerLink="/store/checkIn">
+          <mat-icon>input</mat-icon>
+          <span class="menu-entry">Einbuchen</span>
+        </button>
+        <button mat-menu-item routerLink="/store/checkOut">
+          <img class="mat-icon material-icons" src="assets/images/baseline-output-24px.svg"/>
+          <span class="menu-entry">Ausbuchen</span>
+        </button>
+        <button mat-menu-item routerLink="/store/estimate">
+          <mat-icon>help_outline</mat-icon>
+          <span class="menu-entry">Lagerbestand schätzen</span>
+        </button>
+      </mat-menu>
+      <button *ngIf="authService.isAdmin()" mat-raised-button class="sale-button" routerLink="/administration">
+        <mat-icon>list</mat-icon>
+        <span class="button-space">Administration</span>
       </button>
-    </mat-menu>
-    <button *ngIf="authService.isAdmin()" mat-raised-button class="sale-button" routerLink="/administration">
-      <mat-icon>list</mat-icon>
-      <span class="button-space">Administration</span>
-    </button>
-    <a *ngIf="!authService.loggedIn()" routerLink='login'><span>login</span></a>
-    <button *ngIf="authService.loggedIn()" mat-raised-button [matMenuTriggerFor]="menu">
-      <span class="button-space">Meine Konto</span>
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <span class="user-id">UserId: {{authService.getLoggedInUserId()}}</span>
-      <button mat-menu-item (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon>
-        <span class="menu-entry">Abmelden</span>
+      <a *ngIf="!authService.loggedIn()" routerLink='login'><span>login</span></a>
+      <button *ngIf="authService.loggedIn()" mat-raised-button [matMenuTriggerFor]="menu">
+        <span class="button-space">Meine Konto</span>
+        <mat-icon>more_vert</mat-icon>
       </button>
-      <button mat-menu-item routerLink="/changeMyPassword">
-        <mat-icon>security</mat-icon>
-        <span class="menu-entry">Passwort ändern</span>
+      <mat-menu #menu="matMenu">
+        <span class="user-id">UserId: {{authService.getLoggedInUserId()}}</span>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span class="menu-entry">Abmelden</span>
+        </button>
+        <button mat-menu-item routerLink="/changeMyPassword">
+          <mat-icon>security</mat-icon>
+          <span class="menu-entry">Passwort ändern</span>
+        </button>
+      </mat-menu>
+      <button mat-raised-button class="cart-button" (click)="drawer.toggle()">
+        <mat-icon matBadgeColor="warn" matBadge="{{cartService.count()}}" matBadgeOverlap="false"
+                  [matBadgeHidden]="!cartService.count() > 0"
+                  class="icon-margin">shopping_cart
+        </mat-icon>
       </button>
-    </mat-menu>
-  </mat-toolbar>
-  <router-outlet></router-outlet>
-</div>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

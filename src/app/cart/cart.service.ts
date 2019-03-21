@@ -29,6 +29,12 @@ export class CartService {
     return this.cart;
   }
 
+  public count(): number {
+    return this.cart.getValue()
+      .map(c => c.cartItems.length)
+      .reduce((a, b) => a + b, 0);
+  }
+
   public getCartAtLocation(locationId: number): CartDto {
     if (this.hasCart(locationId)) {
       return this.getCart(locationId);

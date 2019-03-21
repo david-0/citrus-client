@@ -6,7 +6,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   DateAdapter,
   MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
+  MAT_DATE_LOCALE, MatBadgeModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
@@ -262,6 +262,7 @@ import { PublicArticleDetailComponent } from './dashboard/public-article-detail/
     MatGridListModule,
     MySpinnerModule,
     MatChipsModule,
+    MatBadgeModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: AuthenticationService.getAccessToken,

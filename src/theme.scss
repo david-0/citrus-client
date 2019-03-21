@@ -15,6 +15,7 @@ $my-theme: mat-light-theme(
     $my-theme-warn
 );
 
+@import "app/cart/shopping-cart/shopping-cart.component.scss-theme";
 @import "app/table-support/table-header/table-header.component.scss-theme";
 @import "app/childs/administration/administration.component.scss-theme";
 @import "app/childs/address/address-table/address-table.component.scss-theme";
@@ -59,6 +60,7 @@ $my-theme: mat-light-theme(
   @include app-store-estimate-theme($theme);
   @include app-sale-header-theme($theme);
   @include app-sale-order-theme($theme);
+  @include app-shopping-cart-theme($theme);
 }
 
 @include angular-material-theme($my-theme);
