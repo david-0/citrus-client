@@ -56,6 +56,7 @@ import {UserEditComponent} from "../childs/user/user-edit/user-edit.component";
 import {UserOverviewComponent} from "../childs/user/user-overview/user-overview.component";
 import {UserPasswordChangeComponent} from "../childs/user/user-password-change/user-password-change.component";
 import {DashboardComponent} from "../dashboard/dashboard.component";
+import {PublicArticleDetailComponent} from "../dashboard/public-article-detail/public-article-detail.component";
 import {LoginComponent} from "../login/login.component";
 import {LogoutComponent} from "../logout/logout.component";
 import {SaleOrderComponent} from "../sales/sale-order/sale-order.component";
@@ -67,6 +68,7 @@ import {StoreEstimateComponent} from "../store/store-estimate/store-estimate.com
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
   {path: "dashboard", component: DashboardComponent},
+  {path: "dashboard/detail/:articleId/:locationId", component: PublicArticleDetailComponent},
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent},
   {path: "checkout/:id", canActivate: [AuthGuard], component: CheckoutComponent},

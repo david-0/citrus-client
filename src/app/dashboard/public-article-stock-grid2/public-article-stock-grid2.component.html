@@ -13,7 +13,8 @@
     <mat-card-content>
       <div class="location">Standorte</div>
       <mat-chip-list>
-        <mat-chip class="cart-color-green" *ngFor="let stockWrapper of articleWrapper.articleStockWrappers">
+        <mat-chip class="cart-color-green" *ngFor="let stockWrapper of articleWrapper.articleStockWrappers"
+                  [routerLink]="['detail', stockWrapper.articleStock.article.id, stockWrapper.articleStock.location.id]">
           {{stockWrapper.articleStock.location.description}}
         </mat-chip>
       </mat-chip-list>

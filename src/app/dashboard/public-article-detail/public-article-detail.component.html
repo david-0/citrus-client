@@ -1,0 +1,90 @@
+<div class="main-container">
+  <mat-card class="card-dimensions">
+    <div class="columns">
+      <div class="image-column">
+        <div class="title">
+          <span class="title-format">{{selectedArticleWrapper.getValue()?.article?.description}}</span>
+        </div>
+        <div class="price-row">
+          <span class="price-format">{{selectedArticleWrapper.getValue()?.article?.price | currency: "CHF "}}</span>
+          <span
+            class="unit-format">pro {{selectedArticleWrapper.getValue()?.article?.unitOfMeasurement?.shortcut}}</span>
+        </div>
+        <img src="/assets/images/citrus.png" class="article-image">
+      </div>
+      <div class="description-column">
+        <div *ngIf="selectedArticleWrapper.getValue()?.articleStockWrappers.length > 1">
+          <div class="location">Standort auswählen</div>
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
+                                   value="{{selectedArticleStockLocation.getValue()?.articleStock?.location?.id}}"
+                                   (change)="onLocationIdChange($event.value)">
+            <mat-button-toggle *ngFor="let stockWrapper of selectedArticleWrapper.getValue()?.articleStockWrappers"
+                               value="{{stockWrapper?.articleStock?.location?.id}}">
+              {{stockWrapper?.articleStock?.location?.description}}
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <div *ngIf="selectedArticleStockLocation.getValue()" class="table">
+          <div>
+            <div class="location">
+              Standort
+            </div>
+            <div>
+              <b>{{selectedArticleStockLocation.getValue()?.articleStock.location.description}}</b>
+            </div>
+          </div>
+          <div>
+            <div class="location">
+              Lagerbestand
+            </div>
+            <div class="orderRow">
+              <mat-chip-list>
+                <mat-chip class="cart-color-green">
+                  {{selectedArticleStockLocation.getValue()?.articleStock.quantity - selectedArticleStockLocation.getValue()?.articleStock.reservedQuantity -
+                selectedArticleStockLocation.getValue()?.cartItem?.quantity}}
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+          </div>
+          <div *ngIf="getNotDoneArticleCheckIns().length > 0">
+            <div class="location">
+              In Bestellung
+            </div>
+            <div class="orders">
+              <p *ngFor="let checkins of getNotDoneArticleCheckIns()" class="orderRow">
+                <mat-chip-list>
+                  <mat-chip class="color-black">{{checkins.quantity}}</mat-chip>
+                  <span class="location">
+                      {{checkins.plannedDate | date: "dd.MM.y": "GMT": "de-CH"}}
+                  </span>
+                </mat-chip-list>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="shopping-row">
+          <div class="cart-data-font center-buttons">
+            <button mat-button type="submit" class="plus-minus-buttons cart-color-orange"
+                    (click)="decrease()">
+              <mat-icon>remove_circle</mat-icon>
+            </button>
+            <mat-form-field class="count-field" color="accent">
+              <input matInput placeholder="Anzahl" maxlength="10" [(ngModel)]="numberToAdd">
+
+            </mat-form-field>
+            <button mat-button type="submit" class="plus-minus-buttons cart-color-orange"
+                    (click)="increase()">
+              <mat-icon>add_circle</mat-icon>
+            </button>
+          </div>
+          <div class="add-button">
+            <button mat-button type="submit" class="button--responsive cart-color-green"
+                    (click)="addToCart(selectedArticleStockLocation.getValue())">
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

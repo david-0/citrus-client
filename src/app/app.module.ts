@@ -139,6 +139,7 @@ import {MySpinnerModule} from "./table-support/my-spinner/my-spinner.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
 import { PublicArticleStockGrid2Component } from './dashboard/public-article-stock-grid2/public-article-stock-grid2.component';
+import { PublicArticleDetailComponent } from './dashboard/public-article-detail/public-article-detail.component';
 
 @NgModule({
   declarations: [
@@ -224,6 +225,7 @@ import { PublicArticleStockGrid2Component } from './dashboard/public-article-sto
     SaleLocationComponent,
     SaleHeaderComponent,
     PublicArticleStockGrid2Component,
+    PublicArticleDetailComponent,
   ],
   imports: [
     BrowserModule,
