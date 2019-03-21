@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {AddressDto} from "citrus-common";
 import {Subscription} from "rxjs";
-import {AddressDtoRestService} from "../address-dto-rest.service";
 import {AddressWithUserDtoRestService} from "../address-with-user-dto-rest.service";
 
 @Component({
