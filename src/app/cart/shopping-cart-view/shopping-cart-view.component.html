@@ -1,0 +1,16 @@
+<div class="cart-header">
+  <mat-icon class="left-icon" (click)="cartStateService.openDetails()">keyboard_arrow_left</mat-icon>
+  <mat-icon class="right-icon" (click)="cartStateService.openDetails()">shopping_cart</mat-icon>
+</div>
+<div *ngFor="let cart of (cartService.getCarts() | async)">
+  <div class="location-line center-content">
+    <div class="cart-location-font">{{cart.location.description}}</div>
+  </div>
+  <div *ngFor="let item of cart.cartItems" class="cart--item">
+    <div class="item-line center-content space-between">
+      <mat-card class="item-card" matBadge="{{item.quantity}}" >
+        <img src="/assets/images/citrus.png" class="article-image" width="36px" height="36px">
+      </mat-card>
+    </div>
+  </div>
+</div>

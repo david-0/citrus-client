@@ -15,7 +15,8 @@ $my-theme: mat-light-theme(
     $my-theme-warn
 );
 
-@import "app/cart/shopping-cart/shopping-cart.component.scss-theme";
+@import "app/cart/shopping-cart-detail/shopping-cart-detail.component.scss-theme";
+@import "app/cart/shopping-cart-view/shopping-cart-view.component.scss-theme";
 @import "app/table-support/table-header/table-header.component.scss-theme";
 @import "app/childs/administration/administration.component.scss-theme";
 @import "app/childs/address/address-table/address-table.component.scss-theme";
@@ -25,7 +26,6 @@ $my-theme: mat-light-theme(
 @import "app/childs/article-checkout/article-checkout-table/article-checkout-table.component.scss-theme";
 @import "app/childs/article-stock/article-stock-table/article-stock-table.component.scss-theme";
 @import "app/childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component.scss-theme";
-@import "app/dashboard/dashboard.component.scss-theme";
 @import "app/checkout/checkout/checkout.component.scss-theme";
 @import "app/childs/location/location-table/location-table.component.scss-theme";
 @import "app/childs/order/order-table/order-table.component.scss-theme";
@@ -48,7 +48,6 @@ $my-theme: mat-light-theme(
   @include app-article-checkin-table-theme($theme);
   @include app-article-checkout-table-theme($theme);
   @include app-article-stock-table-theme($theme);
-  @include app-dashboard-theme($theme);
   @include app-checkout-theme($theme);
   @include app-location-table-theme($theme);
   @include app-order-table-theme($theme);
@@ -60,7 +59,8 @@ $my-theme: mat-light-theme(
   @include app-store-estimate-theme($theme);
   @include app-sale-header-theme($theme);
   @include app-sale-order-theme($theme);
-  @include app-shopping-cart-theme($theme);
+  @include app-shopping-cart-detail-theme($theme);
+  @include app-shopping-cart-view-theme($theme);
 }
 
 @include angular-material-theme($my-theme);

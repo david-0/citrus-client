@@ -1,5 +1,5 @@
 <mat-drawer-container class="sidenav-container" autosize>
-  <mat-drawer #drawer class="sidebar sidebar-positions shopping--cart" mode="side" position="end">
+  <mat-drawer class="sidebar sidebar-positions shopping--cart" mode="side" position="end" opened>
     <app-shopping-cart></app-shopping-cart>
   </mat-drawer>
   <div class="noPadding toolbar-content">
@@ -53,12 +53,6 @@
           <span class="menu-entry">Passwort ändern</span>
         </button>
       </mat-menu>
-      <button mat-raised-button class="cart-button" (click)="drawer.toggle()">
-        <mat-icon matBadgeColor="warn" matBadge="{{cartService.count()}}" matBadgeOverlap="false"
-                  [matBadgeHidden]="!cartService.count() > 0"
-                  class="icon-margin">shopping_cart
-        </mat-icon>
-      </button>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </div>

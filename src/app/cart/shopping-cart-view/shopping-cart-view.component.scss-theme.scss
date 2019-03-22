@@ -1,0 +1,17 @@
+@mixin app-shopping-cart-view-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  app-shopping-cart-view {
+    .cart-header {
+      background-color: mat-color($accent);
+    }
+
+    .cash-button {
+      background-color: mat-color($accent);
+    }
+  }
+}

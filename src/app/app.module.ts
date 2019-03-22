@@ -140,6 +140,8 @@ import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
 import { PublicArticleStockGrid2Component } from './dashboard/public-article-stock-grid2/public-article-stock-grid2.component';
 import { PublicArticleDetailComponent } from './dashboard/public-article-detail/public-article-detail.component';
+import { ShoppingCartViewComponent } from './cart/shopping-cart-view/shopping-cart-view.component';
+import { ShoppingCartDetailComponent } from './cart/shopping-cart-detail/shopping-cart-detail.component';
 
 @NgModule({
   declarations: [
@@ -226,6 +228,8 @@ import { PublicArticleDetailComponent } from './dashboard/public-article-detail/
     SaleHeaderComponent,
     PublicArticleStockGrid2Component,
     PublicArticleDetailComponent,
+    ShoppingCartViewComponent,
+    ShoppingCartDetailComponent,
   ],
   imports: [
     BrowserModule,

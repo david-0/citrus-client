@@ -39,10 +39,44 @@
             </div>
             <div class="orderRow">
               <mat-chip-list>
+                <mat-chip class="cart-color-gray">
+                  {{selectedArticleStockLocation.getValue()?.articleStock.quantity}}
+                </mat-chip>
+                <span class="location">
+                  {{selectedArticleWrapper.getValue()?.article?.unitOfMeasurement?.shortcut}}
+                </span>
+              </mat-chip-list>
+            </div>
+          </div>
+          <div>
+            <div class="location">
+              Reserviert
+            </div>
+            <div class="orderRow">
+              <mat-chip-list>
+                <mat-chip class="cart-color-gray">
+                  {{selectedArticleStockLocation.getValue()?.articleStock.reservedQuantity +
+                selectedArticleStockLocation.getValue()?.cartItem?.quantity}}
+                </mat-chip>
+                <span class="location">
+                  {{selectedArticleWrapper.getValue()?.article?.unitOfMeasurement?.shortcut}}
+                </span>
+              </mat-chip-list>
+            </div>
+          </div>
+          <div>
+            <div class="location">
+              Verfügbar
+            </div>
+            <div class="orderRow">
+              <mat-chip-list>
                 <mat-chip class="cart-color-green">
                   {{selectedArticleStockLocation.getValue()?.articleStock.quantity - selectedArticleStockLocation.getValue()?.articleStock.reservedQuantity -
                 selectedArticleStockLocation.getValue()?.cartItem?.quantity}}
                 </mat-chip>
+                <span class="location">
+                  {{selectedArticleWrapper.getValue()?.article?.unitOfMeasurement?.shortcut}}
+                </span>
               </mat-chip-list>
             </div>
           </div>
@@ -55,7 +89,7 @@
                 <mat-chip-list>
                   <mat-chip class="color-black">{{checkins.quantity}}</mat-chip>
                   <span class="location">
-                      {{checkins.plannedDate | date: "dd.MM.y": "GMT": "de-CH"}}
+                      {{checkins.plannedDate | date: "dd.MM.y": "UTC": "de-CH"}}
                   </span>
                 </mat-chip-list>
               </p>
@@ -69,8 +103,9 @@
               <mat-icon>remove_circle</mat-icon>
             </button>
             <mat-form-field class="count-field" color="accent">
-              <input matInput placeholder="Anzahl" maxlength="10" [(ngModel)]="numberToAdd">
-
+              <input matInput
+                     placeholder="Menge in {{selectedArticleWrapper.getValue()?.article?.unitOfMeasurement?.shortcut}}"
+                     maxlength="10" [(ngModel)]="numberToAdd">
             </mat-form-field>
             <button mat-button type="submit" class="plus-minus-buttons cart-color-orange"
                     (click)="increase()">

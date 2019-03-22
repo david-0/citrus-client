@@ -41,7 +41,7 @@ export class PublicArticleDetailComponent implements OnInit {
   }
 
   public getNotDoneArticleCheckIns(): ArticleCheckInDto[] {
-    return this.selectedArticleStockLocation.getValue().articleStock.checkIns.filter(ci => ci.done);
+    return this.selectedArticleStockLocation.getValue().articleStock.checkIns.filter(ci => !ci.done);
   }
 
   public increase() {
