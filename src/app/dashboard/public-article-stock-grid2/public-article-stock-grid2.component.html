@@ -1,5 +1,6 @@
 <div class="main-container">
-  <mat-card *ngFor="let articleWrapper of articlesWrappers" class="card-dimensions">
+  <mat-card *ngFor="let articleWrapper of articlesWrappers" class="card-dimensions"
+            [routerLink]="['detail',articleWrapper.article.id, articleWrapper.articleStockWrappers[0].articleStock.location.id]">
     <mat-card-title class="title">{{articleWrapper.article.description}}</mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content class="content-format">
