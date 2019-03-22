@@ -138,7 +138,7 @@ export class CartService {
   }
 
   private addCartItem(cart: CartDto, article: ArticleDto, quantity: number) {
-    const newItem = new CartItemDto(article, quantity, article.price);
+    const newItem = new CartItemDto(article, +quantity, article.price);
     cart.cartItems.push(newItem);
   }
 
