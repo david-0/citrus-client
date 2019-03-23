@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ArticleCheckInDto, ArticleDto} from "citrus-common";
+import * as moment from "moment";
 import {BehaviorSubject} from "rxjs";
 import {CartService} from "../../cart/cart.service";
 import {ArticleWithAllDtoRestService} from "../../childs/article/article-with-all-dto-rest.service";
@@ -24,6 +25,25 @@ export class PublicArticleDetailComponent implements OnInit {
               private rest: ArticleWithAllDtoRestService) {
   }
 
+  private static compareDates(a: Date, b: Date): number {
+    if (a === null || a === undefined) {
+      if (b === null || b === undefined) {
+        return 0;
+      }
+      return -1;
+    }
+    if (b === null || b === undefined) {
+      return 1;
+    }
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
+  }
+
   ngOnInit() {
     this.route.params.subscribe(params => this.loadArticle(params));
   }
@@ -41,7 +61,13 @@ export class PublicArticleDetailComponent implements OnInit {
   }
 
   public getNotDoneArticleCheckIns(): ArticleCheckInDto[] {
-    return this.selectedArticleStockLocation.getValue().articleStock.checkIns.filter(ci => !ci.done);
+    return this.selectedArticleStockLocation.getValue().articleStock.checkIns
+      .filter(ci => !ci.done)
+      .sort((a, b) => PublicArticleDetailComponent.compareDates(a.plannedDate, b.plannedDate));
+  }
+
+  public isPast(date: Date) {
+    return moment(date).isBefore(moment.now());
   }
 
   public increase() {
