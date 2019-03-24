@@ -189,3 +189,12 @@ button.plus-minus-buttons {
   }
 }
 
+.backlink-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  div {
+    padding-left: 0.2em;
+  }
+}
+
