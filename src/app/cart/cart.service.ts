@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {ArticleDto, CartDto, CartItemDto, LocationDto, OpeningHourDto} from "citrus-common";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -25,7 +25,7 @@ export class CartService {
     localStorage.setItem("cart-v2", JSON.stringify(this.cart.getValue()));
   }
 
-  public getCarts(): Observable<CartDto[]> {
+  public getCarts(): BehaviorSubject<CartDto[]> {
     return this.cart;
   }
 
@@ -65,6 +65,7 @@ export class CartService {
         return this.getCartItem(cart, articleId);
       }
     }
+    return null;
   }
 
   public addArticle(location: LocationDto, article: ArticleDto, quantity: number) {
@@ -93,6 +94,19 @@ export class CartService {
         } else {
           this.removeCart(location.id);
         }
+        this.cart.next(this.cart.getValue());
+        this.saveCarts();
+      }
+    }
+  }
+
+  public updateArticleQuantity(location: LocationDto, article: ArticleDto, differenceQuantity: number) {
+    if (this.hasCart(location.id)) {
+      const cart = this.getCart(location.id);
+      if (this.hasCartItem(cart, article.id)) {
+        const cartItem = this.getCartItem(cart, article.id);
+        cartItem.quantity += +differenceQuantity;
+        this.updateTotalPrice(cart);
         this.cart.next(this.cart.getValue());
         this.saveCarts();
       }

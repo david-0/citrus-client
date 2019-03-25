@@ -7,34 +7,34 @@
           <div>zurück</div>
         </div>
         <div class="title">
-          <span class="title-format">{{selectedArticleWrapper.getValue()?.article?.description}}</span>
+          <span class="title-format">{{selectedArticle?.description}}</span>
         </div>
         <div class="price-row">
-          <span class="price-format">{{selectedArticleWrapper.getValue()?.article?.price | currency: "CHF "}}</span>
+          <span class="price-format">{{selectedArticle?.price | currency: "CHF "}}</span>
           <span
-            class="unit-format">pro {{selectedArticleWrapper.getValue()?.article?.unitOfMeasurement?.shortcut}}</span>
+            class="unit-format">pro {{selectedArticle?.unitOfMeasurement?.shortcut}}</span>
         </div>
         <img src="/assets/images/citrus.png" class="article-image">
       </div>
       <div class="description-column">
-        <div *ngIf="selectedArticleWrapper.getValue()?.articleStockWrappers.length > 1">
+        <div *ngIf="selectedArticle?.articleStocks?.length > 1">
           <div class="location">Standort auswählen</div>
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
-                                   value="{{selectedArticleStockLocation.getValue()?.articleStock?.location?.id}}"
+                                   value="{{selectedArticleStock?.location?.id}}"
                                    (change)="onLocationIdChange($event.value)">
-            <mat-button-toggle *ngFor="let stockWrapper of selectedArticleWrapper.getValue()?.articleStockWrappers"
-                               value="{{stockWrapper?.articleStock?.location?.id}}">
-              {{stockWrapper?.articleStock?.location?.description}}
+            <mat-button-toggle *ngFor="let stocks of selectedArticle?.articleStocks"
+                               value="{{stocks?.location?.id}}">
+              {{stocks?.location?.description}}
             </mat-button-toggle>
           </mat-button-toggle-group>
         </div>
-        <div *ngIf="selectedArticleStockLocation.getValue()" class="table">
+        <div *ngIf="selectedArticleStock" class="table">
           <div>
             <div class="location">
               Standort
             </div>
             <div>
-              <b>{{selectedArticleStockLocation.getValue()?.articleStock.location.description}}</b>
+              <b>{{selectedArticleStock.location.description}}</b>
             </div>
           </div>
           <div>
@@ -44,10 +44,10 @@
             <div class="orderRow">
               <mat-chip-list>
                 <mat-chip class="cart-color-gray">
-                  {{selectedArticleStockLocation.getValue()?.articleStock.quantity}}
+                  {{selectedArticleStock.quantity}}
                 </mat-chip>
                 <span class="location">
-                  {{selectedArticleWrapper.getValue()?.article?.unitOfMeasurement?.shortcut}}
+                  {{selectedArticle?.unitOfMeasurement?.shortcut}}
                 </span>
               </mat-chip-list>
             </div>
@@ -59,11 +59,10 @@
             <div class="orderRow">
               <mat-chip-list>
                 <mat-chip class="cart-color-gray">
-                  {{selectedArticleStockLocation.getValue()?.articleStock.reservedQuantity +
-                selectedArticleStockLocation.getValue()?.cartItem?.quantity}}
+                  {{selectedArticleStock.reservedQuantity + selectedCartItem?.quantity}}
                 </mat-chip>
                 <span class="location">
-                  {{selectedArticleWrapper.getValue()?.article?.unitOfMeasurement?.shortcut}}
+                  {{selectedArticle?.unitOfMeasurement?.shortcut}}
                 </span>
               </mat-chip-list>
             </div>
@@ -75,11 +74,10 @@
             <div class="orderRow">
               <mat-chip-list>
                 <mat-chip class="cart-color-green">
-                  {{selectedArticleStockLocation.getValue()?.articleStock.quantity - selectedArticleStockLocation.getValue()?.articleStock.reservedQuantity -
-                selectedArticleStockLocation.getValue()?.cartItem?.quantity}}
+                  {{selectedArticleStock.quantity - selectedArticleStock.reservedQuantity - selectedCartItem?.quantity}}
                 </mat-chip>
                 <span class="location">
-                  {{selectedArticleWrapper.getValue()?.article?.unitOfMeasurement?.shortcut}}
+                  {{selectedArticle?.unitOfMeasurement?.shortcut}}
                 </span>
               </mat-chip-list>
             </div>
@@ -104,25 +102,29 @@
           </div>
         </div>
         <div class="shopping-row">
+          <div class="location">Menge im Warenkorb</div>
           <div class="cart-data-font center-buttons">
-            <button mat-button type="submit" class="plus-minus-buttons cart-color-orange"
-                    (click)="decrease()">
+            <button mat-button type="submit" class="double-plus-minus-buttons cart-color-green"
+                    (click)="decrease(10)">
+              <mat-icon class="overlap-right">remove_circle</mat-icon>
               <mat-icon>remove_circle</mat-icon>
             </button>
-            <mat-form-field class="count-field" color="accent">
-              <input matInput
-                     placeholder="Menge in {{selectedArticleWrapper.getValue()?.article?.unitOfMeasurement?.shortcut}}"
-                     maxlength="10" [(ngModel)]="numberToAdd">
-            </mat-form-field>
-            <button mat-button type="submit" class="plus-minus-buttons cart-color-orange"
-                    (click)="increase()">
+            <button mat-button type="submit" class="plus-minus-buttons cart-color-green"
+                    (click)="decrease(1)">
+              <mat-icon>remove_circle</mat-icon>
+            </button>
+            <div *ngIf="selectedCartItem"
+              class="quantity">{{selectedCartItem.quantity}} {{selectedArticle?.unitOfMeasurement?.shortcut}}</div>
+            <div *ngIf="!selectedCartItem"
+              class="quantity">0 {{selectedArticle?.unitOfMeasurement?.shortcut}}</div>
+            <button mat-button type="submit" class="plus-minus-buttons cart-color-green"
+                    (click)="increase(1)">
               <mat-icon>add_circle</mat-icon>
             </button>
-          </div>
-          <div class="add-button">
-            <button mat-button type="submit" class="button--responsive cart-color-green"
-                    (click)="addToCart(selectedArticleStockLocation.getValue())">
-              <mat-icon>add_shopping_cart</mat-icon>
+            <button mat-button type="submit" class="double-plus-minus-buttons cart-color-green"
+                    (click)="increase(10)">
+              <mat-icon class="overlap-right">add_circle</mat-icon>
+              <mat-icon>add_circle</mat-icon>
             </button>
           </div>
         </div>
