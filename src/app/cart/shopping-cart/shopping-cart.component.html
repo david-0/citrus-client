@@ -1,7 +1,7 @@
-<div *ngIf="cartStateService.showDetail()">
+<div *ngIf="cartStateService.detailsVisible()">
   <app-shopping-cart-detail></app-shopping-cart-detail>
 </div>
-<div *ngIf="!cartStateService.showDetail()">
-  <app-shopping-cart-view></app-shopping-cart-view>
+<div *ngIf="!cartStateService.detailsVisible()">
+  <app-shopping-cart-view (click)="cartStateService.openDetails()"></app-shopping-cart-view>
 </div>
 

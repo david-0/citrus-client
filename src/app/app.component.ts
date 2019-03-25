@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./authentication/authentication.service";
-import {CartService} from "./cart/cart.service";
+import {CartStateService} from "./cart/cart-state.service";
 
 @Component({
   selector: "app-root",
@@ -11,7 +11,7 @@ import {CartService} from "./cart/cart.service";
 export class AppComponent {
   constructor(public router: Router,
               public authService: AuthenticationService,
-              public cartService: CartService) {
+              public cartStateService: CartStateService) {
   }
 
   logout() {

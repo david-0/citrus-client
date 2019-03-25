@@ -1,7 +1,10 @@
 <div class="cart-header">
   <mat-icon class="left-icon" (click)="cartStateService.closeDetails()">keyboard_arrow_right</mat-icon>
   <mat-icon class="right-icon" (click)="cartStateService.closeDetails()">shopping_cart</mat-icon>
-  <span class="fill-remaining-space">Warenkorb</span>
+  <span class="fill-remaining-space" *ngIf="(cartService.getCarts() | async).length === 0"
+        (click)="cartStateService.closeDetails()">leerer Warenkorb</span>
+  <span class="fill-remaining-space" *ngIf="(cartService.getCarts() | async).length > 0"
+        (click)="cartStateService.closeDetails()">Warenkorb</span>
   <button *ngIf="(cartService.getCarts() | async).length > 0" mat-button type="submit" class="button--responsive"
           (click)="cartService.clear()">
     <mat-icon>delete</mat-icon>

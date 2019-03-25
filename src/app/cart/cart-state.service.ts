@@ -9,7 +9,7 @@ export class CartStateService {
   constructor() {
   }
 
-  public showDetail(): boolean {
+  public detailsVisible(): boolean {
     return this.detail;
   }
 
