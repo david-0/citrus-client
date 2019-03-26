@@ -77,6 +77,7 @@ export class PublicArticleDetailComponent implements OnInit, OnDestroy {
   private loadArticle(params: Params) {
     this.rest.get(+params["articleId"]).subscribe(article => {
       this.selectedArticle = article;
+      article.articleStocks = article.articleStocks.sort((a, b) => a.location.description.localeCompare(b.location.description));
       this.updateSelectedStockArticle(article, +params["locationId"]);
     });
   }
