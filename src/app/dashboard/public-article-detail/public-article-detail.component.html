@@ -19,14 +19,20 @@
       <div class="description-column">
         <div *ngIf="selectedArticle?.articleStocks?.length > 1">
           <div class="location">Standort auswählen</div>
-          <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
-                                   value="{{selectedArticleStock?.location?.id}}"
-                                   (change)="onLocationIdChange($event.value)">
-            <mat-button-toggle *ngFor="let stocks of selectedArticle?.articleStocks"
-                               value="{{stocks?.location?.id}}">
-              {{stocks?.location?.description}}
-            </mat-button-toggle>
-          </mat-button-toggle-group>
+          <mat-chip-list>
+            <div *ngFor="let stock of selectedArticle?.articleStocks">
+              <mat-chip *ngIf="selectedArticleStock?.location?.id === stock?.location?.id"
+                        class="cart-color-green"
+                        (click)="onLocationIdChange(stock?.location?.id)">
+                {{stock.location.description}}
+              </mat-chip>
+              <mat-chip *ngIf="selectedArticleStock?.location?.id !== stock?.location?.id"
+                        class="cart-color-gray"
+                        (click)="onLocationIdChange(stock?.location?.id)">
+                {{stock.location.description}}
+              </mat-chip>
+            </div>
+          </mat-chip-list>
         </div>
         <div *ngIf="selectedArticleStock" class="table">
           <div>
@@ -43,7 +49,7 @@
             </div>
             <div class="orderRow">
               <mat-chip-list>
-                <mat-chip class="cart-color-gray">
+                <mat-chip class="cart-color-gray chips-reduced-height">
                   {{selectedArticleStock.quantity}}
                 </mat-chip>
                 <span class="location">
@@ -58,7 +64,7 @@
             </div>
             <div class="orderRow">
               <mat-chip-list>
-                <mat-chip class="cart-color-gray">
+                <mat-chip class="cart-color-gray chips-reduced-height">
                   {{selectedArticleStock.reservedQuantity + selectedCartItem?.quantity}}
                 </mat-chip>
                 <span class="location">
@@ -73,7 +79,7 @@
             </div>
             <div class="orderRow">
               <mat-chip-list>
-                <mat-chip class="cart-color-green">
+                <mat-chip class="cart-color-green chips-reduced-height">
                   {{selectedArticleStock.quantity - selectedArticleStock.reservedQuantity - selectedCartItem?.quantity}}
                 </mat-chip>
                 <span class="location">
@@ -89,7 +95,7 @@
             <div class="orders">
               <p *ngFor="let checkins of getNotDoneArticleCheckIns()" class="orderRow">
                 <mat-chip-list>
-                  <mat-chip class="color-black">{{checkins.quantity}}</mat-chip>
+                  <mat-chip class="color-black chips-reduced-height">{{checkins.quantity}}</mat-chip>
                   <span class="location" *ngIf="isPast(checkins.plannedDate)">
                       ({{checkins.plannedDate | date: "dd.MM.y"}})
                   </span>
@@ -114,9 +120,9 @@
               <mat-icon>remove_circle</mat-icon>
             </button>
             <div *ngIf="selectedCartItem"
-              class="quantity">{{selectedCartItem.quantity}} {{selectedArticle?.unitOfMeasurement?.shortcut}}</div>
+                 class="quantity">{{selectedCartItem.quantity}} {{selectedArticle?.unitOfMeasurement?.shortcut}}</div>
             <div *ngIf="!selectedCartItem"
-              class="quantity">0 {{selectedArticle?.unitOfMeasurement?.shortcut}}</div>
+                 class="quantity">0 {{selectedArticle?.unitOfMeasurement?.shortcut}}</div>
             <button mat-button type="submit" class="plus-minus-buttons cart-color-green"
                     (click)="increase(1)">
               <mat-icon>add_circle</mat-icon>
