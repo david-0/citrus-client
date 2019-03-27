@@ -1,29 +1,31 @@
 <div class="main-container">
-  <mat-card *ngFor="let articleWrapper of articlesWrappers" class="card-dimensions">
-    <mat-card-title>{{articleWrapper.article.description}}</mat-card-title>
+  <mat-card *ngFor="let article of articles" class="card-dimensions"
+            [routerLink]="['detail',article.id, article.articleStocks[0].location.id]">
+    <mat-card-title class="title">{{article.description}}</mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content class="content-format">
       <img src="/assets/images/citrus.png" class="article-image">
       <div class="price-row">
-        <span class="price-format">{{articleWrapper.article.price | currency: "CHF "}}</span>
-        <span class="unit-format">pro {{articleWrapper.article.unitOfMeasurement.shortcut}}</span>
-      </div>
-      <div class="common_table">
-        <div *ngFor="let stockWrapper of articleWrapper.articleStockWrappers">
-          <div>
-            <b>{{stockWrapper.articleStock.location.description}}</b> <br/>
-            {{stockWrapper.articleStock.quantity - stockWrapper.articleStock.reservedQuantity -
-            stockWrapper.cartItem?.quantity}}
-            {{articleWrapper.article.unitOfMeasurement.shortcut}}
-          </div>
-          <div>
-            <button mat-button type="submit" class="button--responsive cart-color-green"
-                    (click)="addToCart(stockWrapper)">
-              <mat-icon>add_shopping_cart</mat-icon>
-            </button>
-          </div>
-        </div>
+        <span class="price-format">{{article.price | currency: "CHF "}}</span>
+        <span class="unit-format">pro {{article.unitOfMeasurement.shortcut}}</span>
       </div>
     </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="location">Standorte</div>
+      <mat-chip-list>
+        <mat-chip class="cart-color-green" *ngFor="let articleStock of article.articleStocks"
+                  [routerLink]="['detail', articleStock.article.id, articleStock.location.id]">
+          {{articleStock.location.description}}
+        </mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
   </mat-card>
+  <div class="card-dimensions dummy-card-dimensions"></div>
+  <div class="card-dimensions dummy-card-dimensions"></div>
+  <div class="card-dimensions dummy-card-dimensions"></div>
+  <div class="card-dimensions dummy-card-dimensions"></div>
+  <div class="card-dimensions dummy-card-dimensions"></div>
+  <div class="card-dimensions dummy-card-dimensions"></div>
+  <div class="card-dimensions dummy-card-dimensions"></div>
 </div>

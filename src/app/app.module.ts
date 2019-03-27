@@ -6,11 +6,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   DateAdapter,
   MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE, MatBadgeModule,
+  MAT_DATE_LOCALE,
+  MatBadgeModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
-  MatCheckboxModule, MatChipsModule,
+  MatCheckboxModule,
+  MatChipsModule,
   MatDatepickerModule,
   MatDividerModule,
   MatFormFieldModule,
@@ -43,6 +45,8 @@ import {AuthenticationService} from "./authentication/authentication.service";
 import {PasswordChangeComponent} from "./authentication/password-change/password-change.component";
 import {WINDOW_PROVIDERS} from "./base/window-provider";
 import {CartService} from "./cart/cart.service";
+import {ShoppingCartDetailComponent} from "./cart/shopping-cart-detail/shopping-cart-detail.component";
+import {ShoppingCartViewComponent} from "./cart/shopping-cart-view/shopping-cart-view.component";
 import {ShoppingCartComponent} from "./cart/shopping-cart/shopping-cart.component";
 import {ChangeMyPasswordComponent} from "./change-my-password/change-my-password.component";
 import {CartLocationDetailComponent} from "./checkout/cart-location-detail/cart-location-detail.component";
@@ -123,6 +127,7 @@ import {UserPasswordChangeComponent} from "./childs/user/user-password-change/us
 import {UserWithRolesDtoRestService} from "./childs/user/user-with-roles-dto-rest.service";
 import {ArticleInSaleDtoRestService} from "./dashboard/article-in-sale--dto-rest.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {PublicArticleDetailComponent} from "./dashboard/public-article-detail/public-article-detail.component";
 import {PublicArticleStockGridComponent} from "./dashboard/public-article-stock-grid/public-article-stock-grid.component";
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
@@ -138,10 +143,6 @@ import {OutputMessageComponent} from "./table-support/error-output/output-messag
 import {MySpinnerModule} from "./table-support/my-spinner/my-spinner.module";
 import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
-import { PublicArticleStockGrid2Component } from './dashboard/public-article-stock-grid2/public-article-stock-grid2.component';
-import { PublicArticleDetailComponent } from './dashboard/public-article-detail/public-article-detail.component';
-import { ShoppingCartViewComponent } from './cart/shopping-cart-view/shopping-cart-view.component';
-import { ShoppingCartDetailComponent } from './cart/shopping-cart-detail/shopping-cart-detail.component';
 
 @NgModule({
   declarations: [
@@ -226,7 +227,6 @@ import { ShoppingCartDetailComponent } from './cart/shopping-cart-detail/shoppin
     SaleOrderComponent,
     SaleLocationComponent,
     SaleHeaderComponent,
-    PublicArticleStockGrid2Component,
     PublicArticleDetailComponent,
     ShoppingCartViewComponent,
     ShoppingCartDetailComponent,

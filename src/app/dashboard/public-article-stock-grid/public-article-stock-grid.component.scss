@@ -5,15 +5,33 @@
   flex-wrap: wrap;
 }
 
+.title {
+  font-size: 1.3em;
+}
+
 .card-dimensions {
-  width: 8em;
+  flex: 1 0 11em;
   margin: 5px;
   border-radius: 5px;
-  padding: 16px;
+  padding: 8px;
+}
+
+.dummy-card-dimensions {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+@media (min-width: 1200px) {
+  .card-dimensions {
+    flex: 1 0 12em;
+  }
 }
 
 .article-image {
   width: 100%;
+  max-width: 13em;
   padding: 8px 0;
 }
 
@@ -42,9 +60,14 @@
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  margin-top: 0.6em;
+  margin-top: 0.3em;
   padding-left: 0.5em;
   padding-right: 0.5em;
+}
+
+.location {
+  font-size: 13px;
+  padding: 0.2em;
 }
 
 .unit-format {
