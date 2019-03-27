@@ -16,6 +16,19 @@
   padding: 8px;
 }
 
+.dummy-card-dimensions {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+@media (min-width: 1200px) {
+  .card-dimensions {
+    flex: 1 0 12em;
+  }
+}
+
 .article-image {
   width: 100%;
   max-width: 13em;
