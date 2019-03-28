@@ -4,7 +4,11 @@
     <mat-card-title class="title">{{article.description}}</mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content class="content-format">
-      <img src="/assets/images/citrus.png" class="article-image">
+      <div *ngIf="article">
+        <img *ngIf="!article?.imageId" src="/assets/images/citrus.png" class="article-image">
+        <img *ngIf="article?.imageId" src="{{urlPrefixService.getApiRestPrefix()}}/image/{{article?.imageId}}"
+             class="article-image">
+      </div>
       <div class="price-row">
         <span class="price-format">{{article.price | currency: "CHF "}}</span>
         <span class="unit-format">pro {{article.unitOfMeasurement.shortcut}}</span>

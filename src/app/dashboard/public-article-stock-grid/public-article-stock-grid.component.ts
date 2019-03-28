@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ArticleDto} from "citrus-common";
 import {CartService} from "../../cart/cart.service";
+import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service";
 import {ArticleInSaleDtoRestService} from "../article-in-sale--dto-rest.service";
 
 @Component({
@@ -12,7 +13,9 @@ export class PublicArticleStockGridComponent implements OnInit {
 
   private _articles: ArticleDto[];
 
-  constructor(private rest: ArticleInSaleDtoRestService, private cartService: CartService) {
+  constructor(private rest: ArticleInSaleDtoRestService,
+              private cartService: CartService,
+              public urlPrefixService: RestUrlPrefixService) {
   }
 
   public get articles(): ArticleDto[] {

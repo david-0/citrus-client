@@ -5,6 +5,7 @@ import * as moment from "moment";
 import {Subscription} from "rxjs";
 import {CartService} from "../../cart/cart.service";
 import {ArticleWithAllDtoRestService} from "../../childs/article/article-with-all-dto-rest.service";
+import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service";
 
 @Component({
   selector: "app-public-article-detail",
@@ -21,7 +22,8 @@ export class PublicArticleDetailComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private cartService: CartService,
-              private rest: ArticleWithAllDtoRestService) {
+              private rest: ArticleWithAllDtoRestService,
+              public urlPrefixService: RestUrlPrefixService) {
   }
 
   private static compareDates(a: Date, b: Date): number {

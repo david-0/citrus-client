@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service";
 import {CartStateService} from "../cart-state.service";
 import {CartService} from "../cart.service";
 
@@ -9,7 +10,9 @@ import {CartService} from "../cart.service";
 })
 export class ShoppingCartViewComponent implements OnInit {
 
-  constructor(public cartService: CartService, public cartStateService: CartStateService) {
+  constructor(public cartService: CartService,
+              public cartStateService: CartStateService,
+              public urlPrefixService: RestUrlPrefixService) {
   }
 
   ngOnInit() {

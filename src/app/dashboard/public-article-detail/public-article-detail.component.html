@@ -14,7 +14,11 @@
           <span
             class="unit-format">pro {{selectedArticle?.unitOfMeasurement?.shortcut}}</span>
         </div>
-        <img src="/assets/images/citrus.png" class="article-image">
+        <div *ngIf="selectedArticle">
+          <img *ngIf="!selectedArticle?.imageId" src="/assets/images/citrus.png" class="article-image">
+          <img *ngIf="selectedArticle?.imageId"
+               src="{{urlPrefixService.getApiRestPrefix()}}/image/{{selectedArticle?.imageId}}" class="article-image">
+        </div>
       </div>
       <div class="description-column">
         <div *ngIf="selectedArticle?.articleStocks?.length > 1">

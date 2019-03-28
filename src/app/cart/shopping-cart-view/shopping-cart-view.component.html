@@ -9,7 +9,11 @@
   <div *ngFor="let item of cart.cartItems" class="cart--item">
     <div class="item-line center-content space-between">
       <mat-card class="item-card" matBadge="{{item.quantity}}">
-        <img src="/assets/images/citrus.png" class="article-image" width="36px" height="36px">
+        <div *ngIf="item.article">
+          <img *ngIf="!item.article.imageId" src="/assets/images/citrus.png" class="article-image">
+          <img *ngIf="item.article.imageId"
+               src="{{urlPrefixService.getApiRestPrefix()}}/image/{{item.article.imageId}}" class="article-image">
+        </div>
       </mat-card>
     </div>
   </div>
