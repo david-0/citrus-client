@@ -20,7 +20,7 @@
     </div>
     <div *ngIf="article.imageId">
       <div>Abbildung</div>
-      <app-image-upload></app-image-upload>
+      <img class="image-size" src="{{urlPrefixService.getApiRestPrefix()}}/image/{{article.imageId}}"/>
     </div>
   </mat-card-content>
 </mat-card>

@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ArticleDto} from "citrus-common";
 import {Subscription} from "rxjs";
+import {RestUrlPrefixService} from "../../../table-support/rest-url-prefix.service";
 import {ArticleDtoRestService} from "../article-dto-rest.service";
 
 @Component({
@@ -13,7 +14,9 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
   private _article: ArticleDto = ArticleDto.createEmpty();
   private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private rest: ArticleDtoRestService) {
+  constructor(private route: ActivatedRoute,
+              private rest: ArticleDtoRestService,
+              public urlPrefixService: RestUrlPrefixService) {
   }
 
   public get article(): ArticleDto {

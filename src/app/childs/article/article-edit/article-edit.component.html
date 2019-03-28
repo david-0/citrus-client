@@ -26,5 +26,12 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <div class="image-row">
+      <div>Abbildung</div>
+      <div *ngIf="article.imageId">
+        <img class="image-size" src="{{urlPrefixService.getApiRestPrefix()}}/image/{{article.imageId}}"/>
+      </div>
+      <app-image-upload class="drop-box" (onValueChanges)="changeFiles($event)"></app-image-upload>
+    </div>
   </mat-card>
 </form>

@@ -1,1 +1,16 @@
 @import "../../../styles/edit";
+
+.image-size {
+  width: 10em;
+}
+
+.image-row {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.drop-box {
+  flex: 1 1;
+}

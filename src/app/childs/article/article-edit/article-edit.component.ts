@@ -2,8 +2,11 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ArticleDto, UnitOfMeasurementDto} from "citrus-common";
 import {BehaviorSubject, combineLatest, Observable} from "rxjs";
+import {FileUploadService} from "../../../table-support/file-upload.service";
+import {RestUrlPrefixService} from "../../../table-support/rest-url-prefix.service";
 import {UnitOfMeasurementDtoRestService} from "../../unit-of-measurement/unit-of-measurement-dto-rest.service";
 import {ArticleDtoRestService} from "../article-dto-rest.service";
+import {ImageDtoRestService} from "../image-dto-rest.service";
 
 @Component({
   selector: "app-article-edit",
@@ -13,13 +16,17 @@ import {ArticleDtoRestService} from "../article-dto-rest.service";
 export class ArticleEditComponent implements OnInit {
   public article: ArticleDto = ArticleDto.createEmpty();
   public articleID: number;
+  private image: File;
 
   public unitSubject: BehaviorSubject<UnitOfMeasurementDto[]> = new BehaviorSubject([]);
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private rest: ArticleDtoRestService,
-              public unitRest: UnitOfMeasurementDtoRestService) {
+              private imageRest: ImageDtoRestService,
+              public unitRest: UnitOfMeasurementDtoRestService,
+              public fileUploadService: FileUploadService,
+              public urlPrefixService: RestUrlPrefixService) {
   }
 
   ngOnInit() {
@@ -54,22 +61,48 @@ export class ArticleEditComponent implements OnInit {
     return article;
   }
 
+  public changeFiles(files: File[]) {
+    if (files && files.length > 0) {
+      this.image = files[0];
+    } else {
+      this.image = undefined;
+    }
+  }
+
   private isUnitWithSameId(article: ArticleDto, unit: UnitOfMeasurementDto): boolean {
     return article.unitOfMeasurement != null && article.unitOfMeasurement.id === unit.id;
   }
 
-  public submit() {
+  public async submit() {
     if (this.articleID == null) {
-      this.rest.add(new ArticleDto(this.article))
-        .subscribe(
-          (result) => this.router.navigate([".."], {relativeTo: this.route}),
-          (err) => console.error(`could not save article: ${this.article.id} with Error: ${err}`)
-        );
+      const a = await this.rest.add(new ArticleDto(this.article)).toPromise();
+      await this.uploadImage(a);
+      this.router.navigate([".."], {relativeTo: this.route});
     } else {
-      this.rest.update(ArticleDto.createWithId(this.articleID, this.article))
-        .subscribe(
-          (result) => this.router.navigate([".."], {relativeTo: this.route}),
-          (err) => console.error(`could not update article: ${this.article.id} with Error: ${err}`));
+      const articleDto = ArticleDto.createWithId(this.articleID, this.article);
+      await this.rest.update(ArticleDto.createWithId(this.articleID, this.article)).toPromise();
+      await this.uploadImage(articleDto);
+      this.router.navigate([".."], {relativeTo: this.route});
     }
+  }
+
+  private async uploadImage(article: ArticleDto): Promise<ArticleDto> {
+    const formData = new FormData();
+    if (this.image) {
+      formData.append("fileKey", this.image, this.image.name);
+    }
+    return new Promise<ArticleDto>((resolve, reject) => {
+      this.fileUploadService.upload(formData).subscribe(id => {
+        // if (typeof article.imageId === "string") {
+        //   this.imageRest.del(+article.imageId).subscribe(ok => {});
+        // }
+        article.imageId = "" + id;
+        this.rest.update(article).subscribe(ok => {
+          resolve(article);
+        }, error => {
+          reject(error);
+        });
+      });
+    });
   }
 }
