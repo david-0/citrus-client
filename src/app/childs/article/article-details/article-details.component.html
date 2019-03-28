@@ -18,5 +18,9 @@
       <div>Im Verkauf</div>
       <div>{{article.inSale && 'Ja' || 'Nein'}}</div>
     </div>
+    <div *ngIf="article.imageId">
+      <div>Abbildung</div>
+      <app-image-upload></app-image-upload>
+    </div>
   </mat-card-content>
 </mat-card>
