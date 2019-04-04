@@ -128,6 +128,7 @@ button.button--responsive {
 
 .add-button {
   flex: 1 0;
+  line-height: 45px;
   min-width: 60px;
 }
 
@@ -135,7 +136,7 @@ button.plus-minus-buttons {
   display: flex;
   flex: 0 0;
   min-width: 35px;
-  line-height: 35px;
+  line-height: 45px;
   padding: 0 5px;
   margin: 0 0.2em;
   mat-icon {
@@ -148,7 +149,7 @@ button.double-plus-minus-buttons {
   display: flex;
   flex: 0 0;
   min-width: 46px;
-  line-height: 35px;
+  line-height: 45px;
   padding: 0 5px;
   margin: 0 0.2em;
   mat-icon {
@@ -195,6 +196,7 @@ button.double-plus-minus-buttons {
 .shopping-row {
   padding-top: 10px;
   flex-wrap: wrap;
+  flex-direction: column;
   display: flex;
   width: 100%;
 }

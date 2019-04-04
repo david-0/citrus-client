@@ -111,7 +111,7 @@
             </div>
           </div>
         </div>
-        <div class="shopping-row">
+        <div class="shopping-row" *ngIf="selectedCartItem && selectedCartItem.quantity > 0">
           <div class="location">Menge im Warenkorb</div>
           <div class="cart-data-font center-buttons">
             <button mat-button type="submit" class="double-plus-minus-buttons cart-color-green"
@@ -135,6 +135,15 @@
                     (click)="increase(10)">
               <mat-icon class="overlap-right">add_circle</mat-icon>
               <mat-icon>add_circle</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="shopping-row" *ngIf="!selectedCartItem || selectedCartItem.quantity == 0">
+          <div class="location">Zum Warenkorb hinzufügen</div>
+          <div class="cart-data-font center-buttons">
+            <button mat-button type="submit" class="add-button cart-color-green"
+                    (click)="increase(1)">
+              <mat-icon>add_shopping_cart</mat-icon>
             </button>
           </div>
         </div>
