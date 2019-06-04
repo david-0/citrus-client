@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 import {UserDto} from "citrus-common";
 import {BehaviorSubject} from "rxjs";
 import {UserDtoRestService} from "../user-dto-rest.service";
@@ -16,8 +18,8 @@ export class UserOverviewComponent implements OnInit {
 
   public displayedColumns = ["number", "email", "name", "prename", "phone", "mobile"];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private rest: UserDtoRestService, public settings: UserDetailsSettingsService) {
   }

@@ -1,5 +1,5 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {MatCardModule} from "@angular/material";
+import { MatCardModule } from "@angular/material/card";
 import {ActivatedRoute, Params} from "@angular/router";
 import {ReplaySubject} from "rxjs";
 import {

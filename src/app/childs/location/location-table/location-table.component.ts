@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from "@angular/core";
-import {MatPaginator, MatSort} from "@angular/material";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import {LocationDto} from "citrus-common";
 import {Observable} from "rxjs";
 import {BaseTableComponent} from "../../../base/base-table.component";
@@ -16,8 +17,8 @@ export class LocationTableComponent extends BaseTableComponent<LocationDto> impl
   @Input() displayedColumns: string[];
   @Input() dataObservable: Observable<LocationDto[]>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(rest: LocationDtoRestService, settings: LocationSettingsService) {
     super(rest, settings);

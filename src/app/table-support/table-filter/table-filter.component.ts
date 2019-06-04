@@ -10,7 +10,7 @@ import {SettingsServiceInterface} from "../settings-service-interface";
 })
 export class TableFilterComponent implements OnInit {
 
-  @ViewChild("filter") filter: ElementRef;
+  @ViewChild("filter", { static: true }) filter: ElementRef;
   @Input() settings: SettingsServiceInterface;
   @Input() placeholder: string;
   @Output() onChange = new EventEmitter<string>();

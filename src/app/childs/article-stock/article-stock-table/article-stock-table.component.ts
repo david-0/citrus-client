@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from "@angular/core";
-import {MatPaginator, MatSort} from "@angular/material";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import {ArticleStockDto} from "citrus-common";
 import {BaseTableComponent} from "../../../base/base-table.component";
 import {ArticleStockSettingsService} from "../article-stock-settings.service";
@@ -14,8 +15,8 @@ export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockD
 
   @Input() displayedColumns: string[];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(rest: ArticleStockWithDtoAllRestService,
               settings: ArticleStockSettingsService ) {

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from "@angular/core";
-import {MatPaginator, MatSort} from "@angular/material";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
 import {Observable} from "rxjs";
 import {BaseTableComponent} from "../../../base/base-table.component";
@@ -16,8 +17,8 @@ export class OrderTableComponent extends BaseTableComponent<OrderDto> implements
   @Input() displayedColumns: string[];
   @Input() dataObservable: Observable<OrderDto[]>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(rest: OrderDtoWithAllRestService, settings: OrderSettingsService) {
     super(rest, settings);

@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {MatTabChangeEvent} from "@angular/material";
+import { MatTabChangeEvent } from "@angular/material/tabs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LocationDto, OpeningHourDto} from "citrus-common";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";

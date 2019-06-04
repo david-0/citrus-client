@@ -1,5 +1,6 @@
 import {Component, Input, ViewChild} from "@angular/core";
-import {MatPaginator, MatSort} from "@angular/material";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import {AddressDto} from "citrus-common";
 import {BaseTableComponent} from "../../../base/base-table.component";
 import {AddressDtoRestService} from "../address-dto-rest.service";
@@ -15,8 +16,8 @@ export class AddressTableComponent extends BaseTableComponent<AddressDto>{
 
   @Input() displayedColumns: string[];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(rest: AddressWithUserDtoRestService, settings: AddressSettingsService) {
     super(rest, settings);

@@ -70,6 +70,6 @@
   cursor: default;
 }
 
-:host /deep/ router-outlet + * {
+/** :host /deep/ router-outlet + * {
   width: 100%;
-}
+} */

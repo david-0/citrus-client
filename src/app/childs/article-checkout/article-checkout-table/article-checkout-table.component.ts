@@ -1,5 +1,6 @@
 import {Component, Input, ViewChild} from "@angular/core";
-import {MatPaginator, MatSort} from "@angular/material";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import {ArticleCheckOutDto} from "citrus-common";
 import {BaseTableComponent} from "../../../base/base-table.component";
 import {ArticleCheckoutSettingsService} from "../article-checkout-settings.service";
@@ -14,8 +15,8 @@ export class ArticleCheckoutTableComponent extends BaseTableComponent<ArticleChe
 
   @Input() displayedColumns: string[];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(rest: ArticleCheckoutWithAllDtoRestService, settings: ArticleCheckoutSettingsService) {
     super(rest, settings);
