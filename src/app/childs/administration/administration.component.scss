@@ -69,7 +69,3 @@
   pointer-events: none;
   cursor: default;
 }
-
-:host ::ng-deep router-outlet + * {
-  width: 100%;
-}

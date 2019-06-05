@@ -1,3 +1,7 @@
 .main-container {
   display: flex;
 }
+
+:host {
+  width: 100%;
+}

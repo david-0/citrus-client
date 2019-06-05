@@ -1,2 +1,6 @@
 @import "../../../styles/detail";
 @import "../../../styles/div-table";
+
+:host {
+  width: 100%;
+}
