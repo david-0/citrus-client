@@ -1,9 +1,8 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Inject, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ArticleDto, UnitOfMeasurementDto} from "citrus-common";
 import {BehaviorSubject, combineLatest, Observable} from "rxjs";
 import {FileUploadService} from "../../../table-support/file-upload.service";
-import {RestUrlPrefixService} from "../../../table-support/rest-url-prefix.service";
 import {UnitOfMeasurementDtoRestService} from "../../unit-of-measurement/unit-of-measurement-dto-rest.service";
 import {ArticleDtoRestService} from "../article-dto-rest.service";
 import {ImageDtoRestService} from "../image-dto-rest.service";
@@ -26,7 +25,7 @@ export class ArticleEditComponent implements OnInit {
               private imageRest: ImageDtoRestService,
               public unitRest: UnitOfMeasurementDtoRestService,
               public fileUploadService: FileUploadService,
-              public urlPrefixService: RestUrlPrefixService) {
+              @Inject("baseUrl") public baseUrl: string) {
   }
 
   ngOnInit() {

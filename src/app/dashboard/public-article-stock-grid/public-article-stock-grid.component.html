@@ -6,7 +6,7 @@
     <mat-card-content class="content-format">
       <div *ngIf="article">
         <img *ngIf="!article?.imageId" src="/assets/images/citrus.png" class="article-image">
-        <img *ngIf="article?.imageId" src="{{urlPrefixService.getApiRestPrefix()}}/image/{{article?.imageId}}"
+        <img *ngIf="article?.imageId" src="{{baseUrl}}/image/{{article?.imageId}}"
              class="article-image">
       </div>
       <div class="price-row">

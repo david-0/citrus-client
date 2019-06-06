@@ -1,6 +1,6 @@
 import {Component, Input, ViewChild} from "@angular/core";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 import {RoleDto} from "citrus-common/lib/dto/role-dto";
 import {BaseTableComponent} from "../../../base/base-table.component";
 import {RoleDtoRestService} from "../../user/role-dto-rest.service";

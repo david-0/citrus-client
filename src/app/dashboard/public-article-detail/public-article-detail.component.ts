@@ -1,11 +1,10 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, Inject, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ArticleCheckInDto, ArticleDto, ArticleStockDto, CartDto, CartItemDto} from "citrus-common";
 import * as moment from "moment";
 import {Subscription} from "rxjs";
 import {CartService} from "../../cart/cart.service";
 import {ArticleWithAllDtoRestService} from "../../childs/article/article-with-all-dto-rest.service";
-import {RestUrlPrefixService} from "../../table-support/rest-url-prefix.service";
 
 @Component({
   selector: "app-public-article-detail",
@@ -23,7 +22,7 @@ export class PublicArticleDetailComponent implements OnInit, OnDestroy {
               private router: Router,
               private cartService: CartService,
               private rest: ArticleWithAllDtoRestService,
-              public urlPrefixService: RestUrlPrefixService) {
+              @Inject("baseUrl") public baseUrl: string) {
   }
 
   private static compareDates(a: Date, b: Date): number {

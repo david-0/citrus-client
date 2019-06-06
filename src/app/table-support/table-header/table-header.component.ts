@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {NgForm} from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
+import {MatDialog} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from "@angular/material-moment-adapter";
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OpeningHourDto} from "citrus-common/lib/dto/opening-hour-dto";
 import * as moment from "moment";

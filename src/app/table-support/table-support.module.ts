@@ -1,12 +1,12 @@
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { MatButtonModule } from "@angular/material/button";
-import { MatButtonToggleModule } from "@angular/material/button-toggle";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatIconModule } from "@angular/material/icon";
-import { MatInputModule } from "@angular/material/input";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import {MatButtonModule} from "@angular/material/button";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FileUploadModule} from "@iplab/ngx-file-upload";
 import {ImageUploadComponent} from "./image-upload/image-upload.component";

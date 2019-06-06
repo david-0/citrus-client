@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import { MatCardModule } from "@angular/material/card";
+import {MatCardModule} from "@angular/material/card";
 import {ActivatedRoute, Params} from "@angular/router";
-import {Observable, ReplaySubject} from "rxjs";
+import {ReplaySubject} from "rxjs";
 import {UnitOfMeasurementDtoRestServiceSpy} from "../../../testing-mocks/testing-mocks.component";
 import {TestingMocksModule} from "../../../testing-mocks/testing-mocks.module";
 import {UnitOfMeasurementDtoRestService} from "../unit-of-measurement-dto-rest.service";

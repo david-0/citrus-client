@@ -1,9 +1,8 @@
 import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-import {RestUrlPrefixService} from "../table-support/rest-url-prefix.service";
 import {AuthToken} from "./auth-token";
 import {EmailPassword} from "./email-password";
 
@@ -14,7 +13,8 @@ export class AuthenticationService {
   private id: string;
   private roles: string[];
 
-  constructor(private http: HttpClient, private restUrlPrefixService: RestUrlPrefixService) {
+  constructor(private http: HttpClient,
+              @Inject("baseUrl") private baseUrl: string) {
     const token = localStorage.getItem(AuthenticationService.accessToken);
     if (token) {
       this.decodeToken(token);
@@ -39,7 +39,7 @@ export class AuthenticationService {
   }
 
   public changeMyPassword(currentPassword: string, password: string): Observable<boolean> {
-    return this.http.post<AuthToken>(this.restUrlPrefixService.getApiRestPrefix() + "/user/changemypassword", {
+    return this.http.post<AuthToken>(this.baseUrl + "/user/changemypassword", {
       currentPassword,
       password
     }).pipe(
@@ -54,7 +54,7 @@ export class AuthenticationService {
   }
 
   public resetPasswordWithToken(token: string, password: string): Observable<boolean> {
-    return this.http.post<AuthToken>(this.restUrlPrefixService.getApiRestPrefix() + "/user/resetPasswordWithToken", {
+    return this.http.post<AuthToken>(this.baseUrl + "/user/resetPasswordWithToken", {
       token,
       password
     }).pipe(
@@ -69,7 +69,7 @@ export class AuthenticationService {
   }
 
   public changePassword(userId: number, password: string): Observable<boolean> {
-    return this.http.post<AuthToken>(this.restUrlPrefixService.getApiRestPrefix() + `/user/${userId}/changepassword`, {password})
+    return this.http.post<AuthToken>(this.baseUrl + `/user/${userId}/changepassword`, {password})
       .pipe(
         map(authToken => {
           // changePassword successful if there's a jwt token in the response
@@ -82,7 +82,7 @@ export class AuthenticationService {
   }
 
   public sendResetEmail(email: string): Observable<void> {
-    return this.http.post<void>(this.restUrlPrefixService.getApiRestPrefix() + `/user/createTokenByEmail`, {email}).pipe();
+    return this.http.post<void>(this.baseUrl + `/user/createTokenByEmail`, {email}).pipe();
   }
 
   logout(): void {
@@ -127,7 +127,7 @@ export class AuthenticationService {
 
   private verifyPassword(data: EmailPassword, processCallback: (token: AuthToken) => void): Observable<boolean> {
     return this.http.post<AuthToken>(
-      this.restUrlPrefixService.getApiRestPrefix() + "/authenticate", data).pipe(
+      this.baseUrl + "/authenticate", data).pipe(
       map(authToken => {
         // login successful if there's a jwt token in the response
         if (!!authToken && !!authToken.token) {

@@ -17,7 +17,7 @@
         <div *ngIf="selectedArticle">
           <img *ngIf="!selectedArticle?.imageId" src="/assets/images/citrus.png" class="article-image">
           <img *ngIf="selectedArticle?.imageId"
-               src="{{urlPrefixService.getApiRestPrefix()}}/image/{{selectedArticle?.imageId}}" class="article-image">
+               src="{{baseUrl}}/image/{{selectedArticle?.imageId}}" class="article-image">
         </div>
       </div>
       <div class="description-column">

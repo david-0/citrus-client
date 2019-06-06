@@ -1,19 +1,18 @@
 import {HttpClient, HttpErrorResponse, HttpEvent, HttpEventType} from "@angular/common/http";
-import {Injectable} from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
 import {Observable, throwError} from "rxjs";
-import {catchError, map} from "rxjs/operators";
-import {RestUrlPrefixService} from "./rest-url-prefix.service";
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
 })
 export class FileUploadService {
 
-  constructor(private http: HttpClient, private urlPrefixService: RestUrlPrefixService) {
+  constructor(private http: HttpClient, @Inject("baseUrl") private baseUrl: string) {
   }
 
   public upload(formData: FormData): Observable<number> {
-    return this.http.post<number>(`${this.urlPrefixService.getApiRestPrefix()}/image`, formData
+    return this.http.post<number>(this.baseUrl + "/image", formData
       // , {
       //   reportProgress: true,
       //   observe: "events"

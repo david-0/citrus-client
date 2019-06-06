@@ -3,36 +3,37 @@ import {HttpClientModule} from "@angular/common/http";
 import localeDeCH from "@angular/common/locales/de-CH";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { MatBadgeModule } from "@angular/material/badge";
-import { MatButtonModule } from "@angular/material/button";
-import { MatButtonToggleModule } from "@angular/material/button-toggle";
-import { MatCardModule } from "@angular/material/card";
-import { MatCheckboxModule } from "@angular/material/checkbox";
-import { MatChipsModule } from "@angular/material/chips";
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
-import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatDividerModule } from "@angular/material/divider";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatGridListModule } from "@angular/material/grid-list";
-import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
-import { MatInputModule } from "@angular/material/input";
-import { MatMenuModule } from "@angular/material/menu";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatRadioModule } from "@angular/material/radio";
-import { MatSelectModule } from "@angular/material/select";
-import { MatSidenavModule } from "@angular/material/sidenav";
-import { MatSortModule } from "@angular/material/sort";
-import { MatStepperModule } from "@angular/material/stepper";
-import { MatTableModule } from "@angular/material/table";
-import { MatTabsModule } from "@angular/material/tabs";
-import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatTooltipModule } from "@angular/material/tooltip";
 import {MAT_MOMENT_DATE_FORMATS, MatMomentDateModule, MomentDateAdapter} from "@angular/material-moment-adapter";
+import {MatBadgeModule} from "@angular/material/badge";
+import {MatButtonModule} from "@angular/material/button";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatCardModule} from "@angular/material/card";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatChipsModule} from "@angular/material/chips";
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatIconModule, MatIconRegistry} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatSelectModule} from "@angular/material/select";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatSortModule} from "@angular/material/sort";
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatTableModule} from "@angular/material/table";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatTooltipModule} from "@angular/material/tooltip";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {JwtModule} from "@auth0/angular-jwt";
 import "hammerjs";
 import {ValidatorsModule} from "ng2-validators";
+import {ENV_PROVIDERS} from "../environments/environment";
 
 import {AppComponent} from "./app.component";
 import {AuthenticationService} from "./authentication/authentication.service";
@@ -136,7 +137,6 @@ import {StoreCheckOutComponent} from "./store/store-check-out/store-check-out.co
 import {StoreEstimateComponent} from "./store/store-estimate/store-estimate.component";
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {MySpinnerModule} from "./table-support/my-spinner/my-spinner.module";
-import {RestUrlPrefixService} from "./table-support/rest-url-prefix.service";
 import {TableSupportModule} from "./table-support/table-support.module";
 
 @NgModule({
@@ -278,7 +278,6 @@ import {TableSupportModule} from "./table-support/table-support.module";
   ],
   providers: [
     MatIconRegistry,
-    RestUrlPrefixService,
     AddressDtoRestService,
     AddressSettingsService,
     UserDetailsSettingsService,
@@ -297,6 +296,7 @@ import {TableSupportModule} from "./table-support/table-support.module";
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     WINDOW_PROVIDERS,
+    ENV_PROVIDERS,
   ],
   bootstrap: [AppComponent]
 })

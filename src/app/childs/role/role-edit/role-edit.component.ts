@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UnitOfMeasurementDto} from "citrus-common";
 import {RoleDto} from "citrus-common/lib/dto/role-dto";
 import {RoleDtoRestService} from "../../user/role-dto-rest.service";
 

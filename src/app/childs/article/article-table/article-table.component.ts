@@ -1,6 +1,6 @@
 import {Component, Input, ViewChild} from "@angular/core";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 import {ArticleDto} from "citrus-common";
 import {BaseTableComponent} from "../../../base/base-table.component";
 import {ArticleDtoRestService} from "../article-dto-rest.service";

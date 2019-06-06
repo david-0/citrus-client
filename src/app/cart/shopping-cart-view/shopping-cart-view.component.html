@@ -12,7 +12,7 @@
         <div *ngIf="item.article">
           <img *ngIf="!item.article.imageId" src="/assets/images/citrus.png" class="article-image">
           <img *ngIf="item.article.imageId"
-               src="{{urlPrefixService.getApiRestPrefix()}}/image/{{item.article.imageId}}" class="article-image">
+               src="{{baseUrl}}/image/{{item.article.imageId}}" class="article-image">
         </div>
       </mat-card>
     </div>
