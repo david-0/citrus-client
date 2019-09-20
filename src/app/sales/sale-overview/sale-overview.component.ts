@@ -41,8 +41,9 @@ export class SaleOverviewComponent implements OnInit {
           this.orderCount = orders.length;
           this.validateBestellnummer();
         });
+      } else {
+        this.orderCount = 0;
       }
-      this.orderCount = 0;
     });
   }
 
