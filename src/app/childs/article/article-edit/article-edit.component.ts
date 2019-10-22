@@ -89,18 +89,24 @@ export class ArticleEditComponent implements OnInit {
     const formData = new FormData();
     if (this.image) {
       formData.append("fileKey", this.image, this.image.name);
+      return new Promise<ArticleDto>((resolve, reject) => {
+        this.fileUploadService.upload(formData).subscribe(id => {
+          if (id) {
+            article.imageId = "" + id;
+          }
+          this.rest.update(article).subscribe(ok => {
+            resolve(article);
+          }, error => {
+            reject(error);
+          });
+        });
+      });
     }
     return new Promise<ArticleDto>((resolve, reject) => {
-      this.fileUploadService.upload(formData).subscribe(id => {
-        // if (typeof article.imageId === "string") {
-        //   this.imageRest.del(+article.imageId).subscribe(ok => {});
-        // }
-        article.imageId = "" + id;
-        this.rest.update(article).subscribe(ok => {
-          resolve(article);
-        }, error => {
-          reject(error);
-        });
+      this.rest.update(article).subscribe(ok => {
+        resolve(article);
+      }, error => {
+        reject(error);
       });
     });
   }
