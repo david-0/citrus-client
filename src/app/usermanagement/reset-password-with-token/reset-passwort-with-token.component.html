@@ -1,0 +1,36 @@
+<div class="div__header">
+  <h3 class="h3__small-margins h3__padding">Passwort ändern</h3>
+</div>
+<div class="admin-container">
+  <form #f="ngForm" (ngSubmit)="changePassword(f.value)" *ngIf="!message" class="form" novalidate>
+    <section class="section">
+      <mat-form-field class="full-width">
+        <input #passwordControl="ngModel" [digitCharacter]="1" [lowercaseCharacter]="1" [ngModel]="password" [uppercaseCharacter]="1"
+               matInput minlength="8" name="password" password placeholder="neues Passwort"
+               required reverse="true" type="password" validateEqual=confirmPassword>
+        <mat-hint *ngIf="!passwordControl.valid" [ngStyle]="{'color': 'red'}" align="start">Klein & Gross & Zahl, mind.
+          8 Zeichen
+          Zeichen
+        </mat-hint>
+      </mat-form-field>
+    </section>
+    <section class="section">
+      <mat-form-field class="full-width">
+        <input #confirmPasswordControl="ngModel" [ngModel]="confirmPassword" matInput name="confirmPassword"
+               placeholder="Passwort wiederholen" required type="password" validateEqual=password>
+        <mat-hint *ngIf="!confirmPasswordControl.valid" [ngStyle]="{'color': 'red'}" align="start">Passwörter sind nicht
+          identisch
+        </mat-hint>
+      </mat-form-field>
+    </section>
+    <div class="button-row">
+      <span class="fill-remaining-space"></span>
+      <button [disabled]="!f.valid" class="grayButton" mat-button type="submit">Passwort ändern</button>
+    </div>
+  </form>
+  <div *ngIf="message">
+    <p>{{message}}</p>
+    <p>Weiter zum <a [routerLink]="['/login']">Login</a></p>
+  </div>
+  <app-my-spinner [delay]="150" [isRunning]="busy"></app-my-spinner>
+</div>

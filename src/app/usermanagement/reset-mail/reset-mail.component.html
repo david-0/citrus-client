@@ -1,0 +1,21 @@
+<div class="div__header">
+  <h3 class="h3__small-margins h3__padding">Passwort wiederherstellen</h3>
+</div>
+<div class="admin-container">
+  <p>Bitte geben Sie Ihre E-Mail Adresse ein.</p>
+  <form #f="ngForm" (ngSubmit)="sendEmail(f.value)" class="form" novalidate>
+    <section class="section">
+      <mat-form-field class="full-width">
+        <input #emailControl="ngModel" [ngModel]="email" emailValidator matInput name="email"
+               placeholder="E-Mail" required>
+        <mat-hint *ngIf="!emailControl.valid" [ngStyle]="{'color': 'red'}" align="start">erforderlich
+        </mat-hint>
+      </mat-form-field>
+    </section>
+    <div class="button-row">
+      <span class="fill-remaining-space"></span>
+      <button [disabled]="!f.valid" class="grayButton" mat-button type="submit">Mail senden</button>
+    </div>
+  </form>
+  <app-my-spinner [delay]="150" [isRunning]="busy"></app-my-spinner>
+</div>

@@ -138,6 +138,10 @@ import {StoreEstimateComponent} from "./store/store-estimate/store-estimate.comp
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {MySpinnerModule} from "./table-support/my-spinner/my-spinner.module";
 import {TableSupportModule} from "./table-support/table-support.module";
+import {RegisterComponent} from "./usermanagement/register/register.component";
+import {ResetMailConfirmationComponent} from "./usermanagement/reset-mail-confirmation/reset-mail-confirmation.component";
+import {ResetMailComponent} from "./usermanagement/reset-mail/reset-mail.component";
+import {ResetPasswortWithTokenComponent} from "./usermanagement/reset-password-with-token/reset-passwort-with-token.component";
 
 @NgModule({
   declarations: [
@@ -225,6 +229,10 @@ import {TableSupportModule} from "./table-support/table-support.module";
     PublicArticleDetailComponent,
     ShoppingCartViewComponent,
     ShoppingCartDetailComponent,
+    RegisterComponent,
+    ResetMailComponent,
+    ResetPasswortWithTokenComponent,
+    ResetMailConfirmationComponent,
   ],
   imports: [
     BrowserModule,

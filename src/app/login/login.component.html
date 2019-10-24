@@ -21,6 +21,8 @@
       </mat-form-field>
       <p>{{message}}</p>
       <div class="full-width container">
+        <a routerLink="../register" >noch nicht registriert?</a>
+        <span class="fill-remaining-space"></span>
         <a routerLink="../resetMail" >Passwort vergesen?</a>
         <span class="fill-remaining-space"></span>
         <button type="submit" [disabled]="loginForm.invalid" mat-raised-button>Login</button>
