@@ -1,1 +1,48 @@
-<p>register works!</p>
+<form #f="ngForm" (ngSubmit)="register(f.value)" class="form" novalidate>
+  <div class="admin-container">
+    <div class="full-width"></div>
+    <mat-card class="mat-card-padding">
+      <mat-card-title class="bottom-margin">Registrieren</mat-card-title>
+      <section class="section">
+        <mat-form-field class="full-width">
+          <input #nameControl="ngModel" [ngModel]="name" matInput name="name"
+                 placeholder="Name" required>
+          <mat-hint *ngIf="!nameControl.valid" [ngStyle]="{'color': 'red'}" align="start">erforderlich
+          </mat-hint>
+        </mat-form-field>
+      </section>
+      <section class="section">
+        <mat-form-field class="full-width">
+          <input #prenameControl="ngModel" [ngModel]="prename" matInput name="prename"
+                 placeholder="Vorname" required>
+          <mat-hint *ngIf="!prenameControl.valid" [ngStyle]="{'color': 'red'}" align="start">erforderlich
+          </mat-hint>
+        </mat-form-field>
+      </section>
+      <section class="section">
+        <mat-form-field class="full-width">
+          <input #phoneNumberControl="ngModel" [ngModel]="phoneNumber" matInput name="phoneNumber"
+                 placeholder="Telefon Nummer" required>
+          <mat-hint *ngIf="!phoneNumberControl.valid" [ngStyle]="{'color': 'red'}" align="start">erforderlich
+          </mat-hint>
+        </mat-form-field>
+      </section>
+      <section class="section">
+        <mat-form-field class="full-width">
+          <input #emailControl="ngModel" [ngModel]="email" matInput name="email"
+                 pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                 placeholder="E-Mail" required>
+          <mat-hint *ngIf="!emailControl.valid" [ngStyle]="{'color': 'red'}" align="start">erforderlich
+          </mat-hint>
+        </mat-form-field>
+      </section>
+      <p class="message">{{message}}</p>
+      <div class="button-row">
+        <span class="fill-remaining-space"></span>
+        <button [disabled]="!f.valid" class="grayButton registerButtonWidth" mat-button type="submit">Registieren</button>
+      </div>
+    </mat-card>
+    <div class="full-width"></div>
+  </div>
+</form>
+<app-my-spinner [delay]="150" [isRunning]="busy"></app-my-spinner>

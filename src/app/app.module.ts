@@ -38,6 +38,7 @@ import {ENV_PROVIDERS} from "../environments/environment";
 import {AppComponent} from "./app.component";
 import {AuthenticationService} from "./authentication/authentication.service";
 import {PasswordChangeComponent} from "./authentication/password-change/password-change.component";
+import {EqualValidator} from "./base/equals-validator.directives";
 import {WINDOW_PROVIDERS} from "./base/window-provider";
 import {CartService} from "./cart/cart.service";
 import {ShoppingCartDetailComponent} from "./cart/shopping-cart-detail/shopping-cart-detail.component";
@@ -138,10 +139,12 @@ import {StoreEstimateComponent} from "./store/store-estimate/store-estimate.comp
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {MySpinnerModule} from "./table-support/my-spinner/my-spinner.module";
 import {TableSupportModule} from "./table-support/table-support.module";
+import {RegisterConfirmationComponent} from "./usermanagement/register-confirmation/register-confirmation.component";
 import {RegisterComponent} from "./usermanagement/register/register.component";
 import {ResetMailConfirmationComponent} from "./usermanagement/reset-mail-confirmation/reset-mail-confirmation.component";
 import {ResetMailComponent} from "./usermanagement/reset-mail/reset-mail.component";
 import {ResetPasswortWithTokenComponent} from "./usermanagement/reset-password-with-token/reset-passwort-with-token.component";
+import {UserConfirmationComponent} from "./usermanagement/user-confirmation/user-confirmation.component";
 
 @NgModule({
   declarations: [
@@ -233,6 +236,9 @@ import {ResetPasswortWithTokenComponent} from "./usermanagement/reset-password-w
     ResetMailComponent,
     ResetPasswortWithTokenComponent,
     ResetMailConfirmationComponent,
+    EqualValidator,
+    RegisterConfirmationComponent,
+    UserConfirmationComponent,
   ],
   imports: [
     BrowserModule,

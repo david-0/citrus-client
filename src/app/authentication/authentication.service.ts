@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {AuthToken} from "./auth-token";
 import {EmailPassword} from "./email-password";
+import {RegisterResult} from "./register-result.enum";
 
 @Injectable()
 export class AuthenticationService {
@@ -53,6 +54,25 @@ export class AuthenticationService {
     );
   }
 
+  public register(name: string, prename: string, phoneNumber: string, email: string): Observable<RegisterResult> {
+    return this.http.post<number>(this.baseUrl + "/user/register", {
+      name,
+      prename,
+      phoneNumber,
+      email
+    }).pipe(
+      map(number => {
+        if (number === 0) {
+          return RegisterResult.OK;
+        }
+        if (number === 1) {
+          return RegisterResult.USER_ALREADY_EXISTS;
+        }
+        return RegisterResult.OTHER;
+      })
+    );
+  }
+
   public resetPasswordWithToken(token: string, password: string): Observable<boolean> {
     return this.http.post<AuthToken>(this.baseUrl + "/user/resetPasswordWithToken", {
       token,
@@ -64,6 +84,17 @@ export class AuthenticationService {
           this.updateToken(authToken);
         }
         return !!authToken;
+      })
+    );
+  }
+
+  public confirmUserAndSetPassword(token: string, password: string): Observable<boolean> {
+    return this.http.post<boolean>(this.baseUrl + "/user/confirm", {
+      token,
+      password
+    }).pipe(
+      map(result => {
+        return result;
       })
     );
   }

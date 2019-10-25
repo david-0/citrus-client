@@ -1,0 +1,38 @@
+.h3__padding {
+  padding-left: 0.5em;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.admin-container {
+  padding: 0;
+  display: flex;
+}
+
+.grayButton {
+  background: #A6BAC5;
+}
+
+.registerButtonWidth {
+  min-width: 100px;
+}
+
+.button-row {
+  display: flex;
+  align-items: center;
+}
+
+.mat-card-padding {
+  display: flex;
+  flex-direction: column;
+  min-width: 260px;
+}
+
+.message {
+  font-size: 0.9em;
+  font-family: Arial;
+  margin-top: 0;
+  color: red;
+}

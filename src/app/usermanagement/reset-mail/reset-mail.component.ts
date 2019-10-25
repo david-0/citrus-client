@@ -29,7 +29,5 @@ export class ResetMailComponent implements OnInit {
       this.busy = false;
       this.router.navigate(["../resetMailConfirmation"], {relativeTo: this.route});
     });
-
   }
-
 }

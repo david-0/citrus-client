@@ -29,7 +29,7 @@ export class ChangeMyPasswordComponent implements OnInit {
   changeMyPassword(event: any) {
     this.authService.changeMyPassword(event.currentPassword, event.newPassword).subscribe(successfully => {
       if (successfully) {
-        this.router.navigate([`/administration`]);
+        this.router.navigate([`/dashboard`]);
       } else {
         console.error("Password change failed");
       }

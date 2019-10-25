@@ -1,0 +1,41 @@
+.main-container {
+  display: flex;
+}
+
+.mat-card-padding {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+}
+
+.bottom-margin {
+  margin-bottom: 0.5em;
+}
+
+.full-width {
+  flex: 1 1 100%;
+}
+
+.grayButton {
+  background: #A6BAC5;
+}
+
+.section {
+  display: flex;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.button-row {
+  margin-top: 1em;
+  display: flex;
+}
+
+.message {
+  font-size: 1em;
+  font-family: Arial;
+  margin-top: 0;
+}
+

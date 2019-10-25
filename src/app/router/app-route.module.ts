@@ -64,10 +64,12 @@ import {SaleOverviewComponent} from "../sales/sale-overview/sale-overview.compon
 import {StoreCheckInComponent} from "../store/store-check-in/store-check-in.component";
 import {StoreCheckOutComponent} from "../store/store-check-out/store-check-out.component";
 import {StoreEstimateComponent} from "../store/store-estimate/store-estimate.component";
+import {RegisterConfirmationComponent} from "../usermanagement/register-confirmation/register-confirmation.component";
 import {RegisterComponent} from "../usermanagement/register/register.component";
 import {ResetMailConfirmationComponent} from "../usermanagement/reset-mail-confirmation/reset-mail-confirmation.component";
 import {ResetMailComponent} from "../usermanagement/reset-mail/reset-mail.component";
 import {ResetPasswortWithTokenComponent} from "../usermanagement/reset-password-with-token/reset-passwort-with-token.component";
+import {UserConfirmationComponent} from "../usermanagement/user-confirmation/user-confirmation.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
@@ -75,6 +77,8 @@ const routes: Routes = [
   {path: "dashboard/detail/:articleId/:locationId", canActivate: [AuthGuard], component: PublicArticleDetailComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
+  {path: "registerConfirmation", component: RegisterConfirmationComponent},
+  {path: "userConfirmation/:token", component: UserConfirmationComponent},
   {path: "resetMail", component: ResetMailComponent},
   {path: "resetMailConfirmation", component: ResetMailConfirmationComponent},
   {path: "resetPassword/:token", component: ResetPasswortWithTokenComponent},

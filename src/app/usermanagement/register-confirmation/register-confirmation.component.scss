@@ -1,0 +1,21 @@
+.confirmation-container {
+  margin: 0.5em;
+}
+
+.main-container {
+  display: flex;
+}
+
+.mat-card-padding {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+}
+
+.bottom-margin {
+  margin-bottom: 0.5em;
+}
+
+.full-width {
+  flex: 1 1 100%;
+}

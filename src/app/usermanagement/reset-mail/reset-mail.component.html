@@ -6,8 +6,9 @@
   <form #f="ngForm" (ngSubmit)="sendEmail(f.value)" class="form" novalidate>
     <section class="section">
       <mat-form-field class="full-width">
-        <input #emailControl="ngModel" [ngModel]="email" emailValidator matInput name="email"
-               placeholder="E-Mail" required>
+        <input #emailControl="ngModel" [ngModel]="email"
+               pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+               matInput name="email" placeholder="E-Mail" required>
         <mat-hint *ngIf="!emailControl.valid" [ngStyle]="{'color': 'red'}" align="start">erforderlich
         </mat-hint>
       </mat-form-field>

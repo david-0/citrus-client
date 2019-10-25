@@ -27,13 +27,13 @@ export class ResetPasswortWithTokenComponent implements OnInit {
     });
   }
 
-  public changePassword(password: string): void {
-    this.updatePassword(password);
+  public changePassword(passwordForm: any): void {
+    this.updatePassword(passwordForm.password);
   }
 
-  private updatePassword(values: any) {
+  private updatePassword(password: string) {
     this.busy = true;
-    this.authenticationService.resetPasswordWithToken(this.token, values.password).subscribe(done => {
+    this.authenticationService.resetPasswordWithToken(this.token, password).subscribe(done => {
       this.busy = false;
       this.message = "Passwort konnte erfolgreich geändert werden!";
     }, error => {
