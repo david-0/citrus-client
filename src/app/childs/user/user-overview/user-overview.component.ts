@@ -16,7 +16,7 @@ export class UserOverviewComponent implements OnInit {
   public loading = new BehaviorSubject<boolean>(false);
   dataSource = new MatTableDataSource<UserDto>();
 
-  public displayedColumns = ["number", "email", "name", "prename", "phone", "mobile"];
+  public displayedColumns = ["number", "email", "name", "prename", "phone"];
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;

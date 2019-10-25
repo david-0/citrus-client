@@ -3,16 +3,16 @@
                     [form]="f"></app-table-header>
   <div class="main-container">
     <mat-card class="mat-card-padding">
-      <div class="row_20_80">
-        <mat-form-field class="full-width" color="accent">
-          <input matInput placeholder="Kundennummer" #number [(ngModel)]="userInfo.id"
-                 maxlength="256" name="number" readonly>
-          <mat-hint align="end">{{number.value.length}}</mat-hint>
-        </mat-form-field>
+      <div class="row_50_50">
         <mat-form-field class="full-width" color="accent">
           <input matInput placeholder="Email" #email [(ngModel)]="userInfo.email"
                  maxlength="256" name="email">
           <mat-hint align="end">{{email.value.length}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="full-width" color="accent">
+          <input matInput placeholder="Phone" #phone [(ngModel)]="userInfo.phone"
+                 maxlength="256" name="phone">
+          <mat-hint align="end">{{phone.value.length}}</mat-hint>
         </mat-form-field>
       </div>
       <div class="row_50_50">
@@ -25,18 +25,6 @@
           <input matInput placeholder="Vorname" #prename [(ngModel)]="userInfo.prename"
                  maxlength="256" name="prename">
           <mat-hint align="end">{{prename.value.length}}</mat-hint>
-        </mat-form-field>
-      </div>
-      <div class="row_50_50">
-        <mat-form-field class="full-width" color="accent">
-          <input matInput placeholder="Phone" #phone [(ngModel)]="userInfo.phone"
-                 maxlength="256" name="phone">
-          <mat-hint align="end">{{phone.value.length}}</mat-hint>
-        </mat-form-field>
-        <mat-form-field class="full-width" color="accent">
-          <input matInput placeholder="Mobile" #mobile [(ngModel)]="userInfo.mobile"
-                 maxlength="256" name="mobile">
-          <mat-hint align="end">{{mobile.value.length}}</mat-hint>
         </mat-form-field>
       </div>
       <mat-card class="role-card">

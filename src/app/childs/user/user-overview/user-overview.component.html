@@ -32,11 +32,6 @@
     <mat-cell *matCellDef="let row"> {{row.phone}}</mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="mobile">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.mobile}}</mat-cell>
-  </ng-container>
-
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="table-row--highligthed" routerLink={{row.id}}
            *matRowDef="let row; columns: displayedColumns;"></mat-row>
