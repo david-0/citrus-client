@@ -145,6 +145,10 @@ import {ResetMailConfirmationComponent} from "./usermanagement/reset-mail-confir
 import {ResetMailComponent} from "./usermanagement/reset-mail/reset-mail.component";
 import {ResetPasswortWithTokenComponent} from "./usermanagement/reset-password-with-token/reset-passwort-with-token.component";
 import {UserConfirmationComponent} from "./usermanagement/user-confirmation/user-confirmation.component";
+import { AboutUsComponent } from './footer/about-us/about-us.component';
+import { PrivacyPolicyComponent } from './footer/privacy-policy/privacy-policy.component';
+import { OrganisationComponent } from './footer/organisation/organisation.component';
+import { ContactComponent } from './footer/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -239,6 +243,10 @@ import {UserConfirmationComponent} from "./usermanagement/user-confirmation/user
     EqualValidator,
     RegisterConfirmationComponent,
     UserConfirmationComponent,
+    AboutUsComponent,
+    PrivacyPolicyComponent,
+    OrganisationComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

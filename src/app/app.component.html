@@ -1,11 +1,11 @@
-<mat-drawer-container class="sidenav-container" autosize>
+<mat-drawer-container class="sidenav-container all-wrap" autosize fullscreen>
   <mat-drawer class="sidebar sidebar-positions shopping--cart" mode="side" position="end" opened>
     <app-shopping-cart></app-shopping-cart>
   </mat-drawer>
-  <div class="noPadding toolbar-content">
+  <div class="noPadding toolbar-content page-wrap">
     <mat-toolbar color="primary">
     <span>
-      <a class="title" routerLink="/">
+      <a class="title" routerLink="/dashboard">
         <mat-icon>home</mat-icon>
         <span class="button-space">Früchte Bestellung</span>
       </a>
@@ -57,6 +57,31 @@
         </button>
       </mat-menu>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+    <mat-toolbar class="footer" color="accent">
+      <span class="fill-remaining-space"></span>
+      <button mat-button class="sale-button" routerLink="/aboutUs">
+        <mat-icon>group</mat-icon>
+        <span class="footer-button">Über uns</span>
+      </button>
+      <span class="fill-remaining-space"></span>
+      <button mat-button class="sale-button" routerLink="/privacyPolicy">
+        <mat-icon>security</mat-icon>
+        <span class="footer-button">Datenschutz</span>
+      </button>
+      <span class="fill-remaining-space"></span>
+      <button mat-button class="sale-button" routerLink="/organisation">
+        <mat-icon>loop</mat-icon>
+        <span class="footer-button">Organisation der Früchte</span>
+      </button>
+      <span class="fill-remaining-space"></span>
+      <button mat-button class="sale-button" routerLink="/contact">
+        <mat-icon>contact_mail</mat-icon>
+        <span class="footer-button">Kontakt</span>
+      </button>
+      <span class="fill-remaining-space"></span>
+    </mat-toolbar>
   </div>
 </mat-drawer-container>

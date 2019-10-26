@@ -57,6 +57,10 @@ import {UserOverviewComponent} from "../childs/user/user-overview/user-overview.
 import {UserPasswordChangeComponent} from "../childs/user/user-password-change/user-password-change.component";
 import {DashboardComponent} from "../dashboard/dashboard.component";
 import {PublicArticleDetailComponent} from "../dashboard/public-article-detail/public-article-detail.component";
+import {AboutUsComponent} from "../footer/about-us/about-us.component";
+import {ContactComponent} from "../footer/contact/contact.component";
+import {OrganisationComponent} from "../footer/organisation/organisation.component";
+import {PrivacyPolicyComponent} from "../footer/privacy-policy/privacy-policy.component";
 import {LoginComponent} from "../login/login.component";
 import {LogoutComponent} from "../logout/logout.component";
 import {SaleOrderComponent} from "../sales/sale-order/sale-order.component";
@@ -72,7 +76,7 @@ import {ResetPasswortWithTokenComponent} from "../usermanagement/reset-password-
 import {UserConfirmationComponent} from "../usermanagement/user-confirmation/user-confirmation.component";
 
 const routes: Routes = [
-  {path: "", redirectTo: "dashboard", pathMatch: "full"},
+  {path: "", redirectTo: "organisation", pathMatch: "full"},
   {path: "dashboard", canActivate: [AuthGuard], component: DashboardComponent},
   {path: "dashboard/detail/:articleId/:locationId", canActivate: [AuthGuard], component: PublicArticleDetailComponent},
   {path: "login", component: LoginComponent},
@@ -83,6 +87,10 @@ const routes: Routes = [
   {path: "resetMailConfirmation", component: ResetMailConfirmationComponent},
   {path: "resetPassword/:token", component: ResetPasswortWithTokenComponent},
   {path: "logout", component: LogoutComponent},
+  {path: "aboutUs", component: AboutUsComponent},
+  {path: "contact", component: ContactComponent},
+  {path: "organisation", component: OrganisationComponent},
+  {path: "privacyPolicy", component: PrivacyPolicyComponent},
   {path: "checkout/:id", canActivate: [AuthGuard], component: CheckoutComponent},
   {path: "changeMyPassword", canActivate: [AuthGuard], component: ChangeMyPasswordComponent},
   {path: "sale", canActivate: [AuthGuard, AuthGuardSale], component: SaleOverviewComponent},
