@@ -11,7 +11,11 @@ import {RegisterResult} from "../../authentication/register-result.enum";
 })
 export class RegisterComponent implements OnInit {
 
-  private message: string;
+  public message: string;
+  public phoneNumber: string;
+  public name: string;
+  public prename: string;
+  public email: string;
   public busy: boolean;
 
   constructor(private route: ActivatedRoute,
