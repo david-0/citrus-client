@@ -34,7 +34,8 @@ export class UserConfirmationComponent implements OnInit {
     await this.authenticationService.confirmUserAndSetPassword(this.token, password).subscribe(done => {
       this.busy = false;
       if (done) {
-        this.message = "Danke für die Registrierung. Wir werden Sie sobald die Früchte für die Bestellungen aufgeschalten sind per Mail informieren."
+        this.message = "Danke für die Registrierung. Wir werden Sie sobald die Früchte " +
+          "für die Bestellungen aufgeschalten sind per E-Mail informieren.";
       } else {
         this.message = this.getMessageError();
       }

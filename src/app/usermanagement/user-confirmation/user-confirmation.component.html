@@ -3,7 +3,7 @@
   <mat-card class="mat-card-padding">
     <mat-card-title class="bottom-margin">Benutzerregistrierung</mat-card-title>
     <form #f="ngForm" (ngSubmit)="setPassword(f.value.password)" *ngIf="!message" class="form" novalidate>
-      <div><p>Mit dem Festlegen vom Passwort wird die Registrierung abgeschlossen. Anschliessend kann das
+      <div><p>Durch die Eingabe des Passwortes wird die Registrierung abgeschlossen. Anschliessend kann das
         Benutzerkonto verwendet werden.</p>
       </div>
       <section class="section">
