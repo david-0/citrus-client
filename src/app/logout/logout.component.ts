@@ -44,7 +44,7 @@ export class LogoutComponent implements OnInit {
 
   getErrorMessage(control: FormControl) {
     return control.hasError("required") ? "Eingabe erforderlich" :
-      control.hasError("email") ? "Emailadresse ungültig" :
+      control.hasError("email") ? "E-Mailadresse ungültig" :
         control.hasError("minlength") ? "Mindestlänge 7 Zeichen" :
           "";
   }

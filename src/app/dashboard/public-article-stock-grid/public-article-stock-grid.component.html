@@ -1,4 +1,7 @@
-<div class="main-container">
+<div *ngIf="!isLoading && !hasArticles" class="no-article-container">
+  <p class="noAritcles">Zur Zeit sind keine Artikel verfügbar.</p>
+</div>
+<div *ngIf="!isLoading && hasArticles" class="main-container">
   <mat-card *ngFor="let article of articles" class="card-dimensions"
             [routerLink]="['detail',article.id, article.articleStocks[0].location.id]">
     <mat-card-title class="title">{{article.description}}</mat-card-title>
@@ -33,3 +36,5 @@
   <div class="card-dimensions dummy-card-dimensions"></div>
   <div class="card-dimensions dummy-card-dimensions"></div>
 </div>
+<app-my-spinner [isRunning]="_loading" [delay]="150"></app-my-spinner>
+

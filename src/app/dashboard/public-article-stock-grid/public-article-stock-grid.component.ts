@@ -10,17 +10,29 @@ import {ArticleInSaleDtoRestService} from "../article-in-sale--dto-rest.service"
 export class PublicArticleStockGridComponent implements OnInit {
 
   private _articles: ArticleDto[];
+  public _loading: boolean;
 
   constructor(private rest: ArticleInSaleDtoRestService,
               @Inject("baseUrl") public baseUrl: string) {
+    this._loading = true;
   }
 
   public get articles(): ArticleDto[] {
     return this._articles;
   }
 
+  public get hasArticles(): boolean {
+    return this._articles && this._articles.length > 0;
+  }
+
+  public get isLoading(): boolean {
+    return this._loading;
+  }
+
   ngOnInit() {
+    this._loading = true;
     this.rest.getAll().subscribe((articles) => {
+      this._loading = false;
       this._articles = articles
         .sort((a, b) => a.description.localeCompare(b.description))
         .filter(a => a.articleStocks.length > 0);

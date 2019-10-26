@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
         if (RegisterResult.OK === result ) {
           this.router.navigate([`/registerConfirmation`]);
         } else if (RegisterResult.USER_ALREADY_EXISTS === result) {
-         this.message = "Ein Benutzer mit der Emailadresse '" + value.email + "' existiert bereits.";
+         this.message = "Ein Benutzer mit der E-Mailadresse '" + value.email + "' existiert bereits.";
         } else {
           this.message = "Ein interner Fehler ist aufgetretten.";
         }

@@ -4,6 +4,10 @@
   display: flex;
   flex-wrap: wrap;
 }
+.no-article-container {
+  display: flex;
+  justify-content: space-around;
+}
 
 .title {
   font-size: 1.3em;
@@ -93,4 +97,9 @@ button.button--responsive {
   div {
     vertical-align: top;
   }
+}
+
+.noAritcles {
+  padding: 1em;
+  margin: 1em;
 }
