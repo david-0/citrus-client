@@ -15,6 +15,7 @@ export class UserConfirmationComponent implements OnInit {
 
   public password: string;
   public confirmPassword: string;
+  public conditionsAccepted: boolean;
 
   constructor(private authenticationService: AuthenticationService,
               private route: ActivatedRoute) {
@@ -44,7 +45,7 @@ export class UserConfirmationComponent implements OnInit {
   }
 
   private getMessageError(): string {
-    return "Das Benutzerkonto konnte nicht aktiviert werden." +
+    return "Das Benutzerkonto konnte nicht aktiviert werden. " +
       "Die Registrierungs-anfrage existiert nicht oder ist abgelaufen! Versuchen sie es erneut.";
   }
 }

@@ -7,6 +7,15 @@
         Benutzerkonto verwendet werden.</p>
       </div>
       <section class="section">
+        <mat-checkbox class="full-width" name="conditionsAccepted" [(ngModel)]="conditionsAccepted">Ich akzeptiere die
+          Bedingungen
+        </mat-checkbox>
+      </section>
+      <ul>
+        <li><a [routerLink]="['/privacyPolicy']">Datenschutzbedingungen</a></li>
+        <li><a [routerLink]="['/organisation']">Organisationsbedingungen</a></li>
+      </ul>
+      <section class="section">
         <mat-form-field class="full-width">
           <input #passwordControl="ngModel" [digitCharacter]="1" [lowercaseCharacter]="1" [ngModel]="password"
                  [uppercaseCharacter]="1"
@@ -31,7 +40,9 @@
       </section>
       <div class="button-row">
         <span class="fill-remaining-space"></span>
-        <button [disabled]="!f.valid" class="grayButton" mat-button type="submit">Passwort setzen</button>
+        <button [disabled]="!f.valid || !conditionsAccepted" class="grayButton" mat-button type="submit">
+          Registrierung abschliessen
+        </button>
       </div>
     </form>
     <div *ngIf="message">
