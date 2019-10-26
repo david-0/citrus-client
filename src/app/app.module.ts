@@ -294,6 +294,7 @@ import { ContactComponent } from './footer/contact/contact.component';
           "88.99.118.38:444",
           "88.99.118.38:3001",
           "88.99.118.38:3002",
+          "shop.el-refugio-denia.com",
         ]
       }
     }),
