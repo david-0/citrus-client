@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(result => {
         if (RegisterResult.OK === result ) {
+          this.email = value.email;
           this.inputOk = true;
         } else if (RegisterResult.USER_ALREADY_EXISTS === result) {
          this.message = "Ein Benutzer mit der E-Mailadresse '" + value.email + "' existiert bereits.";
