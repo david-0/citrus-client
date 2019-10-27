@@ -1,4 +1,15 @@
-<form #f="ngForm" (ngSubmit)="register(f.value)" class="form" novalidate>
+<div *ngIf="inputOk" class="admin-container">
+  <div class="full-width"></div>
+  <mat-card class="mat-card-padding">
+    <mat-card-title class="bottom-margin">Registrieren</mat-card-title>
+    <p>
+      Es wurde eine E-Mail an {{email}} gesandt. <br/><br/>Bitte folgen Sie den Anweisungen in der E-Mail, um die Registrierung abzuschliessen.
+    </p>
+    <p>Weiter zum <a [routerLink]="['/login']">Login</a></p>
+  </mat-card>
+  <div class="full-width"></div>
+</div>
+<form *ngIf="!inputOk" #f="ngForm" (ngSubmit)="register(f.value)" class="form" novalidate>
   <div class="admin-container">
     <div class="full-width"></div>
     <mat-card class="mat-card-padding">
@@ -39,7 +50,8 @@
       <p class="message">{{message}}</p>
       <div class="button-row">
         <span class="fill-remaining-space"></span>
-        <button [disabled]="!f.valid" class="grayButton registerButtonWidth" mat-button type="submit">Registrieren</button>
+        <button [disabled]="!f.valid" class="grayButton registerButtonWidth" mat-button type="submit">Registrieren
+        </button>
       </div>
     </mat-card>
     <div class="full-width"></div>

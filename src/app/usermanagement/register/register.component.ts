@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   public prename: string;
   public email: string;
   public busy: boolean;
+  public inputOk: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -32,7 +33,7 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(result => {
         if (RegisterResult.OK === result ) {
-          this.router.navigate([`/registerConfirmation`]);
+          this.inputOk = true;
         } else if (RegisterResult.USER_ALREADY_EXISTS === result) {
          this.message = "Ein Benutzer mit der E-Mailadresse '" + value.email + "' existiert bereits.";
         } else {

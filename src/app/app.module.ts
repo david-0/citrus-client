@@ -126,6 +126,10 @@ import {ArticleInSaleDtoRestService} from "./dashboard/article-in-sale--dto-rest
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {PublicArticleDetailComponent} from "./dashboard/public-article-detail/public-article-detail.component";
 import {PublicArticleStockGridComponent} from "./dashboard/public-article-stock-grid/public-article-stock-grid.component";
+import {AboutUsComponent} from "./footer/about-us/about-us.component";
+import {ContactComponent} from "./footer/contact/contact.component";
+import {OrganisationComponent} from "./footer/organisation/organisation.component";
+import {PrivacyPolicyComponent} from "./footer/privacy-policy/privacy-policy.component";
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AppRouteModule} from "./router/app-route.module";
@@ -139,16 +143,11 @@ import {StoreEstimateComponent} from "./store/store-estimate/store-estimate.comp
 import {OutputMessageComponent} from "./table-support/error-output/output-message.component";
 import {MySpinnerModule} from "./table-support/my-spinner/my-spinner.module";
 import {TableSupportModule} from "./table-support/table-support.module";
-import {RegisterConfirmationComponent} from "./usermanagement/register-confirmation/register-confirmation.component";
 import {RegisterComponent} from "./usermanagement/register/register.component";
 import {ResetMailConfirmationComponent} from "./usermanagement/reset-mail-confirmation/reset-mail-confirmation.component";
 import {ResetMailComponent} from "./usermanagement/reset-mail/reset-mail.component";
 import {ResetPasswortWithTokenComponent} from "./usermanagement/reset-password-with-token/reset-passwort-with-token.component";
 import {UserConfirmationComponent} from "./usermanagement/user-confirmation/user-confirmation.component";
-import { AboutUsComponent } from './footer/about-us/about-us.component';
-import { PrivacyPolicyComponent } from './footer/privacy-policy/privacy-policy.component';
-import { OrganisationComponent } from './footer/organisation/organisation.component';
-import { ContactComponent } from './footer/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -241,7 +240,6 @@ import { ContactComponent } from './footer/contact/contact.component';
     ResetPasswortWithTokenComponent,
     ResetMailConfirmationComponent,
     EqualValidator,
-    RegisterConfirmationComponent,
     UserConfirmationComponent,
     AboutUsComponent,
     PrivacyPolicyComponent,
