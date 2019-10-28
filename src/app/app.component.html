@@ -9,6 +9,8 @@
         <mat-icon>home</mat-icon>
         <span class="button-space">Home</span>
       </a>
+    </span>
+    <span>
       <a class="title" routerLink="/dashboard">
         <mat-icon>shop</mat-icon>
         <span class="button-space">Shop</span>
@@ -50,7 +52,7 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-<!--        <span class="user-id">UserId: {{authService.getLoggedInUserId()}}</span>-->
+        <!--        <span class="user-id">UserId: {{authService.getLoggedInUserId()}}</span>-->
         <button mat-menu-item (click)="logout()">
           <mat-icon>exit_to_app</mat-icon>
           <span class="menu-entry">Abmelden</span>
