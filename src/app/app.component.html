@@ -9,9 +9,11 @@
     </span>
       <button mat-button class="sale-button" routerLink="/organisation">
         <mat-icon>home</mat-icon>
+        <span class="button-space">Home</span>
       </button>
       <button mat-button class="sale-button" routerLink="/dashboard">
         <mat-icon>shop</mat-icon>
+        <span class="button-space">Shop</span>
       </button>
       <span class="fill-remaining-space"></span>
       <button *ngIf="authService.isSale()" mat-raised-button class="sale-button" routerLink="/sale">
