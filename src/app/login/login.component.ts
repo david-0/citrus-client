@@ -54,9 +54,9 @@ export class LoginComponent implements OnInit {
           this.message = `Anmeldeserver nicht erreichbar! (${error.url})`;
         } else {
           if (isDevMode()) {
-            this.message = "Anmeldung nicht erfolgreich (Benuter/Password falsch)! " + JSON.stringify(error);
+            this.message = "Anmeldung nicht erfolgreich (Benutzer/Password falsch)! " + JSON.stringify(error);
           } else {
-            this.message = "Anmeldung nicht erfolgreich (Benuter/Password falsch)!";
+            this.message = "Anmeldung nicht erfolgreich (Benutzer/Password falsch)!";
           }
         }
       });
