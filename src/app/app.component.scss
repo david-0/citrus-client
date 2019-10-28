@@ -78,6 +78,7 @@
 
 .header {
   background-color: #EEEEEE;
+  padding: 0 16px 0 0;
 }
 
 .footer {
@@ -122,4 +123,10 @@ main {
   .footer-button {
     display: none;
   }
+}
+
+
+.logo-image {
+  width: 73px;
+  height: 64px;
 }
