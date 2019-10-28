@@ -4,7 +4,7 @@
 
 // define 3 theme color
 // mat-palette accepts $palette-name, main, lighter and darker variants
-$my-theme-primary: mat-palette($mat-yellow, 500, 500, 500); // default, ligher, darker
+$my-theme-primary: mat-palette($mat-grey, 500, 500, 500); // default, ligher, darker
 $my-theme-accent: mat-palette($mat-orange);
 $my-theme-warn: mat-palette($mat-deep-orange, A100);
 
