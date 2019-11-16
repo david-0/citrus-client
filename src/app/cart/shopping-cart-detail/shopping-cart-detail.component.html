@@ -18,7 +18,7 @@
       <div class="fill-remaining-space"></div>
       <div class="title--price">{{cart.totalPrice | currency: 'CHF '}}</div>
       <button mat-button type="submit" class="cash-button" routerLink="/checkout/{{cart.location.id}}">
-        <span class="size-xl">zur Kasse</span>
+        <span class="size-xl">zur Bestellung</span>
       </button>
     </div>
     <div *ngFor="let item of cart.cartItems" class="cart--item">

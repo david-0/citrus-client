@@ -7,7 +7,7 @@
   </ng-container>
   <ng-container matColumnDef="description">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Beschreibung</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
+    <mat-cell *matCellDef="let row"> {{row.description}}<br/>&nbsp;&nbsp;{{row.comment}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="address">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Addresse</mat-header-cell>
