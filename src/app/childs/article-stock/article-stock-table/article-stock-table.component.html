@@ -17,6 +17,10 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Menge reserviert</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.reservedQuantity}} {{row.article.unitOfMeasurement.shortcut}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="available">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Menge verfügbar</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.quantity - row.reservedQuantity}} {{row.article.unitOfMeasurement.shortcut}}</mat-cell>
+  </ng-container>
   <ng-container matColumnDef="location">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Standort</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.location.description}}</mat-cell>

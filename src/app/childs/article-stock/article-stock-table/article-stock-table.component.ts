@@ -15,17 +15,27 @@ export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockD
 
   @Input() displayedColumns: string[];
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(rest: ArticleStockWithDtoAllRestService,
-              settings: ArticleStockSettingsService ) {
+              settings: ArticleStockSettingsService) {
     super(rest, settings);
   }
 
   ngOnInit() {
     const subscription = this.rest.getAll().subscribe((data: ArticleStockDto[]) => {
       this.datasource.data = data;
+      this.datasource.filterPredicate = this.filterPredicate;
     });
+  }
+
+  private filterPredicate(data: ArticleStockDto, filter: string): boolean {
+    return (data.article.description.toLowerCase()
+      + data.location.description.toLowerCase()
+      + data.quantity
+      + data.reservedQuantity
+      + (data.quantity - data.reservedQuantity)
+    ).indexOf(filter.toLowerCase()) > -1;
   }
 }
