@@ -21,10 +21,16 @@
     <mat-card-content>
       <div class="location">Standorte</div>
       <mat-chip-list>
-        <mat-chip class="cart-color-green" *ngFor="let articleStock of article.articleStocks"
-                  [routerLink]="['detail', articleStock.article.id, articleStock.location.id]">
-          {{articleStock.location.description}}
-        </mat-chip>
+        <div *ngFor="let articleStock of article.articleStocks">
+          <mat-chip *ngIf="!articleStock.soldOut" class="cart-color-green"
+                    [routerLink]="['detail', articleStock.article.id, articleStock.location.id]">
+            {{articleStock.location.description}}
+          </mat-chip>
+          <mat-chip *ngIf="articleStock.soldOut" class="cart-color-red"
+                    [routerLink]="['detail', articleStock.article.id, articleStock.location.id]">
+            {{articleStock.location.description}} (ausverkauft)
+          </mat-chip>
+        </div>
       </mat-chip-list>
     </mat-card-content>
   </mat-card>

@@ -18,6 +18,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-checkbox class="full-width" name="soldOut" [(ngModel)]="articleStock.soldOut">Ausverkauft</mat-checkbox>
     <p>Menge an Lager: {{articleStock.quantity}} {{articleStock.article.unitOfMeasurement.shortcut}} (Das ist ein berechneter Wert, keine Anpassung möglich!)</p>
     <p>Menge reserviert: {{articleStock.reservedQuantity}} {{articleStock.article.unitOfMeasurement.shortcut}} (Das ist ein berechneter Wert, keine Anpassung möglich!)</p>
   </mat-card>

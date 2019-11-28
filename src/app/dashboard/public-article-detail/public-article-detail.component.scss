@@ -87,6 +87,10 @@
   background-color: orange;
 }
 
+.cart-color-red {
+  background-color: #EE0000;
+}
+
 .cart-color-gray {
   background-color: #cccccc;
 }
@@ -139,6 +143,7 @@ button.plus-minus-buttons {
   line-height: 45px;
   padding: 0 5px;
   margin: 0 0.2em;
+
   mat-icon {
     margin-left: 1px;
     margin-bottom: 0.1em;
@@ -152,9 +157,11 @@ button.double-plus-minus-buttons {
   line-height: 45px;
   padding: 0 5px;
   margin: 0 0.2em;
+
   mat-icon {
     margin-bottom: 0.1em;
   }
+
   mat-icon:nth-child(1) {
     margin-left: -2px;
   }

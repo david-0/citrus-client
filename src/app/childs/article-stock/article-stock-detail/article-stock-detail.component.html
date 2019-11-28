@@ -11,6 +11,10 @@
       <div>{{articleStock.article.description}}</div>
     </div>
     <div>
+      <div>Ausverkauft</div>
+      <div>{{articleStock.soldOut && 'Ja' || 'Nein'}}</div>
+    </div>
+    <div>
       <div>Standort</div>
       <div>{{articleStock.location.description}}</div>
     </div>
