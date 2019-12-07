@@ -9,6 +9,6 @@ export class GenericAddWithDifferentReturnService<T, R extends DtoId> {
   }
 
   add(item: T): Observable<R> {
-    return this.http.post<R>(this.restUrl, JSON.stringify(item), {headers: this.headers});
+    return this.http.post<R>(this.restUrl, item, {headers: this.headers});
   }
 }

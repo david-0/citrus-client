@@ -46,6 +46,11 @@ export class CartService {
     this.saveCarts();
   }
 
+  public updateComment(locationId: number, comment: string) {
+    this.getCartAtLocation(locationId).comment = comment;
+    this.saveCarts();
+  }
+
   public clearCart(locationId: number) {
     if (this.hasCart(locationId)) {
       return this.removeCart(locationId);
@@ -130,7 +135,7 @@ export class CartService {
   }
 
   private addCart(location: LocationDto) {
-    const cart = new CartDto(location, 0);
+    const cart = new CartDto(location, 0, "");
     const carts = this.cart.getValue();
     carts.push(cart);
     this.cart.next(carts);

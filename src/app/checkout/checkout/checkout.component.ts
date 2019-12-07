@@ -19,7 +19,9 @@ export class CheckoutComponent implements OnInit {
   state = "emptyCart";
   orderNumber: number;
   error: string;
-  selectedCart: CartDto = new CartDto(LocationDto.createEmpty(), 0);
+  selectedCart: CartDto = new CartDto(LocationDto.createEmpty(), 0, "");
+  commentFormGroup: FormGroup;
+  commentCtrl: FormControl;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -40,6 +42,7 @@ export class CheckoutComponent implements OnInit {
             const openingHour = this.getValidOpeningHour();
             this.cartService.updatePlannedCheckout(this.selectedCart.location.id, openingHour);
             this.firstFormGroup.get("firstCtrl").setValue(openingHour);
+            this.commentFormGroup.get("commentCtrl").setValue(this.selectedCart.comment);
           });
         }
       }
@@ -53,6 +56,12 @@ export class CheckoutComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: [""]
+    });
+    this.commentFormGroup = this._formBuilder.group({
+      commentCtrl: new FormControl([null]),
+    });
+    this.commentFormGroup.get("commentCtrl").valueChanges.subscribe(value => {
+      this.cartService.updateComment(this.selectedCart.location.id, value);
     });
   }
 

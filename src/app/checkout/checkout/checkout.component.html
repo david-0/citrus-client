@@ -35,6 +35,24 @@
       </mat-toolbar>
     </form>
   </mat-step>
+  <mat-step [stepControl]="commentFormGroup">
+    <form [formGroup]="commentFormGroup">
+      <ng-template matStepLabel>Kommentar erfassen</ng-template>
+      <mat-card class="step-cards--background">
+        <mat-card class="commentFlex fill-remaining-space">
+          <mat-form-field class="full-width">
+            <input formControlName="commentCtrl" matInput placeholder="Kommentar">
+          </mat-form-field>
+        </mat-card>
+      </mat-card>
+      <mat-toolbar class="footer">
+        <button mat-raised-button matStepperNext (click)="back()">Abbrechen</button>
+        <button mat-raised-button matStepperPrevious>Zurück</button>
+        <span class="fill-remaining-space"></span>
+        <button mat-raised-button matStepperNext [disabled]="!selectedCart.openingHourOfPlannedCheckout">Weiter</button>
+      </mat-toolbar>
+    </form>
+  </mat-step>
   <mat-step>
     <ng-template matStepLabel>Abschliessen</ng-template>
     <div class="locationLine">
@@ -46,6 +64,28 @@
     </div>
     <mat-card class="step-cards--background step-cards--column">
       <app-cart-location-detail class="flex" [cart]="selectedCart"></app-cart-location-detail>
+    </mat-card>
+    <div class="locationLine">
+      <mat-card class="step-cards--background step-cards--column">
+        <mat-card class="padding1em">
+          <mat-card-subtitle>Kommentar</mat-card-subtitle>
+          <p>{{selectedCart.comment}}</p>
+        </mat-card>
+      </mat-card>
+    </div>
+    <div class="locationLine">
+      <mat-card class="step-cards--background step-cards--column">
+        <mat-card>
+          <mat-card-subtitle>Abholstandort Details</mat-card-subtitle>
+          <div class="address">{{selectedCart.location.description}}</div>
+          <div class="address">{{selectedCart.location.street}} {{selectedCart.location.number}}</div>
+          <div class="address" *ngIf="selectedCart.location.addition">{{selectedCart.location.addition}}</div>
+          <div class="address">{{selectedCart.location.zipcode}} {{selectedCart.location.city}}</div>
+          <div class="address">Kommentar: {{selectedCart.location.comment}}</div>
+        </mat-card>
+      </mat-card>
+    </div>
+    <mat-card>
     </mat-card>
     <mat-toolbar class="footer">
       <button mat-raised-button matStepperNext (click)="back()">Abbrechen</button>

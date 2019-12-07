@@ -1,6 +1,6 @@
 <mat-card class="mat-card-padding vertical">
-  <mat-card-title>Standort: <b>{{cart.location.description}}</b></mat-card-title>
-  <mat-card-subtitle>
+  <mat-card-title >Standort: <b>{{cart.location.description}}</b></mat-card-title>
+  <mat-card-subtitle  *ngIf="cart.openingHourOfPlannedCheckout">
     abholen am {{cart.openingHourOfPlannedCheckout.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, zwischen
     von: {{cart.openingHourOfPlannedCheckout.fromDate | date: "HH:mm"}}
     bis: {{cart.openingHourOfPlannedCheckout.toDate | date: "HH:mm"}}</mat-card-subtitle>

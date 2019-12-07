@@ -17,6 +17,10 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Standort</mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.location.description}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="comment">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Kommentar</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.comment}}</mat-cell>
+  </ng-container>
   <ng-container matColumnDef="totalPrice">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.totalPrice}}</mat-cell>

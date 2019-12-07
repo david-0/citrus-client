@@ -17,6 +17,10 @@
       <div>{{order.location?.description}}</div>
     </div>
     <div>
+      <div>Kommentar</div>
+      <div>{{order.comment}}</div>
+    </div>
+    <div>
       <div>geplante Abholung</div>
       <div>
         {{order.plannedCheckout?.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von:
