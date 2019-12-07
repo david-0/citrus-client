@@ -218,14 +218,25 @@ button.double-plus-minus-buttons {
   flex: 1 1 auto;
   border-collapse: collapse;
 
-  div {
+  > div {
     padding: 0.2em;
     display: table-row;
 
-    div {
+    > div {
+      padding: 0.5em;
       display: table-cell;
     }
   }
+}
+
+.flex {
+  display: flex;
+}
+
+.address-line {
+  flex: 1 1 auto;
+  font-size: 13px;
+  padding: 0em;
 }
 
 .backlink-row {
