@@ -11,6 +11,10 @@
       <div>{{article.description}}</div>
     </div>
     <div>
+      <div>Masseinheit</div>
+      <div>{{article.unitOfMeasurement.description}} ({{article.unitOfMeasurement.shortcut}})</div>
+    </div>
+    <div>
       <div>Preis pro Einheit</div>
       <div>{{article.price | currency: "CHF "}}</div>
     </div>
