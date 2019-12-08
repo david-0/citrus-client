@@ -1,0 +1,59 @@
+<mat-card class="mat-card-padding">
+  <mat-card-content class="common_table">
+    <div>
+      <div>archiviert am</div>
+      <div>{{orderArchive?.archiveDate | date: "dd.MM.yyyy HH:mm:ss"}}</div>
+    </div>
+    <div>
+      <div>archiviert von</div>
+      <div>{{orderArchive?.archiveUser.prename}} {{orderArchive?.archiveUser.name}}</div>
+    </div>
+    <div>
+      <div>Bestellnummer</div>
+      <div>{{orderArchive?.order.id}}</div>
+    </div>
+    <div>
+      <div>Bestelldatum</div>
+      <div>{{orderArchive?.order.date | date: "HH:mm dd.MM.y"}}</div>
+    </div>
+    <div>
+      <div>Besteller</div>
+      <div>{{orderArchive?.order.user?.prename}} {{orderArchive?.order.user?.name}}</div>
+    </div>
+    <div>
+      <div>Standort</div>
+      <div>{{orderArchive?.order.location?.description}}</div>
+    </div>
+    <div>
+      <div>Kommentar</div>
+      <div>{{orderArchive?.order.comment}}</div>
+    </div>
+    <div>
+      <div>geplante Abholung</div>
+      <div>
+        {{orderArchive?.order.plannedCheckout?.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von:
+        {{orderArchive?.order.plannedCheckout?.fromDate | date: "HH:mm"}}
+        bis: {{orderArchive?.order.plannedCheckout?.toDate | date: "HH:mm"}}
+      </div>
+    </div>
+    <div>
+      <div>Abgeholt</div>
+      <div *ngIf="orderArchive?.order.checkedOut">{{orderArchive?.order.checkedOutDate | date: "dd.MM.yyyy HH:mm:ss"}} (Verkäufer:
+        {{orderArchive?.order.checkingOutUser?.prename}} {{orderArchive?.order.checkingOutUser?.name}})
+      </div>
+      <div *ngIf="!orderArchive?.order.checkedOut">Nein</div>
+    </div>
+    <div>
+      <div>bestellte Artikel</div>
+      <div>
+        <p class="order-item-line" *ngFor="let item of orderArchive?.order.orderItems">
+          {{item.quantity}} {{item.article?.unitOfMeasurement?.shortcut}} {{item.article?.description}} für
+          {{item.copiedPrice * item.quantity | currency: "CHF "}}</p>
+      </div>
+    </div>
+    <div>
+      <div>Gesamtpreis bestellt</div>
+      <div>{{orderArchive?.order.totalPrice | currency: "CHF "}}</div>
+    </div>
+  </mat-card-content>
+</mat-card>

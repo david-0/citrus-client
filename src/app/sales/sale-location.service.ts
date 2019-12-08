@@ -26,7 +26,7 @@ export class SaleLocationService {
   }
 
   public setSaleLocation(location: LocationDto) {
-    if (!this.saleLocationSubject.getValue() || this.saleLocationSubject.getValue().id !== location.id) {
+    if (location && (!this.saleLocationSubject.getValue() || this.saleLocationSubject.getValue().id !== location.id)) {
       localStorage.setItem(this.key, JSON.stringify(location));
       this.saleLocationSubject.next(location);
     }

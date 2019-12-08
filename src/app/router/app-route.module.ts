@@ -35,6 +35,11 @@ import {OpeningHourDeleteComponent} from "../childs/opening-hour/opening-hour-de
 import {OpeningHourDetailsComponent} from "../childs/opening-hour/opening-hour-details/opening-hour-details.component";
 import {OpeningHourEditComponent} from "../childs/opening-hour/opening-hour-edit/opening-hour-edit.component";
 import {OpeningHourOverviewComponent} from "../childs/opening-hour/opening-hour-overview/opening-hour-overview.component";
+import {OrderArchiveDeleteComponent} from "../childs/order-archive/order-archive-delete/order-archive-delete.component";
+import {OrderArchiveDetailComponent} from "../childs/order-archive/order-archive-detail/order-archive-detail.component";
+import {OrderArchiveOverviewComponent} from "../childs/order-archive/order-archive-overview/order-archive-overview.component";
+import {OrderArchivingDetailComponent} from "../childs/order-archiving/order-archiving-detail/order-archiving-detail.component";
+import {OrderArchivingOverviewComponent} from "../childs/order-archiving/order-archiving-overview/order-archiving-overview.component";
 import {OrderItemDetailComponent} from "../childs/order-item/order-item-detail/order-item-detail.component";
 import {OrderItemEditComponent} from "../childs/order-item/order-item-edit/order-item-edit.component";
 import {OrderItemOverviewComponent} from "../childs/order-item/order-item-overview/order-item-overview.component";
@@ -234,7 +239,11 @@ const routes: Routes = [
         canActivate: [AuthGuard, AuthGuardAdmin],
         component: OrderDeleteComponent
       },
-
+      {path: "orderArchive", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderArchiveOverviewComponent},
+      {path: "orderArchive/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderArchiveDetailComponent},
+      {path: "orderArchive/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderArchiveDeleteComponent},
+      {path: "orderArchiving", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderArchivingOverviewComponent},
+      {path: "orderArchiving/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderArchivingDetailComponent},
       {path: "location", canActivate: [AuthGuard, AuthGuardAdmin], component: LocationOverviewComponent},
       {path: "location/create", canActivate: [AuthGuard, AuthGuardAdmin], component: LocationEditComponent},
       {path: "location/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: LocationDetailComponent},
