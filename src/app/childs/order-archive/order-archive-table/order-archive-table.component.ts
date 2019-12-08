@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Component, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
@@ -31,6 +31,13 @@ export class OrderArchiveTableComponent extends BaseTableComponent<OrderArchiveD
   ngOnInit() {
     this.dataObservable.subscribe(data => {
       this.datasource.data = data;
+      this.datasource.filterPredicate = this.filterPredicate;
     });
+  }
+
+  private filterPredicate(data: OrderArchiveDto, filter: string): boolean {
+    return (data.order.user.name.toLowerCase()
+      + data.order.user.name.toLowerCase()
+    ).indexOf(filter.toLowerCase()) > -1;
   }
 }
