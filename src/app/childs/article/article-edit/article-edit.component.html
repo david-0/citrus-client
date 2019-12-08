@@ -18,9 +18,9 @@
       <mat-hint align="end">{{price.value.length}}</mat-hint>
     </mat-form-field>
     <mat-form-field class="full-width" color="accent">
-      <input matInput placeholder="Verkaufseinheit" #price [(ngModel)]="article.saleUnit"
+      <input matInput placeholder="Verkaufseinheit" #saleUnit [(ngModel)]="article.saleUnit"
              maxlength="256" name="saleUnit">
-      <mat-hint align="end">{{price.saleUnit}}</mat-hint>
+      <mat-hint align="end">{{saleUnit.value.length}}</mat-hint>
     </mat-form-field>
     <mat-checkbox class="full-width" name="inSale" [(ngModel)]="article.inSale">Im Verkauf</mat-checkbox>
     <mat-form-field class="full-width" color="accent">
