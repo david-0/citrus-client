@@ -21,6 +21,10 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Im Verkauf</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.inSale && 'Ja' || 'Nein'}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="saleUnit">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Verkaufseinheit</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.saleUnit}}</mat-cell>
+  </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="table-row--highligthed" routerLink={{row.id}}
            *matRowDef="let row; columns: displayedColumns;"></mat-row>

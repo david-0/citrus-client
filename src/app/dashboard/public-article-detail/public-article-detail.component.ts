@@ -99,14 +99,15 @@ export class PublicArticleDetailComponent implements OnInit, OnDestroy {
 
   public increase(inc: number) {
     this.cartService.addArticle(this.selectedArticleStock.location,
-      this.selectedArticleStock.article, +inc);
+      this.selectedArticleStock.article, +inc * this.selectedArticle.saleUnit);
   }
 
   public decrease(dec: number) {
+    const d = +dec * this.selectedArticle.saleUnit;
     if (this.selectedCartItem) {
-      if (this.selectedCartItem.quantity > dec) {
+      if (this.selectedCartItem.quantity > d) {
         this.cartService.addArticle(this.selectedArticleStock.location,
-          this.selectedArticleStock.article, -(+dec));
+          this.selectedArticleStock.article, -d);
       } else {
         this.cartService.removeArticle(this.selectedArticleStock.location,
           this.selectedArticleStock.article);

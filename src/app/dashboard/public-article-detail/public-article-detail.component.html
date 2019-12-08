@@ -90,12 +90,8 @@
                 </div>
                 <div class="orderRow">
                   <mat-chip-list>
-                    <mat-chip class="cart-color-gray chips-reduced-height">
-                      {{selectedArticleStock.quantity}}
-                    </mat-chip>
-                    <span class="location">
-                  {{selectedArticle?.unitOfMeasurement?.shortcut}}
-                </span>
+                    <mat-chip class="cart-color-gray chips-reduced-height">{{selectedArticleStock.quantity}}</mat-chip>
+                    <span class="location">{{selectedArticle?.unitOfMeasurement?.shortcut}}</span>
                   </mat-chip-list>
                 </div>
               </div>
@@ -106,11 +102,9 @@
                 <div class="orderRow">
                   <mat-chip-list>
                     <mat-chip class="cart-color-gray chips-reduced-height">
-                      {{selectedArticleStock.reservedQuantity + selectedCartItem?.quantity}}
+                      {{+selectedArticleStock.reservedQuantity + +selectedCartItem?.quantity}}
                     </mat-chip>
-                    <span class="location">
-                  {{selectedArticle?.unitOfMeasurement?.shortcut}}
-                </span>
+                    <span class="location">{{selectedArticle?.unitOfMeasurement?.shortcut}}</span>
                   </mat-chip-list>
                 </div>
               </div>
@@ -121,11 +115,9 @@
                 <div class="orderRow">
                   <mat-chip-list>
                     <mat-chip class="cart-color-green chips-reduced-height">
-                      {{selectedArticleStock.quantity - selectedArticleStock.reservedQuantity - selectedCartItem?.quantity}}
+                      {{+selectedArticleStock.quantity - +selectedArticleStock.reservedQuantity - +selectedCartItem?.quantity}}
                     </mat-chip>
-                    <span class="location">
-                  {{selectedArticle?.unitOfMeasurement?.shortcut}}
-                </span>
+                    <span class="location">{{selectedArticle?.unitOfMeasurement?.shortcut}}</span>
                   </mat-chip-list>
                 </div>
               </div>

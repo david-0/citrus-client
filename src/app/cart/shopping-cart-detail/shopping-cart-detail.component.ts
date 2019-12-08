@@ -17,11 +17,11 @@ export class ShoppingCartDetailComponent implements OnInit {
   }
 
   public increase(cart: CartDto, cartItem: CartItemDto) {
-    this.cartService.addArticle(cart.location, cartItem.article, 1);
+    this.cartService.addArticle(cart.location, cartItem.article, 1 * cartItem.article.saleUnit);
   }
 
   public decrease(cart: CartDto, cartItem: CartItemDto) {
-    this.cartService.addArticle(cart.location, cartItem.article, -1);
+    this.cartService.addArticle(cart.location, cartItem.article, -1 * cartItem.article.saleUnit);
   }
 
   public remove(cart: CartDto, cartItem: CartItemDto) {

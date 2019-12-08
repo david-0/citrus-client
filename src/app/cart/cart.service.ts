@@ -82,7 +82,7 @@ export class CartService {
       const item = this.getCartItem(cart, article.id);
       item.quantity += +quantity;
     } else {
-      this.addCartItem(cart, article, quantity);
+      this.addCartItem(cart, article, +quantity);
     }
     this.updateTotalPrice(cart);
     this.cart.next(this.cart.getValue());
