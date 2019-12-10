@@ -11,7 +11,7 @@ import {MessageRestService} from "../message-rest.service";
 })
 export class SendEmailToAllComponent implements OnInit {
   public messageDto: MessageDto = new MessageDto("", "", []);
-  private _userPairs: Array<{user: UserDto, checked: boolean}> = [];
+  private _userPairs: Array<{ user: UserDto, checked: boolean }> = [];
   public sendResult = "";
 
   constructor(private route: ActivatedRoute,
@@ -29,7 +29,9 @@ export class SendEmailToAllComponent implements OnInit {
 
   ngOnInit() {
     this.rest.getAll().subscribe(users => {
-      this._userPairs = users.map(u => ({user: u, checked: false}));
+      this._userPairs = users.map(u => ({user: u, checked: false})).sort((a, b) =>
+        (a.user.name + a.user.prename + a.user.email).localeCompare(b.user.name + b.user.prename + b.user.email));
+      ;
     });
   }
 

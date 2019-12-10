@@ -29,7 +29,7 @@
       <div>
         <div *ngFor="let userPair of userPairs">
           <mat-checkbox class="receiver full-width" name="{{userPair.user.name}}" [(ngModel)]="userPair.checked">
-            {{userPair.user.prename}} {{userPair.user.name}} ({{userPair.user.email}})
+            {{userPair.user.name}} {{userPair.user.prename}} ({{userPair.user.email}})
           </mat-checkbox>
         </div>
       </div>
