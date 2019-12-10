@@ -68,6 +68,7 @@ import {OrganisationComponent} from "../footer/organisation/organisation.compone
 import {PrivacyPolicyComponent} from "../footer/privacy-policy/privacy-policy.component";
 import {LoginComponent} from "../login/login.component";
 import {LogoutComponent} from "../logout/logout.component";
+import {SendEmailToAllComponent} from "../message/send-email-to-all/send-email-to-all.component";
 import {SaleOrderComponent} from "../sales/sale-order/sale-order.component";
 import {SaleOverviewComponent} from "../sales/sale-overview/sale-overview.component";
 import {StoreCheckInComponent} from "../store/store-check-in/store-check-in.component";
@@ -199,6 +200,7 @@ const routes: Routes = [
         canActivate: [AuthGuard, AuthGuardAdmin],
         component: ArticleCheckoutDeleteComponent
       },
+      {path: "message", canActivate: [AuthGuard, AuthGuardAdmin], component: SendEmailToAllComponent},
 
       {path: "order", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderOverviewComponent},
       {path: "order/create", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderEditComponent},

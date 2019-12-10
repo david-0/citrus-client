@@ -156,6 +156,8 @@ import { OrderArchiveOverviewComponent } from './childs/order-archive/order-arch
 import { OrderArchiveDetailComponent } from './childs/order-archive/order-archive-detail/order-archive-detail.component';
 import { OrderArchiveDetailOnlyComponent } from './childs/order-archive/order-archive-detail-only/order-archive-detail-only.component';
 import { OrderArchiveDeleteComponent } from './childs/order-archive/order-archive-delete/order-archive-delete.component';
+import { SendEmailToAllComponent } from './message/send-email-to-all/send-email-to-all.component';
+import { SendHeaderComponent } from './message/send-header/send-header.component';
 
 @NgModule({
   declarations: [
@@ -261,6 +263,8 @@ import { OrderArchiveDeleteComponent } from './childs/order-archive/order-archiv
     OrderArchiveDetailComponent,
     OrderArchiveDetailOnlyComponent,
     OrderArchiveDeleteComponent,
+    SendEmailToAllComponent,
+    SendHeaderComponent,
   ],
   imports: [
     BrowserModule,

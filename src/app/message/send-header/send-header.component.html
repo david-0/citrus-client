@@ -1,0 +1,11 @@
+<div class="header--flex div--no-margins">
+  <button mat-button type="button" class="size-xs button--responsive" (click)="back()" *ngIf="showBack">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <h3 class="h3--no-margins toolbar--title">{{titleText}}</h3>
+  <span class="fill-remaining-space"></span>
+  <button mat-button type="submit" class="size-xs button--responsive" *ngIf="showSend" [disabled]="!form.valid">
+    <mat-icon>send</mat-icon>
+    <span class="size-xl">senden</span>
+  </button>
+</div>

@@ -39,6 +39,8 @@ $my-theme: mat-light-theme(
 @import "app/sales/sale-order/sale-order.component.scss-theme";
 @import "app/childs/order-archive/order-archive-table/order-archive-table.component.scss-theme";
 @import "app/childs/order-archiving/order-archiving-table/order-archiving-table.component.scss-theme";
+@import "app/message/send-header/send-header.component.scss-theme";
+
 
 @mixin my-component-theme($theme) {
   @include app-table-header-theme($theme);
@@ -65,6 +67,7 @@ $my-theme: mat-light-theme(
   @include app-shopping-cart-view-theme($theme);
   @include app-order-archive-table-theme($theme);
   @include app-order-archiving-table-theme($theme);
+  @include app-send-header-theme($theme);
 }
 
 @include angular-material-theme($my-theme);

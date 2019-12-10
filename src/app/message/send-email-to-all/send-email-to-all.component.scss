@@ -1,0 +1,28 @@
+@import "../../styles/edit";
+
+.mail-content {
+  font-family: monospace;
+  font-size: 16px;
+}
+
+:host {
+  width: 100%;
+}
+
+.h3__padding {
+  padding-left: 0.5em;
+}
+
+.selection-helper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.selector {
+  flex: 1 1 auto;
+  margin: 0.5em;
+}
+
+.receiver {
+  padding-right: 0.5em;
+}

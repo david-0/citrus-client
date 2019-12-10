@@ -1,0 +1,38 @@
+<div *ngIf="sendResult">
+  <app-send-header titleText="Nachricht versandt" showBack="true"></app-send-header>
+  <p>Die Meldung wurde verschickt.</p>
+  <button type="button" color="accent" class="selector" mat-raised-button (click)="reset()">zurück</button>
+  <p>{{sendResult}}</p>
+</div>
+<div *ngIf="!sendResult">
+  <form #f="ngForm" (ngSubmit)="submit()">
+    <app-send-header titleText="Nachricht schreiben" showBack="true" showSend="true" [form]="f"></app-send-header>
+    <mat-card class="mat-card-padding">
+      <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Betreff" #subject [(ngModel)]="messageDto.subject" required
+               maxlength="256" name="subject">
+        <mat-hint align="end">{{subject.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width" color="accent">
+      <textarea class="mail-content" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="30" placeholder="Inhalt" #message [(ngModel)]="messageDto.content" required
+                name="message"></textarea>
+        <mat-hint align="end">{{message.value.length}}</mat-hint>
+      </mat-form-field>
+      <h3 class="h3__padding">Email Empfänger</h3>
+      <div class="selction-helper">
+        <button type="button" color="accent" class="selector" mat-raised-button (click)="selectAll()">alle auswählen
+        </button>
+        <button type="button" color="accent" class="selector" mat-raised-button (click)="selectNone()">alle abwählen
+        </button>
+      </div>
+      <div>
+        <div *ngFor="let userPair of userPairs">
+          <mat-checkbox class="receiver full-width" name="{{userPair.user.name}}" [(ngModel)]="userPair.checked">
+            {{userPair.user.prename}} {{userPair.user.name}} ({{userPair.user.email}})
+          </mat-checkbox>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>
