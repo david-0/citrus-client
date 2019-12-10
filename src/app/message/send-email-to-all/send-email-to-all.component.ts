@@ -42,7 +42,7 @@ export class SendEmailToAllComponent implements OnInit {
   public async submit() {
     this.messageDto.receivers = this._userPairs.filter(p => p.checked).map(p => p.user);
     this.messageService.add(this.messageDto).subscribe(message => {
-      this.sendResult = JSON.stringify(message.responses);
+      this.sendResult = message.responses;
     });
   }
 
