@@ -1,10 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import {MatTabChangeEvent} from "@angular/material/tabs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {LocationDto, OpeningHourDto} from "citrus-common";
+import {AddressDto, LocationDto, OpeningHourDto, UserDto} from "citrus-common";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
-import {BehaviorSubject, combineLatest} from "rxjs";
+import {BehaviorSubject, combineLatest, Observable} from "rxjs";
 import {LocationWithOpeninghHoursDtoRestService} from "../../location/location-with-openingh-hours-dto-rest.service";
+import {UserDtoRestService} from "../../user/user-dto-rest.service";
 import {OrderDtoWithAllRestService} from "../order-dto-with-all-rest.service";
 
 @Component({
@@ -16,13 +17,17 @@ export class OrderEditComponent implements OnInit {
 
   public order = OrderDto.createEmpty();
   public orderId: number;
+  public orderDate: Date;
 
   public locationSubject: BehaviorSubject<LocationDto[]> = new BehaviorSubject([]);
+  public userInfoSubject: BehaviorSubject<UserDto[]> = new BehaviorSubject([]);
+
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private orderRest: OrderDtoWithAllRestService,
-              public locationRest: LocationWithOpeninghHoursDtoRestService) {
+              private userRest: UserDtoRestService,
+              private locationRest: LocationWithOpeninghHoursDtoRestService) {
   }
 
   ngOnInit() {
@@ -31,10 +36,13 @@ export class OrderEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params["id"] == null) {
         this.orderId = this.order.id;
+        this.order.date = new Date();
+        this.orderDate = this.order.date;
         this.locationRest.getAll().subscribe(locations => this.locationSubject.next(locations));
+        this.userRest.getAll().subscribe(users => this.userInfoSubject.next(users));
       } else {
         combineLatest(this.orderRest.get(+params["id"]),
-          this.locationRest.getAll()
+          this.locationRest.getAll(), this.userRest.getAll()
         ).subscribe(
           result => {
             this.order = this.resultProcessor(result);
@@ -55,8 +63,10 @@ export class OrderEditComponent implements OnInit {
   private resultProcessor(result: any[]): OrderDto {
     const order: OrderDto = result[0];
     const locations: LocationDto[] = result[1];
+    const user: UserDto[] = result[2];
     this.locationSubject.next(locations);
     this.ensureLocationInOrder(order, locations);
+    this.ensureUserInOrder(order, user);
     return order;
   }
 
@@ -76,6 +86,16 @@ export class OrderEditComponent implements OnInit {
     }
   }
 
+  private ensureUserInOrder(order: OrderDto, users: UserDto[]): OrderDto {
+    this.userInfoSubject.next(users);
+    for (const user of users) {
+      if (this.isUserWithSameId(order, user)) {
+        order.user = user;
+      }
+    }
+    return order;
+  }
+
   private isLocationWithSameId(order: OrderDto, location: LocationDto): boolean {
     return order.location != null && order.location.id === location.id;
   }
@@ -84,8 +104,13 @@ export class OrderEditComponent implements OnInit {
     return order.plannedCheckout != null && order.plannedCheckout.id === openingHour.id;
   }
 
+  private isUserWithSameId(order: OrderDto, user: UserDto): boolean {
+    return order.user != null && order.user.id === user.id;
+  }
+
   public submit() {
     if (this.orderId == null) {
+      this.order.date = this.orderDate;
       this.orderRest.add(new OrderDto(this.order))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),

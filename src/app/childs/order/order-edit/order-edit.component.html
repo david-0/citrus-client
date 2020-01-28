@@ -5,9 +5,31 @@
     <mat-card class="mat-card-padding">
       <p class="const">Bestellnummer: {{order.id}}</p>
       <p class="const">Bestelldatum: {{order.date | date: "dd.MM.yyyy HH:mm:ss"}}</p>
-      <p class="const">Besteller: {{order.user?.prename}} {{order.user?.name}} ({{order.user?.email}})</p>
-      <p class="const">Kommentar: {{order.comment}}</p>
-      <p class="const">Standort: {{order.location.description}}</p>
+      <p *ngIf="order.id" class="const">Besteller: {{order.user?.prename}} {{order.user?.name}} ({{order.user?.email}})</p>
+      <mat-form-field *ngIf="!order.id" class="full-width" color="accent">
+        <mat-select placeholder="Besteller" #user name="user"
+                    [(ngModel)]="order.user">
+          <mat-option *ngFor="let user of userInfoSubject | async" [value]="user">
+            {{ user.prename}} {{user.name}} ({{user.email}})
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Kommentar" #comment [(ngModel)]="order.comment"
+               maxlength="256" name="comment">
+        <mat-hint align="end">{{comment.value.length}}</mat-hint>
+      </mat-form-field>
+      <p *ngIf="order.id" class="const">Standort: {{order.location.description}}</p>
+      <mat-form-field *ngIf="!order.id" class="full-width" color="accent">
+        <mat-select placeholder="Standort" #location name="location"
+                    [(ngModel)]="order.location">
+          <mat-option *ngFor="let location of locationSubject | async" [value]="location">
+            {{ location.description}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <mat-form-field class="full-width" color="accent">
         <mat-select placeholder="geplante Abholung" #plannedCheckout name="plannedCheckout"
                     [(ngModel)]="order.plannedCheckout" required>
