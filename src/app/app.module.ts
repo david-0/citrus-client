@@ -31,7 +31,6 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {JwtModule} from "@auth0/angular-jwt";
-import "hammerjs";
 import {ValidatorsModule} from "ng2-validators";
 import {ENV_PROVIDERS} from "../environments/environment";
 
