@@ -17,7 +17,7 @@ export class LocationTableComponent extends BaseTableComponent<LocationDto> impl
   @Input() displayedColumns: string[];
   @Input() dataObservable: Observable<LocationDto[]>;
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(rest: LocationDtoRestService, settings: LocationSettingsService) {

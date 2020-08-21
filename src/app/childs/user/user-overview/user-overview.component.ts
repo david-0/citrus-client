@@ -18,7 +18,7 @@ export class UserOverviewComponent implements OnInit {
 
   public displayedColumns = ["number", "email", "name", "prename", "phone"];
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private rest: UserDtoRestService, public settings: UserDetailsSettingsService) {

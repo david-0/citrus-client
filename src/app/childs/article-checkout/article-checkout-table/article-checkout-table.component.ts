@@ -15,7 +15,7 @@ export class ArticleCheckoutTableComponent extends BaseTableComponent<ArticleChe
 
   @Input() displayedColumns: string[];
 
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(rest: ArticleCheckoutWithAllDtoRestService, settings: ArticleCheckoutSettingsService) {

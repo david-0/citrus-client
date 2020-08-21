@@ -15,7 +15,7 @@ export class AddressTableComponent extends BaseTableComponent<AddressDto>{
 
   @Input() displayedColumns: string[];
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(rest: AddressWithUserDtoRestService, settings: AddressSettingsService) {

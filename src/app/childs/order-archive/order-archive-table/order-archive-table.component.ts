@@ -18,7 +18,7 @@ export class OrderArchiveTableComponent extends BaseTableComponent<OrderArchiveD
   @Input() displayedColumns: string[];
   @Input() dataObservable: Observable<OrderArchiveDto[]>;
 
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(restOrderArchive: OrderArchiveDtoRestService,

@@ -15,7 +15,7 @@ export class ArticleTableComponent extends BaseTableComponent<ArticleDto> {
 
   @Input() displayedColumns: string[];
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(rest: ArticleDtoRestService, settings: ArticleSettingsService) {

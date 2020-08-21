@@ -17,7 +17,7 @@ export class OrderTableComponent extends BaseTableComponent<OrderDto> implements
   @Input() displayedColumns: string[];
   @Input() dataObservable: Observable<OrderDto[]>;
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(rest: OrderDtoWithAllRestService, settings: OrderSettingsService) {

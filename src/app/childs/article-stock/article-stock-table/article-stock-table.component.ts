@@ -15,7 +15,7 @@ export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockD
 
   @Input() displayedColumns: string[];
 
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(rest: ArticleStockWithDtoAllRestService,
