@@ -30,6 +30,7 @@
     "@types/socket.io-client": "^1.4.33",
     "citrus-common": "^0.4.31",
     "core-js": "^3.6.5",
+    "file-saver": "^2.0.2",
     "material-design-icons": "^3.0.1",
     "moment": "^2.27.0",
     "ng2-validators": "^2.2.0",
