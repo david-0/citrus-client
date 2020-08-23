@@ -24,8 +24,8 @@ export class ArticleCheckoutTableComponent extends BaseTableComponent<ArticleChe
 
   ngOnInit() {
     const subscription = this.rest.getAll().subscribe((data: ArticleCheckOutDto[]) => {
-      this.datasource.data = data;
-      this.datasource.filterPredicate = this.filterPredicate;
+      this.dataSource.data = data;
+      this.dataSource.filterPredicate = this.filterPredicate;
     });
   }
 

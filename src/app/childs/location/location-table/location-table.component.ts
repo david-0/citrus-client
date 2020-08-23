@@ -26,7 +26,7 @@ export class LocationTableComponent extends BaseTableComponent<LocationDto> impl
 
   ngOnInit() {
     this.dataObservable.subscribe(data => {
-      this.datasource.data = data;
+      this.dataSource.data = data;
     });
   }
 }

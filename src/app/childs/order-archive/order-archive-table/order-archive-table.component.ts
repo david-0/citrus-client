@@ -30,8 +30,8 @@ export class OrderArchiveTableComponent extends BaseTableComponent<OrderArchiveD
 
   ngOnInit() {
     this.dataObservable.subscribe(data => {
-      this.datasource.data = data;
-      this.datasource.filterPredicate = this.filterPredicate;
+      this.dataSource.data = data;
+      this.dataSource.filterPredicate = this.filterPredicate;
     });
   }
 

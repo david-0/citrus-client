@@ -7,20 +7,20 @@ import {SettingsServiceInterface} from "../table-support/settings-service-interf
 @Directive()
 export class BaseTableComponent<T extends DtoId> implements OnInit {
 
-  datasource = new MatTableDataSource<T>();
+  dataSource = new MatTableDataSource<T>();
 
   constructor(protected rest: GenericRestService<T>, public settings: SettingsServiceInterface) {
   }
 
   ngOnInit() {
     const subscription = this.rest.getAll().subscribe(data => {
-      this.datasource.data = data;
+      this.dataSource.data = data;
     });
   }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.datasource.filter = filterValue;
+    filterValue = filterValue.toLowerCase(); // DataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
 }

@@ -36,14 +36,14 @@ export class OrderArchivingTableComponent extends BaseTableComponent<OrderDto> i
   ngOnInit() {
     this.dataObservable.subscribe(data => {
       this.lastData = data;
-      this.datasource.data = data;
+      this.dataSource.data = data;
     });
   }
 
   public async archiving(id: number) {
     this.http.get<number>(this.baseUrl + "/orderArchive/archiving/" + id, {headers: this.headers}).subscribe(orderId => {
       this.lastData = this.lastData.filter(d => d.id !== orderId);
-      this.datasource.data = this.lastData;
+      this.dataSource.data = this.lastData;
     });
   }
 }

@@ -24,8 +24,8 @@ export class ArticleCheckinTableComponent extends BaseTableComponent<ArticleChec
 
   ngOnInit() {
     const subscription = this.rest.getAll().subscribe((data: ArticleCheckInDto[]) => {
-      this.datasource.data = data;
-      this.datasource.filterPredicate = this.filterPredicate;
+      this.dataSource.data = data;
+      this.dataSource.filterPredicate = this.filterPredicate;
     });
   }
 

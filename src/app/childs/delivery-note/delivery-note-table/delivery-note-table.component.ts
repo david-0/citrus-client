@@ -1,5 +1,5 @@
 import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
@@ -18,12 +18,10 @@ import {DeliveryNoteService} from "../delivery-note.service";
 export class DeliveryNoteTableComponent extends BaseTableComponent<OrderDto> implements OnInit {
 
   @Input() displayedColumns: string[];
-  @Input() dataObservable: Observable<OrderDto[]>;
+  @Input() dataObservable: BehaviorSubject<OrderDto[]>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-
-  private lastData: OrderDto[];
 
   constructor(restOrder: OrderDtoWithAllRestService,
               settings: DeliveryNoteSettingsService,
@@ -35,8 +33,7 @@ export class DeliveryNoteTableComponent extends BaseTableComponent<OrderDto> imp
 
   ngOnInit() {
     this.dataObservable.subscribe(data => {
-      this.lastData = data;
-      this.datasource.data = data;
+      this.dataSource.data = data;
     });
   }
 

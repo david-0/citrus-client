@@ -19,7 +19,7 @@ export class OrderItemTableComponent extends BaseTableComponent<OrderItemDto> im
 
   ngOnInit() {
     this.dataObservable.subscribe(data => {
-      this.datasource.data = data;
+      this.dataSource.data = data;
     });
   }
 }

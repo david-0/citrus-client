@@ -19,7 +19,7 @@ export class OpeningHourTableComponent extends BaseTableComponent<OpeningHourDto
 
   ngOnInit() {
     this.dataObservable.subscribe(data => {
-      this.datasource.data = data;
+      this.dataSource.data = data;
     });
   }
 }
