@@ -1,0 +1,65 @@
+<app-table-filter (onChange)="applyFilter($event)" [settings]="this.settings"
+                  placeholder="Filter Kundenbestellungen"></app-table-filter>
+<mat-table #table [dataSource]="datasource" matSort>
+  <ng-container matColumnDef="id" hidden>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Bestellnummer</mat-header-cell>
+    <mat-cell *matCellDef="let row" routerLink={{row.id}}> {{row.id}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Datum</mat-header-cell>
+    <mat-cell *matCellDef="let row" routerLink={{row.id}}> {{row.date | date: "dd.MM.y"}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="user">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Benutzer</mat-header-cell>
+    <mat-cell *matCellDef="let row" routerLink={{row.id}}> {{row.user?.name}} {{row.user?.prename}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="location">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Standort</mat-header-cell>
+    <mat-cell *matCellDef="let row" routerLink={{row.id}}> {{row.location.description}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="comment">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Kommentar</mat-header-cell>
+    <mat-cell *matCellDef="let row" routerLink={{row.id}}> {{row.comment}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="totalPrice">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
+    <mat-cell *matCellDef="let row" routerLink={{row.id}}>{{row.totalPrice}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="deliveryNoteCreated">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Lieferschein erstellt</mat-header-cell>
+    <mat-cell *matCellDef="let row" routerLink={{row.id}}>
+      <span *ngIf="row.deliveryNoteCreated">{{row.deliveryNoteCreated | date: "dd.MM.yyyy HH:mm"}}
+      </span>
+      <span *ngIf="!row.deliveryNoteCreated">Nein</span>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="plannedCheckout">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Geplante Abholung</mat-header-cell>
+    <mat-cell *matCellDef="let row" routerLink={{row.id}}>
+      <span *ngIf="row.plannedCheckout">
+        {{row.plannedCheckout.fromDate | date: "EEEE dd.MM.y": "GMT": "de-CH"}}, geöffnet von:
+        {{row.plannedCheckout.fromDate | date: "HH:mm"}}
+        bis: {{row.plannedCheckout.toDate | date: "HH:mm"}}
+      </span>
+      <span *ngIf="!row.plannedCheckout">Unbekannt</span>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="checkedOut">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Abgeholt?</mat-header-cell>
+    <mat-cell *matCellDef="let row" routerLink={{row.id}}>
+      <span *ngIf="row.checkedOut">{{row.checkedOutDate | date: "dd.MM.yyyy HH:mm:ss"}}
+        <br/>(Verkäufer: {{row.checkingOutUser?.prename}} {{row.checkingOutUser?.name}})
+      </span>
+      <span *ngIf="!row.checkedOut">Nein</span>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="deliveryNote" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Lieferschein erstellen</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-raised-button color="accent" (click)=downloadDeliveryNote(row.id)>Lieferschein</button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row class="table-row--highligthed"
+           *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

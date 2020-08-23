@@ -157,6 +157,9 @@ import { OrderArchiveDetailOnlyComponent } from './childs/order-archive/order-ar
 import { OrderArchiveDeleteComponent } from './childs/order-archive/order-archive-delete/order-archive-delete.component';
 import { SendEmailToAllComponent } from './message/send-email-to-all/send-email-to-all.component';
 import { SendHeaderComponent } from './message/send-header/send-header.component';
+import { DeliveryNoteOverviewComponent } from './childs/delivery-note/delivery-note-overview/delivery-note-overview.component';
+import { DeliveryNoteTableComponent } from './childs/delivery-note/delivery-note-table/delivery-note-table.component';
+import { DeliveryNoteDetailComponent } from './childs/delivery-note/delivery-note-detail/delivery-note-detail.component';
 
 @NgModule({
   declarations: [
@@ -264,6 +267,9 @@ import { SendHeaderComponent } from './message/send-header/send-header.component
     OrderArchiveDeleteComponent,
     SendEmailToAllComponent,
     SendHeaderComponent,
+    DeliveryNoteOverviewComponent,
+    DeliveryNoteTableComponent,
+    DeliveryNoteDetailComponent,
   ],
   imports: [
     BrowserModule,

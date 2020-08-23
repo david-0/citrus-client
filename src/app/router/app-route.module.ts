@@ -79,6 +79,8 @@ import {ResetMailConfirmationComponent} from "../usermanagement/reset-mail-confi
 import {ResetMailComponent} from "../usermanagement/reset-mail/reset-mail.component";
 import {ResetPasswortWithTokenComponent} from "../usermanagement/reset-password-with-token/reset-passwort-with-token.component";
 import {UserConfirmationComponent} from "../usermanagement/user-confirmation/user-confirmation.component";
+import {DeliveryNoteOverviewComponent} from "../childs/delivery-note/delivery-note-overview/delivery-note-overview.component";
+import {DeliveryNoteDetailComponent} from "../childs/delivery-note/delivery-note-detail/delivery-note-detail.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "organisation", pathMatch: "full"},
@@ -241,6 +243,10 @@ const routes: Routes = [
         canActivate: [AuthGuard, AuthGuardAdmin],
         component: OrderDeleteComponent
       },
+
+      {path: "deliveryNote", canActivate: [AuthGuard, AuthGuardAdmin], component: DeliveryNoteOverviewComponent},
+      {path: "deliveryNote/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: DeliveryNoteDetailComponent},
+
       {path: "orderArchive", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderArchiveOverviewComponent},
       {path: "orderArchive/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderArchiveDetailComponent},
       {path: "orderArchive/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: OrderArchiveDeleteComponent},

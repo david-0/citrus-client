@@ -47,5 +47,11 @@
       <div>Gesamtpreis bestellt</div>
       <div>{{order.totalPrice | currency: "CHF "}}</div>
     </div>
+    <div>
+      <div>Lieferschein erstellt</div>
+      <div *ngIf="order.deliveryNoteCreated">{{order.deliveryNoteCreated | date: "dd.MM.yyyy HH:mm:ss"}}
+      </div>
+      <div *ngIf="!order.deliveryNoteCreated">Nein</div>
+    </div>
   </mat-card-content>
 </mat-card>

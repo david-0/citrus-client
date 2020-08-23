@@ -5,7 +5,7 @@
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
 
-  app-order-arcvhiving-table {
+  app-order-archiving-table {
     .table-row--highligthed:hover {
       background-color: mat-color($primary);
       transition: all 0.3s ease-in

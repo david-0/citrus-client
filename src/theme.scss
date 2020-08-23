@@ -4,7 +4,7 @@
 
 // define 3 theme color
 // mat-palette accepts $palette-name, main, lighter and darker variants
-$my-theme-primary: mat-palette($mat-grey); // default, ligher, darker
+$my-theme-primary: mat-palette($mat-grey); // default, lighter, darker
 $my-theme-accent: mat-palette($mat-orange, 300, 200, 400);
 $my-theme-warn: mat-palette($mat-deep-orange, A100);
 
@@ -40,6 +40,7 @@ $my-theme: mat-light-theme(
 @import "app/childs/order-archive/order-archive-table/order-archive-table.component.scss-theme";
 @import "app/childs/order-archiving/order-archiving-table/order-archiving-table.component.scss-theme";
 @import "app/message/send-header/send-header.component.scss-theme";
+@import "app/childs/delivery-note/delivery-note-table/delivery-note-table.component.scss-theme";
 
 
 @mixin my-component-theme($theme) {
@@ -68,6 +69,7 @@ $my-theme: mat-light-theme(
   @include app-order-archive-table-theme($theme);
   @include app-order-archiving-table-theme($theme);
   @include app-send-header-theme($theme);
+  @include app-delivery-note-table-theme($theme);
 }
 
 @include angular-material-theme($my-theme);

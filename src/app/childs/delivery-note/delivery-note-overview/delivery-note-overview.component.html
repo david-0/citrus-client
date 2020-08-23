@@ -1,0 +1,13 @@
+<app-table-header titleText="Lieferscheine erstellen"></app-table-header>
+<div class="button--line">
+  <button class="filter--button" mat-raised-button color="accent" (click)=downloadNotCreatedDeliveryNotes()>
+    Lieferscheine
+    erstellen für Bestellungen ohne Lieferschein
+  </button>
+  <button class="filter--button" mat-raised-button color="accent" (click)=downloadAllDeliveryNotes()>Lieferscheine für
+    alle Bestellungen erstellen
+  </button>
+</div>
+
+<app-delivery-note-table [displayedColumns]="displayedColumns"
+                         [dataObservable]="dataObservable"></app-delivery-note-table>
