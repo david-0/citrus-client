@@ -19,11 +19,11 @@ export class PasswordChangeComponent implements OnInit {
 
   ngOnInit() {
     this.passwordChangeForm = new FormGroup({
-      currentPassword: new FormControl("currentPassword",
+      currentPassword: new FormControl("",
         [Validators.required]),
-      newPassword: new FormControl("newPassword",
+      newPassword: new FormControl("",
         [Validators.required, Validators.minLength(7)]),
-      confirmPassword: new FormControl("confirmPassword",
+      confirmPassword: new FormControl("",
         [Validators.required, Validators.minLength(7)])
     }, this.passwordMatchValidator);
   }
