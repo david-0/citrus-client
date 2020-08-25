@@ -13,4 +13,11 @@ export class OrganisationComponent implements OnInit {
   ngOnInit() {
   }
 
+  public createSeasonString() : string {
+    let date = new Date();
+    if (date.getMonth() < 6) {
+      return (date.getFullYear()-1) + " – " + date.getFullYear();
+    }
+    return date.getFullYear() + " – " + (date.getFullYear()+1);
+  }
 }
