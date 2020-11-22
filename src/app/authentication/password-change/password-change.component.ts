@@ -18,14 +18,24 @@ export class PasswordChangeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.passwordChangeForm = new FormGroup({
-      currentPassword: new FormControl("",
-        [Validators.required]),
-      newPassword: new FormControl("",
-        [Validators.required, Validators.minLength(7)]),
-      confirmPassword: new FormControl("",
-        [Validators.required, Validators.minLength(7)])
-    }, this.passwordMatchValidator);
+    if (this.showCurrentPassword) {
+      this.passwordChangeForm = new FormGroup({
+        currentPassword: new FormControl("",
+          [Validators.required]),
+        newPassword: new FormControl("",
+          [Validators.required, Validators.minLength(7)]),
+        confirmPassword: new FormControl("",
+          [Validators.required, Validators.minLength(7)])
+      }, this.passwordMatchValidator);
+    } else {
+      this.passwordChangeForm = new FormGroup({
+        currentPassword: new FormControl(""),
+        newPassword: new FormControl("",
+          [Validators.required, Validators.minLength(7)]),
+        confirmPassword: new FormControl("",
+          [Validators.required, Validators.minLength(7)])
+      }, this.passwordMatchValidator);
+    }
   }
 
   private passwordMatchValidator = function (fg: FormGroup) {
