@@ -1,5 +1,5 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Component, Inject, Input, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
@@ -15,7 +15,7 @@ import {OrderArchivingSettingsService} from "../order-archiving-settings.service
   templateUrl: "./order-archiving-table.component.html",
   styleUrls: ["./order-archiving-table.component.scss"]
 })
-export class OrderArchivingTableComponent extends BaseTableComponent<OrderDto> implements OnInit {
+export class OrderArchivingTableComponent extends BaseTableComponent<OrderDto> implements OnInit, AfterViewInit {
   private headers = new HttpHeaders({"Content-Type": "application/json"});
 
   @Input() displayedColumns: string[];
@@ -38,6 +38,10 @@ export class OrderArchivingTableComponent extends BaseTableComponent<OrderDto> i
       this.lastData = data;
       this.dataSource.data = data;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   public async archiving(id: number) {

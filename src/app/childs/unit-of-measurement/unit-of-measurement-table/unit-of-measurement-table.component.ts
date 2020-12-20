@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, Input, ViewChild} from "@angular/core";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {UnitOfMeasurementDto} from "citrus-common";
@@ -11,14 +11,18 @@ import {UnitOfMeasurementSettingsService} from "../unit-of-measurement-settings.
   templateUrl: "./unit-of-measurement-table.component.html",
   styleUrls: ["./unit-of-measurement-table.component.scss"]
 })
-export class UnitOfMeasurementTableComponent extends BaseTableComponent<UnitOfMeasurementDto> {
+export class UnitOfMeasurementTableComponent extends BaseTableComponent<UnitOfMeasurementDto> implements AfterViewInit {
 
   @Input() displayedColumns: string[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(rest: UnitOfMeasurementDtoRestService, settings: UnitOfMeasurementSettingsService) {
     super(rest, settings);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 }

@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, Input, ViewChild} from "@angular/core";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {ArticleDto} from "citrus-common";
@@ -11,7 +11,7 @@ import {ArticleSettingsService} from "../article-settings.service";
   templateUrl: "./article-table.component.html",
   styleUrls: ["./article-table.component.scss"]
 })
-export class ArticleTableComponent extends BaseTableComponent<ArticleDto> {
+export class ArticleTableComponent extends BaseTableComponent<ArticleDto> implements AfterViewInit{
 
   @Input() displayedColumns: string[];
 
@@ -20,5 +20,9 @@ export class ArticleTableComponent extends BaseTableComponent<ArticleDto> {
 
   constructor(rest: ArticleDtoRestService, settings: ArticleSettingsService) {
     super(rest, settings);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 }

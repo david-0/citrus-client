@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {LocationDto} from "citrus-common";
@@ -12,7 +12,7 @@ import {LocationSettingsService} from "../location-settings.service";
   templateUrl: "./location-table.component.html",
   styleUrls: ["./location-table.component.scss"]
 })
-export class LocationTableComponent extends BaseTableComponent<LocationDto> implements OnInit {
+export class LocationTableComponent extends BaseTableComponent<LocationDto> implements OnInit, AfterViewInit {
 
   @Input() displayedColumns: string[];
   @Input() dataObservable: Observable<LocationDto[]>;
@@ -28,5 +28,9 @@ export class LocationTableComponent extends BaseTableComponent<LocationDto> impl
     this.dataObservable.subscribe(data => {
       this.dataSource.data = data;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 }

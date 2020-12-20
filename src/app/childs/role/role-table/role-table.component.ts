@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, Input, ViewChild} from "@angular/core";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {RoleDto} from "citrus-common/lib/dto/role-dto";
@@ -11,15 +11,18 @@ import {RoleSettingsService} from "../role-settings.service";
   templateUrl: "./role-table.component.html",
   styleUrls: ["./role-table.component.scss"]
 })
-export class RoleTableComponent extends BaseTableComponent<RoleDto> {
+export class RoleTableComponent extends BaseTableComponent<RoleDto> implements AfterViewInit {
 
   @Input() displayedColumns: string[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(rest: RoleDtoRestService, settings: RoleSettingsService) {
     super(rest, settings);
   }
 
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
 }

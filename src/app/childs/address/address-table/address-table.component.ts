@@ -16,9 +16,13 @@ export class AddressTableComponent extends BaseTableComponent<AddressDto>{
   @Input() displayedColumns: string[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(rest: AddressWithUserDtoRestService, settings: AddressSettingsService) {
     super(rest, settings);
+  }
+  
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {ArticleCheckInDto} from "citrus-common";
@@ -11,7 +11,7 @@ import {ArticleCheckinSettingsService} from "../article-checkin-settings.service
   templateUrl: "./article-checkin-table.component.html",
   styleUrls: ["./article-checkin-table.component.scss"]
 })
-export class ArticleCheckinTableComponent extends BaseTableComponent<ArticleCheckInDto> implements OnInit {
+export class ArticleCheckinTableComponent extends BaseTableComponent<ArticleCheckInDto> implements OnInit, AfterViewInit {
 
   @Input() displayedColumns: string[];
 
@@ -27,6 +27,10 @@ export class ArticleCheckinTableComponent extends BaseTableComponent<ArticleChec
       this.dataSource.data = data;
       this.dataSource.filterPredicate = this.filterPredicate;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   private filterPredicate(data: ArticleCheckInDto, filter: string): boolean {

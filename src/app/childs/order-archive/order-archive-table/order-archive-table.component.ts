@@ -1,5 +1,5 @@
 import {HttpClient} from "@angular/common/http";
-import {Component, Inject, Input, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {OrderArchiveDto} from "citrus-common";
@@ -13,7 +13,7 @@ import {OrderArchiveSettingsService} from "../order-archive-settings.service";
   templateUrl: "./order-archive-table.component.html",
   styleUrls: ["./order-archive-table.component.scss"]
 })
-export class OrderArchiveTableComponent extends BaseTableComponent<OrderArchiveDto> implements OnInit {
+export class OrderArchiveTableComponent extends BaseTableComponent<OrderArchiveDto> implements OnInit, AfterViewInit {
 
   @Input() displayedColumns: string[];
   @Input() dataObservable: Observable<OrderArchiveDto[]>;
@@ -33,6 +33,10 @@ export class OrderArchiveTableComponent extends BaseTableComponent<OrderArchiveD
       this.dataSource.data = data;
       this.dataSource.filterPredicate = this.filterPredicate;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   private filterPredicate(data: OrderArchiveDto, filter: string): boolean {

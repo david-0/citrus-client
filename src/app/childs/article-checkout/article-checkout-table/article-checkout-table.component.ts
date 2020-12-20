@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {ArticleCheckOutDto} from "citrus-common";
@@ -11,7 +11,7 @@ import {ArticleCheckoutWithAllDtoRestService} from "../article-checkout-with-all
   templateUrl: "./article-checkout-table.component.html",
   styleUrls: ["./article-checkout-table.component.scss"]
 })
-export class ArticleCheckoutTableComponent extends BaseTableComponent<ArticleCheckOutDto> implements OnInit {
+export class ArticleCheckoutTableComponent extends BaseTableComponent<ArticleCheckOutDto> implements OnInit, AfterViewInit {
 
   @Input() displayedColumns: string[];
 
@@ -27,6 +27,10 @@ export class ArticleCheckoutTableComponent extends BaseTableComponent<ArticleChe
       this.dataSource.data = data;
       this.dataSource.filterPredicate = this.filterPredicate;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   private filterPredicate(data: ArticleCheckOutDto, filter: string): boolean {

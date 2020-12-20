@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {OrderDto} from "citrus-common/lib/dto/order-dto";
 import {MatPaginator} from "@angular/material/paginator";
@@ -15,7 +15,7 @@ import {DeliveryNoteService} from "../delivery-note.service";
   templateUrl: './delivery-note-table.component.html',
   styleUrls: ['./delivery-note-table.component.scss']
 })
-export class DeliveryNoteTableComponent extends BaseTableComponent<OrderDto> implements OnInit {
+export class DeliveryNoteTableComponent extends BaseTableComponent<OrderDto> implements OnInit, AfterViewInit {
 
   @Input() displayedColumns: string[];
   @Input() dataObservable: BehaviorSubject<OrderDto[]>;
@@ -35,6 +35,11 @@ export class DeliveryNoteTableComponent extends BaseTableComponent<OrderDto> imp
     this.dataObservable.subscribe(data => {
       this.dataSource.data = data;
     });
+  }
+
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   public downloadDeliveryNote(orderId: number) {

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from "@angular/core";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {ArticleStockDto} from "citrus-common";
@@ -11,7 +11,7 @@ import {ArticleStockWithDtoAllRestService} from "../article-stock-with-dto-all-r
   templateUrl: "./article-stock-table.component.html",
   styleUrls: ["./article-stock-table.component.scss"]
 })
-export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockDto> implements OnInit {
+export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockDto> implements OnInit, AfterViewInit {
 
   @Input() displayedColumns: string[];
 
@@ -28,6 +28,10 @@ export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockD
       this.dataSource.data = data;
       this.dataSource.filterPredicate = this.filterPredicate;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   private filterPredicate(data: ArticleStockDto, filter: string): boolean {
