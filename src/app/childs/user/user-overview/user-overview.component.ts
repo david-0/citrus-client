@@ -26,7 +26,7 @@ export class UserOverviewComponent implements OnInit {
 
   ngOnInit() {
     const subscription = this.rest.getAll().subscribe(data => {
-      this.dataSource.data = data;
+      this.dataSource.data = data.sort((n1,n2)=>n1.name.localeCompare(n2.name));
     });
   }
 
