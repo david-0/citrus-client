@@ -21,7 +21,7 @@ export class AddressTableComponent extends BaseTableComponent<AddressDto>{
   constructor(rest: AddressWithUserDtoRestService, settings: AddressSettingsService) {
     super(rest, settings);
   }
-  
+
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }

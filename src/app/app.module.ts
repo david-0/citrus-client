@@ -148,18 +148,19 @@ import {ResetMailConfirmationComponent} from "./usermanagement/reset-mail-confir
 import {ResetMailComponent} from "./usermanagement/reset-mail/reset-mail.component";
 import {ResetPasswortWithTokenComponent} from "./usermanagement/reset-password-with-token/reset-passwort-with-token.component";
 import {UserConfirmationComponent} from "./usermanagement/user-confirmation/user-confirmation.component";
-import { OrderArchivingOverviewComponent } from './childs/order-archiving/order-archiving-overview/order-archiving-overview.component';
-import { OrderArchivingDetailComponent } from './childs/order-archiving/order-archiving-detail/order-archiving-detail.component';
-import { OrderArchiveTableComponent } from './childs/order-archive/order-archive-table/order-archive-table.component';
-import { OrderArchiveOverviewComponent } from './childs/order-archive/order-archive-overview/order-archive-overview.component';
-import { OrderArchiveDetailComponent } from './childs/order-archive/order-archive-detail/order-archive-detail.component';
-import { OrderArchiveDetailOnlyComponent } from './childs/order-archive/order-archive-detail-only/order-archive-detail-only.component';
-import { OrderArchiveDeleteComponent } from './childs/order-archive/order-archive-delete/order-archive-delete.component';
-import { SendEmailToAllComponent } from './message/send-email-to-all/send-email-to-all.component';
-import { SendHeaderComponent } from './message/send-header/send-header.component';
-import { DeliveryNoteOverviewComponent } from './childs/delivery-note/delivery-note-overview/delivery-note-overview.component';
-import { DeliveryNoteTableComponent } from './childs/delivery-note/delivery-note-table/delivery-note-table.component';
-import { DeliveryNoteDetailComponent } from './childs/delivery-note/delivery-note-detail/delivery-note-detail.component';
+import {OrderArchivingOverviewComponent} from './childs/order-archiving/order-archiving-overview/order-archiving-overview.component';
+import {OrderArchivingDetailComponent} from './childs/order-archiving/order-archiving-detail/order-archiving-detail.component';
+import {OrderArchiveTableComponent} from './childs/order-archive/order-archive-table/order-archive-table.component';
+import {OrderArchiveOverviewComponent} from './childs/order-archive/order-archive-overview/order-archive-overview.component';
+import {OrderArchiveDetailComponent} from './childs/order-archive/order-archive-detail/order-archive-detail.component';
+import {OrderArchiveDetailOnlyComponent} from './childs/order-archive/order-archive-detail-only/order-archive-detail-only.component';
+import {OrderArchiveDeleteComponent} from './childs/order-archive/order-archive-delete/order-archive-delete.component';
+import {SendEmailToAllComponent} from './message/send-email-to-all/send-email-to-all.component';
+import {SendHeaderComponent} from './message/send-header/send-header.component';
+import {DeliveryNoteOverviewComponent} from './childs/delivery-note/delivery-note-overview/delivery-note-overview.component';
+import {DeliveryNoteTableComponent} from './childs/delivery-note/delivery-note-table/delivery-note-table.component';
+import {DeliveryNoteDetailComponent} from './childs/delivery-note/delivery-note-detail/delivery-note-detail.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -307,6 +308,7 @@ import { DeliveryNoteDetailComponent } from './childs/delivery-note/delivery-not
     MySpinnerModule,
     MatChipsModule,
     MatBadgeModule,
+    MatSnackBarModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: AuthenticationService.getAccessToken,
