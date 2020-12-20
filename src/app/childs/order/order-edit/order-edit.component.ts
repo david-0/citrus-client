@@ -38,8 +38,8 @@ export class OrderEditComponent implements OnInit {
         this.orderId = this.order.id;
         this.order.date = new Date();
         this.orderDate = this.order.date;
-        this.locationRest.getAll().subscribe(locations => this.locationSubject.next(locations));
-        this.userRest.getAll().subscribe(users => this.userInfoSubject.next(users));
+        this.locationRest.getAll().subscribe(locations => this.locationSubject.next(locations.sort((n1, n2) => n1.city.localeCompare(n2.city))));
+        this.userRest.getAll().subscribe(users => this.userInfoSubject.next(users.sort((n1, n2) => n1.name.localeCompare(n2.name))));
       } else {
         combineLatest(this.orderRest.get(+params["id"]),
           this.locationRest.getAll(), this.userRest.getAll()
