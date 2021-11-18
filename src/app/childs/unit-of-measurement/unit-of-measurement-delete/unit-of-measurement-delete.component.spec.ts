@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import {MatCardModule} from "@angular/material/card";
 import {ActivatedRoute, Params} from "@angular/router";
 import {ReplaySubject} from "rxjs";
@@ -14,7 +14,7 @@ describe("UnitOfMeasurementDeleteComponent", () => {
   let activatedRouteSpy: any;
   let paramsSubject: ReplaySubject<Params>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     paramsSubject = new ReplaySubject<Params>(1);
     paramsSubject.next({id: 1});
     activatedRouteSpy = {params: paramsSubject};
