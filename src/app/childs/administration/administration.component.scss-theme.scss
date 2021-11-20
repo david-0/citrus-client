@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @mixin app-administration-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
@@ -7,7 +8,7 @@
 
   app-administration {
     .example-sidenav-item-selected {
-      background-color: mat-color($accent);
+      background-color: mat.get-color-from-palette($accent);
     }
   }
 }

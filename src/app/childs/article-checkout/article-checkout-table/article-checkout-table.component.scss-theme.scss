@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @mixin app-article-checkout-table-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
@@ -7,7 +8,7 @@
 
   app-article-checkout-table {
     .table-row--highligthed:hover {
-      background-color: mat-color($primary);
+      background-color: mat.get-color-from-palette($primary);
       transition: all 0.3s ease-in
     }
   }

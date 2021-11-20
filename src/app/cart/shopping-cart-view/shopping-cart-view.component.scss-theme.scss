@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @mixin app-shopping-cart-view-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
@@ -7,11 +8,11 @@
 
   app-shopping-cart-view {
     .cart-header {
-      background-color: mat-color($accent);
+      background-color: mat.get-color-from-palette($accent);
     }
 
     .cash-button {
-      background-color: mat-color($accent);
+      background-color: mat.get-color-from-palette($accent);
     }
   }
 }
