@@ -1,5 +1,5 @@
 <form #f="ngForm" (ngSubmit)="submit()">
-  <app-table-header titleText="Lagerbestand schätzen" showBack="true" showCancelAndSave="true"
+  <app-table-header titleText="Lagerbestand schätzen" [showBack]="true" [showCancelAndSave]="true"
                     [form]="f"></app-table-header>
   <div class="fullView">
     <div class="smallerView">

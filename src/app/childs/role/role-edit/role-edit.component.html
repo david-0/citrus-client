@@ -1,5 +1,5 @@
 <form #f="ngForm" (ngSubmit)="submit()">
-  <app-table-header titleText="Role bearbeiten" showBack="true" showCancelAndSave="true"
+  <app-table-header titleText="Role bearbeiten" [showBack]="true" [showCancelAndSave]="true"
                     [form]="f"></app-table-header>
   <mat-card class="mat-card-padding">
     <mat-form-field class="full-width" color="accent">

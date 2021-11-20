@@ -1,8 +1,8 @@
-import {Component, isDevMode, OnInit} from "@angular/core";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {first} from "rxjs/operators";
-import {AuthenticationService} from "../authentication/authentication.service";
+import { Component, isDevMode, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { first } from "rxjs/operators";
+import { AuthenticationService } from "../authentication/authentication.service";
 
 @Component({
   selector: "app-login",
@@ -24,17 +24,17 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [Validators.required,
-        Validators.minLength(7)])
+      Validators.minLength(7)])
     });
     this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
   }
 
-  get email() {
-    return this.loginForm.get("email");
+  get email(): FormControl {
+    return <FormControl>this.loginForm.get("email");
   }
 
-  get password() {
-    return this.loginForm.get("password");
+  get password(): FormControl {
+    return <FormControl>this.loginForm.get("password");
   }
 
   submit() {

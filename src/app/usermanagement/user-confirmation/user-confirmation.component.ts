@@ -29,7 +29,7 @@ export class UserConfirmationComponent implements OnInit {
     });
   }
 
-  private async setPassword(password: string) {
+  public async setPassword(password: string) {
     this.busy = true;
     await this.authenticationService.confirmUserAndSetPassword(this.token, password).subscribe(done => {
       this.busy = false;

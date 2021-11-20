@@ -1,5 +1,5 @@
 <form #f="ngForm" (ngSubmit)="submit()">
-  <app-table-header titleText="bestellter Artikel bearbeiten" showBack="true" showCancelAndSave="true"
+  <app-table-header titleText="bestellter Artikel bearbeiten" [showBack]="true" [showCancelAndSave]="true"
                     [form]="f"></app-table-header>
   <div class="main-container">
     <mat-card class="mat-card-padding">

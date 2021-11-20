@@ -1,5 +1,5 @@
 <form #f="ngForm" (ngSubmit)="submit()">
-  <app-table-header titleText="Masseinheit bearbeiten" showBack="true" showCancelAndSave="true"
+  <app-table-header titleText="Masseinheit bearbeiten" [showBack]="true" [showCancelAndSave]="true"
                     [form]="f"></app-table-header>
   <mat-card class="mat-card-padding">
     <div class="row_20_80">

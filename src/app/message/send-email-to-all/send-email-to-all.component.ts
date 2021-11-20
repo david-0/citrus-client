@@ -21,7 +21,7 @@ export class SendEmailToAllComponent implements OnInit {
     this.reset();
   }
 
-  private reset() {
+  public reset() {
     this.messageDto = new MessageDto("", "", []);
     this._userPairs = this._userPairs.map(p => ({user: p.user, checked: false}));
     this.sendResult = "";

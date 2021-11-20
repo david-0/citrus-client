@@ -1,12 +1,12 @@
 <div *ngIf="sendResult">
-  <app-send-header titleText="Nachricht versandt" showBack="true"></app-send-header>
+  <app-send-header titleText="Nachricht versandt" [showBack]="true"></app-send-header>
   <p>Die Meldung wurde verschickt.</p>
   <button type="button" color="accent" class="selector" mat-raised-button (click)="reset()">zurück</button>
   <p>{{sendResult}}</p>
 </div>
 <div *ngIf="!sendResult">
   <form #f="ngForm" (ngSubmit)="submit()">
-    <app-send-header titleText="Nachricht schreiben" showBack="true" showSend="true" [form]="f"></app-send-header>
+    <app-send-header titleText="Nachricht schreiben" [showBack]="true" [showSend]="true" [form]="f"></app-send-header>
     <mat-card class="mat-card-padding">
       <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Betreff" #subject [(ngModel)]="messageDto.subject" required

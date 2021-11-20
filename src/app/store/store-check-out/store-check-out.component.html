@@ -1,5 +1,5 @@
 <form #f="ngForm" (ngSubmit)="submit()">
-  <app-table-header titleText="Ausbuchung bearbeiten" showBack="true" showCancelAndSave="true"
+  <app-table-header titleText="Ausbuchung bearbeiten" [showBack]="true" [showCancelAndSave]="true"
                     [form]="f"></app-table-header>
   <div class="fullView">
     <div class="smallerView">
