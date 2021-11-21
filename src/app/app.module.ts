@@ -312,7 +312,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     JwtModule.forRoot({
       config: {
         tokenGetter: AuthenticationService.getAccessToken,
-        whitelistedDomains: [
+        allowedDomains: [
           "localhost:3001",
         ]
       }
