@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormControl} from "@angular/forms";
+import {UntypedFormControl} from "@angular/forms";
 import {LocationDto} from "citrus-common";
 import {LocationDtoRestService} from "../../childs/location/location-dto-rest.service";
 import {SaleLocationService} from "../sale-location.service";
@@ -12,13 +12,13 @@ import {SaleLocationService} from "../sale-location.service";
 export class SaleLocationComponent implements OnInit {
 
   private _locations: LocationDto[] = [];
-  public saleLocation: FormControl;
+  public saleLocation: UntypedFormControl;
 
   constructor(private rest: LocationDtoRestService, private saleLocationService: SaleLocationService) {
   }
 
   ngOnInit() {
-    this.saleLocation = new FormControl();
+    this.saleLocation = new UntypedFormControl();
     this.saleLocation.valueChanges.subscribe(value => {
       this.saleLocationService.setSaleLocation(value);
     });

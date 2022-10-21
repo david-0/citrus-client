@@ -1,6 +1,6 @@
 import {HttpErrorResponse} from "@angular/common/http";
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CartDto, LocationDto} from "citrus-common";
 import {CartService} from "../../cart/cart.service";
@@ -13,21 +13,21 @@ import {CartRestService} from "../cart-rest.service";
   styleUrls: ["./checkout.component.scss"]
 })
 export class CheckoutComponent implements OnInit {
-  firstFormGroup: FormGroup;
-  firstCtrl: FormControl;
-  secondFormGroup: FormGroup;
+  firstFormGroup: UntypedFormGroup;
+  firstCtrl: UntypedFormControl;
+  secondFormGroup: UntypedFormGroup;
   state = "emptyCart";
   orderNumber: number;
   error: string;
   selectedCart: CartDto = new CartDto(LocationDto.createEmpty(), 0, "");
-  commentFormGroup: FormGroup;
-  commentCtrl: FormControl;
+  commentFormGroup: UntypedFormGroup;
+  commentCtrl: UntypedFormControl;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               public cartService: CartService,
               private cartRestService: CartRestService,
-              private _formBuilder: FormBuilder,
+              private _formBuilder: UntypedFormBuilder,
               private locationRest: LocationWithOpeninghHoursDtoRestService) {
   }
 
@@ -49,7 +49,7 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: new FormControl([null]),
+      firstCtrl: new UntypedFormControl([null]),
     });
     this.firstFormGroup.get("firstCtrl").valueChanges.subscribe(value => {
       this.cartService.updatePlannedCheckout(this.selectedCart.location.id, value);
@@ -58,7 +58,7 @@ export class CheckoutComponent implements OnInit {
       secondCtrl: [""]
     });
     this.commentFormGroup = this._formBuilder.group({
-      commentCtrl: new FormControl([null]),
+      commentCtrl: new UntypedFormControl([null]),
     });
     this.commentFormGroup.get("commentCtrl").valueChanges.subscribe(value => {
       this.cartService.updateComment(this.selectedCart.location.id, value);

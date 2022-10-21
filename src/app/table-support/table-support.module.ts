@@ -17,35 +17,34 @@ import {TableFilterComponent} from "./table-filter/table-filter.component";
 import {TableHeaderComponent} from "./table-header/table-header.component";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatInputModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    FileUploadModule,
-  ],
-  declarations: [
-    LineComponent,
-    TableHeaderComponent,
-    OkCancelDialogComponent,
-    TableFilterComponent,
-    ProgessSpinnerComponent,
-    ImageUploadComponent,
-  ],
-  exports: [
-    LineComponent,
-    TableHeaderComponent,
-    TableFilterComponent,
-    ProgessSpinnerComponent,
-    ImageUploadComponent,
-  ],
-  entryComponents: [OkCancelDialogComponent]
+    imports: [
+        CommonModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        MatInputModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        FileUploadModule,
+    ],
+    declarations: [
+        LineComponent,
+        TableHeaderComponent,
+        OkCancelDialogComponent,
+        TableFilterComponent,
+        ProgessSpinnerComponent,
+        ImageUploadComponent,
+    ],
+    exports: [
+        LineComponent,
+        TableHeaderComponent,
+        TableFilterComponent,
+        ProgessSpinnerComponent,
+        ImageUploadComponent,
+    ]
 })
 export class TableSupportModule {
 }

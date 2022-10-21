@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup, NgForm, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-password-change",
@@ -10,7 +10,7 @@ export class PasswordChangeComponent implements OnInit {
 
   hide = true;
   ngF: NgForm;
-  passwordChangeForm: FormGroup;
+  passwordChangeForm: UntypedFormGroup;
   @Input() showCurrentPassword = false;
   @Output() onChange = new EventEmitter<string>();
   @Output() onChangeWithCurrent = new EventEmitter<{ currentPassword: string, newPassword: string }>();
@@ -20,20 +20,20 @@ export class PasswordChangeComponent implements OnInit {
 
   ngOnInit() {
     if (this.showCurrentPassword) {
-      this.passwordChangeForm = new FormGroup({
-        currentPassword: new FormControl("",
+      this.passwordChangeForm = new UntypedFormGroup({
+        currentPassword: new UntypedFormControl("",
           [Validators.required]),
-        newPassword: new FormControl("",
+        newPassword: new UntypedFormControl("",
           [Validators.required, Validators.minLength(7)]),
-        confirmPassword: new FormControl("",
+        confirmPassword: new UntypedFormControl("",
           [Validators.required, Validators.minLength(7)])
       }, this.passwordMatchValidator);
     } else {
-      this.passwordChangeForm = new FormGroup({
-        currentPassword: new FormControl(""),
-        newPassword: new FormControl("",
+      this.passwordChangeForm = new UntypedFormGroup({
+        currentPassword: new UntypedFormControl(""),
+        newPassword: new UntypedFormControl("",
           [Validators.required, Validators.minLength(7)]),
-        confirmPassword: new FormControl("",
+        confirmPassword: new UntypedFormControl("",
           [Validators.required, Validators.minLength(7)])
       }, this.passwordMatchValidator);
     }
@@ -41,20 +41,20 @@ export class PasswordChangeComponent implements OnInit {
     this.ngF.form = this.passwordChangeForm;
   }
 
-  private passwordMatchValidator = function (fg: FormGroup) {
+  private passwordMatchValidator = function (fg: UntypedFormGroup) {
     return fg.get("newPassword").value === fg.get("confirmPassword").value ? null : { "mismatch": true };
   };
 
-  get currentPassword(): FormControl {
-    return <FormControl>this.passwordChangeForm.get("currentPassword");
+  get currentPassword(): UntypedFormControl {
+    return <UntypedFormControl>this.passwordChangeForm.get("currentPassword");
   }
 
-  get confirmPassword(): FormControl {
-    return <FormControl>this.passwordChangeForm.get("confirmPassword");
+  get confirmPassword(): UntypedFormControl {
+    return <UntypedFormControl>this.passwordChangeForm.get("confirmPassword");
   }
 
-  get newPassword(): FormControl {
-    return <FormControl>this.passwordChangeForm.get("newPassword");
+  get newPassword(): UntypedFormControl {
+    return <UntypedFormControl>this.passwordChangeForm.get("newPassword");
   }
 
   submit() {
@@ -65,7 +65,7 @@ export class PasswordChangeComponent implements OnInit {
     }
   }
 
-  getErrorMessage(control: FormControl) {
+  getErrorMessage(control: UntypedFormControl) {
     return control.hasError("required") ? "Eingabe erforderlich" :
       control.hasError("email") ? "E-Mailadresse ungültig" :
         control.hasError("minlength") ? "Mindestlänge 7 Zeichen" :
@@ -73,7 +73,7 @@ export class PasswordChangeComponent implements OnInit {
             "";
   }
 
-  getFormErrorMessage(control: FormGroup) {
+  getFormErrorMessage(control: UntypedFormGroup) {
     return control.hasError("required") ? "Eingabe erforderlich" :
       control.hasError("email") ? "E-Mailadresse ungültig" :
         control.hasError("minlength") ? "Mindestlänge 7 Zeichen" :
