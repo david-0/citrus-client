@@ -31,3 +31,7 @@ docker build -t citrus-client .
 
 docker run -it   -v ${PWD}:/usr/src/app   -v /usr/src/app/node_modules   -p 4200:4200   --rm   citrus-client 
 docker run -d   -v ${PWD}:/usr/src/app   -v /usr/src/app/node_modules   -p 4200:4200   --rm --name citrus-client-container citrus-client
+
+ReCaptcha V3:
+Registiert mit User: usgwehlt@gmail.com --> Ändern auf Koni's User
+https://www.c-sharpcorner.com/article/implementing-google-recaptcha-v3-in-angular-14/
