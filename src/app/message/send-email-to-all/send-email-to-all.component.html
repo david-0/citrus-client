@@ -9,14 +9,13 @@
     <app-send-header titleText="Nachricht schreiben" [showBack]="true" [showSend]="true" [form]="f"></app-send-header>
     <mat-card class="mat-card-padding">
       <mat-form-field class="full-width" color="accent">
-        <input matInput placeholder="Betreff" #subject [(ngModel)]="messageDto.subject" required
-               maxlength="256" name="subject">
+        <input matInput placeholder="Betreff" #subject [(ngModel)]="messageDto.subject" required maxlength="256"
+          name="subject">
         <mat-hint align="end">{{subject.value.length}}</mat-hint>
       </mat-form-field>
       <mat-form-field class="full-width" color="accent">
-      <textarea class="mail-content" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="30" placeholder="Inhalt" #message [(ngModel)]="messageDto.content" required
-                name="message"></textarea>
+        <textarea class="mail-content" matInput placeholder="Inhalt" #message [(ngModel)]="messageDto.content"
+          required name="message"></textarea>
         <mat-hint align="end">{{message.value.length}}</mat-hint>
       </mat-form-field>
       <h3 class="h3__padding">Email Empfänger</h3>
