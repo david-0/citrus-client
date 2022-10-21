@@ -6,5 +6,8 @@ const providers: any[] = [
 export const ENV_PROVIDERS = providers;
 
 export const environment = {
-  production: true
+  production: true,
+  recaptcha: {
+    siteKey: '6LdcbJ0iAAAAAPjRv-Jorxzx8saHlCGs2aVkO4Sd',
+  }
 };
