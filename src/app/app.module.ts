@@ -31,7 +31,6 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { JwtModule } from "@auth0/angular-jwt";
-import { ValidatorsModule } from "ng2-validators";
 import { ENV_PROVIDERS } from "../environments/environment";
 
 import { AppComponent } from "./app.component";
@@ -163,6 +162,7 @@ import { DeliveryNoteDetailComponent } from './childs/delivery-note/delivery-not
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { environment } from '../environments/environment';
+import { ValidatorsModule } from 'ngx-validators';
 
 @NgModule({
   declarations: [
@@ -296,7 +296,6 @@ import { environment } from '../environments/environment';
     MatTableModule,
     MatSortModule,
     FormsModule,
-    ValidatorsModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatMenuModule,
@@ -312,6 +311,7 @@ import { environment } from '../environments/environment';
     MatBadgeModule,
     MatSnackBarModule,
     RecaptchaV3Module,
+    ValidatorsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: AuthenticationService.getAccessToken,
