@@ -81,6 +81,7 @@ import {ResetPasswortWithTokenComponent} from "../usermanagement/reset-password-
 import {UserConfirmationComponent} from "../usermanagement/user-confirmation/user-confirmation.component";
 import {DeliveryNoteOverviewComponent} from "../childs/delivery-note/delivery-note-overview/delivery-note-overview.component";
 import {DeliveryNoteDetailComponent} from "../childs/delivery-note/delivery-note-detail/delivery-note-detail.component";
+import { LocationOpeningHoursComponent } from "../footer/location-opening-hours/location-opening-hours.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "organisation", pathMatch: "full"},
@@ -95,6 +96,7 @@ const routes: Routes = [
   {path: "logout", component: LogoutComponent},
   {path: "aboutUs", component: AboutUsComponent},
   {path: "contact", component: ContactComponent},
+  {path: "locations", component:LocationOpeningHoursComponent},
   {path: "organisation", component: OrganisationComponent},
   {path: "privacyPolicy", component: PrivacyPolicyComponent},
   {path: "checkout/:id", canActivate: [AuthGuard], component: CheckoutComponent},

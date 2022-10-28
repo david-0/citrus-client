@@ -163,6 +163,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { environment } from '../environments/environment';
 import { ValidatorsModule } from 'ngx-validators';
+import { LocationOpeningHoursComponent } from "./footer/location-opening-hours/location-opening-hours.component";
 
 @NgModule({
   declarations: [
@@ -273,6 +274,7 @@ import { ValidatorsModule } from 'ngx-validators';
     DeliveryNoteOverviewComponent,
     DeliveryNoteTableComponent,
     DeliveryNoteDetailComponent,
+    LocationOpeningHoursComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,7 @@
+<div>
+  <h3 class="h3__padding">Übersicht Standorte / Abholzeiten</h3>
+</div>
+<div class="main-container">
+  <app-location-detail-only *ngFor="let location of locations | async" class="main-container" [location]="location"></app-location-detail-only>
+  <p>Weiter zu den <a [routerLink]="['/dashboard']">Früchten</a></p>
+</div>
