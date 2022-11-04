@@ -164,6 +164,11 @@ import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { environment } from '../environments/environment';
 import { ValidatorsModule } from 'ngx-validators';
 import { LocationOpeningHoursComponent } from "./footer/location-opening-hours/location-opening-hours.component";
+import { MessageTemplateDeleteComponent } from "./childs/message-template/message-template-delete/message-template-delete.component";
+import { MessageTemplateDetailsComponent } from "./childs/message-template/message-template-details/message-template-details.component";
+import { MessageTemplateEditComponent } from "./childs/message-template/message-template-edit/message-template-edit.component";
+import { MessageTemplateOverviewComponent } from "./childs/message-template/message-template-overview/message-template-overview.component";
+import { MessageTemplateTableComponent } from "./childs/message-template/message-template-table/message-template-table.component";
 
 @NgModule({
   declarations: [
@@ -275,6 +280,11 @@ import { LocationOpeningHoursComponent } from "./footer/location-opening-hours/l
     DeliveryNoteTableComponent,
     DeliveryNoteDetailComponent,
     LocationOpeningHoursComponent,
+    MessageTemplateDeleteComponent,
+    MessageTemplateDetailsComponent,
+    MessageTemplateEditComponent,
+    MessageTemplateOverviewComponent,
+    MessageTemplateTableComponent,
   ],
   imports: [
     BrowserModule,

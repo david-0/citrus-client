@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+@mixin app-message-template-table-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  app-message-template-table {
+    .table-row--highligthed:hover {
+      background-color: mat.get-color-from-palette($primary);
+      transition: all 0.3s ease-in
+    }
+  }
+}
+

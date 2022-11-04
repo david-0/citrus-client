@@ -1,0 +1,18 @@
+<form #f="ngForm" (ngSubmit)="submit()">
+  <app-table-header titleText="Email-Vorlage bearbeiten" [showBack]="true" [showCancelAndSave]="true"
+                    [form]="f"></app-table-header>
+  <mat-card class="mat-card-padding">
+    <div class="row_20_80">
+      <mat-form-field class="full-width" color="accent">
+        <input matInput placeholder="Betreff" #subject [(ngModel)]="messageTemplateDto.subject"
+               maxlength="256" name="subject">
+        <mat-hint align="end">{{subject.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width" color="accent">
+        <textarea class="mail-content" matInput placeholder="Inhalt" #content [(ngModel)]="messageTemplateDto.content"
+          required name="content"></textarea>
+        <mat-hint align="end">{{content.value.length}}</mat-hint>
+      </mat-form-field>
+    </div>
+  </mat-card>
+</form>

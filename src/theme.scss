@@ -41,6 +41,7 @@ $my-theme: mat.define-light-theme(
 @import "app/childs/order-archiving/order-archiving-table/order-archiving-table.component.scss-theme";
 @import "app/message/send-header/send-header.component.scss-theme";
 @import "app/childs/delivery-note/delivery-note-table/delivery-note-table.component.scss-theme";
+@import "app/childs/message-template/message-template-table/message-template-table.component.scss-theme.scss";
 
 
 @mixin my-component-theme($theme) {
@@ -70,6 +71,7 @@ $my-theme: mat.define-light-theme(
   @include app-order-archiving-table-theme($theme);
   @include app-send-header-theme($theme);
   @include app-delivery-note-table-theme($theme);
+  @include app-message-template-table-theme($theme);
 }
 
 @include mat.all-component-themes($my-theme);
