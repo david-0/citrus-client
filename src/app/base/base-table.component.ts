@@ -1,12 +1,12 @@
 import { OnInit, Directive } from "@angular/core";
 import {MatTableDataSource} from "@angular/material/table";
-import {DtoId} from "citrus-common/lib/dto/dto-id";
+import {IDtoId} from "citrus-common/lib/dto/dto-id";
 import {GenericRestService} from "../table-support/generic-rest.service";
 import {SettingsServiceInterface} from "../table-support/settings-service-interface";
 import {MatSort} from "@angular/material/sort";
 
 @Directive()
-export class BaseTableComponent<T extends DtoId> implements OnInit {
+export class BaseTableComponent<T extends IDtoId> implements OnInit {
 
   dataSource = new MatTableDataSource<T>();
 

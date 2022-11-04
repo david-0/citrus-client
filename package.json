@@ -28,7 +28,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@iplab/ngx-file-upload": "^14.0.0",
     "@types/socket.io-client": "^3.0.0",
-    "citrus-common": "^0.4.32",
+    "citrus-common": "^0.6.0",
     "core-js": "^3.19.1",
     "file-saver": "^2.0.5",
     "material-design-icons": "^3.0.1",
