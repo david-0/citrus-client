@@ -16,6 +16,10 @@
         <mat-icon>shop</mat-icon>
         <span class="button-space">Shop</span>
       </button>
+      <button *ngIf="authService.loggedIn()" mat-button class="sale-button" routerLink="/locations">
+        <mat-icon>schedule</mat-icon>
+        <span class="footer-button">Abholzeiten</span>
+      </button>
       <span class="fill-remaining-space"></span>
       <button *ngIf="authService.isSale()" mat-raised-button class="sale-button" routerLink="/sale">
         <mat-icon>money</mat-icon>
@@ -71,11 +75,6 @@
       <button mat-button class="sale-button" routerLink="/organisation">
         <mat-icon>home</mat-icon>
         <span class="footer-button">Organisation der Früchte</span>
-      </button>
-      <span class="fill-remaining-space"></span>
-      <button mat-button class="sale-button" routerLink="/locations">
-        <mat-icon>schedule</mat-icon>
-        <span class="footer-button">Abholzeiten</span>
       </button>
       <span class="fill-remaining-space"></span>
       <button mat-button class="sale-button" routerLink="/aboutUs">

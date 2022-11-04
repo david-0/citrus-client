@@ -96,7 +96,6 @@ const routes: Routes = [
   {path: "logout", component: LogoutComponent},
   {path: "aboutUs", component: AboutUsComponent},
   {path: "contact", component: ContactComponent},
-  {path: "locations", component:LocationOpeningHoursComponent},
   {path: "organisation", component: OrganisationComponent},
   {path: "privacyPolicy", component: PrivacyPolicyComponent},
   {path: "checkout/:id", canActivate: [AuthGuard], component: CheckoutComponent},
@@ -106,6 +105,7 @@ const routes: Routes = [
   {path: "store/checkIn", canActivate: [AuthGuard, AuthGuardStore], component: StoreCheckInComponent},
   {path: "store/checkOut", canActivate: [AuthGuard, AuthGuardStore], component: StoreCheckOutComponent},
   {path: "store/estimate", canActivate: [AuthGuard, AuthGuardStore], component: StoreEstimateComponent},
+  {path: "locations", canActivate: [AuthGuard], component:LocationOpeningHoursComponent},
   {
     path: "administration", canActivate: [AuthGuard, AuthGuardAdmin], component: AdministrationComponent, children: [
       {path: "address", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressOverviewComponent},
