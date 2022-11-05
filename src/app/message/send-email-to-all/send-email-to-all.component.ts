@@ -1,6 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MessageDto, UserDto} from "citrus-common";
+import {MessageDto, MessageTemplateDto, UserDto} from "citrus-common";
+import { BehaviorSubject } from "rxjs";
+import { MessageTemplateDtoRestService } from "../../childs/message-template/message-template-dto-rest.service";
 import {UserWithAllDtoRestService} from "../../childs/user/user-with-all-dto-rest.service";
 import {MessageRestService} from "../message-rest.service";
 
@@ -10,13 +12,16 @@ import {MessageRestService} from "../message-rest.service";
   styleUrls: ["./send-email-to-all.component.scss"]
 })
 export class SendEmailToAllComponent implements OnInit {
-  public messageDto: MessageDto = new MessageDto("", "", []);
   private _userPairs: Array<{ user: UserDto, checked: boolean }> = [];
+  private templates: BehaviorSubject<MessageTemplateDto[]> = new BehaviorSubject([]);
+  public messageDto: MessageDto = new MessageDto("", "", []);
+  public selectedTemplate = MessageTemplateDto.createEmpty();
   public sendResult = "";
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private rest: UserWithAllDtoRestService,
+              private messageTemplateRest: MessageTemplateDtoRestService,
               private messageService: MessageRestService) {
     this.reset();
   }
@@ -33,6 +38,9 @@ export class SendEmailToAllComponent implements OnInit {
         (a.user.name + a.user.prename + a.user.email).localeCompare(b.user.name + b.user.prename + b.user.email));
       ;
     });
+    this.messageTemplateRest.getAll().subscribe(templaes => {
+      this.templates.next(templaes);
+    })
   }
 
   public get userPairs(): { user: UserDto, checked: boolean }[] {
@@ -52,5 +60,15 @@ export class SendEmailToAllComponent implements OnInit {
 
   public selectNone() {
     this._userPairs.map(p => p.checked = false);
+  }
+
+  public getTemplates(): BehaviorSubject<MessageTemplateDto[]> {
+    return this.templates;
+  }
+
+  public selectionChanged() {
+    this.messageDto.subject = this.selectedTemplate.subject;
+    this.messageDto.content = this.selectedTemplate.content;
+    this.selectedTemplate = MessageTemplateDto.createEmpty();
   }
 }

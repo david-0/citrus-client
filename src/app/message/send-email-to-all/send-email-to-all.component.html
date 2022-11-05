@@ -7,6 +7,16 @@
 <div *ngIf="!sendResult">
   <form #f="ngForm" (ngSubmit)="submit()">
     <app-send-header titleText="Nachricht schreiben" [showBack]="true" [showSend]="true" [form]="f"></app-send-header>
+    <mat-card class="mat-card-padding mat-card-space">
+      <mat-form-field class="full-width" color="accent">
+        <mat-select placeholder="Email-Vorlage auswählen" #messageTemplate name="template"
+          (selectionChange)="selectionChanged()" [(value)]="selectedTemplate">
+          <mat-option *ngFor="let template of getTemplates() | async" [value]="template">
+            {{ template.subject }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card>
     <mat-card class="mat-card-padding">
       <mat-form-field class="full-width" color="accent">
         <input matInput placeholder="Betreff" #subject [(ngModel)]="messageDto.subject" required maxlength="256"
