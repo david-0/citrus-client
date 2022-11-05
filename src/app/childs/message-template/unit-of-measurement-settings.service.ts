@@ -1,7 +1,9 @@
 import {Injectable} from "@angular/core";
 import {SettingsServiceInterface} from "../../table-support/settings-service-interface";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MessageTemplateSettingsService implements SettingsServiceInterface {
 
   public pageSize = 5;

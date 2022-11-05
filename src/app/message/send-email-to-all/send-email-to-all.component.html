@@ -14,7 +14,7 @@
         <mat-hint align="end">{{subject.value.length}}</mat-hint>
       </mat-form-field>
       <mat-form-field class="full-width" color="accent">
-        <textarea class="mail-content" matInput placeholder="Inhalt" #message [(ngModel)]="messageDto.content"
+        <textarea rows="12" class="mail-content" matInput placeholder="Inhalt" #message [(ngModel)]="messageDto.content"
           required name="message"></textarea>
         <mat-hint align="end">{{message.value.length}}</mat-hint>
       </mat-form-field>
