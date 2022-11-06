@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from "@angular/core";
-import {ArticleDto} from "citrus-common";
-import {ArticleInSaleDtoRestService} from "../article-in-sale--dto-rest.service";
+import { Component, Inject, OnInit } from "@angular/core";
+import { ArticleDto } from "citrus-common";
+import { ArticleInSaleDtoRestService } from "../article-in-sale--dto-rest.service";
 
 @Component({
   selector: "app-public-article-stock-grid",
@@ -13,7 +13,7 @@ export class PublicArticleStockGridComponent implements OnInit {
   public _loading: boolean;
 
   constructor(private rest: ArticleInSaleDtoRestService,
-              @Inject("baseUrl") public baseUrl: string) {
+    @Inject("baseUrl") public baseUrl: string) {
     this._loading = true;
   }
 
@@ -35,6 +35,11 @@ export class PublicArticleStockGridComponent implements OnInit {
       this._loading = false;
       this._articles = articles
         .sort((a, b) => a.description.localeCompare(b.description))
+        .map(a => {
+          a.articleStocks = a.articleStocks
+            .filter(stock => stock.visible);
+          return a;
+        })
         .filter(a => a.articleStocks.length > 0);
       this._articles.forEach(a => {
         a.articleStocks = a.articleStocks.sort((a, b) => a.location.description.localeCompare(b.location.description));
