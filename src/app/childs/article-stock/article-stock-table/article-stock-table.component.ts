@@ -18,6 +18,8 @@ export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockD
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  private lastData: ArticleStockDto[];
+
   constructor(rest: ArticleStockWithDtoAllRestService,
               settings: ArticleStockSettingsService) {
     super(rest, settings);
@@ -25,6 +27,7 @@ export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockD
 
   ngOnInit() {
     const subscription = this.rest.getAll().subscribe((data: ArticleStockDto[]) => {
+      this.lastData = data;
       this.dataSource.data = data;
       this.dataSource.filterPredicate = this.filterPredicate;
     });
@@ -41,5 +44,31 @@ export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockD
       + data.reservedQuantity
       + (data.quantity - data.reservedQuantity)
     ).indexOf(filter.toLowerCase()) > -1;
+  }
+
+  public async toggleSoldOut(id: number) {
+    this.lastData = await Promise.all(this.lastData
+      .map(async (stock) => {
+        if (stock.id == id) {
+          stock.soldOut = stock.soldOut ? false : true;
+          await this.rest.update(stock).toPromise();
+          stock.soldOut = stock.soldOut ? false : true;
+        }
+        return stock;
+      }));
+    this.dataSource.data = this.lastData;
+  }
+
+  public async toggleVisible(id: number) {
+    this.lastData = await Promise.all(this.lastData
+      .map(async (stock) => {
+        if (stock.id == id) {
+          stock.visible = stock.visible ? false : true;
+          await this.rest.update(stock).toPromise();
+          stock.visible = stock.visible ? false : true;
+        }
+        return stock;
+      }));
+    this.dataSource.data = this.lastData;
   }
 }

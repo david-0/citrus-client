@@ -1,5 +1,5 @@
-<app-table-filter (onChange)="applyFilter($event)" [settings]="this.settings"
-                  placeholder="Filter Lagerstand"></app-table-filter>
+<app-table-filter (onChange)="applyFilter($event)" [settings]="this.settings" placeholder="Filter Lagerstand">
+</app-table-filter>
 <mat-table #table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="id" hidden>
     <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
@@ -19,21 +19,32 @@
   </ng-container>
   <ng-container matColumnDef="available">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Menge verfügbar</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.quantity - row.reservedQuantity}} {{row.article.unitOfMeasurement.shortcut}}</mat-cell>
+    <mat-cell *matCellDef="let row"> {{row.quantity - row.reservedQuantity}} {{row.article.unitOfMeasurement.shortcut}}
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="soldOut">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Ausverkauft</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.soldOut && 'Ja' || 'Nein'}}</mat-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="center">Ausverkauft</mat-header-cell>
+    <mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
+      <span class="fill-remaining-space"></span>
+      <mat-checkbox name="visible" (click)="toggleSoldOut(row.id)" [(ngModel)]="row.soldOut">
+      </mat-checkbox>
+      <span class="fill-remaining-space"></span>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="visible">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Sichtbar</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.visible && 'Ja' || 'Nein'}}</mat-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="center">Sichtbar</mat-header-cell>
+    <mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
+      <span class="fill-remaining-space"></span>
+      <mat-checkbox name="visible" (click)="toggleVisible(row.id)" [(ngModel)]="row.visible">
+      </mat-checkbox>
+      <span class="fill-remaining-space"></span>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="location">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Standort</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.location.description}}</mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row class="table-row--highligthed" routerLink={{row.id}}
-           *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <mat-row class="table-row--highligthed" routerLink={{row.id}} *matRowDef="let row; columns: displayedColumns;">
+  </mat-row>
 </mat-table>

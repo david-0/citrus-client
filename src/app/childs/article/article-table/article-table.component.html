@@ -18,8 +18,13 @@
     <mat-cell *matCellDef="let row"> {{row.price}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="inSale">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Im Verkauf</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.inSale && 'Ja' || 'Nein'}}</mat-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="center">Im Verkauf</mat-header-cell>
+    <mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
+      <span class="fill-remaining-space"></span>
+      <mat-checkbox name="visible" (click)="toggleSoldOut(row.id)" [(ngModel)]="row.inSale">
+      </mat-checkbox>
+      <span class="fill-remaining-space"></span>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="saleUnit">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Verkaufseinheit</mat-header-cell>

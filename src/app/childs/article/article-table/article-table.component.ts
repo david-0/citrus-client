@@ -25,4 +25,16 @@ export class ArticleTableComponent extends BaseTableComponent<ArticleDto> implem
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
+
+  public async toggleSoldOut(id: number) {
+    this.dataSource.data = await Promise.all(this.dataSource.data
+      .map(async (article) => {
+        if (article.id == id) {
+          article.inSale = article.inSale ? false : true;
+          await this.rest.update(article).toPromise();
+          article.inSale = article.inSale ? false : true;
+        }
+        return article;
+      }));
+  }
 }
