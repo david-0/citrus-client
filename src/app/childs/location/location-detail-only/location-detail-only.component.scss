@@ -8,3 +8,24 @@
 :host {
   width: 100%;
 }
+
+.local_table {
+  display: table;
+  flex: 1 1 auto;
+  border-collapse: collapse;
+  > div:nth-child(even) {
+    background-color: #eaeaea;
+  }
+  div {
+    padding: 0.5em;
+    display: table-row;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    div {
+      display: table-cell;
+    }
+  }
+  div > div:first-child {
+    width: 15em;
+  }
+}

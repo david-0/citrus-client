@@ -8,6 +8,6 @@ export const ENV_PROVIDERS = providers;
 export const environment = {
   production: true,
   recaptcha: {
-    siteKey: '6LdcbJ0iAAAAAPjRv-Jorxzx8saHlCGs2aVkO4Sd',
+    siteKey: '6Ld6iekiAAAAAHqBCIOvY4PGQkaiTYFchL9JG_Qb',
   }
 };
