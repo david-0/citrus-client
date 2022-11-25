@@ -169,6 +169,7 @@ import { MessageTemplateDetailsComponent } from "./childs/message-template/messa
 import { MessageTemplateEditComponent } from "./childs/message-template/message-template-edit/message-template-edit.component";
 import { MessageTemplateOverviewComponent } from "./childs/message-template/message-template-overview/message-template-overview.component";
 import { MessageTemplateTableComponent } from "./childs/message-template/message-template-table/message-template-table.component";
+import { NotifierComponent } from "./base/notifier/notifier.component";
 
 @NgModule({
   declarations: [
@@ -285,6 +286,7 @@ import { MessageTemplateTableComponent } from "./childs/message-template/message
     MessageTemplateEditComponent,
     MessageTemplateOverviewComponent,
     MessageTemplateTableComponent,
+    NotifierComponent,
   ],
   imports: [
     BrowserModule,
