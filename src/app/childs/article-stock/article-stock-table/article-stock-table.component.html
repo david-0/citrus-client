@@ -3,26 +3,26 @@
 <mat-table #table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="id" hidden>
     <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
-    <mat-cell *matCellDef="let row" routerLink={{row.id}}> {{row.dto.id}}</mat-cell>
+    <mat-cell *matCellDef="let row" routerLink={{row.dto.id}}> {{row.dto.id}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="article">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Artikel</mat-header-cell>
-    <mat-cell *matCellDef="let row" routerLink={{row.id}}> {{row.dto.article.description}}</mat-cell>
+    <mat-cell *matCellDef="let row" routerLink={{row.dto.id}}> {{row.dto.article.description}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="quantity">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Menge an Lager</mat-header-cell>
-    <mat-cell *matCellDef="let row" routerLink={{row.id}}> {{row.dto.quantity}}
+    <mat-cell *matCellDef="let row" routerLink={{row.dto.id}}> {{row.dto.quantity}}
       {{row.dto.article.unitOfMeasurement.shortcut}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="reservedQuantity">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Menge reserviert</mat-header-cell>
-    <mat-cell *matCellDef="let row" routerLink={{row.id}}> {{row.dto.reservedQuantity}}
+    <mat-cell *matCellDef="let row" routerLink={{row.dto.id}}> {{row.dto.reservedQuantity}}
       {{row.dto.article.unitOfMeasurement.shortcut}}
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="available">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Menge verfügbar</mat-header-cell>
-    <mat-cell *matCellDef="let row" routerLink={{row.id}}> {{row.dto.quantity - row.dto.reservedQuantity}}
+    <mat-cell *matCellDef="let row" routerLink={{row.dto.id}}> {{row.dto.quantity - row.dto.reservedQuantity}}
       {{row.dto.article.unitOfMeasurement.shortcut}}
     </mat-cell>
   </ng-container>
@@ -30,7 +30,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header class="center">Ausverkauft</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <span class="fill-remaining-space"></span>
-      <mat-checkbox name="visible" (click)="toggleSoldOut(row.id)" [(ngModel)]="row.soldOut"></mat-checkbox>
+      <mat-checkbox name="visible" (click)="toggleSoldOut(row.dto.id)" [(ngModel)]="row.dto.soldOut"></mat-checkbox>
       <span class="fill-remaining-space"></span>
     </mat-cell>
   </ng-container>
@@ -38,7 +38,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header class="center">Sichtbar</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <span class="fill-remaining-space"></span>
-      <mat-checkbox name="visible" (click)="toggleVisible(row.id)" [(ngModel)]="row.visible">
+      <mat-checkbox name="visible" (click)="toggleVisible(row.dto.id)" [(ngModel)]="row.dto.visible">
       </mat-checkbox>
       <span class="fill-remaining-space"></span>
     </mat-cell>
@@ -67,7 +67,7 @@
   <ng-container matColumnDef="action">
     <mat-header-cell *matHeaderCellDef class="center">Menge zum umbuchen</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <button mat-raised-button color="accent" (click)="transfer(row.id); $event.stopPropagation()">transfer</button>
+      <button mat-raised-button color="accent" (click)="transfer(row.dto.id); $event.stopPropagation()">transfer</button>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
