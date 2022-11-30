@@ -1,2 +1,7 @@
 <app-table-header titleText="Kundenbestellungen" [showCreate]="true"></app-table-header>
+<div class="button--line">
+    <button class="filter--button" mat-raised-button color="accent" (click)=saveFile()>
+        Bestellungen exportieren
+    </button>
+</div>
 <app-order-table [displayedColumns]="displayedColumns" [dataObservable]="dataObservable"></app-order-table>

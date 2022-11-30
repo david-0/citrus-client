@@ -27,10 +27,12 @@
     "@angular/router": "^14.2.7",
     "@auth0/angular-jwt": "^5.0.2",
     "@iplab/ngx-file-upload": "^14.0.0",
+    "@types/luxon": "^3.1.0",
     "@types/socket.io-client": "^3.0.0",
     "citrus-common": "^0.10.0",
     "core-js": "^3.19.1",
     "file-saver": "^2.0.5",
+    "luxon": "^3.1.1",
     "material-design-icons": "^3.0.1",
     "moment": "^2.29.1",
     "ng-recaptcha": "^10.0.0",
@@ -39,6 +41,7 @@
     "rxjs": "^7.4.0",
     "socket.io-client": "^4.4.0",
     "tslib": "^2.3.1",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

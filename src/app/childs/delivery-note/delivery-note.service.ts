@@ -1,7 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {saveAs} from 'file-saver';
-import {OrderDto} from "citrus-common";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
