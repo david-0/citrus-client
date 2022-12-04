@@ -109,15 +109,22 @@ export class OrderEditComponent implements OnInit {
   }
 
   public submit() {
+    const orderCopy = OrderDto.createEmpty();
+    orderCopy.comment = this.order.comment;
+    orderCopy.checkedOut = this.order.checkedOut;
+    orderCopy.plannedCheckout = this.order.plannedCheckout;
+    orderCopy.location = this.order.location;
     if (this.orderId == null) {
-      this.order.date = this.orderDate;
-      this.orderRest.add(new OrderDto(this.order))
+      orderCopy.date = this.orderDate;
+      this.orderRest.add(new OrderDto(orderCopy))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not save order: ${this.order.id} with Error: ${err}`)
         );
     } else {
-      this.orderRest.update(OrderDto.createWithId(this.orderId, this.order))
+      orderCopy.id = this.orderId;
+      orderCopy.date = this.order.date;
+      this.orderRest.update(OrderDto.createWithId(this.orderId, orderCopy))
         .subscribe(
           (result) => this.router.navigate([".."], {relativeTo: this.route}),
           (err) => console.error(`could not update order: ${this.order.id} with Error: ${err}`));

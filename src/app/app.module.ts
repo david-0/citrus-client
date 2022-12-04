@@ -76,7 +76,6 @@ import { ArticleEditComponent } from "./childs/article/article-edit/article-edit
 import { ArticleOverviewComponent } from "./childs/article/article-overview/article-overview.component";
 import { ArticleSettingsService } from "./childs/article/article-settings.service";
 import { ArticleTableComponent } from "./childs/article/article-table/article-table.component";
-import { ImageDtoRestService } from "./childs/article/image-dto-rest.service";
 import { LocationDeleteComponent } from "./childs/location/location-delete/location-delete.component";
 import { LocationDetailOnlyComponent } from "./childs/location/location-detail-only/location-detail-only.component";
 import { LocationDetailComponent } from "./childs/location/location-detail/location-detail.component";
@@ -349,7 +348,6 @@ import { NotifierComponent } from "./base/notifier/notifier.component";
     UserWithRolesDtoRestService,
     RoleDtoRestService,
     CartService,
-    ImageDtoRestService,
     AuthenticationService,
     { provide: MAT_DATE_LOCALE, useValue: "de_ch" },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },

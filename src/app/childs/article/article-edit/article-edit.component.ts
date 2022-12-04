@@ -5,7 +5,6 @@ import {BehaviorSubject, combineLatest, Observable} from "rxjs";
 import {FileUploadService} from "../../../table-support/file-upload.service";
 import {UnitOfMeasurementDtoRestService} from "../../unit-of-measurement/unit-of-measurement-dto-rest.service";
 import {ArticleDtoRestService} from "../article-dto-rest.service";
-import {ImageDtoRestService} from "../image-dto-rest.service";
 
 @Component({
   selector: "app-article-edit",
@@ -22,7 +21,6 @@ export class ArticleEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private rest: ArticleDtoRestService,
-              private imageRest: ImageDtoRestService,
               public unitRest: UnitOfMeasurementDtoRestService,
               public fileUploadService: FileUploadService,
               @Inject("baseUrl") public baseUrl: string) {

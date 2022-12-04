@@ -86,6 +86,7 @@ import { MessageTemplateEditComponent } from "../childs/message-template/message
 import { MessageTemplateDeleteComponent } from "../childs/message-template/message-template-delete/message-template-delete.component";
 import { MessageTemplateDetailsComponent } from "../childs/message-template/message-template-details/message-template-details.component";
 import { MessageTemplateOverviewComponent } from "../childs/message-template/message-template-overview/message-template-overview.component";
+import { OrderItemDeleteComponent } from "../childs/order-item/order-item-delete/order-item-delete.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "organisation", pathMatch: "full" },
@@ -265,6 +266,12 @@ const routes: Routes = [
             path: "orderItem/:id/edit",
             canActivate: [AuthGuard, AuthGuardAdmin],
             component: OrderItemEditComponent,
+            outlet: "details"
+          },
+          {
+            path: "orderItem/:id/delete",
+            canActivate: [AuthGuard, AuthGuardAdmin],
+            component: OrderItemDeleteComponent,
             outlet: "details"
           },
         ]
