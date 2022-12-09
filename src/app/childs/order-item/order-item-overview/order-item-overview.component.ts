@@ -16,7 +16,6 @@ export class OrderItemOverviewComponent implements OnInit {
   dataObservable = new BehaviorSubject<OrderItemDto[]>([]);
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
               private rest: OrderDtoWithAllRestService) {
   }
 

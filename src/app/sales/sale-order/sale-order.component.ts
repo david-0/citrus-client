@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OrderDto} from "citrus-common";
+import { OrderDtoRestService } from "../../childs/order/order-dto-rest.service";
 import {OrderDtoWithAllRestService} from "../../childs/order/order-dto-with-all-rest.service";
 import {SaleLocationService} from "../sale-location.service";
 
@@ -16,7 +17,8 @@ export class SaleOrderComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private rest: OrderDtoWithAllRestService,
+              private restWithAll: OrderDtoWithAllRestService,
+              private rest: OrderDtoRestService,
               public saleLocationService: SaleLocationService) {
   }
 
@@ -27,7 +29,7 @@ export class SaleOrderComponent implements OnInit {
   ngOnInit() {
     this.saleLocationOk = true;
     this.route.params.subscribe(params => {
-      this.rest.get(+params["id"]).subscribe((order) => {
+      this.restWithAll.get(+params["id"]).subscribe((order) => {
         this._order = order;
         this.checkSaleLocation();
       });
