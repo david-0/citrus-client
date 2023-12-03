@@ -32,12 +32,22 @@
       <div class="selction-helper">
         <button type="button" color="accent" class="selector" mat-raised-button (click)="selectAll()">alle auswählen
         </button>
+        <button type="button" color="accent" class="selector" mat-raised-button (click)="selectGroup(5,0)">1/5 auswählen
+        </button>
+        <button type="button" color="accent" class="selector" mat-raised-button (click)="selectGroup(5,1)">2/5 auswählen
+        </button>
+        <button type="button" color="accent" class="selector" mat-raised-button (click)="selectGroup(5,2)">3/5 auswählen
+        </button>
+        <button type="button" color="accent" class="selector" mat-raised-button (click)="selectGroup(5,3)">4/5 auswählen
+        </button>
+        <button type="button" color="accent" class="selector" mat-raised-button (click)="selectGroup(5,4)">5/5 auswählen
+        </button>
         <button type="button" color="accent" class="selector" mat-raised-button (click)="selectNone()">alle abwählen
         </button>
       </div>
       <div>
         <div *ngFor="let userPair of userPairs">
-          <mat-checkbox class="receiver full-width" name="{{userPair.user.name}}" [(ngModel)]="userPair.checked">
+          <mat-checkbox class="receiver full-width" name="{{userPair.user.email}}" [(ngModel)]="userPair.checked">
             {{userPair.user.name}} {{userPair.user.prename}} ({{userPair.user.email}})
           </mat-checkbox>
         </div>

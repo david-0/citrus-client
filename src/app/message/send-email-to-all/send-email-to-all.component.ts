@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MessageDto, MessageTemplateDto, UserDto} from "citrus-common";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, last } from "rxjs";
 import { MessageTemplateDtoRestService } from "../../childs/message-template/message-template-dto-rest.service";
 import {UserWithAllDtoRestService} from "../../childs/user/user-with-all-dto-rest.service";
 import {MessageRestService} from "../message-rest.service";
@@ -61,6 +61,25 @@ export class SendEmailToAllComponent implements OnInit {
   public selectNone() {
     this._userPairs.map(p => p.checked = false);
   }
+
+  public selectGroup(numberOfGroups: number, currentGroup: number) {
+    const roundedGroupSize = Math.round(this._userPairs.length / numberOfGroups);
+    const firstOfGroup = roundedGroupSize * currentGroup;
+    let lastOfGroup;
+    if (currentGroup < numberOfGroups -1) {
+      lastOfGroup = firstOfGroup + roundedGroupSize;
+    } else {
+      lastOfGroup = this._userPairs.length;
+    }
+    this._userPairs.slice(firstOfGroup, lastOfGroup).map(p => p.checked = true);
+  }
+
+  public selectGroup1() {
+    const firstOfGroup = 0;
+    this._userPairs.length / 5;
+    this._userPairs.map(p => p.checked = false);
+  }
+
 
   public getTemplates(): BehaviorSubject<MessageTemplateDto[]> {
     return this.templates;
