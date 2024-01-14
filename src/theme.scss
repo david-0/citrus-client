@@ -19,7 +19,6 @@ $my-theme: mat.define-light-theme(
 @import "app/cart/shopping-cart-view/shopping-cart-view.component.scss-theme";
 @import "app/table-support/table-header/table-header.component.scss-theme";
 @import "app/childs/administration/administration.component.scss-theme";
-@import "app/childs/address/address-table/address-table.component.scss-theme";
 @import "app/childs/user/user-overview/user-overview.component.scss-theme";
 @import "app/childs/article/article-table/article-table.component.scss-theme";
 @import "app/childs/article-checkin/article-checkin-table/article-checkin-table.component.scss-theme";
@@ -42,7 +41,6 @@ $my-theme: mat.define-light-theme(
 @mixin my-component-theme($theme) {
   @include app-table-header-theme($theme);
   @include app-administration-theme($theme);
-  @include app-address-table-theme($theme);
   @include app-user-overview-theme($theme);
   @include app-unit-of-measurement-table-theme($theme);
   @include app-article-table-theme($theme);

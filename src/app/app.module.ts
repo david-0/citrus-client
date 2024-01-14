@@ -46,13 +46,6 @@ import { ChangeMyPasswordComponent } from "./change-my-password/change-my-passwo
 import { CartLocationDetailComponent } from "./checkout/cart-location-detail/cart-location-detail.component";
 import { CheckoutComponent } from "./checkout/checkout/checkout.component";
 
-import { AddressDeleteComponent } from "./childs/address/address-delete/address-delete.component";
-import { AddressDetailsComponent } from "./childs/address/address-details/address-details.component";
-import { AddressDtoRestService } from "./childs/address/address-dto-rest.service";
-import { AddressEditComponent } from "./childs/address/address-edit/address-edit.component";
-import { AddressOverviewComponent } from "./childs/address/address-overview/address-overview.component";
-import { AddressSettingsService } from "./childs/address/address-settings.service";
-import { AddressTableComponent } from "./childs/address/address-table/address-table.component";
 import { AdministrationComponent } from "./childs/administration/administration.component";
 import { ArticleCheckinDeleteComponent } from "./childs/article-checkin/article-checkin-delete/article-checkin-delete.component";
 import { ArticleCheckinDetailComponent } from "./childs/article-checkin/article-checkin-detail/article-checkin-detail.component";
@@ -168,11 +161,6 @@ import { NotifierComponent } from "./base/notifier/notifier.component";
     AppComponent,
     DashboardComponent,
     AdministrationComponent,
-    AddressOverviewComponent,
-    AddressEditComponent,
-    AddressDetailsComponent,
-    AddressTableComponent,
-    AddressDeleteComponent,
     UserInfoDeleteComponent,
     UserInfoDetailsComponent,
     UserEditComponent,
@@ -322,8 +310,6 @@ import { NotifierComponent } from "./base/notifier/notifier.component";
   ],
   providers: [
     MatIconRegistry,
-    AddressDtoRestService,
-    AddressSettingsService,
     UserDetailsSettingsService,
     UserDtoRestService,
     UnitOfMeasurementDtoRestService,

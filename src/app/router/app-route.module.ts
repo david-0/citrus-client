@@ -4,10 +4,6 @@ import { AuthGuardAdmin } from "../authentication/auth-guard-admin.service";
 import { AuthGuard } from "../authentication/auth-guard.service";
 import { ChangeMyPasswordComponent } from "../change-my-password/change-my-password.component";
 import { CheckoutComponent } from "../checkout/checkout/checkout.component";
-import { AddressDeleteComponent } from "../childs/address/address-delete/address-delete.component";
-import { AddressDetailsComponent } from "../childs/address/address-details/address-details.component";
-import { AddressEditComponent } from "../childs/address/address-edit/address-edit.component";
-import { AddressOverviewComponent } from "../childs/address/address-overview/address-overview.component";
 import { AdministrationComponent } from "../childs/administration/administration.component";
 import { ArticleCheckinDeleteComponent } from "../childs/article-checkin/article-checkin-delete/article-checkin-delete.component";
 import { ArticleCheckinDetailComponent } from "../childs/article-checkin/article-checkin-detail/article-checkin-detail.component";
@@ -101,11 +97,6 @@ const routes: Routes = [
   { path: "locations", canActivate: [AuthGuard], component: LocationOpeningHoursComponent },
   {
     path: "administration", canActivate: [AuthGuard, AuthGuardAdmin], component: AdministrationComponent, children: [
-      { path: "address", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressOverviewComponent },
-      { path: "address/create", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressEditComponent },
-      { path: "address/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressDetailsComponent },
-      { path: "address/:id/edit", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressEditComponent },
-      { path: "address/:id/delete", canActivate: [AuthGuard, AuthGuardAdmin], component: AddressDeleteComponent },
       { path: "user", canActivate: [AuthGuard, AuthGuardAdmin], component: UserOverviewComponent },
       { path: "user/create", canActivate: [AuthGuard, AuthGuardAdmin], component: UserEditComponent },
       { path: "user/:id", canActivate: [AuthGuard, AuthGuardAdmin], component: UserInfoDetailsComponent },
