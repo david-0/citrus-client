@@ -45,7 +45,6 @@ export class ArticleStockTableComponent implements OnInit, AfterViewInit {
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // DataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
 
@@ -54,12 +53,12 @@ export class ArticleStockTableComponent implements OnInit, AfterViewInit {
   }
 
   private filterPredicate(data: ArticleStockWrapper, filter: string): boolean {
-    return (data.dto.article.description.toLowerCase()
-      + data.dto.location.description.toLowerCase()
+    return (data.dto.article.description
+      + data.dto.location.description
       + data.dto.quantity
       + data.dto.reservedQuantity
       + (data.dto.quantity - data.dto.reservedQuantity)
-    ).indexOf(filter.toLowerCase()) > -1;
+    ).indexOf(filter) > -1;
   }
 
   public async toggleSoldOut(id: number) {

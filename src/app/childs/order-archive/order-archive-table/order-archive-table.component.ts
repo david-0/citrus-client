@@ -40,8 +40,8 @@ export class OrderArchiveTableComponent extends BaseTableComponent<OrderArchiveD
   }
 
   private filterPredicate(data: OrderArchiveDto, filter: string): boolean {
-    return (data.order.user.name.toLowerCase()
-      + data.order.user.prename.toLowerCase()
-    ).indexOf(filter.toLowerCase()) > -1;
+    return (data.order.user.name
+      + data.order.user.prename
+    ).indexOf(filter) > -1;
   }
 }

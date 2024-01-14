@@ -35,10 +35,10 @@ export class ArticleCheckoutTableComponent extends BaseTableComponent<ArticleChe
 
   private filterPredicate(data: ArticleCheckOutDto, filter: string): boolean {
     return (data.articleStock.article.number
-      + data.articleStock.article.description.toLowerCase()
-      + data.articleStock.location.description.toLowerCase()
+      + data.articleStock.article.description
+      + data.articleStock.location.description
       + data.quantity
       + data.comment
-    ).indexOf(filter.toLowerCase()) > -1;
+    ).indexOf(filter) > -1;
   }
 }

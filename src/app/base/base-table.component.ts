@@ -20,7 +20,6 @@ export class BaseTableComponent<T extends IDtoId> implements OnInit {
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // DataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
 }
