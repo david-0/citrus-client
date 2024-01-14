@@ -112,7 +112,6 @@ export class OrderEditComponent implements OnInit {
     const orderCopy = OrderDto.createEmpty();
     orderCopy.user = this.order.user;
     orderCopy.comment = this.order.comment;
-    orderCopy.checkedOut = this.order.checkedOut;
     orderCopy.plannedCheckout = this.order.plannedCheckout;
     orderCopy.location = this.order.location;
     orderCopy.orderItems = this.order.orderItems;

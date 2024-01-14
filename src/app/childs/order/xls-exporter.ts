@@ -34,9 +34,6 @@ export class XlsExporter {
     this.staticColumns.push(new Column('Preis', (p: OrderDto) => "" + p.totalPrice));
     this.staticColumns.push(new Column('geplante Abholung von', (p: OrderDto) => DateTime.fromISO("" + p.plannedCheckout.fromDate).toFormat('yyyy-MM-dd HH:mm:ss')));
     this.staticColumns.push(new Column('geplante Abholung bis', (p: OrderDto) => DateTime.fromISO("" + p.plannedCheckout.toDate).toFormat('yyyy-MM-dd HH:mm:ss')));
-    this.staticColumns.push(new Column('Abgeholt', (p: OrderDto) => p.checkedOut ? "ja" : "nein"));
-    this.staticColumns.push(new Column('Abgeholt am', (p: OrderDto) => p.checkedOut ? DateTime.fromISO("" + p.checkedOutDate).toFormat('yyyy-MM-dd HH:mm:ss') : "noch nicht abgeholt"));
-    this.staticColumns.push(new Column('Verkäufer', (p: OrderDto) => p.checkedOut ? p.checkingOutUser.prename + " " + p.checkingOutUser.name : "noch nicht abgeholt"));
     this.staticColumns.push(new Column('Lieferschein erstellt', (p: OrderDto) => p.deliveryNoteCreated ? "ja" : "nein"));
   }
 

@@ -29,13 +29,6 @@
       </div>
     </div>
     <div>
-      <div>Abgeholt</div>
-      <div *ngIf="order.checkedOut">{{order.checkedOutDate | date: "dd.MM.yyyy HH:mm:ss"}} (Verkäufer:
-        {{order.checkingOutUser?.prename}} {{order.checkingOutUser?.name}})
-      </div>
-      <div *ngIf="!order.checkedOut">Nein</div>
-    </div>
-    <div>
       <div>bestellte Artikel</div>
       <div>
         <p class="order-item-line" *ngFor="let item of order.orderItems">

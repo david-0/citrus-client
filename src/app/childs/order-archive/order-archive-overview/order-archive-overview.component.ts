@@ -10,7 +10,7 @@ import {OrderArchiveDtoRestService} from "../order-archive-dto-rest.service";
 })
 export class OrderArchiveOverviewComponent implements OnInit {
 
-  public displayedColumns = ["archiveDate", "archiveUser", "id", "date", "user", "location", "totalPrice", "comment", "plannedCheckout", "checkedOut"];
+  public displayedColumns = ["archiveDate", "archiveUser", "id", "date", "user", "location", "totalPrice", "comment", "plannedCheckout"];
   public dataObservable = new BehaviorSubject<OrderArchiveDto[]>([]);
 
   constructor(private rest: OrderArchiveDtoRestService) {

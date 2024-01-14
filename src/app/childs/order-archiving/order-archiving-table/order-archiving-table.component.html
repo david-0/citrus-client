@@ -36,15 +36,6 @@
       <span *ngIf="!row.plannedCheckout">Unbekannt</span>
     </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="checkedOut">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Abgeholt?</mat-header-cell>
-    <mat-cell *matCellDef="let row" routerLink={{row.id}}>
-      <span *ngIf="row.checkedOut">{{row.checkedOutDate | date: "dd.MM.yyyy HH:mm:ss"}}
-        <br/>(Verkäufer: {{row.checkingOutUser?.prename}} {{row.checkingOutUser?.name}})
-      </span>
-      <span *ngIf="!row.checkedOut">Nein</span>
-    </mat-cell>
-  </ng-container>
   <ng-container matColumnDef="archiving">
     <mat-header-cell *matHeaderCellDef mat-sort-header>archivieren</mat-header-cell>
     <mat-cell *matCellDef="let row">
