@@ -131,13 +131,6 @@ import { PrivacyPolicyComponent } from "./footer/privacy-policy/privacy-policy.c
 import { LoginComponent } from "./login/login.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { AppRouteModule } from "./router/app-route.module";
-import { SaleHeaderComponent } from "./sales/sale-header/sale-header.component";
-import { SaleLocationComponent } from "./sales/sale-location/sale-location.component";
-import { SaleOrderComponent } from "./sales/sale-order/sale-order.component";
-import { SaleOverviewComponent } from "./sales/sale-overview/sale-overview.component";
-import { StoreCheckInComponent } from "./store/store-check-in/store-check-in.component";
-import { StoreCheckOutComponent } from "./store/store-check-out/store-check-out.component";
-import { StoreEstimateComponent } from "./store/store-estimate/store-estimate.component";
 import { OutputMessageComponent } from "./table-support/error-output/output-message.component";
 import { MySpinnerModule } from "./table-support/my-spinner/my-spinner.module";
 import { TableSupportModule } from "./table-support/table-support.module";
@@ -229,7 +222,6 @@ import { NotifierComponent } from "./base/notifier/notifier.component";
     RoleOverviewComponent,
     RoleTableComponent,
     OutputMessageComponent,
-    SaleOverviewComponent,
     ArticleStockDeleteComponent,
     ArticleStockDetailComponent,
     ArticleStockEditComponent,
@@ -247,12 +239,6 @@ import { NotifierComponent } from "./base/notifier/notifier.component";
     ArticleCheckoutDetailComponent,
     PublicArticleStockGridComponent,
     CartLocationDetailComponent,
-    StoreCheckInComponent,
-    StoreCheckOutComponent,
-    StoreEstimateComponent,
-    SaleOrderComponent,
-    SaleLocationComponent,
-    SaleHeaderComponent,
     PublicArticleDetailComponent,
     ShoppingCartViewComponent,
     ShoppingCartDetailComponent,

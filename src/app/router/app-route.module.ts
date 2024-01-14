@@ -1,8 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuardAdmin } from "../authentication/auth-guard-admin.service";
-import { AuthGuardSale } from "../authentication/auth-guard-sale.service";
-import { AuthGuardStore } from "../authentication/auth-guard-store.service";
 import { AuthGuard } from "../authentication/auth-guard.service";
 import { ChangeMyPasswordComponent } from "../change-my-password/change-my-password.component";
 import { CheckoutComponent } from "../checkout/checkout/checkout.component";
@@ -69,11 +67,6 @@ import { PrivacyPolicyComponent } from "../footer/privacy-policy/privacy-policy.
 import { LoginComponent } from "../login/login.component";
 import { LogoutComponent } from "../logout/logout.component";
 import { SendEmailToAllComponent } from "../message/send-email-to-all/send-email-to-all.component";
-import { SaleOrderComponent } from "../sales/sale-order/sale-order.component";
-import { SaleOverviewComponent } from "../sales/sale-overview/sale-overview.component";
-import { StoreCheckInComponent } from "../store/store-check-in/store-check-in.component";
-import { StoreCheckOutComponent } from "../store/store-check-out/store-check-out.component";
-import { StoreEstimateComponent } from "../store/store-estimate/store-estimate.component";
 import { RegisterComponent } from "../usermanagement/register/register.component";
 import { ResetMailConfirmationComponent } from "../usermanagement/reset-mail-confirmation/reset-mail-confirmation.component";
 import { ResetMailComponent } from "../usermanagement/reset-mail/reset-mail.component";
@@ -105,11 +98,6 @@ const routes: Routes = [
   { path: "privacyPolicy", component: PrivacyPolicyComponent },
   { path: "checkout/:id", canActivate: [AuthGuard], component: CheckoutComponent },
   { path: "changeMyPassword", canActivate: [AuthGuard], component: ChangeMyPasswordComponent },
-  { path: "sale", canActivate: [AuthGuard, AuthGuardSale], component: SaleOverviewComponent },
-  { path: "sale/:id", canActivate: [AuthGuard, AuthGuardSale], component: SaleOrderComponent },
-  { path: "store/checkIn", canActivate: [AuthGuard, AuthGuardStore], component: StoreCheckInComponent },
-  { path: "store/checkOut", canActivate: [AuthGuard, AuthGuardStore], component: StoreCheckOutComponent },
-  { path: "store/estimate", canActivate: [AuthGuard, AuthGuardStore], component: StoreEstimateComponent },
   { path: "locations", canActivate: [AuthGuard], component: LocationOpeningHoursComponent },
   {
     path: "administration", canActivate: [AuthGuard, AuthGuardAdmin], component: AdministrationComponent, children: [

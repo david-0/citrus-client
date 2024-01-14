@@ -21,14 +21,6 @@
         <span class="footer-button">Abholzeiten</span>
       </button>
       <span class="fill-remaining-space"></span>
-      <button *ngIf="authService.isSale()" mat-raised-button class="sale-button" routerLink="/sale">
-        <mat-icon>money</mat-icon>
-        <span class="button-space">Verkauf</span>
-      </button>
-      <button *ngIf="authService.isStore()" mat-raised-button class="sale-button" [matMenuTriggerFor]="menuStore">
-        <span class="button-space">Lager</span>
-        <mat-icon>more_vert</mat-icon>
-      </button>
       <mat-menu #menuStore="matMenu">
         <button mat-menu-item routerLink="/store/checkIn">
           <mat-icon>input</mat-icon>

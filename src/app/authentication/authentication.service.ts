@@ -136,20 +136,6 @@ export class AuthenticationService {
     return this.hasRole("admin");
   }
 
-  isSale(): boolean {
-    if (!this.loggedIn()) {
-      return false;
-    }
-    return this.hasRole("sale");
-  }
-
-  isStore(): boolean {
-    if (!this.loggedIn()) {
-      return false;
-    }
-    return this.hasRole("store");
-  }
-
   private updateToken(authToken: AuthToken) {
     // store jwt token in local storage to keep user logged in between page refreshs
     localStorage.setItem(AuthenticationService.accessToken, authToken.token);
