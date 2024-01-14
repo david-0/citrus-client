@@ -43,6 +43,7 @@ export class UserOverviewComponent implements OnInit, AfterViewInit {
   private filterPredicate(data: UserDto, filter: string): boolean {
     return (data.name + " "
       + data.prename + " "
+      + data.name + " "
       + data.email + " "
       + data.phone
     ).indexOf(filter) > -1;
