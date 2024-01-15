@@ -13,7 +13,7 @@ const EXCEL_EXTENSION = '.xlsx';
 @Injectable({
   providedIn: "root"
 })
-export class XlsExporter {
+export class XlsOrderExporter {
 
   private readonly staticColumns: Column[] = [];
 
