@@ -5,7 +5,7 @@ import { DateTime } from 'luxon';
 import { lastValueFrom } from 'rxjs';
 import { utils, WorkBook, WorkSheet, write } from 'xlsx';
 import { ArticleDtoRestService } from '../article/article-dto-rest.service';
-import { Column } from './column';
+import { Column } from '../../base/column';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -15,35 +15,35 @@ const EXCEL_EXTENSION = '.xlsx';
 })
 export class XlsOrderExporter {
 
-  private readonly staticColumns: Column[] = [];
+  private readonly constColumns: Column<OrderDto>[] = [];
 
   constructor(private articleRestService: ArticleDtoRestService) {
-    this.staticColumns.push(new Column('Id', (p: OrderDto) => "" + p.id));
-    this.staticColumns.push(new Column('Datum', (p: OrderDto) => DateTime.fromISO("" + p.date).toFormat('yyyy-MM-dd HH:mm:ss')));
-    this.staticColumns.push(new Column('Vorname', (p: OrderDto) => p.user.prename));
-    this.staticColumns.push(new Column('Name', (p: OrderDto) => p.user.name));
-    this.staticColumns.push(new Column('Email', (p: OrderDto) => p.user.email));
-    this.staticColumns.push(new Column('Phone', (p: OrderDto) => p.user.phone));
-    this.staticColumns.push(new Column('Phone', (p: OrderDto) => p.user.phone));
-    this.staticColumns.push(new Column('Abholort Id', (p: OrderDto) => "" + p.location.id));
-    this.staticColumns.push(new Column('Abholort Beschreibung', (p: OrderDto) => p.location.description));
-    this.staticColumns.push(new Column('Abholort PLZ', (p: OrderDto) => p.location.zipcode));
-    this.staticColumns.push(new Column('Abholort Ort', (p: OrderDto) => p.location.city));
-    this.staticColumns.push(new Column('Abholort Strasse', (p: OrderDto) => p.location.street));
-    this.staticColumns.push(new Column('Abholort Nummer', (p: OrderDto) => p.location.number));
-    this.staticColumns.push(new Column('Preis', (p: OrderDto) => "" + p.totalPrice));
-    this.staticColumns.push(new Column('geplante Abholung von', (p: OrderDto) => DateTime.fromISO("" + p.plannedCheckout.fromDate).toFormat('yyyy-MM-dd HH:mm:ss')));
-    this.staticColumns.push(new Column('geplante Abholung bis', (p: OrderDto) => DateTime.fromISO("" + p.plannedCheckout.toDate).toFormat('yyyy-MM-dd HH:mm:ss')));
-    this.staticColumns.push(new Column('Lieferschein erstellt', (p: OrderDto) => p.deliveryNoteCreated ? "ja" : "nein"));
+    this.constColumns.push(new Column('Id', (p: OrderDto) => "" + p.id));
+    this.constColumns.push(new Column('Datum', (p: OrderDto) => DateTime.fromISO("" + p.date).toFormat('yyyy-MM-dd HH:mm:ss')));
+    this.constColumns.push(new Column('Vorname', (p: OrderDto) => p.user.prename));
+    this.constColumns.push(new Column('Name', (p: OrderDto) => p.user.name));
+    this.constColumns.push(new Column('Email', (p: OrderDto) => p.user.email));
+    this.constColumns.push(new Column('Phone', (p: OrderDto) => p.user.phone));
+    this.constColumns.push(new Column('Phone', (p: OrderDto) => p.user.phone));
+    this.constColumns.push(new Column('Abholort Id', (p: OrderDto) => "" + p.location.id));
+    this.constColumns.push(new Column('Abholort Beschreibung', (p: OrderDto) => p.location.description));
+    this.constColumns.push(new Column('Abholort PLZ', (p: OrderDto) => p.location.zipcode));
+    this.constColumns.push(new Column('Abholort Ort', (p: OrderDto) => p.location.city));
+    this.constColumns.push(new Column('Abholort Strasse', (p: OrderDto) => p.location.street));
+    this.constColumns.push(new Column('Abholort Nummer', (p: OrderDto) => p.location.number));
+    this.constColumns.push(new Column('Preis', (p: OrderDto) => "" + p.totalPrice));
+    this.constColumns.push(new Column('geplante Abholung von', (p: OrderDto) => DateTime.fromISO("" + p.plannedCheckout.fromDate).toFormat('yyyy-MM-dd HH:mm:ss')));
+    this.constColumns.push(new Column('geplante Abholung bis', (p: OrderDto) => DateTime.fromISO("" + p.plannedCheckout.toDate).toFormat('yyyy-MM-dd HH:mm:ss')));
+    this.constColumns.push(new Column('Lieferschein erstellt', (p: OrderDto) => p.deliveryNoteCreated ? "ja" : "nein"));
   }
 
-  private convertField(order: OrderDto, columns: Column[]): any {
+  private convertField(order: OrderDto, columns: Column<OrderDto>[]): any {
     const result = {};
     columns.forEach(f => result[f.label] = f.valueProvider(order));
     return result;
   }
 
-  private convertData(orders: OrderDto[], columns: Column[]): any[] {
+  private convertData(orders: OrderDto[], columns: Column<OrderDto>[]): any[] {
     return orders.map(p => this.convertField(p, columns));
   }
 
@@ -64,9 +64,9 @@ export class XlsOrderExporter {
     return orders.flatMap(o => o.orderItems).map(i => i.article.id);
   }
 
-  private async appendArticleColumns(extractArticleIds: number[]): Promise<Column[]> {
+  private async appendArticleColumns(extractArticleIds: number[]): Promise<Column<OrderDto>[]> {
     const columns = [];
-    columns.push(...this.staticColumns);
+    columns.push(...this.constColumns);
     const articles = await lastValueFrom(this.articleRestService.getAll());
     const filteredArticles = articles.filter(a => extractArticleIds.includes(a.id));
     columns.push(...filteredArticles.map(a => new Column(a.description, (p: OrderDto) => {

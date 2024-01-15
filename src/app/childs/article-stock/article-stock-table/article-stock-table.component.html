@@ -1,6 +1,9 @@
 <app-table-filter (onChange)="applyFilter($event)" [settings]="this.settings" placeholder="Filter Lagerstand">
 </app-table-filter>
 <div class="flex">
+  <button class="filter--button" mat-raised-button color="accent" (click)=saveArticleStocksToFile()>
+    Lagerbestände exportieren
+  </button>
   <span class="fill-remaining-space"></span>
   <button class="filter--button" mat-raised-button color="accent" (click)=saveAll()>
     alle neuen Lagerbestände speichern

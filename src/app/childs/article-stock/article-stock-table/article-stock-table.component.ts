@@ -7,6 +7,7 @@ import { ArticleStockSettingsService } from "../article-stock-settings.service";
 import { ArticleStockWithDtoAllRestService } from "../article-stock-with-dto-all-rest.service";
 import { ArticleStockWrapper } from "./ArticleStockWrapper";
 import { ArticleStockDto } from "citrus-common";
+import { XlsArticleStockExporter } from "../xls-article-stock-exporter";
 
 @Component({
   selector: "app-article-stock-table",
@@ -22,6 +23,7 @@ export class ArticleStockTableComponent implements OnInit, AfterViewInit {
 
   constructor(private rest: ArticleStockWithDtoAllRestService,
     protected settings: ArticleStockSettingsService,
+    private exporter: XlsArticleStockExporter,
     private notificationService: NotifierService) {
   }
 
@@ -83,6 +85,11 @@ export class ArticleStockTableComponent implements OnInit, AfterViewInit {
       }));
   }
 
+  public saveArticleStocksToFile() {
+    const subscription = this.rest.getAll().subscribe(data => {
+      this.exporter.exportAsExcelFile(data, "Lagerbestände");
+    });
+  }
 
   public async saveAll() {
     let modificationCount = 0;
