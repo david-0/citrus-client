@@ -21,8 +21,6 @@ $my-theme: mat.define-light-theme(
 @import "app/childs/administration/administration.component.scss-theme";
 @import "app/childs/user/user-overview/user-overview.component.scss-theme";
 @import "app/childs/article/article-table/article-table.component.scss-theme";
-@import "app/childs/article-checkin/article-checkin-table/article-checkin-table.component.scss-theme";
-@import "app/childs/article-checkout/article-checkout-table/article-checkout-table.component.scss-theme";
 @import "app/childs/article-stock/article-stock-table/article-stock-table.component.scss-theme";
 @import "app/childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component.scss-theme";
 @import "app/checkout/checkout/checkout.component.scss-theme";
@@ -44,8 +42,6 @@ $my-theme: mat.define-light-theme(
   @include app-user-overview-theme($theme);
   @include app-unit-of-measurement-table-theme($theme);
   @include app-article-table-theme($theme);
-  @include app-article-checkin-table-theme($theme);
-  @include app-article-checkout-table-theme($theme);
   @include app-article-stock-table-theme($theme);
   @include app-checkout-theme($theme);
   @include app-location-table-theme($theme);

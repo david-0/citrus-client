@@ -97,24 +97,6 @@
                   </mat-chip-list>
                 </div>
               </div>
-              <div *ngIf="getNotDoneArticleCheckIns().length > 0">
-                <div class="location">
-                  In Bestellung
-                </div>
-                <div class="orders">
-                  <p *ngFor="let checkins of getNotDoneArticleCheckIns()" class="orderRow">
-                    <mat-chip-list>
-                      <mat-chip class="color-black chips-reduced-height">{{checkins.quantity}}</mat-chip>
-                      <span class="location" *ngIf="isPast(checkins.plannedDate)">
-                      ({{checkins.plannedDate | date: "dd.MM.y"}})
-                  </span>
-                      <span class="location" *ngIf="!isPast(checkins.plannedDate)">
-                      {{checkins.plannedDate | date: "dd.MM.y"}}
-                  </span>
-                    </mat-chip-list>
-                  </p>
-                </div>
-              </div>
             </div>
             <div class="shopping-row" *ngIf="selectedCartItem && selectedCartItem.quantity > 0">
               <div class="location">Menge im Warenkorb</div>

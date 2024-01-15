@@ -95,7 +95,7 @@ export class ArticleStockTableComponent implements OnInit, AfterViewInit {
     };
     if (modificationCount > 0) {
       if (modificationCount === 1) {
-        this.notificationService.showNotification("1 neuer Lagerbeständ speichert", "schliessen", "success");
+        this.notificationService.showNotification("1 neuer Lagerbestand speichert", "schliessen", "success");
       } else {
         this.notificationService.showNotification(modificationCount + " neue Lagerbestände speichert", "schliessen", "success");
       }
@@ -104,7 +104,7 @@ export class ArticleStockTableComponent implements OnInit, AfterViewInit {
   }
 
   private async update(row: ArticleStockWrapper): Promise<boolean> {
-    if (row.newQuantity !== undefined && row.newQuantity !== null && row.newQuantity !== row.dto.quantity) {
+    if (row.newQuantity !== undefined && row.newQuantity !== null && row.newQuantity != row.dto.quantity) {
       let dto = row.dto;
       dto.quantity = row.newQuantity;
       await this.rest.update(dto).toPromise();

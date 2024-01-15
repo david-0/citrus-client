@@ -47,16 +47,6 @@ import { CartLocationDetailComponent } from "./checkout/cart-location-detail/car
 import { CheckoutComponent } from "./checkout/checkout/checkout.component";
 
 import { AdministrationComponent } from "./childs/administration/administration.component";
-import { ArticleCheckinDeleteComponent } from "./childs/article-checkin/article-checkin-delete/article-checkin-delete.component";
-import { ArticleCheckinDetailComponent } from "./childs/article-checkin/article-checkin-detail/article-checkin-detail.component";
-import { ArticleCheckinEditComponent } from "./childs/article-checkin/article-checkin-edit/article-checkin-edit.component";
-import { ArticleCheckinOverviewComponent } from "./childs/article-checkin/article-checkin-overview/article-checkin-overview.component";
-import { ArticleCheckinTableComponent } from "./childs/article-checkin/article-checkin-table/article-checkin-table.component";
-import { ArticleCheckoutDeleteComponent } from "./childs/article-checkout/article-checkout-delete/article-checkout-delete.component";
-import { ArticleCheckoutDetailComponent } from "./childs/article-checkout/article-checkout-detail/article-checkout-detail.component";
-import { ArticleCheckoutEditComponent } from "./childs/article-checkout/article-checkout-edit/article-checkout-edit.component";
-import { ArticleCheckoutOverviewComponent } from "./childs/article-checkout/article-checkout-overview/article-checkout-overview.component";
-import { ArticleCheckoutTableComponent } from "./childs/article-checkout/article-checkout-table/article-checkout-table.component";
 import { ArticleStockDeleteComponent } from "./childs/article-stock/article-stock-delete/article-stock-delete.component";
 import { ArticleStockDetailComponent } from "./childs/article-stock/article-stock-detail/article-stock-detail.component";
 import { ArticleStockEditComponent } from "./childs/article-stock/article-stock-edit/article-stock-edit.component";
@@ -215,16 +205,6 @@ import { NotifierComponent } from "./base/notifier/notifier.component";
     ArticleStockEditComponent,
     ArticleStockOverviewComponent,
     ArticleStockTableComponent,
-    ArticleCheckinDeleteComponent,
-    ArticleCheckinDetailComponent,
-    ArticleCheckinOverviewComponent,
-    ArticleCheckinTableComponent,
-    ArticleCheckinEditComponent,
-    ArticleCheckoutDeleteComponent,
-    ArticleCheckoutEditComponent,
-    ArticleCheckoutOverviewComponent,
-    ArticleCheckoutTableComponent,
-    ArticleCheckoutDetailComponent,
     PublicArticleStockGridComponent,
     CartLocationDetailComponent,
     PublicArticleDetailComponent,

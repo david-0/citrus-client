@@ -20,19 +20,7 @@ export class ArticleStockDeleteComponent implements OnInit {
 
   ngOnInit() {
     this.deleteExecutor = new DeleteExecutor<ArticleStockDto>(this.route, this.rest, "Der Lagerbestand");
-    this.deleteExecutor.registerCheck(articleStock => this.getCheckIns(articleStock).length > 0,
-      article => `weil er noch in ${this.getCheckIns(article).length} Einbuchung(en) verwendet wird`);
-    this.deleteExecutor.registerCheck(articleStock => this.getCheckOuts(articleStock).length > 0,
-      article => `weil er noch in ${this.getCheckOuts(article).length} Ausbuchung(en) verwendet wird`);
     this.deleteExecutor.initDelete();
-  }
-
-  private getCheckIns(articleStock: ArticleStockDto): number[] {
-    return this.uniq(articleStock.checkIns.map(item => item.id));
-  }
-
-  private getCheckOuts(articleStock: ArticleStockDto): number[] {
-    return this.uniq(articleStock.checkOuts.map(item => item.id));
   }
 
   private uniq(a: number[]): number[] {

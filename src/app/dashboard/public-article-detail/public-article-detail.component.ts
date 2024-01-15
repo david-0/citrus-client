@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { ArticleCheckInDto, ArticleDto, ArticleStockDto, CartDto, CartItemDto } from "citrus-common";
+import { ArticleDto, ArticleStockDto, CartDto, CartItemDto } from "citrus-common";
 import * as moment from "moment";
 import { Subscription } from "rxjs";
 import { CartService } from "../../cart/cart.service";
@@ -86,16 +86,6 @@ export class PublicArticleDetailComponent implements OnInit, OnDestroy {
 
   public onLocationIdChange(locationId: number) {
     this.updateSelectedStockArticle(this.selectedArticle, +locationId);
-  }
-
-  public getNotDoneArticleCheckIns(): ArticleCheckInDto[] {
-    return this.selectedArticleStock.checkIns
-      .filter(ci => !ci.done)
-      .sort((a, b) => PublicArticleDetailComponent.compareDates(a.plannedDate, b.plannedDate));
-  }
-
-  public isPast(date: Date) {
-    return moment(date).isBefore(moment.now());
   }
 
   public increase(inc: number) {
