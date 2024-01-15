@@ -1,18 +1,16 @@
 <form #f="ngForm" (ngSubmit)="submit()">
   <app-table-header titleText="Lagerbestand bearbeiten" [showBack]="true" [showCancelAndSave]="true"
-                    [form]="f"></app-table-header>
+    [form]="f"></app-table-header>
   <mat-card class="mat-card-padding">
     <mat-form-field class="full-width" color="accent">
-      <mat-select placeholder="Artikel" #article name="article"
-                  [(ngModel)]="articleStock.article">
+      <mat-select placeholder="Artikel" #article name="article" [(ngModel)]="articleStock.article">
         <mat-option *ngFor="let article of articleSubject | async" [value]="article">
           {{article.number}} {{article.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" color="accent">
-      <mat-select placeholder="Standort" #location name="location"
-                  [(ngModel)]="articleStock.location">
+      <mat-select placeholder="Standort" #location name="location" [(ngModel)]="articleStock.location">
         <mat-option *ngFor="let location of locationSubject | async" [value]="location">
           {{location.description}}
         </mat-option>
@@ -20,7 +18,12 @@
     </mat-form-field>
     <mat-checkbox class="full-width" name="soldOut" [(ngModel)]="articleStock.soldOut">Ausverkauft</mat-checkbox>
     <mat-checkbox class="full-width" name="visible" [(ngModel)]="articleStock.visible">Sichtbar</mat-checkbox>
-    <p>Menge an Lager: {{articleStock.quantity}} {{articleStock.article.unitOfMeasurement.shortcut}} (Das ist ein berechneter Wert, keine Anpassung möglich!)</p>
-    <p>Menge reserviert: {{articleStock.reservedQuantity}} {{articleStock.article.unitOfMeasurement.shortcut}} (Das ist ein berechneter Wert, keine Anpassung möglich!)</p>
+    <mat-form-field class="full-width" color="accent">
+      <input matInput placeholder="Menge an Lager" #quantity [(ngModel)]="articleStock.quantity" maxlength="256"
+        name="quantity">
+      <mat-hint align="end">{{ quantity.value.length}}</mat-hint>
+    </mat-form-field>
+    <p>Menge reserviert: {{articleStock.reservedQuantity}} {{articleStock.article.unitOfMeasurement.shortcut}} (Das ist
+      ein berechneter Wert, keine Anpassung möglich!)</p>
   </mat-card>
 </form>

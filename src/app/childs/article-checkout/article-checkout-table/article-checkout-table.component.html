@@ -1,5 +1,5 @@
 <app-table-filter (onChange)="applyFilter($event)" [settings]="this.settings"
-                  placeholder="Filter Ausbuchungen"></app-table-filter>
+  placeholder="Filter Ausbuchungen"></app-table-filter>
 <mat-table #table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="id" hidden>
     <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
@@ -21,7 +21,8 @@
   <ng-container matColumnDef="done">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Erledigt</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <span *ngIf="row.done">{{row.doneUser?.prename}} {{row.doneUser?.name}}<br/>{{row.doneDate | date: "dd.MM.yyyy HH:mm:ss"}}</span>
+      <span *ngIf="row.done">{{row.doneUser?.prename}} {{row.doneUser?.name}}<br />{{row.doneDate | date: "dd.MM.yyyy
+        HH:mm:ss"}}</span>
       <span *ngIf="!row.done">Nein</span>
     </mat-cell>
   </ng-container>
@@ -31,5 +32,5 @@
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="table-row--highligthed" routerLink={{row.id}}
-           *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>

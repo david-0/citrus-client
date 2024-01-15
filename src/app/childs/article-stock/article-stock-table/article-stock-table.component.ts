@@ -2,33 +2,39 @@ import { AfterViewInit, Component, Input, OnInit, ViewChild } from "@angular/cor
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
-import { ArticleStockDto } from "citrus-common";
+import { NotifierService } from "../../../base/notifier.service";
 import { ArticleStockSettingsService } from "../article-stock-settings.service";
 import { ArticleStockWithDtoAllRestService } from "../article-stock-with-dto-all-rest.service";
-import { BaseTableComponent } from "../../../base/base-table.component";
+import { ArticleStockWrapper } from "./ArticleStockWrapper";
+import { ArticleStockDto } from "citrus-common";
 
 @Component({
   selector: "app-article-stock-table",
   templateUrl: "./article-stock-table.component.html",
   styleUrls: ["./article-stock-table.component.scss"]
 })
-export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockDto> implements OnInit, AfterViewInit {
+export class ArticleStockTableComponent implements OnInit, AfterViewInit {
 
   @Input() displayedColumns: string[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(rest: ArticleStockWithDtoAllRestService,
-    settings: ArticleStockSettingsService) {
-    super(rest, settings);
+  constructor(private rest: ArticleStockWithDtoAllRestService,
+    protected settings: ArticleStockSettingsService,
+    private notificationService: NotifierService) {
   }
 
-  dataSource = new MatTableDataSource<ArticleStockDto>();
+  dataSource = new MatTableDataSource<ArticleStockWrapper>();
 
   ngOnInit() {
-    const subscription = this.rest.getAll().subscribe((data: ArticleStockDto[]) => {
-      this.dataSource.data = data;
+    this.reload();
+  }
+
+  private reload() {
+    const subscription = this.rest.getAll().subscribe(data => {
+      const mapped = data.map(dto => new ArticleStockWrapper(dto));
+      this.dataSource.data = mapped;
       this.dataSource.filterPredicate = this.filterPredicate;
     });
   }
@@ -42,36 +48,70 @@ export class ArticleStockTableComponent extends BaseTableComponent<ArticleStockD
     this.dataSource.sort = this.sort;
   }
 
-  private filterPredicate(data: ArticleStockDto, filter: string): boolean {
-    return (data.article.description
-      + data.location.description
-      + data.quantity
-      + data.reservedQuantity
-      + (data.quantity - data.reservedQuantity)
+  private filterPredicate(data: ArticleStockWrapper, filter: string): boolean {
+    return (data.dto.article.description
+      + data.dto.location.description
+      + data.dto.quantity
+      + data.dto.reservedQuantity
+      + (data.dto.quantity - data.dto.reservedQuantity)
     ).indexOf(filter) > -1;
   }
 
   public async toggleSoldOut(id: number) {
     this.dataSource.data = await Promise.all(this.dataSource.data
-      .map(async (stock) => {
+      .map(async (wrapper) => {
+        const stock = wrapper.dto;
         if (stock.id == id) {
           stock.soldOut = stock.soldOut ? false : true;
           await this.rest.update(stock).toPromise();
           stock.soldOut = stock.soldOut ? false : true;
         }
-        return stock;
+        return wrapper;
       }));
   }
 
   public async toggleVisible(id: number) {
     this.dataSource.data = await Promise.all(this.dataSource.data
-      .map(async (stock) => {
+      .map(async (wrapper) => {
+        const stock = wrapper.dto;
         if (stock.id == id) {
           stock.visible = stock.visible ? false : true;
           await this.rest.update(stock).toPromise();
           stock.visible = stock.visible ? false : true;
         }
-        return stock;
+        return wrapper;
       }));
   }
+
+
+  public async saveAll() {
+    let modificationCount = 0;
+
+    for (let index = 0; index < this.dataSource.data.length; index++) {
+      const row = this.dataSource.data[index];
+      if (await this.update(row)) {
+        modificationCount++;
+      }
+    };
+    if (modificationCount > 0) {
+      if (modificationCount === 1) {
+        this.notificationService.showNotification("1 neuer Lagerbeständ speichert", "schliessen", "success");
+      } else {
+        this.notificationService.showNotification(modificationCount + " neue Lagerbestände speichert", "schliessen", "success");
+      }
+      this.reload();
+    }
+  }
+
+  private async update(row: ArticleStockWrapper): Promise<boolean> {
+    if (row.newQuantity !== undefined && row.newQuantity !== null && row.newQuantity !== row.dto.quantity) {
+      let dto = row.dto;
+      dto.quantity = row.newQuantity;
+      await this.rest.update(dto).toPromise();
+      row.newQuantity = undefined;
+      return true;
+    }
+    return false;
+  }
+
 }
