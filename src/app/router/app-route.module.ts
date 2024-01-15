@@ -269,7 +269,7 @@ const routes: Routes = [
         canActivate: [AuthGuard, AuthGuardAdmin],
         component: LocationDeleteComponent
       },
-      { path: "", redirectTo: "address", pathMatch: "full" },
+      { path: "", redirectTo: "articleStock", pathMatch: "full" },
     ]
   },
 ];
