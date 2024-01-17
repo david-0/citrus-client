@@ -146,8 +146,9 @@ import { MessageTemplateOverviewComponent } from "./childs/message-template/mess
 import { MessageTemplateTableComponent } from "./childs/message-template/message-template-table/message-template-table.component";
 import { NotifierComponent } from "./base/notifier/notifier.component";
 import { MyOrdersComponent } from "./childs/user/my-orders/my-orders.component";
-import { MyOrdersDetailsComponent } from "./childs/user/my-order-details/my-order-details.component";
+import { OrderDetailsComponent } from "./childs/user/order-details/order-details.component";
 import { OrdersByUserComponent } from "./childs/user/orders-by-user/orders-by-user.component";
+import { OrdersDetailsComponent } from "./childs/user/orders-details/orders-details.component";
 
 @NgModule({
   declarations: [
@@ -244,8 +245,9 @@ import { OrdersByUserComponent } from "./childs/user/orders-by-user/orders-by-us
     MessageTemplateTableComponent,
     NotifierComponent,
     MyOrdersComponent,
-    MyOrdersDetailsComponent,
+    OrderDetailsComponent,
     OrdersByUserComponent,
+    OrdersDetailsComponent,
   ],
   imports: [
     BrowserModule,

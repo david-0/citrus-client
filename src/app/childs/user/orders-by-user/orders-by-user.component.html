@@ -1,17 +1,2 @@
-<mat-card class="card-margin">
-  <mat-card-header>
-      <mat-card-title>aktuelle Bestellungen</mat-card-title>
-  </mat-card-header>
-  <mat-card-content class="card-margin">
-      <app-my-order-details *ngFor="let order of orderObservable | async" [order]="order"></app-my-order-details>
-  </mat-card-content>
-</mat-card>
-<mat-card class="card-margin">
-  <mat-card-header>
-      <mat-card-title>archiverte Bestellungen</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-      <app-my-order-details class="card-margin" *ngFor="let order of orderArchiveObservable | async"
-          [order]="order.order"></app-my-order-details>
-  </mat-card-content>
-</mat-card>
+<app-orders-details [orderObservable]="orderObservable"
+    [orderArchiveObservable]="orderArchiveObservable"></app-orders-details>"
