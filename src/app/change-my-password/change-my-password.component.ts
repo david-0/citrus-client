@@ -1,29 +1,16 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../authentication/authentication.service";
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { AuthenticationService } from "../authentication/authentication.service";
 
 @Component({
   selector: "app-change-my-password",
   templateUrl: "./change-my-password.component.html",
   styleUrls: ["./change-my-password.component.scss"]
 })
-export class ChangeMyPasswordComponent implements OnInit {
+export class ChangeMyPasswordComponent {
 
-  url: string;
-
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private authService: AuthenticationService) {
-  }
-
-  ngOnInit() {
-    /*    this.route.params.subscribe(params => {
-          if (params["id"] == null) {
-            console.error(`Internal server error, no id param`);
-          } else {
-            this.userInfoId = +params["id"];
-          }
-        });*/
+  constructor(private router: Router,
+    private authService: AuthenticationService) {
   }
 
   changeMyPassword(event: any) {

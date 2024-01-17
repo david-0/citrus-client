@@ -42,7 +42,7 @@ import { UnitOfMeasurementDetailsComponent } from "../childs/unit-of-measurement
 import { UnitOfMeasurementEditComponent } from "../childs/unit-of-measurement/unit-of-measurement-edit/unit-of-measurement-edit.component";
 import { UnitOfMeasurementOverviewComponent } from "../childs/unit-of-measurement/unit-of-measurement-overview/unit-of-measurement-overview.component";
 import { UserInfoDeleteComponent } from "../childs/user/user-delete/user-info-delete.component";
-import { UserInfoDetailsComponent } from "../childs/user/user-details/user-info-details.component";
+import { UserInfoDetailsComponent } from "../childs/user/user-details/user-details.component";
 import { UserEditComponent } from "../childs/user/user-edit/user-edit.component";
 import { UserOverviewComponent } from "../childs/user/user-overview/user-overview.component";
 import { UserPasswordChangeComponent } from "../childs/user/user-password-change/user-password-change.component";
@@ -68,6 +68,7 @@ import { MessageTemplateDeleteComponent } from "../childs/message-template/messa
 import { MessageTemplateDetailsComponent } from "../childs/message-template/message-template-details/message-template-details.component";
 import { MessageTemplateOverviewComponent } from "../childs/message-template/message-template-overview/message-template-overview.component";
 import { OrderItemDeleteComponent } from "../childs/order-item/order-item-delete/order-item-delete.component";
+import { MyOrdersComponent } from "../childs/user/my-orders/my-orders.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "organisation", pathMatch: "full" },
@@ -85,6 +86,7 @@ const routes: Routes = [
   { path: "organisation", component: OrganisationComponent },
   { path: "privacyPolicy", component: PrivacyPolicyComponent },
   { path: "checkout/:id", canActivate: [AuthGuard], component: CheckoutComponent },
+  { path: "myOrders", canActivate: [AuthGuard], component: MyOrdersComponent },
   { path: "changeMyPassword", canActivate: [AuthGuard], component: ChangeMyPasswordComponent },
   { path: "locations", canActivate: [AuthGuard], component: LocationOpeningHoursComponent },
   {

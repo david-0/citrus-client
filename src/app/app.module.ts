@@ -96,7 +96,7 @@ import { UnitOfMeasurementSettingsService } from "./childs/unit-of-measurement/u
 import { UnitOfMeasurementTableComponent } from "./childs/unit-of-measurement/unit-of-measurement-table/unit-of-measurement-table.component";
 import { RoleDtoRestService } from "./childs/user/role-dto-rest.service";
 import { UserInfoDeleteComponent } from "./childs/user/user-delete/user-info-delete.component";
-import { UserInfoDetailsComponent } from "./childs/user/user-details/user-info-details.component";
+import { UserInfoDetailsComponent } from "./childs/user/user-details/user-details.component";
 import { UserDtoRestService } from "./childs/user/user-dto-rest.service";
 import { UserEditComponent } from "./childs/user/user-edit/user-edit.component";
 import { UserDetailsSettingsService } from "./childs/user/user-info-settings.service";
@@ -145,6 +145,9 @@ import { MessageTemplateEditComponent } from "./childs/message-template/message-
 import { MessageTemplateOverviewComponent } from "./childs/message-template/message-template-overview/message-template-overview.component";
 import { MessageTemplateTableComponent } from "./childs/message-template/message-template-table/message-template-table.component";
 import { NotifierComponent } from "./base/notifier/notifier.component";
+import { MyOrdersComponent } from "./childs/user/my-orders/my-orders.component";
+import { MyOrdersDetailsComponent } from "./childs/user/my-order-details/my-order-details.component";
+import { OrdersByUserComponent } from "./childs/user/orders-by-user/orders-by-user.component";
 
 @NgModule({
   declarations: [
@@ -240,6 +243,9 @@ import { NotifierComponent } from "./base/notifier/notifier.component";
     MessageTemplateOverviewComponent,
     MessageTemplateTableComponent,
     NotifierComponent,
+    MyOrdersComponent,
+    MyOrdersDetailsComponent,
+    OrdersByUserComponent,
   ],
   imports: [
     BrowserModule,

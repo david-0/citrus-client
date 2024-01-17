@@ -1,24 +1,12 @@
 <mat-card class="mat-card-padding">
   <mat-card-content class="common_table">
     <div>
-      <div>Bestellnummer</div>
-      <div>{{order.id}}</div>
-    </div>
-    <div>
       <div>Bestelldatum</div>
       <div>{{order.date | date: "HH:mm dd.MM.y"}}</div>
     </div>
     <div>
-      <div>Besteller</div>
-      <div>{{order.user?.prename}} {{order.user?.name}}</div>
-    </div>
-    <div>
-      <div>Standort</div>
+      <div>Abholstandort</div>
       <div>{{order.location?.description}}</div>
-    </div>
-    <div>
-      <div>Kommentar</div>
-      <div>{{order.comment}}</div>
     </div>
     <div>
       <div>geplante Abholung</div>
@@ -40,9 +28,9 @@
       <div>Gesamtpreis bestellt</div>
       <div>{{order.totalPrice | currency: "CHF "}}</div>
     </div>
-    <div>Lieferschein erstellt</div>
-    <div *ngIf="order.deliveryNoteCreated">{{order.deliveryNoteCreated | date: "dd.MM.yyyy HH:mm:ss"}}
+    <div>
+      <div>Kommentar</div>
+      <div>{{order.comment}}</div>
     </div>
-    <div *ngIf="!order.deliveryNoteCreated">Nein</div>
   </mat-card-content>
 </mat-card>

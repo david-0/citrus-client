@@ -4,23 +4,26 @@
   <mat-card-content class="common_table">
     <div>
       <div>Kundennummer</div>
-      <div>{{user.id}}</div>
+      <div>{{(user | async).id}}</div>
     </div>
     <div>
       <div>Email</div>
-      <div>{{user.email}}</div>
+      <div>{{(user | async).email}}</div>
     </div>
     <div>
       <div>Name</div>
-      <div>{{user.prename}} {{user.name}}</div>
+      <div>{{(user | async).prename}} {{(user | async).name}}</div>
     </div>
     <div>
       <div>Phone</div>
-      <div>{{user.phone}}</div>
+      <div>{{(user | async).phone}}</div>
     </div>
     <div>
       <div>Rollen</div>
-      <div>{{getRoles()}}</div>
+      <div>{{roles | async}}</div>
     </div>
   </mat-card-content>
 </mat-card>
+<div>
+  <app-orders-by-user [user]="user"></app-orders-by-user>
+</div>

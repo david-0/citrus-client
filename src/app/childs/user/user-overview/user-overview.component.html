@@ -1,6 +1,6 @@
 <app-table-header titleText="Benutzer" [showCreate]="true"></app-table-header>
 <app-table-filter (onChange)="applyFilter($event)" [settings]="this.settings"
-                  placeholder="Filter Benutzer"></app-table-filter>
+  placeholder="Filter Benutzer"></app-table-filter>
 <mat-table #table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="id" hidden>
     <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
@@ -34,6 +34,5 @@
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="table-row--highligthed" routerLink={{row.id}}
-           *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-
