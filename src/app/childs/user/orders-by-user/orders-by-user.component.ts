@@ -20,12 +20,14 @@ export class OrdersByUserComponent implements OnInit {
 
   ngOnInit() {
     this.user.subscribe(u => {
-      this.rest.getByUser(u.id).subscribe(data => {
-        this.orderObservable.next(data);
-      });
-      this.archive.getByUser(u.id).subscribe(data => {
-        this.orderArchiveObservable.next(data);
-      });
+      if (u.id !== undefined) {
+        this.rest.getByUser(u.id).subscribe(data => {
+          this.orderObservable.next(data);
+        });
+        this.archive.getByUser(u.id).subscribe(data => {
+          this.orderArchiveObservable.next(data);
+        });
+      }
     });
   }
 }
